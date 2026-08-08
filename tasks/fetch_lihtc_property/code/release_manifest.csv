@@ -1,0 +1,2 @@
+release_year,source_url,landing_page,published_on,retrieved_on,expected_archive_sha256,expected_archive_bytes,expected_project_rows,workbook_member,expected_workbook_sha256,expected_workbook_bytes,expected_columns
+2024,https://www.huduser.gov/lihtc/lihtcpub.zip,https://www.huduser.gov/portal/datasets/lihtc/property.html,2026-05-28,2026-08-08,e07acee706174b276f89596d614ac5699efa9848659e5834fdfb5198fa0a7288,29421665,55345,LIHTCPUB.xlsx,fd0b1775793be2c9c36e2cc045ee7bc616294754d85c6c3045352e9bc83936cd,12975834,80
