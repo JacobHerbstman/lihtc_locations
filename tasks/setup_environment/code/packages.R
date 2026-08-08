@@ -4,10 +4,12 @@ options(repos = c(CRAN = "https://cloud.r-project.org"))
 
 cran_packages <- c(
   "arrow",
+  "data.table",
   "dplyr",
   "fixest",
   "ggplot2",
   "readr",
+  "readxl",
   "sf",
   "stringr",
   "tibble",

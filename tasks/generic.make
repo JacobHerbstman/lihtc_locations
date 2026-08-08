@@ -28,3 +28,14 @@ endef
 
 $(foreach task,$(UPSTREAM_TASKS),$(eval $(call UPSTREAM_OUTPUT_RULE,$(task))))
 $(foreach task,$(AUDIT_TASKS),$(eval $(call AUDIT_OUTPUT_RULE,$(task))))
+
+ifneq ($(wildcard ../../../generic.make),)
+NESTED_UPSTREAM_TASKS := $(notdir $(patsubst %/code,%,$(wildcard ../../../*/code)))
+
+define NESTED_UPSTREAM_OUTPUT_RULE
+../../../$(1)/output/%: FORCE_UPSTREAM_CHECK
+	$$(MAKE) -C ../../../$(1)/code ../output/$$*
+endef
+
+$(foreach task,$(NESTED_UPSTREAM_TASKS),$(eval $(call NESTED_UPSTREAM_OUTPUT_RULE,$(task))))
+endif
