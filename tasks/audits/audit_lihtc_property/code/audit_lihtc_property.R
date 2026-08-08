@@ -445,12 +445,15 @@ li_unitr <- as_strict_numeric(raw$li_unitr)
 ceilunit <- as_strict_numeric(raw$ceilunit)
 add_issues(
   !is.na(n_units) & !is.na(li_units) & li_units > n_units,
-  "low_income_units_exceed_total_units",
-  "high",
+  "original_low_income_units_exceed_original_total",
+  "moderate",
   "data-quality",
   "li_units|n_units",
   paste(raw$li_units, raw$n_units, sep = " | "),
-  "Reported low-income units exceed reported total units."
+  paste(
+    "Original low-income units exceed original total units; HUD's reconciled",
+    "n_unitsr and li_unitr fields should be used for analysis."
+  )
 )
 add_issues(
   !is.na(n_unitsr) & !is.na(li_unitr) & li_unitr > n_unitsr,
@@ -462,13 +465,13 @@ add_issues(
   "HUD's replacement low-income unit count exceeds its replacement total unit count."
 )
 add_issues(
-  !is.na(ceilunit) & !is.na(li_units) & ceilunit > li_units,
-  "lower_ceiling_units_exceed_low_income_units",
+  !is.na(ceilunit) & !is.na(li_unitr) & ceilunit > li_unitr,
+  "lower_ceiling_units_exceed_reconciled_low_income_units",
   "high",
   "data-quality",
-  "ceilunit|li_units",
-  paste(raw$ceilunit, raw$li_units, sep = " | "),
-  "Units below the elected ceiling exceed reported low-income units."
+  "ceilunit|li_unitr",
+  paste(raw$ceilunit, raw$li_unitr, sep = " | "),
+  "Units below the elected ceiling exceed HUD's reconciled low-income unit count."
 )
 
 bedroom_columns <- c("n_0br", "n_1br", "n_2br", "n_3br", "n_4br")
@@ -476,13 +479,13 @@ bedroom_values <- as.data.frame(lapply(raw[, ..bedroom_columns], as_strict_numer
 bedroom_reported <- rowSums(!is.na(bedroom_values)) > 0
 bedroom_sum <- rowSums(bedroom_values, na.rm = TRUE)
 add_issues(
-  bedroom_reported & !is.na(n_units) & bedroom_sum > n_units,
-  "bedroom_counts_exceed_total_units",
+  bedroom_reported & !is.na(n_unitsr) & bedroom_sum > n_unitsr,
+  "bedroom_counts_exceed_reconciled_total_units",
   "high",
   "data-quality",
-  paste(bedroom_columns, collapse = "|") |> paste0("|n_units"),
-  paste(bedroom_sum, raw$n_units, sep = " | "),
-  "The sum of reported bedroom categories exceeds total units."
+  paste(bedroom_columns, collapse = "|") |> paste0("|n_unitsr"),
+  paste(bedroom_sum, raw$n_unitsr, sep = " | "),
+  "The sum of reported bedroom-category units exceeds HUD's reconciled total units."
 )
 
 amount_columns <- c("allocamt", "home_amt", "tcap_amt", "cdbg_amt", "htf_amt", "hpvi_amt", "tcep_amt", "qozf_amt")
@@ -803,10 +806,10 @@ summary_lines <- c(
   "## Research boundary",
   "",
   paste(
-    "This task is an audit, not a cleaned-data producer. The next step is to review",
-    "high-severity anomalies and sampled duplicate groups, decide what the research",
-    "unit should be, and encode approved decisions with explicit reason codes in a",
-    "separate construction task."
+    "This task is an audit, not a cleaned-data producer. The analysis unit will be",
+    "the HUD project (hud_id). The next step is to aggregate HUD's building/address",
+    "file to that project level, retain multi-site projects, and review co-located",
+    "distinct HUD projects without automatically collapsing them."
   )
 )
 
