@@ -38,6 +38,7 @@
 
 - [ ] No external data have been joined yet.
 - [x] Conservative cross-HUD links produce provisional development groups without dropping any HUD episode; every non-singleton group remains in the manual review queue.
+- [x] Matching normalized names plus a standardized primary address or identical complete multi-address set creates a provisional link; the next step is adjudication, not rerunning the same linkage rule.
 - [x] A shared normalized address and project name is a useful cross-HUD-ID review signal, but the full address-set overlap, years, construction type, unit counts, state IDs, and data notes must be checked before collapse.
 - [ ] Manual decisions remain unresolved and must eventually carry explicit reason codes.
 - [ ] Mastery status: pending
@@ -70,3 +71,4 @@
 | 2026-08-08 | 2 | Project-versus-site distinction | Restated, then corrected | Confirm HUD_ID/BIN relationship |
 | 2026-08-08 | 4 | Cross-HUD linkage signal | Shared address and name proposed | Refine with full address-set and project-history evidence |
 | 2026-08-09 | 4 | Final hierarchy | Physical development, project episode, development site confirmed | Review provisional linked developments |
+| 2026-08-09 | 4 | Linkage sequence | Proposed linking matched records | Corrected: records are already provisionally linked; accept, reject, or split next |
