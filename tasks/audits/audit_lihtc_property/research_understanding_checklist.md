@@ -17,9 +17,10 @@
 
 - [ ] Primary source: HUD's committed 2024 LIHTC public-data ZIP.
 - [x] Raw unit of observation: a HUD database project record, not necessarily a building, allocation, owner, or unique physical site.
+- [x] The supplementary multi-address/BIN file contains address records nested within HUD projects: 161,715 rows for 22,764 HUD IDs. Its `BIN` is HFA-supplied and is not a nationally unique building key.
 - [ ] Sample: 55,345 published property rows covering records reported in the 1987–2024 database.
 - [ ] Understand that the workbook and its data dictionary can disagree.
-- [ ] Mastery status: restated — the planned dataset is project-level and should retain multiple sites within a project.
+- [x] Mastery status: confirmed — the planned hierarchy is physical development, HUD project episode, and development site.
 
 ## Stage 3: Cleaning And Construction Logic
 
@@ -28,13 +29,16 @@
 - [x] Use HUD's reconciled `n_unitsr` and `li_unitr` fields for project-level unit counts; all 439 original low-income-over-total conflicts are resolved by these fields.
 - [ ] Treat bedroom-category counts as unreliable where their sum exceeds reconciled total units; do not drop the project row solely for that reason.
 - [ ] Substantive decisions: whether a candidate duplicate is the same research object and which record, if any, should represent it.
+- [x] Multiple multi-address/BIN rows within one HUD ID remain project components and should aggregate to one project row without summing repeated project-level unit totals.
+- [x] Development-level unit totals remain missing for every provisional cross-HUD linkage; candidate aggregation rules are review aids rather than accepted totals.
 - [ ] No rows have been excluded and no source values have been overwritten.
 - [ ] Mastery status: pending
 
 ## Stage 4: Joins, Crosswalks, And Manual Decisions
 
 - [ ] No external data have been joined yet.
-- [ ] Duplicate candidates are represented as review groups; no many-to-many merge or automatic collapse occurs.
+- [x] Conservative cross-HUD links produce provisional development groups without dropping any HUD episode; every non-singleton group remains in the manual review queue.
+- [x] A shared normalized address and project name is a useful cross-HUD-ID review signal, but the full address-set overlap, years, construction type, unit counts, state IDs, and data notes must be checked before collapse.
 - [ ] Manual decisions remain unresolved and must eventually carry explicit reason codes.
 - [ ] Mastery status: pending
 
@@ -53,7 +57,7 @@
 
 ## Open Questions
 
-- [x] Main research object: HUD project (`hud_id`), with multiple sites or buildings represented as project components rather than separate analysis rows.
+- [x] Main research object: underlying physical development, with HUD IDs retained as project episodes and addresses retained as development sites.
 - [ ] Decide how to label distinct HUD projects that share a physical site or development name; do not collapse them automatically.
 - [ ] Should later analyses treat resyndications as new allocations, repeated sites, or both in separate specifications?
 - [ ] Which external sources should adjudicate unresolved coordinates and project identities?
@@ -64,3 +68,5 @@
 |---|---|---|---|---|
 | 2026-08-08 | 1 | Researcher restatement requested | Pending | Yes |
 | 2026-08-08 | 2 | Project-versus-site distinction | Restated, then corrected | Confirm HUD_ID/BIN relationship |
+| 2026-08-08 | 4 | Cross-HUD linkage signal | Shared address and name proposed | Refine with full address-set and project-history evidence |
+| 2026-08-09 | 4 | Final hierarchy | Physical development, project episode, development site confirmed | Review provisional linked developments |

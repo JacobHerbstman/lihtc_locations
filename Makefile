@@ -1,7 +1,8 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := paper
 
-.PHONY: all paper setup sources lihtc-data prepare-lihtc-data audit-lihtc-data
+.PHONY: all paper setup sources lihtc-data prepare-lihtc-data audit-lihtc-data \
+	build-lihtc-development audit-lihtc-development
 
 all: paper
 
@@ -14,9 +15,18 @@ sources: tasks/source_registry/output/source_catalog.csv
 
 lihtc-data: tasks/fetch_lihtc_property/output/lihtc_property_2024_files.csv
 
-prepare-lihtc-data: tasks/prepare_lihtc_property/output/lihtc_property_2024_raw_text.parquet
+prepare-lihtc-data: \
+	tasks/prepare_lihtc_property/output/lihtc_property_2024_raw_text.parquet \
+	tasks/prepare_lihtc_multisite/output/lihtc_multisite_2024_raw_text.parquet
 
 audit-lihtc-data: tasks/audits/audit_lihtc_property/output/audit_summary.md
+
+build-lihtc-development: \
+	tasks/build_lihtc_development/output/lihtc_development_2024.parquet \
+	tasks/build_lihtc_development/output/lihtc_project_episode_2024.parquet \
+	tasks/build_lihtc_development/output/lihtc_development_site_2024.parquet
+
+audit-lihtc-development: tasks/audits/audit_lihtc_development/output/audit_summary.md
 
 tasks/setup_environment/output/system_requirements.txt: tasks/setup_environment/code/system_requirements.sh
 	$(MAKE) -C tasks/setup_environment/code ../output/system_requirements.txt
@@ -40,6 +50,12 @@ tasks/prepare_lihtc_property/output/lihtc_property_2024_raw_text.parquet: \
 		data_raw/hud_lihtc_property/2024/lihtcpub.zip
 	$(MAKE) -C tasks/prepare_lihtc_property/code ../output/lihtc_property_2024_raw_text.parquet
 
+tasks/prepare_lihtc_multisite/output/lihtc_multisite_2024_raw_text.parquet: \
+		tasks/prepare_lihtc_multisite/code/prepare_lihtc_multisite.R \
+		tasks/fetch_lihtc_property/output/lihtc_property_2024_files.csv \
+		data_raw/hud_lihtc_property/2024/lihtcpub.zip
+	$(MAKE) -C tasks/prepare_lihtc_multisite/code ../output/lihtc_multisite_2024_raw_text.parquet
+
 tasks/audits/audit_lihtc_property/output/audit_summary.md: \
 		tasks/audits/audit_lihtc_property/code/audit_lihtc_property.R \
 		tasks/audits/audit_lihtc_property/code/dictionary_claims.csv \
@@ -48,3 +64,21 @@ tasks/audits/audit_lihtc_property/output/audit_summary.md: \
 		tasks/prepare_lihtc_property/output/lihtc_property_2024_raw_text.parquet \
 		data_raw/hud_lihtc_property/2024/lihtcpub.zip
 	$(MAKE) -C tasks/audits/audit_lihtc_property/code ../output/audit_summary.md
+
+tasks/build_lihtc_development/output/lihtc_development_2024.parquet: \
+		tasks/build_lihtc_development/code/build_lihtc_development.R \
+		tasks/prepare_lihtc_property/output/lihtc_property_2024_raw_text.parquet \
+		tasks/prepare_lihtc_multisite/output/lihtc_multisite_2024_raw_text.parquet
+	$(MAKE) -C tasks/build_lihtc_development/code ../output/lihtc_development_2024.parquet
+
+tasks/build_lihtc_development/output/lihtc_project_episode_2024.parquet \
+tasks/build_lihtc_development/output/lihtc_development_site_2024.parquet: \
+		tasks/build_lihtc_development/output/lihtc_development_2024.parquet
+	@test -f $@
+
+tasks/audits/audit_lihtc_development/output/audit_summary.md: \
+		tasks/audits/audit_lihtc_development/code/audit_lihtc_development.R \
+		tasks/build_lihtc_development/output/lihtc_development_2024.parquet \
+		tasks/build_lihtc_development/output/lihtc_project_episode_2024.parquet \
+		tasks/build_lihtc_development/output/lihtc_development_site_2024.parquet
+	$(MAKE) -C tasks/audits/audit_lihtc_development/code ../output/audit_summary.md
