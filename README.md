@@ -63,6 +63,14 @@ make build-lihtc-development
 make audit-lihtc-development
 ```
 
+Validate the committed two-pass linkage decisions, apply them to the three
+development tables, and audit the result:
+
+```sh
+make adjudicate-lihtc-development
+make audit-lihtc-development-linkage
+```
+
 The fetch task forces HTTP/1.1 because HUD's web application firewall sends
 command-line HTTP/2 requests to a browser challenge. It verifies the archive
 against a committed SHA-256 checksum before placing it under `data_raw/`.
@@ -72,4 +80,12 @@ snapshot was retrieved on August 8, 2026 from
 <https://www.huduser.gov/lihtc/lihtcpub.zip>; its release metadata and hashes
 are recorded in
 [`tasks/fetch_lihtc_property/code/release_manifest.csv`](tasks/fetch_lihtc_property/code/release_manifest.csv).
-The Parquet conversions preserve every published cell as text and verify exact round trips. The audits use R and `data.table`; they do not delete rows or silently choose among candidate duplicates. Cross-HUD development links and their candidate unit aggregations remain provisional until reviewed.
+The Parquet conversions preserve every published cell as text and verify exact
+round trips. The audits use R and `data.table`; they do not delete source rows
+or silently choose among candidate duplicates. The committed linkage review
+gives all 325 provisional cross-HUD groups an internal HUD-only read and a
+separate outside-source read. It accepts 322 groups and rejects three HCCI
+portfolio groups whose HUD addresses contain only a street name. Accepted
+groups retain every HUD project episode and unresolved development-level unit
+totals; rejected groups are split without importing outside addresses into the
+HUD-derived site table.
