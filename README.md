@@ -92,12 +92,29 @@ addresses to unique development-pair evidence:
 make audit-lihtc-cross-development-addresses
 ```
 
+Collapse the high-identity-evidence pairs to connected review questions and
+carry forward previously completed phase/component decisions:
+
+```sh
+make prepare-lihtc-cross-development-address-review
+```
+
+Validate the committed two-pass internal and outside-source identity review:
+
+```sh
+make review-lihtc-cross-development-addresses
+```
+
 This audit calls no geocoder and transmits no address or coordinate. It keeps
 Puerto Rico and the other territories as explicit out-of-scope records,
 preserves raw address fields, and marks every locally proposed query as
 `not_approved`. The cross-development audit separately preserves one row per
 shared address, address-development member, and unique development pair. Its
 review strata do not merge a development or approve a shared query.
+The review-preparation task also makes no new decision; it prevents a
+three-or-more-development question from being decided inconsistently as
+separate pairs. The review ledger merges only physical-development identities,
+preserves every project episode and site row, and approves no geocoding query.
 
 The fetch task forces HTTP/1.1 because HUD's web application firewall sends
 command-line HTTP/2 requests to a browser challenge. It verifies the archive

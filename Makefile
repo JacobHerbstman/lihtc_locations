@@ -6,7 +6,9 @@ SHELL := /bin/bash
 	adjudicate-lihtc-development audit-lihtc-development-linkage \
 	adjudicate-lihtc-name-variants audit-lihtc-name-variants \
 	audit-lihtc-geocoding-readiness \
-	audit-lihtc-cross-development-addresses
+	audit-lihtc-cross-development-addresses \
+	prepare-lihtc-cross-development-address-review \
+	review-lihtc-cross-development-addresses
 
 all: paper
 
@@ -53,6 +55,12 @@ audit-lihtc-geocoding-readiness: \
 
 audit-lihtc-cross-development-addresses: \
 	tasks/audits/audit_lihtc_cross_development_addresses/output/audit_summary.md
+
+prepare-lihtc-cross-development-address-review: \
+	tasks/prepare_lihtc_cross_development_address_review/output/audit_summary.md
+
+review-lihtc-cross-development-addresses: \
+	tasks/review_lihtc_cross_development_addresses/output/review_summary.md
 
 tasks/setup_environment/output/system_requirements.txt: tasks/setup_environment/code/system_requirements.sh
 	$(MAKE) -C tasks/setup_environment/code ../output/system_requirements.txt
@@ -197,3 +205,17 @@ tasks/audits/audit_lihtc_cross_development_addresses/output/audit_summary.md: \
 		tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_development_2024_name_adjudicated.parquet \
 		tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_project_episode_2024_name_adjudicated.parquet
 	$(MAKE) -C tasks/audits/audit_lihtc_cross_development_addresses/code ../output/audit_summary.md
+
+tasks/prepare_lihtc_cross_development_address_review/output/audit_summary.md: \
+		tasks/prepare_lihtc_cross_development_address_review/code/prepare_lihtc_cross_development_address_review.R \
+		tasks/audits/audit_lihtc_cross_development_addresses/output/lihtc_cross_development_pairs.parquet \
+		tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_development_2024_name_adjudicated.parquet \
+		tasks/review_lihtc_name_variant_linkage/output/lihtc_name_variant_linkage_decisions_2024.parquet
+	$(MAKE) -C tasks/prepare_lihtc_cross_development_address_review/code ../output/audit_summary.md
+
+tasks/review_lihtc_cross_development_addresses/output/review_summary.md: \
+		tasks/review_lihtc_cross_development_addresses/code/validate_lihtc_cross_development_addresses.R \
+		tasks/review_lihtc_cross_development_addresses/code/cross_development_address_decisions.csv \
+		tasks/prepare_lihtc_cross_development_address_review/output/lihtc_cross_development_identity_questions.parquet \
+		tasks/prepare_lihtc_cross_development_address_review/output/lihtc_cross_development_identity_question_members.parquet
+	$(MAKE) -C tasks/review_lihtc_cross_development_addresses/code ../output/review_summary.md
