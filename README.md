@@ -121,6 +121,15 @@ timing, and phase/component address pairs:
 make prepare-lihtc-cross-development-address-review-round2
 ```
 
+Validate and apply the explicit round-two member partition, then rebuild the
+shared-address audit on the new physical-development identifiers:
+
+```sh
+make review-lihtc-cross-development-addresses-round2
+make apply-lihtc-cross-development-address-review-round2
+make audit-lihtc-cross-development-addresses-round2-adjudicated
+```
+
 This audit calls no geocoder and transmits no address or coordinate. It keeps
 Puerto Rico and the other territories as explicit out-of-scope records,
 preserves raw address fields, and marks every locally proposed query as
@@ -136,7 +145,21 @@ to the new identifiers, records completed retain-separate reviews, and leaves
 all other identity and address decisions unresolved. The second-round
 preparation contains 372 connected questions with 834 development members and
 supports partitions within a connected question; it makes no linkage decision
-and approves no geocoding query.
+and approves no geocoding query. The committed round-two review resolves those
+834 records into 566 physical-development clusters. Applying the partition
+reduces the physical-development count from 54,612 to 54,344 while preserving
+all 55,345 project episodes. The site count falls from 134,646 to 134,232 only
+because 414 development/address keys become exact duplicates inside a reviewed
+physical development.
+
+The post-application audit confirms that all 587 prepared candidate edges are
+resolved: 359 end within one physical development and 228 end between reviewed
+distinct developments. It also makes the remaining scope explicit rather than
+calling the address problem solved. There are 5,987 residual development pairs
+sharing at least one address, including 2,435 pairs with the same complete
+address set and 662 pairs sharing a primary address that were outside the
+round-two queue. These are still blocked from geocoding and need subsequent
+address-set, portfolio/campus, and source-contamination review.
 
 The fetch task forces HTTP/1.1 because HUD's web application firewall sends
 command-line HTTP/2 requests to a browser challenge. It verifies the archive
