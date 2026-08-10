@@ -85,10 +85,19 @@ Run the completely local geocoding-readiness audit for the 50 states and DC:
 make audit-lihtc-geocoding-readiness
 ```
 
+Audit addresses used by more than one final development, collapsing repeated
+addresses to unique development-pair evidence:
+
+```sh
+make audit-lihtc-cross-development-addresses
+```
+
 This audit calls no geocoder and transmits no address or coordinate. It keeps
 Puerto Rico and the other territories as explicit out-of-scope records,
 preserves raw address fields, and marks every locally proposed query as
-`not_approved`.
+`not_approved`. The cross-development audit separately preserves one row per
+shared address, address-development member, and unique development pair. Its
+review strata do not merge a development or approve a shared query.
 
 The fetch task forces HTTP/1.1 because HUD's web application firewall sends
 command-line HTTP/2 requests to a browser challenge. It verifies the archive

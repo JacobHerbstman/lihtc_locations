@@ -38,6 +38,9 @@
 - [x] Within one established development, suffix-only building or unit site rows may share one base-street geocoding query when city, state, and ZIP agree; published site rows remain unchanged.
 - [x] The same shared-query rule is never applied across development IDs; those address repetitions remain a separate identity and source-review queue.
 - [x] Compound-address splitting remains a review decision rather than automatic cleaning.
+- [x] The 13,706 cross-development site rows represent 5,675 shared addresses, 13,706 address-development members, and 6,688 unique development pairs; repeated streets for the same pair are collapsed before review.
+- [x] Address safety and development identity are separate decisions: 4,019 shared-address groups are locally consistent but still identity-review pending, while 1,656 remain blocked by an address, ZIP, or source problem.
+- [x] Cross-development review strata are audit evidence only; every development-identity and shared-query disposition remains unresolved.
 - [ ] Mastery status: pending
 
 ## Stage 4: Joins, Crosswalks, And Manual Decisions
@@ -89,3 +92,4 @@
 | 2026-08-10 | 4 | Second-pass implementation | 154 blocks merged and nine retained after two reads per block | Confirm interpretation of retained phases and unresolved merged unit totals before modeling |
 | 2026-08-10 | 3 | Geocoding scope and safety | Restrict to 50 states plus DC, exclude territories, and complete a local readiness audit before sending addresses | Review unresolved address categories before approving any geocoding pilot |
 | 2026-08-10 | 3 | Shared-query rule | Approved one base query for suffix-only building or unit rows inside one development; cross-development repeats require careful review | Rebuild and inspect readiness counts before any geocoding pilot |
+| 2026-08-10 | 4 | Cross-development address review | Requested a thorough distinction among missed links, separate phases or campuses, portfolio/source patterns, and bad addresses | Review the prioritized unique development-pair evidence before any identity or query decision changes |
