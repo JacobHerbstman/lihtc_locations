@@ -304,9 +304,17 @@ site[, address_identity_key := paste(
   fcoalesce(query_state_key, ""),
   sep = "|"
 )]
+trailing_site_suffix_pattern <- paste0(
+  "[[:space:]]+(APT|UNIT|UNITS|BLDG|STE|SUITE|FLOOR|FLOORS|FL|",
+  "ROOM|RM|#)[[:space:]]*[A-Z0-9-]+.*$"
+)
+site[, has_trailing_site_suffix := str_detect(
+  query_street_key,
+  trailing_site_suffix_pattern
+)]
 site[, base_street_key := str_replace(
   query_street_key,
-  "[[:space:]]+(APT|UNIT|BLDG|BUILDING|STE|SUITE|FLOOR|FL|ROOM|RM|#)[[:space:]]*[A-Z0-9-]+.*$",
+  trailing_site_suffix_pattern,
   ""
 )]
 site[, base_address_key := paste(
@@ -356,6 +364,7 @@ site[, flag_multiple_addresses :=
     "^[0-9]+[A-Z]?[[:space:]]+(&|AND)[[:space:]]+[0-9]+[A-Z]?"
   ) |
   str_detect(query_street, "[0-9]+[[:space:]]*/[[:space:]]*[0-9]+") |
+  str_detect(query_street, "[[:space:]][+][[:space:]]*[0-9]+") |
   str_detect(query_street, "&AMP;")
 ]
 range_parts <- str_match(
@@ -487,6 +496,73 @@ site[base_address_counts, `:=`(
 site[, flag_base_address_collision :=
   !is.na(base_address_n_site_keys) & base_address_n_site_keys > 1L]
 
+base_address_development_counts <- site[
+  geographic_scope == "in_scope_50_states_dc",
+  .(base_address_n_developments = uniqueN(development_id)),
+  by = base_address_key
+]
+site[base_address_development_counts, base_address_n_developments :=
+  i.base_address_n_developments, on = "base_address_key"]
+
+shared_base_groups <- site[
+  geographic_scope == "in_scope_50_states_dc" &
+    flag_base_address_collision,
+  .(
+    has_suffix_variation = any(has_trailing_site_suffix),
+    shared_base_n_zip_values = uniqueN(query_zip_key),
+    flag_shared_base_zip_conflict = uniqueN(query_zip_key) > 1L,
+    all_rows_explained_by_suffix = all(
+      has_trailing_site_suffix | query_street_key == base_street_key
+    ),
+    has_other_address_problem = any(
+      flag_source_zip_conflict | flag_source_state_conflict |
+        flag_source_unparsed_zip | flag_zip_state_internal_conflict |
+        flag_zip_state_internal_ambiguity | flag_placeholder_zip |
+        flag_multiple_addresses | flag_po_box |
+        flag_administrative_address |
+        flag_scattered_or_unknown_label | flag_building_label_only |
+        flag_parcel_or_legal_description | flag_intersection |
+        flag_address_range | flag_missing_structure_number |
+        flag_missing_city | flag_missing_zip | flag_invalid_zip |
+        flag_malformed_text | flag_repeated_across_developments
+    ),
+    shared_query_street = first_text(base_street_key)
+  ),
+  by = .(development_id, base_address_key)
+]
+shared_base_groups[, within_development_shared_base_query :=
+  has_suffix_variation & all_rows_explained_by_suffix &
+    !flag_shared_base_zip_conflict & !has_other_address_problem]
+site[shared_base_groups, `:=`(
+  within_development_shared_base_query =
+    i.within_development_shared_base_query,
+  shared_query_street = i.shared_query_street,
+  shared_base_n_zip_values = i.shared_base_n_zip_values,
+  flag_shared_base_zip_conflict = i.flag_shared_base_zip_conflict
+), on = c("development_id", "base_address_key")]
+site[is.na(within_development_shared_base_query),
+  within_development_shared_base_query := FALSE]
+site[is.na(flag_shared_base_zip_conflict),
+  flag_shared_base_zip_conflict := FALSE]
+site[base_address_n_developments > 1L,
+  within_development_shared_base_query := FALSE]
+
+site[, proposed_query_street := fifelse(
+  within_development_shared_base_query,
+  shared_query_street,
+  query_street
+)]
+site[, proposed_query_street_key := normalize_street(
+  proposed_query_street
+)]
+site[, proposed_query_key := paste(
+  fcoalesce(proposed_query_street_key, ""),
+  fcoalesce(query_city_key, ""),
+  fcoalesce(query_state_key, ""),
+  query_zip_key,
+  sep = "|"
+)]
+
 site[, coordinate_present := !is.na(latitude) & !is.na(longitude)]
 site[, flag_coordinate_global_range := coordinate_present & (
   latitude < -90 | latitude > 90 | longitude < -180 | longitude > 180
@@ -555,6 +631,10 @@ site[, address_readiness_status := fcase(
   "requires_source_review",
   flag_multiple_addresses,
   "requires_address_split",
+  within_development_shared_base_query,
+  "provisionally_queryable_shared_base",
+  flag_shared_base_zip_conflict,
+  "requires_address_review",
   flag_po_box | flag_administrative_address |
     flag_scattered_or_unknown_label | flag_building_label_only |
     flag_parcel_or_legal_description | flag_intersection |
@@ -585,6 +665,10 @@ site[, primary_review_reason := fcase(
   "zip_state_internal_ambiguity",
   flag_multiple_addresses,
   "multiple_addresses_in_one_field",
+  within_development_shared_base_query,
+  "shared_base_query_within_development",
+  flag_shared_base_zip_conflict,
+  "conflicting_zip_within_shared_base",
   flag_po_box,
   "po_box",
   flag_administrative_address,
@@ -627,15 +711,24 @@ site[, review_reasons := apply(
   }
 ), .SDcols = patterns("^flag_")]
 
+queryable_statuses <- c(
+  "provisionally_queryable",
+  "provisionally_queryable_shared_base"
+)
 proposed_queries <- site[
-  address_readiness_status == "provisionally_queryable",
+  address_readiness_status %chin% queryable_statuses,
   .(
-    query_street = first_text(query_street),
+    query_basis = fifelse(
+      any(within_development_shared_base_query),
+      "shared_base_within_development",
+      "listed_address"
+    ),
+    query_street = first_text(proposed_query_street),
     query_city = first_text(query_city),
     query_state = first_text(query_state),
     query_zip = first_text(query_zip)
   ),
-  by = exact_address_key
+  by = proposed_query_key
 ]
 setorder(
   proposed_queries,
@@ -650,41 +743,48 @@ proposed_queries[, proposed_query_id := sprintf(
   seq_len(.N)
 )]
 query_counts <- site[
-  address_readiness_status == "provisionally_queryable",
+  address_readiness_status %chin% queryable_statuses,
   .(
     n_sites = .N,
     n_developments = uniqueN(development_id),
+    n_shared_base_sites = sum(within_development_shared_base_query),
     n_sites_with_coordinates = sum(coordinate_present),
     n_sites_missing_coordinates = sum(!coordinate_present)
   ),
-  by = exact_address_key
+  by = proposed_query_key
 ]
 proposed_queries[query_counts, `:=`(
   n_sites = i.n_sites,
   n_developments = i.n_developments,
+  n_shared_base_sites = i.n_shared_base_sites,
   n_sites_with_coordinates = i.n_sites_with_coordinates,
   n_sites_missing_coordinates = i.n_sites_missing_coordinates
-), on = "exact_address_key"]
+), on = "proposed_query_key"]
 proposed_queries[, submission_approval := "not_approved"]
 setcolorder(proposed_queries, c(
-  "proposed_query_id", "submission_approval", "query_street",
-  "query_city", "query_state", "query_zip", "exact_address_key",
-  "n_sites", "n_developments", "n_sites_with_coordinates",
+  "proposed_query_id", "submission_approval", "query_basis",
+  "query_street", "query_city", "query_state", "query_zip",
+  "proposed_query_key", "n_sites", "n_developments",
+  "n_shared_base_sites", "n_sites_with_coordinates",
   "n_sites_missing_coordinates"
 ))
 
 site[
-  address_readiness_status == "provisionally_queryable",
+  address_readiness_status %chin% queryable_statuses,
   proposed_query_id := proposed_queries$proposed_query_id[
-    match(exact_address_key, proposed_queries$exact_address_key)
+    match(proposed_query_key, proposed_queries$proposed_query_key)
   ]
 ]
 site[, query_mapping_status := fcase(
   geographic_scope != "in_scope_50_states_dc",
   "outside_research_scope",
+  address_readiness_status ==
+    "provisionally_queryable_shared_base" &
+    !is.na(proposed_query_id),
+  "one_shared_base_query_not_approved",
   address_readiness_status == "provisionally_queryable" &
     !is.na(proposed_query_id),
-  "one_proposed_query_not_approved",
+  "one_listed_address_query_not_approved",
   address_readiness_status == "requires_address_split",
   "requires_multiple_query_records",
   default = "no_safe_query_pending_review"
@@ -693,12 +793,18 @@ site[, submission_approval := "not_approved"]
 
 if (uniqueN(proposed_queries$proposed_query_id) !=
       nrow(proposed_queries) ||
-    uniqueN(proposed_queries$exact_address_key) !=
+    uniqueN(proposed_queries$proposed_query_key) !=
       nrow(proposed_queries) ||
-    site[address_readiness_status == "provisionally_queryable",
+    site[address_readiness_status %chin% queryable_statuses,
       any(is.na(proposed_query_id))] ||
-    site[address_readiness_status != "provisionally_queryable",
+    site[!address_readiness_status %chin% queryable_statuses,
       any(!is.na(proposed_query_id))] ||
+    proposed_queries[n_developments > 1L, .N] > 0L ||
+    site[
+      within_development_shared_base_query &
+        flag_repeated_across_developments,
+      .N
+    ] > 0L ||
     any(proposed_queries$submission_approval != "not_approved") ||
     any(site$submission_approval != "not_approved")) {
   stop("The proposed-query safety contract failed.", call. = FALSE)
@@ -729,6 +835,9 @@ manual_review_sample <- manual_review_sample[, .(
   site_zip,
   zip_format_action,
   query_zip,
+  proposed_query_street,
+  within_development_shared_base_query,
+  base_address_n_developments,
   unit_building_position,
   source_street_examples,
   source_city_examples,
@@ -791,6 +900,17 @@ excluded_territory_counts <- site[
   .N,
   by = site_state
 ][order(site_state)]
+query_basis_counts <- proposed_queries[, .(
+  queries = .N,
+  mapped_sites = sum(n_sites)
+), by = query_basis][order(query_basis)]
+shared_base_zip_conflict_summary <- site[
+  flag_shared_base_zip_conflict == TRUE,
+  .(
+    groups = uniqueN(paste(development_id, base_address_key, sep = "|")),
+    sites = .N
+  )
+]
 
 format_markdown_table <- function(table) {
   header <- paste0("| ", paste(names(table), collapse = " | "), " |")
@@ -849,9 +969,23 @@ summary_lines <- c(
   format_markdown_table(address_status_counts),
   "",
   paste0("- Unique locally proposed queries: ", format(nrow(proposed_queries), big.mark = ","), "."),
-  paste0("- Sites mapped to one proposed query: ", format(site[query_mapping_status == "one_proposed_query_not_approved", .N], big.mark = ","), "."),
+  paste0("- Sites mapped to one proposed query: ", format(site[query_mapping_status %chin% c("one_listed_address_query_not_approved", "one_shared_base_query_not_approved"), .N], big.mark = ","), "."),
   paste0("- Sites whose address field must be split into multiple query records: ", format(site[query_mapping_status == "requires_multiple_query_records", .N], big.mark = ","), "."),
   paste0("- In-scope sites with no safe query pending review: ", format(site[query_mapping_status == "no_safe_query_pending_review", .N], big.mark = ","), "."),
+  "",
+  "### Approved same-development sharing rule",
+  "",
+  "Site rows within one established development may share a base-street query when every difference is explained by a trailing building, unit, apartment, suite, floor, or room suffix, every row has the same normalized city, state, and ZIP, and no other address problem is present. Original site addresses remain unchanged. A base address used by more than one development is never cleared by this rule.",
+  "",
+  format_markdown_table(query_basis_counts),
+  "",
+  paste0(
+    "- Same-development base-address groups with conflicting normalized ZIP values remain blocked: ",
+    format(shared_base_zip_conflict_summary$groups, big.mark = ","),
+    " groups covering ",
+    format(shared_base_zip_conflict_summary$sites, big.mark = ","),
+    " sites."
+  ),
   "",
   "### Primary address disposition",
   "",
@@ -870,11 +1004,11 @@ summary_lines <- c(
   "",
   "### Unit and building text",
   "",
-  "Unit, apartment, suite, room, floor, and building text is retained exactly in `site_street`. The audit classifies its position but does not strip it because building labels may distinguish development sites even when multiple sites will ultimately share one tract.",
+  "Unit, apartment, suite, room, floor, and building text is retained exactly in `site_street`. For the approved same-development cases, only the separate proposed query uses the normalized base street.",
   "",
   format_markdown_table(unit_position_counts),
   "",
-  "Repeated exact street/city/state identities and within-development base-address collisions remain blocked for review. The output supplies development names, state IDs, years, unit counts, ZIP variants, and coordinate evidence, but it does not automatically call a repeated address a duplicate, campus, or separate building.",
+  "Cross-development address repeats remain blocked for review. Irregular within-development base collisions also remain blocked. The output supplies development names, state IDs, years, unit counts, ZIP variants, and coordinate evidence, but it does not automatically call a repeated address a duplicate, campus, or separate building.",
   "",
   "## Coordinate readiness within the 50 states and DC",
   "",

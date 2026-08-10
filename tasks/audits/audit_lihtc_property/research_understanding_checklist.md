@@ -35,7 +35,9 @@
 - [x] Geocoding readiness is audited locally before any address transmission; no external geocoder has been called.
 - [x] Geographic scope is the 50 states plus DC. The 961 Puerto Rico and other territory site records remain in the source and are explicit audit exclusions.
 - [x] Leading-zero and unhyphenated ZIP+4 repairs are proposed in separate fields while the published ZIP remains unchanged.
-- [x] Unit/building suffix removal, compound-address splitting, and repeated-address consolidation remain review decisions rather than automatic cleaning.
+- [x] Within one established development, suffix-only building or unit site rows may share one base-street geocoding query when city, state, and ZIP agree; published site rows remain unchanged.
+- [x] The same shared-query rule is never applied across development IDs; those address repetitions remain a separate identity and source-review queue.
+- [x] Compound-address splitting remains a review decision rather than automatic cleaning.
 - [ ] Mastery status: pending
 
 ## Stage 4: Joins, Crosswalks, And Manual Decisions
@@ -86,3 +88,4 @@
 | 2026-08-10 | 4 | Second-pass scope | Start with 163 same-state-ID/address blocks, prioritize 120 exact timing/unit matches, then broaden name standardization conservatively | Build and adjudicate a separate committed name-variant ledger before geocoding |
 | 2026-08-10 | 4 | Second-pass implementation | 154 blocks merged and nine retained after two reads per block | Confirm interpretation of retained phases and unresolved merged unit totals before modeling |
 | 2026-08-10 | 3 | Geocoding scope and safety | Restrict to 50 states plus DC, exclude territories, and complete a local readiness audit before sending addresses | Review unresolved address categories before approving any geocoding pilot |
+| 2026-08-10 | 3 | Shared-query rule | Approved one base query for suffix-only building or unit rows inside one development; cross-development repeats require careful review | Rebuild and inspect readiness counts before any geocoding pilot |
