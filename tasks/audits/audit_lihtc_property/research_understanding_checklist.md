@@ -32,6 +32,10 @@
 - [x] Multiple multi-address/BIN rows within one HUD ID remain project components and should aggregate to one project row without summing repeated project-level unit totals.
 - [x] Development-level unit totals remain missing for every provisional cross-HUD linkage; candidate aggregation rules are review aids rather than accepted totals.
 - [x] No HUD project episodes have been excluded and no protected source values have been overwritten by linkage adjudication.
+- [x] Geocoding readiness is audited locally before any address transmission; no external geocoder has been called.
+- [x] Geographic scope is the 50 states plus DC. The 961 Puerto Rico and other territory site records remain in the source and are explicit audit exclusions.
+- [x] Leading-zero and unhyphenated ZIP+4 repairs are proposed in separate fields while the published ZIP remains unchanged.
+- [x] Unit/building suffix removal, compound-address splitting, and repeated-address consolidation remain review decisions rather than automatic cleaning.
 - [ ] Mastery status: pending
 
 ## Stage 4: Joins, Crosswalks, And Manual Decisions
@@ -81,3 +85,4 @@
 | 2026-08-09 | 4 | Adjudication standard | Requested two distinct reads and outside research | Complete for all 325 provisional groups |
 | 2026-08-10 | 4 | Second-pass scope | Start with 163 same-state-ID/address blocks, prioritize 120 exact timing/unit matches, then broaden name standardization conservatively | Build and adjudicate a separate committed name-variant ledger before geocoding |
 | 2026-08-10 | 4 | Second-pass implementation | 154 blocks merged and nine retained after two reads per block | Confirm interpretation of retained phases and unresolved merged unit totals before modeling |
+| 2026-08-10 | 3 | Geocoding scope and safety | Restrict to 50 states plus DC, exclude territories, and complete a local readiness audit before sending addresses | Review unresolved address categories before approving any geocoding pilot |

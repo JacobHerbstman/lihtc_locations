@@ -79,6 +79,17 @@ make adjudicate-lihtc-name-variants
 make audit-lihtc-name-variants
 ```
 
+Run the completely local geocoding-readiness audit for the 50 states and DC:
+
+```sh
+make audit-lihtc-geocoding-readiness
+```
+
+This audit calls no geocoder and transmits no address or coordinate. It keeps
+Puerto Rico and the other territories as explicit out-of-scope records,
+preserves raw address fields, and marks every locally proposed query as
+`not_approved`.
+
 The fetch task forces HTTP/1.1 because HUD's web application firewall sends
 command-line HTTP/2 requests to a browser challenge. It verifies the archive
 against a committed SHA-256 checksum before placing it under `data_raw/`.
