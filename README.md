@@ -71,6 +71,14 @@ make adjudicate-lihtc-development
 make audit-lihtc-development-linkage
 ```
 
+Review same-state-ID, same-primary-address blocks whose standardized names
+differ, apply the adjudicated name variants, and audit the second pass:
+
+```sh
+make adjudicate-lihtc-name-variants
+make audit-lihtc-name-variants
+```
+
 The fetch task forces HTTP/1.1 because HUD's web application firewall sends
 command-line HTTP/2 requests to a browser challenge. It verifies the archive
 against a committed SHA-256 checksum before placing it under `data_raw/`.
@@ -89,3 +97,12 @@ portfolio groups whose HUD addresses contain only a street name. Accepted
 groups retain every HUD project episode and unresolved development-level unit
 totals; rejected groups are split without importing outside addresses into the
 HUD-derived site table.
+
+The second linkage ledger covers all 163 same-state-ID,
+same-standardized-primary-address blocks with different standardized names.
+Each received a HUD-only read and a separate outside-source read. The review
+merges 154 blocks, including all 120 exact timing-and-unit matches, and retains
+nine phase, component, or common-address groups as separate developments. The
+result contains 54,725 physical developments, 55,345 HUD project episodes, and
+134,823 development sites. All merged development-level unit totals remain
+unresolved pending a separate aggregation review.

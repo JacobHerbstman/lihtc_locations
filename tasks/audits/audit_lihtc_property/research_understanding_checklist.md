@@ -43,7 +43,11 @@
 - [x] Every provisional group received an internal HUD-only read and a separate outside-source read, with notes, source URLs, and explicit reason codes committed as research data.
 - [x] Final adjudication accepts 322 groups covering 788 episodes and rejects three coarse-address HCCI groups covering ten episodes.
 - [x] The rejected groups are split into episode-level developments; all accepted multi-episode unit totals remain unresolved.
-- [ ] Mastery status: implementation confirmed; interpretation check remains pending
+- [x] A second linkage pass starts from 163 same-state-ID, same-primary-address candidate blocks whose current development names differ; these are review blocks, not automatic links.
+- [x] Exact timing and reconciled-unit agreement in 120 blocks is strong duplicate evidence, but names and project history still receive separate internal and outside reads before a physical-development merge.
+- [x] The completed second pass merges 154 blocks and retains nine phase, component, or common-address groups as separate developments.
+- [x] All 120 exact timing-and-unit blocks merge. Whole-development reassignment affects 336 HUD episodes without dropping a row or changing a protected source value.
+- [ ] Mastery status: implementation complete; final interpretation check remains pending
 
 ## Stage 5: Analysis, Tables, And Plots
 
@@ -75,3 +79,5 @@
 | 2026-08-09 | 4 | Final hierarchy | Physical development, project episode, development site confirmed | Review provisional linked developments |
 | 2026-08-09 | 4 | Linkage sequence | Proposed linking matched records | Corrected: records are already provisionally linked; accept, reject, or split next |
 | 2026-08-09 | 4 | Adjudication standard | Requested two distinct reads and outside research | Complete for all 325 provisional groups |
+| 2026-08-10 | 4 | Second-pass scope | Start with 163 same-state-ID/address blocks, prioritize 120 exact timing/unit matches, then broaden name standardization conservatively | Build and adjudicate a separate committed name-variant ledger before geocoding |
+| 2026-08-10 | 4 | Second-pass implementation | 154 blocks merged and nine retained after two reads per block | Confirm interpretation of retained phases and unresolved merged unit totals before modeling |

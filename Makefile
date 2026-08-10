@@ -3,7 +3,8 @@ SHELL := /bin/bash
 
 .PHONY: all paper setup sources lihtc-data prepare-lihtc-data audit-lihtc-data \
 	build-lihtc-development audit-lihtc-development \
-	adjudicate-lihtc-development audit-lihtc-development-linkage
+	adjudicate-lihtc-development audit-lihtc-development-linkage \
+	adjudicate-lihtc-name-variants audit-lihtc-name-variants
 
 all: paper
 
@@ -36,6 +37,14 @@ adjudicate-lihtc-development: \
 
 audit-lihtc-development-linkage: \
 	tasks/audits/audit_lihtc_development_linkage_review/output/audit_summary.md
+
+adjudicate-lihtc-name-variants: \
+	tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_development_2024_name_adjudicated.parquet \
+	tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_project_episode_2024_name_adjudicated.parquet \
+	tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_development_site_2024_name_adjudicated.parquet
+
+audit-lihtc-name-variants: \
+	tasks/audits/audit_lihtc_name_variant_linkage_review/output/audit_summary.md
 
 tasks/setup_environment/output/system_requirements.txt: tasks/setup_environment/code/system_requirements.sh
 	$(MAKE) -C tasks/setup_environment/code ../output/system_requirements.txt
@@ -127,3 +136,42 @@ tasks/audits/audit_lihtc_development_linkage_review/output/audit_summary.md: \
 		tasks/review_lihtc_development_linkage/output/lihtc_development_linkage_decisions_2024.parquet \
 		tasks/review_lihtc_development_linkage/output/lihtc_development_linkage_member_decisions_2024.parquet
 	$(MAKE) -C tasks/audits/audit_lihtc_development_linkage_review/code ../output/audit_summary.md
+
+tasks/review_lihtc_name_variant_linkage/output/lihtc_name_variant_linkage_decisions_2024.parquet: \
+		tasks/review_lihtc_name_variant_linkage/code/validate_lihtc_name_variant_linkage.R \
+		tasks/review_lihtc_name_variant_linkage/code/name_variant_linkage_decisions.csv \
+		tasks/review_lihtc_name_variant_linkage/code/name_variant_linkage_member_decisions.csv \
+		tasks/apply_lihtc_development_linkage_review/output/lihtc_development_2024_adjudicated.parquet \
+		tasks/apply_lihtc_development_linkage_review/output/lihtc_project_episode_2024_adjudicated.parquet
+	$(MAKE) -C tasks/review_lihtc_name_variant_linkage/code ../output/lihtc_name_variant_linkage_decisions_2024.parquet
+
+tasks/review_lihtc_name_variant_linkage/output/lihtc_name_variant_linkage_member_decisions_2024.parquet: \
+		tasks/review_lihtc_name_variant_linkage/output/lihtc_name_variant_linkage_decisions_2024.parquet
+	@test -f $@
+
+tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_development_2024_name_adjudicated.parquet: \
+		tasks/apply_lihtc_name_variant_linkage_review/code/apply_lihtc_name_variant_linkage_review.R \
+		tasks/apply_lihtc_development_linkage_review/output/lihtc_development_2024_adjudicated.parquet \
+		tasks/apply_lihtc_development_linkage_review/output/lihtc_project_episode_2024_adjudicated.parquet \
+		tasks/apply_lihtc_development_linkage_review/output/lihtc_development_site_2024_adjudicated.parquet \
+		tasks/prepare_lihtc_multisite/output/lihtc_multisite_2024_raw_text.parquet \
+		tasks/review_lihtc_name_variant_linkage/output/lihtc_name_variant_linkage_decisions_2024.parquet \
+		tasks/review_lihtc_name_variant_linkage/output/lihtc_name_variant_linkage_member_decisions_2024.parquet
+	$(MAKE) -C tasks/apply_lihtc_name_variant_linkage_review/code ../output/lihtc_development_2024_name_adjudicated.parquet
+
+tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_project_episode_2024_name_adjudicated.parquet \
+tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_development_site_2024_name_adjudicated.parquet: \
+		tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_development_2024_name_adjudicated.parquet
+	@test -f $@
+
+tasks/audits/audit_lihtc_name_variant_linkage_review/output/audit_summary.md: \
+		tasks/audits/audit_lihtc_name_variant_linkage_review/code/audit_lihtc_name_variant_linkage_review.R \
+		tasks/apply_lihtc_development_linkage_review/output/lihtc_development_2024_adjudicated.parquet \
+		tasks/apply_lihtc_development_linkage_review/output/lihtc_project_episode_2024_adjudicated.parquet \
+		tasks/apply_lihtc_development_linkage_review/output/lihtc_development_site_2024_adjudicated.parquet \
+		tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_development_2024_name_adjudicated.parquet \
+		tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_project_episode_2024_name_adjudicated.parquet \
+		tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_development_site_2024_name_adjudicated.parquet \
+		tasks/review_lihtc_name_variant_linkage/output/lihtc_name_variant_linkage_decisions_2024.parquet \
+		tasks/review_lihtc_name_variant_linkage/output/lihtc_name_variant_linkage_member_decisions_2024.parquet
+	$(MAKE) -C tasks/audits/audit_lihtc_name_variant_linkage_review/code ../output/audit_summary.md
