@@ -8,7 +8,10 @@ SHELL := /bin/bash
 	audit-lihtc-geocoding-readiness \
 	audit-lihtc-cross-development-addresses \
 	prepare-lihtc-cross-development-address-review \
-	review-lihtc-cross-development-addresses
+	review-lihtc-cross-development-addresses \
+	apply-lihtc-cross-development-address-review \
+	audit-lihtc-cross-development-addresses-adjudicated \
+	prepare-lihtc-cross-development-address-review-round2
 
 all: paper
 
@@ -61,6 +64,15 @@ prepare-lihtc-cross-development-address-review: \
 
 review-lihtc-cross-development-addresses: \
 	tasks/review_lihtc_cross_development_addresses/output/review_summary.md
+
+apply-lihtc-cross-development-address-review: \
+	tasks/apply_lihtc_cross_development_address_review/output/application_summary.md
+
+audit-lihtc-cross-development-addresses-adjudicated: \
+	tasks/audits/audit_lihtc_cross_development_addresses_adjudicated/output/audit_summary.md
+
+prepare-lihtc-cross-development-address-review-round2: \
+	tasks/prepare_lihtc_cross_development_address_review_round2/output/audit_summary.md
 
 tasks/setup_environment/output/system_requirements.txt: tasks/setup_environment/code/system_requirements.sh
 	$(MAKE) -C tasks/setup_environment/code ../output/system_requirements.txt
@@ -219,3 +231,28 @@ tasks/review_lihtc_cross_development_addresses/output/review_summary.md: \
 		tasks/prepare_lihtc_cross_development_address_review/output/lihtc_cross_development_identity_questions.parquet \
 		tasks/prepare_lihtc_cross_development_address_review/output/lihtc_cross_development_identity_question_members.parquet
 	$(MAKE) -C tasks/review_lihtc_cross_development_addresses/code ../output/review_summary.md
+
+tasks/apply_lihtc_cross_development_address_review/output/application_summary.md: \
+		tasks/apply_lihtc_cross_development_address_review/code/apply_lihtc_cross_development_address_review.R \
+		tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_development_2024_name_adjudicated.parquet \
+		tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_project_episode_2024_name_adjudicated.parquet \
+		tasks/apply_lihtc_name_variant_linkage_review/output/lihtc_development_site_2024_name_adjudicated.parquet \
+		tasks/prepare_lihtc_multisite/output/lihtc_multisite_2024_raw_text.parquet \
+		tasks/review_lihtc_cross_development_addresses/output/lihtc_cross_development_address_decisions.parquet \
+		tasks/review_lihtc_cross_development_addresses/output/lihtc_cross_development_address_member_decisions.parquet
+	$(MAKE) -C tasks/apply_lihtc_cross_development_address_review/code ../output/application_summary.md
+
+tasks/audits/audit_lihtc_cross_development_addresses_adjudicated/output/audit_summary.md: \
+		tasks/audits/audit_lihtc_cross_development_addresses_adjudicated/code/audit_lihtc_cross_development_addresses_adjudicated.R \
+		tasks/audits/audit_lihtc_geocoding_readiness/output/lihtc_site_geocoding_readiness.parquet \
+		tasks/apply_lihtc_cross_development_address_review/output/lihtc_development_2024_address_adjudicated.parquet \
+		tasks/apply_lihtc_cross_development_address_review/output/lihtc_project_episode_2024_address_adjudicated.parquet \
+		tasks/apply_lihtc_cross_development_address_review/output/lihtc_development_site_2024_address_adjudicated.parquet \
+		tasks/review_lihtc_cross_development_addresses/output/lihtc_cross_development_address_member_decisions.parquet
+	$(MAKE) -C tasks/audits/audit_lihtc_cross_development_addresses_adjudicated/code ../output/audit_summary.md
+
+tasks/prepare_lihtc_cross_development_address_review_round2/output/audit_summary.md: \
+		tasks/prepare_lihtc_cross_development_address_review_round2/code/prepare_lihtc_cross_development_address_review_round2.R \
+		tasks/audits/audit_lihtc_cross_development_addresses_adjudicated/output/lihtc_cross_development_pairs_adjudicated.parquet \
+		tasks/apply_lihtc_cross_development_address_review/output/lihtc_development_2024_address_adjudicated.parquet
+	$(MAKE) -C tasks/prepare_lihtc_cross_development_address_review_round2/code ../output/audit_summary.md

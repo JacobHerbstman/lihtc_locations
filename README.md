@@ -105,6 +105,22 @@ Validate the committed two-pass internal and outside-source identity review:
 make review-lihtc-cross-development-addresses
 ```
 
+Apply the reviewed physical-development identities while preserving every
+project episode and every distinct source address, then rebuild the
+shared-address audit on the adjudicated identifiers:
+
+```sh
+make apply-lihtc-cross-development-address-review
+make audit-lihtc-cross-development-addresses-adjudicated
+```
+
+Prepare connected second-round questions for the remaining close-name,
+timing, and phase/component address pairs:
+
+```sh
+make prepare-lihtc-cross-development-address-review-round2
+```
+
 This audit calls no geocoder and transmits no address or coordinate. It keeps
 Puerto Rico and the other territories as explicit out-of-scope records,
 preserves raw address fields, and marks every locally proposed query as
@@ -114,7 +130,13 @@ review strata do not merge a development or approve a shared query.
 The review-preparation task also makes no new decision; it prevents a
 three-or-more-development question from being decided inconsistently as
 separate pairs. The review ledger merges only physical-development identities,
-preserves every project episode and site row, and approves no geocoding query.
+preserves every project episode and distinct site key, and approves no
+geocoding query. The adjudicated audit maps the prior local readiness evidence
+to the new identifiers, records completed retain-separate reviews, and leaves
+all other identity and address decisions unresolved. The second-round
+preparation contains 372 connected questions with 834 development members and
+supports partitions within a connected question; it makes no linkage decision
+and approves no geocoding query.
 
 The fetch task forces HTTP/1.1 because HUD's web application firewall sends
 command-line HTTP/2 requests to a browser challenge. It verifies the archive
