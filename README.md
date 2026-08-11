@@ -130,6 +130,19 @@ make apply-lihtc-cross-development-address-review-round2
 make audit-lihtc-cross-development-addresses-round2-adjudicated
 ```
 
+Review and apply the unresolved identical multi-address sets, excluding the
+known Massachusetts eight-address and Baltimore 53-address portfolio
+cross-listings, then audit the application:
+
+```sh
+cd tasks/review_lihtc_identical_address_sets/code
+make
+cd ../../apply_lihtc_identical_address_set_review/code
+make
+cd ../../audits/audit_lihtc_identical_address_sets_adjudicated/code
+make
+```
+
 This audit calls no geocoder and transmits no address or coordinate. It keeps
 Puerto Rico and the other territories as explicit out-of-scope records,
 preserves raw address fields, and marks every locally proposed query as
@@ -160,6 +173,15 @@ sharing at least one address, including 2,435 pairs with the same complete
 address set and 662 pairs sharing a primary address that were outside the
 round-two queue. These are still blocked from geocoding and need subsequent
 address-set, portfolio/campus, and source-contamination review.
+
+The subsequent identical multi-address-set review covers 98 groups and 199
+development records. Applying its 85 merge decisions and 13 retain-separate
+decisions produces 54,257 physical developments, 55,345 project episodes, and
+133,551 unique development/address keys. The application removes no HUD
+episode, approves no geocoding query, and leaves unit totals unresolved for
+the newly merged developments. The two excluded copied portfolio lists and
+eight reviewed contaminated or administrative address sets remain explicit
+site-level repair cases.
 
 The fetch task forces HTTP/1.1 because HUD's web application firewall sends
 command-line HTTP/2 requests to a browser challenge. It verifies the archive
