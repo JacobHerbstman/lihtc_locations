@@ -143,6 +143,17 @@ cd ../../audits/audit_lihtc_identical_address_sets_adjudicated/code
 make
 ```
 
+Prepare and audit the remaining identity questions among developments with one
+standardized site key, excluding territories and addresses that also contain a
+multi-address development:
+
+```sh
+cd tasks/prepare_lihtc_single_address_review/code
+make
+cd ../../audits/audit_lihtc_single_address_review_preparation/code
+make
+```
+
 This audit calls no geocoder and transmits no address or coordinate. It keeps
 Puerto Rico and the other territories as explicit out-of-scope records,
 preserves raw address fields, and marks every locally proposed query as
@@ -182,6 +193,17 @@ episode, approves no geocoding query, and leaves unit totals unresolved for
 the newly merged developments. The two excluded copied portfolio lists and
 eight reviewed contaminated or administrative address sets remain explicit
 site-level repair cases.
+
+The single-address preparation starts from that applied layer. Of 42,030
+in-scope developments with one standardized site key, 38,191 use an otherwise
+unique address. Another 177 groups with street-only, nonphysical, compound,
+range, portfolio, or multiple-address evidence are deferred for later address
+repair. The resulting review queue contains 1,149 shared-address identity
+questions with 2,463 development members and 1,617 unresolved pairs. Six fully
+prior-reviewed groups are not reopened, and one prior retain-separate pair
+decision remains an explicit constraint. The queue contains no territory or
+multi-address development and makes no identity, address, unit, coordinate, or
+geocoding decision.
 
 The fetch task forces HTTP/1.1 because HUD's web application firewall sends
 command-line HTTP/2 requests to a browser challenge. It verifies the archive
