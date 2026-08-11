@@ -2,40 +2,35 @@ SHELL := bash
 .DELETE_ON_ERROR:
 .SECONDARY:
 
+GENERIC_MAKE := $(lastword $(MAKEFILE_LIST))
+TASKS_ROOT := $(patsubst %/,%,$(dir $(GENERIC_MAKE)))
+
 ../input ../output ../temp:
 	mkdir -p $@
 
 ../input/%/ ../output/%/ ../temp/%/:
 	mkdir -p $@
 
-UPSTREAM_TASKS := $(notdir $(patsubst %/code,%,$(wildcard ../../*/code)))
-AUDIT_TASKS := $(notdir $(patsubst %/code,%,$(wildcard ../../audits/*/code)))
+.PHONY: FORCE_UPSTREAM
+FORCE_UPSTREAM:
 
-.PRECIOUS: ../../% ../../audits/%
-.PHONY: FORCE_UPSTREAM_CHECK
-
-FORCE_UPSTREAM_CHECK:
-
-define UPSTREAM_OUTPUT_RULE
-../../$(1)/output/%: FORCE_UPSTREAM_CHECK
-	$$(MAKE) -C ../../$(1)/code ../output/$$*
-endef
-
-define AUDIT_OUTPUT_RULE
-../../audits/$(1)/output/%: FORCE_UPSTREAM_CHECK
-	$$(MAKE) -C ../../audits/$(1)/code ../output/$$*
-endef
-
-$(foreach task,$(UPSTREAM_TASKS),$(eval $(call UPSTREAM_OUTPUT_RULE,$(task))))
-$(foreach task,$(AUDIT_TASKS),$(eval $(call AUDIT_OUTPUT_RULE,$(task))))
-
-ifneq ($(wildcard ../../../generic.make),)
-NESTED_UPSTREAM_TASKS := $(notdir $(patsubst %/code,%,$(wildcard ../../../*/code)))
-
-define NESTED_UPSTREAM_OUTPUT_RULE
-../../../$(1)/output/%: FORCE_UPSTREAM_CHECK
-	$$(MAKE) -C ../../../$(1)/code ../output/$$*
-endef
-
-$(foreach task,$(NESTED_UPSTREAM_TASKS),$(eval $(call NESTED_UPSTREAM_OUTPUT_RULE,$(task))))
-endif
+.SECONDEXPANSION:
+../../% ../../../% ../../../../%: $$(shell bash "$$(TASKS_ROOT)/check_upstream_status.sh" "$$@" "$$(MAKE_COMMAND)")
+	@case "$@" in \
+		../../../*/output/*) \
+			task=$$(printf '%s\n' "$@" | sed 's#^\.\./\.\./\.\./##; s#/output/.*##'); \
+			output=$$(printf '%s\n' "$@" | sed 's#^.*/output/#../output/#'); \
+			$(MAKE) -C "../../../$$task/code" "$$output"; \
+			;; \
+		../../*/output/*) \
+			task=$$(printf '%s\n' "$@" | sed 's#^\.\./\.\./##; s#/output/.*##'); \
+			output=$$(printf '%s\n' "$@" | sed 's#^.*/output/#../output/#'); \
+			$(MAKE) -C "../../$$task/code" "$$output"; \
+			;; \
+		../../../data_raw/*|../../../../data_raw/*) \
+			test -e "$@" || { echo "Missing raw root: $@"; false; }; \
+			;; \
+		*) \
+			test -e "$@" || { echo "No generic upstream rule for $@"; false; }; \
+			;; \
+	esac
