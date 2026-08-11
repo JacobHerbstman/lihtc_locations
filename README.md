@@ -152,6 +152,12 @@ cd tasks/prepare_lihtc_single_address_review/code
 make
 cd ../../audits/audit_lihtc_single_address_review_preparation/code
 make
+cd ../../../review_lihtc_single_address/code
+make
+cd ../../apply_lihtc_single_address_review/code
+make
+cd ../../audits/audit_lihtc_single_address_adjudicated/code
+make
 ```
 
 This audit calls no geocoder and transmits no address or coordinate. It keeps
@@ -204,6 +210,16 @@ prior-reviewed groups are not reopened, and one prior retain-separate pair
 decision remains an explicit constraint. The queue contains no territory or
 multi-address development and makes no identity, address, unit, coordinate, or
 geocoding decision.
+
+The committed two-read single-address review resolves the 2,463 development
+records into 2,236 physical-development clusters. Applying that partition
+produces 54,030 physical developments, preserves all 55,345 HUD project
+episodes, and produces 133,324 distinct development/address keys. The
+independent application audit verifies that no protected episode field,
+unmerged site record, source row, or territory development changed. The 215
+newly merged developments retain missing development-level unit totals, and
+1,052 developments remain explicitly flagged for the separate unit-scope
+review. No address is repaired and no geocoding query is approved.
 
 The fetch task forces HTTP/1.1 because HUD's web application firewall sends
 command-line HTTP/2 requests to a browser challenge. It verifies the archive
