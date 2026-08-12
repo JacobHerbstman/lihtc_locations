@@ -23,9 +23,9 @@ missing_commands=()
     fi
   done
 
-  printf '\nIf R package installation fails for sf, install GDAL, GEOS, PROJ, and UDUNITS.\n'
-  printf 'macOS: brew install gdal geos proj udunits\n'
-  printf 'Ubuntu/Debian: sudo apt-get install libgdal-dev libgeos-dev libproj-dev libudunits2-dev\n'
+  printf '\nThe sf and pdftools R packages require spatial libraries and Poppler.\n'
+  printf 'macOS: brew install gdal geos proj udunits poppler\n'
+  printf 'Ubuntu/Debian: sudo apt-get install libgdal-dev libgeos-dev libproj-dev libudunits2-dev libpoppler-cpp-dev\n'
 } > ../output/system_requirements.txt.tmp
 
 mv ../output/system_requirements.txt.tmp ../output/system_requirements.txt
