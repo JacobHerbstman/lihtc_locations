@@ -9,6 +9,10 @@ Previously retained development questions are identified separately from new
 unresolved pairs. The audit does not edit a source address, change an identity,
 approve a query, or call a geocoder.
 
+The pairs Parquet is the canonical Make output because it is the artifact
+consumed by the round-two preparation task. The groups, members, manual sample,
+and summary are same-run supporting outputs.
+
 Run from `code/`:
 
 ```sh

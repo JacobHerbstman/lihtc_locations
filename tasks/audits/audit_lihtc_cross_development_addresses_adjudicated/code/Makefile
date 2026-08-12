@@ -6,13 +6,13 @@ R := Rscript
 .PHONY: all link-inputs
 
 all: \
-	../output/audit_summary.md \
+	../output/lihtc_cross_development_pairs_adjudicated.parquet \
 	../output/lihtc_cross_development_address_groups_adjudicated.parquet \
 	../output/lihtc_cross_development_address_members_adjudicated.parquet \
-	../output/lihtc_cross_development_pairs_adjudicated.parquet \
+	../output/audit_summary.md \
 	../output/manual_review_sample.csv
 
-../output/audit_summary.md: \
+../output/lihtc_cross_development_pairs_adjudicated.parquet: \
 		audit_lihtc_cross_development_addresses_adjudicated.R \
 		../input/lihtc_site_geocoding_readiness.parquet \
 		../input/lihtc_development_2024_address_adjudicated.parquet \
@@ -23,8 +23,8 @@ all: \
 
 ../output/lihtc_cross_development_address_groups_adjudicated.parquet \
 ../output/lihtc_cross_development_address_members_adjudicated.parquet \
-../output/lihtc_cross_development_pairs_adjudicated.parquet \
-../output/manual_review_sample.csv: ../output/audit_summary.md
+../output/audit_summary.md \
+../output/manual_review_sample.csv: ../output/lihtc_cross_development_pairs_adjudicated.parquet
 	@test -f $@
 
 ../input/lihtc_site_geocoding_readiness.parquet: \
