@@ -1,0 +1,4 @@
+source_file,source_url,retrieved_on,bytes,sha256,purpose
+experience_configuration.json,https://www.arcgis.com/sharing/rest/content/items/acf6a5ace8794e4ca129bf0c4165c436/data?f=json,2026-08-12,65515,4628a9db3c96ab0ea2ca165ba39f59d6b2f5ff6866e4163b377f25c08e1c16ac,Official DCA ArcGIS Experience configuration that identifies the placed-in-service web map
+web_map_configuration.json,https://Georgia-DCA.maps.arcgis.com/sharing/rest/content/items/1bbc7a5077c5442a983af4910dfcda6e/data?f=json,2026-08-12,6621,7e65cc4486a4ae88375cb90681bea6e4f6c457b15732a46f6ade6029e46e2cde,Official DCA web-map configuration that identifies the feature layer and its fields
+layer_metadata.json,https://services2.arcgis.com/Gqyymy5JISeLzyNM/arcgis/rest/services/PIS_LIHTC_Properties_(Monitored)/FeatureServer/0?f=pjson,2026-08-12,16397,0033080f29d79d8252dcc114a52c62032e7bd1c42dae13aedd81f1d677506c9d,Feature-layer schema and service capability metadata

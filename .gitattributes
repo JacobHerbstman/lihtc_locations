@@ -7,3 +7,7 @@ data_raw/pa_no_site_second_reads/2026-08-12/*.pdf -text -diff
 data_raw/tdhca_htc_property_inventory/2026-08-12/*.xlsx -text -diff
 data_raw/tx_no_site_second_reads/2026-08-12/*.html -text -diff
 data_raw/tx_no_site_second_reads/2026-08-12/*.pdf -text -diff
+data_raw/ga_dca_lihtc_map/2026-08-12/*.json -text -diff
+data_raw/mainehousing_subsidized_apartment_listings/2026-08-12/*.html -text -diff
+data_raw/mainehousing_subsidized_apartment_listings/2026-08-12/*.pdf -text -diff
+data_raw/ihcda_existing_lihtc_properties/2026-08-12/*.html -text -diff
