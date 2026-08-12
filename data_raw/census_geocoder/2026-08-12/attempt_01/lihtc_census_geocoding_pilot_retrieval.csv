@@ -1,0 +1,2 @@
+retrieved_utc,endpoint,benchmark,vintage,input_file,input_md5,input_rows,response_file,response_md5,response_bytes
+2026-08-12 16:48:22 UTC,https://geocoding.geo.census.gov/geocoder/geographies/addressbatch,Public_AR_Census2020,Census2020_Census2020,lihtc_census_geocoding_pilot_input.csv,569f10412e6a674588d5e117e57b2d1b,457,lihtc_census_geocoding_pilot_response.csv,8478d10ee4b0dc443cc61b8ce0ae38dc,80884
