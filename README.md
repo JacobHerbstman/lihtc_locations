@@ -184,6 +184,20 @@ site tables without calling a geocoder:
 make audit-lihtc-final-geocoding-readiness
 ```
 
+Prepare, review, and apply compound-address components; review apparent ranges
+without expanding endpoints; then build and independently audit the local
+geocoding-query crosswalk:
+
+```sh
+make prepare-lihtc-compound-address-review
+make review-lihtc-compound-addresses
+make apply-lihtc-compound-address-review
+make prepare-lihtc-range-address-review
+make review-lihtc-range-addresses
+make build-lihtc-geocoding-query-crosswalk
+make audit-lihtc-geocoding-query-crosswalk
+```
+
 The earlier readiness audit calls no geocoder and transmits no address or
 coordinate. It keeps Puerto Rico and the other territories as explicit
 out-of-scope records,
@@ -272,6 +286,18 @@ address split, source or site-inventory review, address-form review,
 shared-address review, or because the listed text is not safely geocodable.
 The audit does not transmit an address or use the unit-analysis exclusion to
 discard a site.
+
+The compound-address review covers all 5,114 flagged source cells. Two
+independent reads agree on 3,309 strict splits producing 9,091 explicit
+address components and on 37 single fractional civic addresses; 1,768 cells
+remain blocked. The range review covers all 8,815 apparent ranges. Two reads,
+with a third read for disagreements, retain 665 complete literal ranges,
+normalize 103 ordinal-street false positives, exclude two nonphysical block
+descriptions, and leave 8,045 unresolved. No endpoint is expanded. The final
+component crosswalk preserves all 131,473 source sites through 137,255 address
+components and maps 89,809 components from 86,419 source sites to 83,734
+development-scoped queries. All queries remain `not_approved`; the independent
+application audit passes all 30 checks.
 
 The fetch task forces HTTP/1.1 because HUD's web application firewall sends
 command-line HTTP/2 requests to a browser challenge. It verifies the archive

@@ -18,7 +18,14 @@ SHELL := /bin/bash
 	adjudicate-lihtc-singleton-identity-scope \
 	audit-lihtc-singleton-identity-scope \
 	adjudicate-lihtc-unit-scope audit-lihtc-unit-scope \
-	audit-lihtc-final-geocoding-readiness
+	audit-lihtc-final-geocoding-readiness \
+	prepare-lihtc-compound-address-review \
+	review-lihtc-compound-addresses \
+	apply-lihtc-compound-address-review \
+	prepare-lihtc-range-address-review \
+	review-lihtc-range-addresses \
+	build-lihtc-geocoding-query-crosswalk \
+	audit-lihtc-geocoding-query-crosswalk
 
 all: paper
 
@@ -104,6 +111,27 @@ audit-lihtc-unit-scope:
 
 audit-lihtc-final-geocoding-readiness:
 	$(MAKE) -C tasks/audits/audit_lihtc_final_geocoding_readiness/code
+
+prepare-lihtc-compound-address-review:
+	$(MAKE) -C tasks/prepare_lihtc_compound_address_review/code
+
+review-lihtc-compound-addresses:
+	$(MAKE) -C tasks/review_lihtc_compound_addresses/code
+
+apply-lihtc-compound-address-review:
+	$(MAKE) -C tasks/apply_lihtc_compound_address_review/code
+
+prepare-lihtc-range-address-review:
+	$(MAKE) -C tasks/prepare_lihtc_range_address_review/code
+
+review-lihtc-range-addresses:
+	$(MAKE) -C tasks/review_lihtc_range_addresses/code
+
+build-lihtc-geocoding-query-crosswalk:
+	$(MAKE) -C tasks/build_lihtc_geocoding_query_crosswalk/code
+
+audit-lihtc-geocoding-query-crosswalk:
+	$(MAKE) -C tasks/audits/audit_lihtc_geocoding_query_crosswalk/code
 
 tasks/setup_environment/output/system_requirements.txt: tasks/setup_environment/code/system_requirements.sh
 	$(MAKE) -C tasks/setup_environment/code ../output/system_requirements.txt
