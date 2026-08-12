@@ -184,6 +184,42 @@ if (physical_development[
     call. = FALSE)
 }
 
+physical_development[, downstream_unit_analysis_status := fcase(
+  !is.na(n_units_development) & !is.na(li_units_development),
+  "eligible_total_and_low_income",
+  !is.na(n_units_development),
+  "eligible_total_only",
+  !is.na(li_units_development),
+  "eligible_low_income_only",
+  default = "exclude_missing_both_unit_counts"
+)]
+physical_development[, downstream_unit_analysis_eligible :=
+  downstream_unit_analysis_status !=
+    "exclude_missing_both_unit_counts"]
+
+if (physical_development[
+      downstream_unit_analysis_status ==
+        "exclude_missing_both_unit_counts",
+      .N
+    ] != 400L ||
+    physical_development[
+      downstream_unit_analysis_status ==
+        "eligible_total_and_low_income",
+      .N
+    ] != 52919L ||
+    physical_development[
+      downstream_unit_analysis_status == "eligible_total_only",
+      .N
+    ] != 132L ||
+    physical_development[
+      downstream_unit_analysis_status == "eligible_low_income_only",
+      .N
+    ] != 18L ||
+    anyNA(physical_development$downstream_unit_analysis_eligible)) {
+  stop("The downstream unit-analysis partition is invalid.",
+    call. = FALSE)
+}
+
 physical_episode[member_decisions, `:=`(
   unit_scope_question_id = i.unit_scope_question_id,
   unit_scope_final_total_member_role = i.final_total_member_role,
@@ -205,7 +241,9 @@ development_unit_fields <- physical_development[, .(
   unit_scope_question_id,
   unit_scope_review_status,
   unit_scope_final_total_action,
-  unit_scope_final_low_income_action
+  unit_scope_final_low_income_action,
+  downstream_unit_analysis_status,
+  downstream_unit_analysis_eligible
 )]
 if (uniqueN(development_unit_fields$development_id) !=
     nrow(development_unit_fields)) {
@@ -219,7 +257,11 @@ physical_episode[development_unit_fields, `:=`(
   unit_scope_review_status = i.unit_scope_review_status,
   unit_scope_final_total_action = i.unit_scope_final_total_action,
   unit_scope_final_low_income_action =
-    i.unit_scope_final_low_income_action
+    i.unit_scope_final_low_income_action,
+  downstream_unit_analysis_status =
+    i.downstream_unit_analysis_status,
+  downstream_unit_analysis_eligible =
+    i.downstream_unit_analysis_eligible
 ), on = "development_id"]
 physical_site[development_unit_fields, `:=`(
   n_units_physical_development = i.n_units_development,
@@ -228,11 +270,17 @@ physical_site[development_unit_fields, `:=`(
   unit_scope_review_status = i.unit_scope_review_status,
   unit_scope_final_total_action = i.unit_scope_final_total_action,
   unit_scope_final_low_income_action =
-    i.unit_scope_final_low_income_action
+    i.unit_scope_final_low_income_action,
+  downstream_unit_analysis_status =
+    i.downstream_unit_analysis_status,
+  downstream_unit_analysis_eligible =
+    i.downstream_unit_analysis_eligible
 ), on = "development_id"]
 
 if (anyNA(physical_episode$unit_scope_review_status) ||
     anyNA(physical_site$unit_scope_review_status) ||
+    anyNA(physical_episode$downstream_unit_analysis_status) ||
+    anyNA(physical_site$downstream_unit_analysis_status) ||
     any(physical_episode$development_id %chin%
       excluded_development_ids) ||
     any(physical_site$development_id %chin%

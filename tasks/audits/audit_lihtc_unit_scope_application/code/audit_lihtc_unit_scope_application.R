@@ -184,6 +184,105 @@ decisions_applied_exactly <-
     decision_application$observed_low_income_value
   ))
 
+unit_analysis_partition <- development[, .(
+  development_id,
+  n_units_development,
+  li_units_development,
+  observed_status = downstream_unit_analysis_status,
+  observed_eligible = downstream_unit_analysis_eligible
+)]
+unit_analysis_partition[, expected_status := fcase(
+  !is.na(n_units_development) & !is.na(li_units_development),
+  "eligible_total_and_low_income",
+  !is.na(n_units_development),
+  "eligible_total_only",
+  !is.na(li_units_development),
+  "eligible_low_income_only",
+  default = "exclude_missing_both_unit_counts"
+)]
+unit_analysis_partition[, expected_eligible :=
+  expected_status != "exclude_missing_both_unit_counts"]
+downstream_unit_analysis_partition_exact <-
+  isTRUE(all.equal(
+    unit_analysis_partition$expected_status,
+    unit_analysis_partition$observed_status
+  )) &&
+  isTRUE(all.equal(
+    unit_analysis_partition$expected_eligible,
+    unit_analysis_partition$observed_eligible
+  )) &&
+  unit_analysis_partition[
+    observed_status == "exclude_missing_both_unit_counts",
+    .N
+  ] == 400L &&
+  unit_analysis_partition[
+    observed_status == "eligible_total_and_low_income",
+    .N
+  ] == 52919L &&
+  unit_analysis_partition[
+    observed_status == "eligible_total_only",
+    .N
+  ] == 132L &&
+  unit_analysis_partition[
+    observed_status == "eligible_low_income_only",
+    .N
+  ] == 18L
+
+unit_analysis_handoff <- development[, .(
+  development_id,
+  expected_status = downstream_unit_analysis_status,
+  expected_eligible = downstream_unit_analysis_eligible
+)]
+episode_unit_analysis_handoff <- episode[, .(
+  hud_id,
+  development_id,
+  observed_status = downstream_unit_analysis_status,
+  observed_eligible = downstream_unit_analysis_eligible
+)]
+episode_unit_analysis_handoff[unit_analysis_handoff, `:=`(
+  expected_status = i.expected_status,
+  expected_eligible = i.expected_eligible
+), on = "development_id"]
+site_unit_analysis_handoff <- site[, .(
+  development_site_id,
+  development_id,
+  observed_status = downstream_unit_analysis_status,
+  observed_eligible = downstream_unit_analysis_eligible
+)]
+site_unit_analysis_handoff[unit_analysis_handoff, `:=`(
+  expected_status = i.expected_status,
+  expected_eligible = i.expected_eligible
+), on = "development_id"]
+downstream_unit_analysis_status_propagated <-
+  !anyNA(episode_unit_analysis_handoff[, .(
+    expected_status,
+    expected_eligible,
+    observed_status,
+    observed_eligible
+  )]) &&
+  !anyNA(site_unit_analysis_handoff[, .(
+    expected_status,
+    expected_eligible,
+    observed_status,
+    observed_eligible
+  )]) &&
+  isTRUE(all.equal(
+    episode_unit_analysis_handoff$expected_status,
+    episode_unit_analysis_handoff$observed_status
+  )) &&
+  isTRUE(all.equal(
+    episode_unit_analysis_handoff$expected_eligible,
+    episode_unit_analysis_handoff$observed_eligible
+  )) &&
+  isTRUE(all.equal(
+    site_unit_analysis_handoff$expected_status,
+    site_unit_analysis_handoff$observed_status
+  )) &&
+  isTRUE(all.equal(
+    site_unit_analysis_handoff$expected_eligible,
+    site_unit_analysis_handoff$observed_eligible
+  ))
+
 member_application <- member_decisions[, .(
   hud_id,
   expected_total_role = final_total_member_role,
@@ -529,6 +628,8 @@ checks <- data.table(
     "excluded_reason_partition_exact",
     "excluded_reason_mapping_matches_source_scope",
     "physical_outputs_follow_50_state_dc_scope",
+    "downstream_unit_analysis_partition_exact",
+    "downstream_unit_analysis_status_propagated",
     "applied_values_valid"
   ),
   passed = c(
@@ -585,6 +686,8 @@ checks <- data.table(
       !any(episode$development_id %chin%
         excluded_development_ids) &&
       !any(site$development_id %chin% excluded_development_ids),
+    downstream_unit_analysis_partition_exact,
+    downstream_unit_analysis_status_propagated,
     development[
       !is.na(n_units_development) & n_units_development <= 0 |
         !is.na(li_units_development) & li_units_development < 0 |
@@ -631,6 +734,11 @@ checks <- data.table(
         excluded_development_ids) +
       sum(site$development_id %chin% excluded_development_ids) +
       sum(!development$development_state %chin% valid_states),
+    unit_analysis_partition[
+      observed_status == "exclude_missing_both_unit_counts",
+      .N
+    ],
+    as.integer(downstream_unit_analysis_status_propagated),
     development[
       !is.na(n_units_development) & n_units_development <= 0 |
         !is.na(li_units_development) & li_units_development < 0 |
@@ -654,6 +762,8 @@ checks <- data.table(
     443L,
     1L,
     0L,
+    400L,
+    1L,
     0L
   )
 )

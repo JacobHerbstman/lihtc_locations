@@ -254,6 +254,9 @@ one episode-specific case without a static value, and leave 531 unavailable.
 The final analytic layer contains 53,469 physical developments, 54,902
 episodes, and 131,473 sites in the 50 states and DC. A separate evidence table
 preserves 443 excluded episodes: 26 nonphysical and 417 territorial.
+The master tables retain the 400 developments missing both static count
+measures and mark them for exclusion from the default downstream quantitative
+sample; no development, episode, or site is deleted to impose that sample.
 
 The fetch task forces HTTP/1.1 because HUD's web application firewall sends
 command-line HTTP/2 requests to a browser challenge. It verifies the archive

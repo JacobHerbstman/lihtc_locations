@@ -142,3 +142,8 @@ exist.
 The review does not overwrite HUD fields. It creates development-level
 interpretations while preserving every episode value and its lineage. It does
 not change identity, addresses, sites, or geocoding status.
+
+Downstream quantitative tasks exclude a development when both adjudicated
+static count fields are missing. The development, its financing episodes, and
+its sites remain in the master tables. Total-unit and low-income-unit analyses
+apply their own complete-case requirement to the corresponding count field.
