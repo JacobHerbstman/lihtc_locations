@@ -1028,7 +1028,6 @@ summary_lines <- c(
 
 setorder(site, development_site_id)
 setorder(proposed_queries, proposed_query_id)
-fwrite(manual_review_sample, "../output/manual_review_sample.csv", na = "")
 write_parquet(
   site,
   "../output/lihtc_site_geocoding_readiness.parquet",
@@ -1039,6 +1038,7 @@ write_parquet(
   "../output/proposed_address_queries.parquet",
   compression = "zstd"
 )
+fwrite(manual_review_sample, "../output/manual_review_sample.csv", na = "")
 writeLines(summary_lines, "../output/audit_summary.md")
 
 if (!identical(

@@ -859,10 +859,10 @@ setorder(development_pairs, manual_review_order)
 setindexv(address_groups, NULL)
 setindexv(address_members, NULL)
 setindexv(development_pairs, NULL)
-fwrite(
-  manual_review_sample,
-  "../output/manual_review_sample.csv",
-  na = ""
+write_parquet(
+  development_pairs,
+  "../output/lihtc_cross_development_pairs.parquet",
+  compression = "zstd"
 )
 write_parquet(
   address_groups,
@@ -874,10 +874,10 @@ write_parquet(
   "../output/lihtc_cross_development_address_members.parquet",
   compression = "zstd"
 )
-write_parquet(
-  development_pairs,
-  "../output/lihtc_cross_development_pairs.parquet",
-  compression = "zstd"
+fwrite(
+  manual_review_sample,
+  "../output/manual_review_sample.csv",
+  na = ""
 )
 writeLines(summary_lines, "../output/audit_summary.md")
 

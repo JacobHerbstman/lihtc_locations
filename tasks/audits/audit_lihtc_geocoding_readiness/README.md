@@ -8,6 +8,8 @@ The audit reconstructs the site-address inputs from the HUD property and multi-a
 
 The outputs distinguish provisional one-query mappings from records requiring an address split, source review, address-form review, or repeated-address review. They do not automatically decide that two rows are duplicates, alter a published site address, or claim that an internally plausible HUD coordinate belongs to the listed street address.
 
+The canonical output is `output/lihtc_site_geocoding_readiness.parquet`. The proposed-query Parquet, manual-review sample, and audit summary are supporting outputs from the same run.
+
 Run from `code/`:
 
 ```sh

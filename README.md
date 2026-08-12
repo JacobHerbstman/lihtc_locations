@@ -160,6 +160,23 @@ cd ../../audits/audit_lihtc_single_address_adjudicated/code
 make
 ```
 
+Apply the final project/community identity and source-site corrections, then
+audit every retained, removed, collapsed, and externally added site:
+
+```sh
+make adjudicate-lihtc-singleton-identity-scope
+make audit-lihtc-singleton-identity-scope
+```
+
+Adjudicate development-level unit counts while preserving every financing
+episode, restrict the analytic tables to physical developments in the 50
+states and DC, and run the independent application audit:
+
+```sh
+make adjudicate-lihtc-unit-scope
+make audit-lihtc-unit-scope
+```
+
 This audit calls no geocoder and transmits no address or coordinate. It keeps
 Puerto Rico and the other territories as explicit out-of-scope records,
 preserves raw address fields, and marks every locally proposed query as
@@ -220,6 +237,23 @@ unmerged site record, source row, or territory development changed. The 215
 newly merged developments retain missing development-level unit totals, and
 1,052 developments remain explicitly flagged for the separate unit-scope
 review. No address is repaired and no geocoding query is approved.
+
+The later identity and site-scope pass resolves 56 review questions covering
+88 source development records. It preserves all 55,345 HUD episodes, produces
+53,909 all-scope development rows and 132,513 sites, and keeps 23 nonphysical
+portfolio, bad-source, or synthetic rows explicit. One official TDHCA address
+is added through a separate reviewed transaction rather than represented as a
+HUD-derived site. No site is approved for geocoding.
+
+The unit-scope review covers 1,224 developments and 2,657 financing episodes.
+Total-unit decisions use one repeated value for 743 developments, sum 18
+documented component sets, use 45 direct property values, and leave 418
+without a defensible static value. Low-income-unit decisions use one repeated
+value for 655 developments, sum 18 component sets, use 19 direct values, retain
+one episode-specific case without a static value, and leave 531 unavailable.
+The final analytic layer contains 53,469 physical developments, 54,902
+episodes, and 131,473 sites in the 50 states and DC. A separate evidence table
+preserves 443 excluded episodes: 26 nonphysical and 417 territorial.
 
 The fetch task forces HTTP/1.1 because HUD's web application firewall sends
 command-line HTTP/2 requests to a browser challenge. It verifies the archive

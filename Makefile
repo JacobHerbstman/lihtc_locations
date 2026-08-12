@@ -14,7 +14,10 @@ SHELL := /bin/bash
 	prepare-lihtc-cross-development-address-review-round2 \
 	review-lihtc-cross-development-addresses-round2 \
 	apply-lihtc-cross-development-address-review-round2 \
-	audit-lihtc-cross-development-addresses-round2-adjudicated
+	audit-lihtc-cross-development-addresses-round2-adjudicated \
+	adjudicate-lihtc-singleton-identity-scope \
+	audit-lihtc-singleton-identity-scope \
+	adjudicate-lihtc-unit-scope audit-lihtc-unit-scope
 
 all: paper
 
@@ -85,6 +88,18 @@ apply-lihtc-cross-development-address-review-round2: \
 
 audit-lihtc-cross-development-addresses-round2-adjudicated: \
 	tasks/audits/audit_lihtc_cross_development_addresses_round2_adjudicated/output/audit_summary.md
+
+adjudicate-lihtc-singleton-identity-scope:
+	$(MAKE) -C tasks/apply_lihtc_singleton_identity_scope_review/code
+
+audit-lihtc-singleton-identity-scope:
+	$(MAKE) -C tasks/audits/audit_lihtc_singleton_identity_scope_application/code
+
+adjudicate-lihtc-unit-scope:
+	$(MAKE) -C tasks/apply_lihtc_unit_scope_review/code
+
+audit-lihtc-unit-scope:
+	$(MAKE) -C tasks/audits/audit_lihtc_unit_scope_application/code
 
 tasks/setup_environment/output/system_requirements.txt: tasks/setup_environment/code/system_requirements.sh
 	$(MAKE) -C tasks/setup_environment/code ../output/system_requirements.txt

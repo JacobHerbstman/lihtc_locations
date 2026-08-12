@@ -6,21 +6,21 @@ R := Rscript
 .PHONY: all link-inputs
 
 all: \
-	../output/audit_summary.md \
 	../output/lihtc_site_geocoding_readiness.parquet \
 	../output/proposed_address_queries.parquet \
-	../output/manual_review_sample.csv
+	../output/manual_review_sample.csv \
+	../output/audit_summary.md
 
-../output/audit_summary.md: \
+../output/lihtc_site_geocoding_readiness.parquet: \
 		audit_lihtc_geocoding_readiness.R \
 		../input/lihtc_project_episode_2024_name_adjudicated.parquet \
 		../input/lihtc_development_site_2024_name_adjudicated.parquet \
 		../input/lihtc_multisite_2024_raw_text.parquet | ../output
 	$(R) $<
 
-../output/lihtc_site_geocoding_readiness.parquet \
 ../output/proposed_address_queries.parquet \
-../output/manual_review_sample.csv: ../output/audit_summary.md
+../output/manual_review_sample.csv \
+../output/audit_summary.md: ../output/lihtc_site_geocoding_readiness.parquet
 	@test -f $@
 
 ../input/lihtc_project_episode_2024_name_adjudicated.parquet: \
