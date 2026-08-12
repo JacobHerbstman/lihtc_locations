@@ -17,7 +17,8 @@ SHELL := /bin/bash
 	audit-lihtc-cross-development-addresses-round2-adjudicated \
 	adjudicate-lihtc-singleton-identity-scope \
 	audit-lihtc-singleton-identity-scope \
-	adjudicate-lihtc-unit-scope audit-lihtc-unit-scope
+	adjudicate-lihtc-unit-scope audit-lihtc-unit-scope \
+	audit-lihtc-final-geocoding-readiness
 
 all: paper
 
@@ -100,6 +101,9 @@ adjudicate-lihtc-unit-scope:
 
 audit-lihtc-unit-scope:
 	$(MAKE) -C tasks/audits/audit_lihtc_unit_scope_application/code
+
+audit-lihtc-final-geocoding-readiness:
+	$(MAKE) -C tasks/audits/audit_lihtc_final_geocoding_readiness/code
 
 tasks/setup_environment/output/system_requirements.txt: tasks/setup_environment/code/system_requirements.sh
 	$(MAKE) -C tasks/setup_environment/code ../output/system_requirements.txt

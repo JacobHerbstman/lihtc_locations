@@ -177,8 +177,16 @@ make adjudicate-lihtc-unit-scope
 make audit-lihtc-unit-scope
 ```
 
-This audit calls no geocoder and transmits no address or coordinate. It keeps
-Puerto Rico and the other territories as explicit out-of-scope records,
+Rebuild address readiness from the final physical-development, episode, and
+site tables without calling a geocoder:
+
+```sh
+make audit-lihtc-final-geocoding-readiness
+```
+
+The earlier readiness audit calls no geocoder and transmits no address or
+coordinate. It keeps Puerto Rico and the other territories as explicit
+out-of-scope records,
 preserves raw address fields, and marks every locally proposed query as
 `not_approved`. The cross-development audit separately preserves one row per
 shared address, address-development member, and unique development pair. Its
@@ -257,6 +265,13 @@ preserves 443 excluded episodes: 26 nonphysical and 417 territorial.
 The master tables retain the 400 developments missing both static count
 measures and mark them for exclusion from the default downstream quantitative
 sample; no development, episode, or site is deleted to impose that sample.
+
+The final local address audit maps 83,720 site rows to 77,648 unique proposed
+queries, all explicitly unapproved. It leaves 47,753 site rows blocked for an
+address split, source or site-inventory review, address-form review,
+shared-address review, or because the listed text is not safely geocodable.
+The audit does not transmit an address or use the unit-analysis exclusion to
+discard a site.
 
 The fetch task forces HTTP/1.1 because HUD's web application firewall sends
 command-line HTTP/2 requests to a browser challenge. It verifies the archive
