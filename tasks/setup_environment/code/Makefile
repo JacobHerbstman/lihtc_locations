@@ -1,13 +1,7 @@
-SHELL := bash
+include ../../shared/code/shell_functions.make
+all: ../output/packages.txt
 
-all: ../output/system_requirements.txt ../output/R_packages.txt
+../output/packages.txt: packages.R Makefile | ../output
+	$(R) $<
 
-../output/system_requirements.txt: system_requirements.sh | ../output
-	bash $<
-
-../output/R_packages.txt: packages.R ../output/system_requirements.txt | ../output
-	Rscript $<
-
-link-inputs:
-
-include ../../generic.make
+include ../../shared/code/generic.make

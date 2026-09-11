@@ -1,4 +1,9 @@
-all: paper.pdf
+.DEFAULT_GOAL := all
+.PHONY: all data
+all: data paper.pdf
 
-paper.pdf: paper.tex
-	pdflatex -interaction=nonstopmode paper.tex
+data:
+	$(MAKE) -C ..
+
+paper.pdf: paper.tex | data
+	pdflatex -halt-on-error -interaction=nonstopmode paper.tex

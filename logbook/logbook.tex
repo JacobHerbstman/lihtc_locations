@@ -1,0 +1,49 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage[T1]{fontenc}
+\begin{document}
+\section*{Reset to new-construction project locations}
+\noindent September 11, 2026. Agent-drafted research record.
+
+Jacob chose a simple project-location dataset: accept HUD's new-construction
+classification unless repeated records or a concrete inconsistency give a reason
+to investigate. The new build starts from the original HUD workbook. It uses none
+of the previous physical-development links or external review decisions. The prior
+workflow was removed from the active project and preserved in Git history and a
+pre-reset snapshot.
+
+\begin{center}
+\small
+\input{../tasks/build_lihtc/output/summary.tex}
+\end{center}
+
+The main table keeps the earliest new-construction record at each standardized
+primary address. A unique record stays even when its year or hedonics are missing.
+At a repeated address, a missing year or conflicting earliest-year tie prevents
+selection; identical ties can use a stable representative only when their listed
+characteristics agree. All raw new-construction records, including later phases,
+remain in the record table. A repeated address is a review question, not proof
+that a later project is a duplicate. Addresses are not parcel identifiers.
+
+Census address-range matches provide an independent location comparison. Matches in the reported state are compared with HUD coordinates.
+Non-exact strings can pass when the locations agree; without a HUD comparison,
+an exact Census match is required. A discrepancy
+greater than 500 meters triggers review; that screening threshold is not an error
+definition. HUD-only coordinates are retained as unconfirmed. Scattered-site
+projects retain their primary point without claiming that it represents every
+building. Missing units or bedroom counts do not invalidate a checked location.
+
+The remaining work is confined to repeated-address choices and unresolved
+locations. There is no requirement to reconstruct rehabilitation histories or
+obtain two external sources for every project. Neighborhood characteristics and
+parcel matching are outside this reset. The saved Census tract codes describe
+2020 geography; the analysis has not yet chosen historical neighborhood measures.
+
+\paragraph{Reproduction.} Run \texttt{make setup}, then \texttt{make} at the
+repository root. Task Makefiles are for prepared inputs; the root declares the
+full dependency graph. HUD source: pinned 2024 release, retrieved August 8, 2026.
+Census: Public\_AR\_ACS2025 and Census2020\_ACS2025, requests defined September 11,
+2026. The code reset follows revision \texttt{fe507fd}. Saved-file reports record
+rows, keys, missingness, ranges, and fingerprints. Raw geocoder responses are
+retained so ordinary builds do not send the addresses again.
+\end{document}

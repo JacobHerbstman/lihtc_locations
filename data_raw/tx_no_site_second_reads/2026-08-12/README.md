@@ -1,5 +1,0 @@
-# Texas no-site second reads
-
-These are source bytes used for an independent, conservative review of 14 Texas no-site candidates on 2026-08-12. `manifest.csv` records the URL, retrieval date, SHA-256 digest, source type, and proposition inspected. The TDHCA documents are retained for provenance and phase diagnostics; they are not treated as independent confirmation of the TDHCA inventory itself.
-
-The source set does not authorize adding any site, merging records, or approving a geocoding query. Two accessible web results (the Guadalupe Crossing state search result and the manager login page for Stone Canyon/Viking Road) could not be fetched or reproduced as qualifying durable evidence. The review records those attempts as unresolved rather than relying on snippets. `guadalupe_crossing_tx_puc.html` is retained and manifested as a retrieval artifact, but is not used as evidence because it does not contain the search-result record shown by the search engine. Texas A&M--Kingsville's apartment list was preserved and supports only a candidate address, not an applied site.

@@ -1,0 +1,18 @@
+Rows: 27831
+Key: hud_id, complete and unique
+Saved-file MD5: 1f2e3c1aa50e5342b1a11db071bff33f
+column	type	nonmissing	distinct	min	max
+hud_id	character	27831	27831	NA	NA
+submitted_address	character	27831	26679	NA	NA
+match_status	character	27831	3	NA	NA
+match_type	character	27831	3	NA	NA
+matched_address	character	27831	23645	NA	NA
+coordinates	character	27831	23613	NA	NA
+tigerline	integer	25020	21516	111041	658545952
+side	character	27831	3	NA	NA
+census_state	integer	25039	52	1	56
+census_county	integer	25039	251	1	810
+census_tract	integer	25039	7150	100	985200
+census_block	integer	25039	589	1000	9042
+census_longitude	numeric	25039	23607	-160.431453377052	-67.031673623654
+census_latitude	numeric	25039	23608	19.635544481626	64.845397532865

@@ -1,0 +1,37 @@
+Rows: 27708
+Key: hud_id, complete and unique
+Saved-file MD5: 2a5492c42867ba325d91ba4331a26f13
+column	type	nonmissing	distinct	min	max
+hud_id	character	27708	27708	NA	NA
+project_name	character	27708	26102	NA	NA
+state_project_id	character	27566	26305	NA	NA
+street	character	27278	26790	NA	NA
+city	character	27688	5412	NA	NA
+state	character	27708	51	NA	NA
+zip	integer	26320	9075	1002	99999
+pis_year	integer	26766	39	1987	2024
+allocation_year	integer	27103	39	1987	2024
+total_units	integer	27595	419	1	1238
+low_income_units	integer	27216	378	0	769
+bedrooms_0	integer	24056	180	0	476
+bedrooms_1	integer	24794	235	0	482
+bedrooms_2	integer	24873	225	0	350
+bedrooms_3	integer	24479	161	0	228
+bedrooms_4plus	integer	23810	93	0	161
+credit_type	integer	24186	5	1	4
+target_family	integer	17861	4	0	2
+target_elderly	integer	16410	4	0	2
+target_disabled	integer	16241	4	0	2
+longitude	numeric	26909	26225	-163.871442	-67.031673623654
+latitude	numeric	26909	26224	19.635544481626	64.845397532865
+location_source	character	27708	3	NA	NA
+location_status	character	27708	8	NA	NA
+scattered_site	integer	23917	3	1	2
+resyndicated	integer	6871	3	1	2
+units_conflict	logical	27708	2	NA	NA
+bedrooms_consistent	logical	27708	2	NA	NA
+records_at_address	integer	27708	6	1	9
+selection_status	character	27708	3	NA	NA
+repeat_address_review	logical	27708	2	NA	NA
+construction_review	logical	27708	2	NA	NA
+usable_location	logical	27708	2	NA	NA

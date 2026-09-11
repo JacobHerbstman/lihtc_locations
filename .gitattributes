@@ -1,13 +1,2 @@
-data_raw/wheda_monitored_htc/2026-08-12/wheda_monitored_htc_projects.html -text -diff
-data_raw/nchfa_funded_rental_projects/2026-08-12/pages/*.html -text -diff
-data_raw/phfa_rental_housing_inventory/2026-08-12/*.pdf -text -diff
-data_raw/phfa_rental_housing_inventory/2026-08-12/phfa_renters.html -text -diff
-data_raw/pa_no_site_second_reads/2026-08-12/*.html -text -diff
-data_raw/pa_no_site_second_reads/2026-08-12/*.pdf -text -diff
-data_raw/tdhca_htc_property_inventory/2026-08-12/*.xlsx -text -diff
-data_raw/tx_no_site_second_reads/2026-08-12/*.html -text -diff
-data_raw/tx_no_site_second_reads/2026-08-12/*.pdf -text -diff
-data_raw/ga_dca_lihtc_map/2026-08-12/*.json -text -diff
-data_raw/mainehousing_subsidized_apartment_listings/2026-08-12/*.html -text -diff
-data_raw/mainehousing_subsidized_apartment_listings/2026-08-12/*.pdf -text -diff
-data_raw/ihcda_existing_lihtc_properties/2026-08-12/*.html -text -diff
+data_raw/hud_lihtc_property/2024/lihtcpub.zip -text -diff
+data_raw/census_geocoder/2026-09-11/response_*.csv -text -diff

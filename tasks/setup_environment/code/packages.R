@@ -1,48 +1,8 @@
 # setwd("/Users/jacobherbstman/Desktop/lihtc_locations/tasks/setup_environment/code")
-
-options(repos = c(CRAN = "https://cloud.r-project.org"))
-
-cran_packages <- c(
-  "arrow",
-  "data.table",
-  "digest",
-  "dplyr",
-  "fixest",
-  "ggplot2",
-  "pdftools",
-  "readr",
-  "readxl",
-  "sf",
-  "stringr",
-  "tibble",
-  "tidycensus",
-  "tidyr",
-  "tigris"
-)
-
-for (package in cran_packages) {
-  if (!requireNamespace(package, quietly = TRUE)) {
-    install.packages(package)
-  }
-
-  if (!requireNamespace(package, quietly = TRUE)) {
-    stop("R package is unavailable after installation: ", package, call. = FALSE)
-  }
+options(repos=c(CRAN="https://cloud.r-project.org"))
+packages <- c("data.table","readxl")
+for (package in packages) {
+  if (!requireNamespace(package,quietly=TRUE)) install.packages(package)
 }
-
-package_versions <- data.frame(
-  package = cran_packages,
-  version = vapply(
-    cran_packages,
-    function(package) as.character(packageVersion(package)),
-    character(1)
-  )
-)
-
-write.table(
-  package_versions,
-  "../output/R_packages.txt",
-  sep = "\t",
-  row.names = FALSE,
-  quote = FALSE
-)
+versions <- data.frame(package=packages,version=vapply(packages,function(p) as.character(packageVersion(p)),character(1)))
+write.table(versions,"../output/packages.txt",sep="\t",quote=FALSE,row.names=FALSE)

@@ -1,7 +1,7 @@
-# Setup Environment
+# Environment
 
-Checks the command-line tools needed by the project, installs any missing R
-packages, and records the package versions used by the task pipeline.
-
-Inputs are `system_requirements.sh` and `packages.R`. Outputs are
-`system_requirements.txt` and `R_packages.txt`.
+Run make in code to install the two R packages if missing and record versions.
+The build also requires GNU Make 3.81 or later, Rscript, curl, unzip, shasum,
+Python 3 for verification, and pdflatex for the logbook/paper. Analysis scripts
+never install packages. Network access is needed for missing source downloads
+and Census responses only. Ordinary builds reuse saved responses.
