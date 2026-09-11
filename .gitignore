@@ -8,6 +8,9 @@ tmp/
 tasks/*/input/
 tasks/*/output/
 tasks/*/temp/
+tasks/audits/*/input/
+tasks/audits/*/output/
+tasks/audits/*/temp/
 logbook/*.pdf
 logbook/*.aux
 logbook/*.out

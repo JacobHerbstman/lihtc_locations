@@ -45,7 +45,13 @@ tasks/build_lihtc/report/projects.txt: tasks/build_lihtc/output/projects.csv tas
 tasks/build_lihtc/report/review.txt: tasks/build_lihtc/output/review.csv tasks/shared/code/report.R
 	$(MAKE) -C tasks/build_lihtc/code ../report/review.txt
 
-logbook/logbook.pdf: logbook/logbook.tex tasks/build_lihtc/output/summary.tex
+tasks/prepare_lihtc/temp/LIHTCPUB.xlsx: data_raw/hud_lihtc_property/2024/lihtcpub.zip tasks/prepare_lihtc/code/source.make tasks/prepare_lihtc/code/Makefile
+	$(MAKE) -C tasks/prepare_lihtc/code ../temp/LIHTCPUB.xlsx
+
+tasks/audits/external_benchmarks/report/checks.txt: tasks/audits/external_benchmarks/code/compare_hud.R tasks/audits/external_benchmarks/code/Makefile tasks/prepare_lihtc/temp/LIHTCPUB.xlsx tasks/build_lihtc/output/project_records.csv
+	$(MAKE) -C tasks/audits/external_benchmarks/code
+
+logbook/logbook.pdf: logbook/logbook.tex tasks/build_lihtc/output/summary.tex tasks/audits/external_benchmarks/report/checks.txt tasks/audits/external_benchmarks/README.md
 	$(MAKE) -C logbook
 
 include tasks/prepare_lihtc/code/source.make

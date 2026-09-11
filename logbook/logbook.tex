@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage[margin=0.9in]{geometry}
 \usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
 \begin{document}
 \section*{Reset to new-construction project locations}
 \noindent September 11, 2026. Agent-drafted research record.
@@ -46,4 +47,54 @@ Census: Public\_AR\_ACS2025 and Census2020\_ACS2025, requests defined September 
 2026. The code reset follows revision \texttt{fe507fd}. Saved-file reports record
 rows, keys, missingness, ranges, and fingerprints. Raw geocoder responses are
 retained so ordinary builds do not send the addresses again.
+\clearpage
+\section*{External checks: matching totals and specific exceptions}
+\noindent September 11, 2026. Agent-drafted research record; baseline
+revision \texttt{36228a3}.
+
+The original workbook exactly matches the
+\href{https://www.huduser.gov/portal/Datasets/lihtc/LIHTC-2024-Tables.pdf}{HUD 2024 summary}:
+55,345 records and 3,860,546 adjusted units, including rehabilitation and
+territories. All ten published annual property and unit counts for 2015--2024
+also match. This establishes agreement with the source release, not the accuracy
+of individual records. Our 50-state-and-DC new-construction sample uses reported
+unit counts and falls from 29,453 records and 1,949,494 known units to 27,708
+selected records and 1,851,152 known units. Selection removes 5.9\% of records
+and 5.0\% of units. New Jersey loses 17.6\% of records and 18.5\% of units;
+North Carolina loses 15.2\% and 4.9\%. These losses include unresolved ties and
+later records that could be additional phases.
+
+Three exploratory records were sampled from checked locations dated 2010--2020
+(R seed 20260911). Oconee Park, Georgia (GAA20100035), is coded new construction
+with 117 units in HUD. However,
+\href{https://www.gao.gov/assets/a204076.html}{GAO's 2010 Georgia appendix, Table 2},
+describes the same 117-unit project, also called Riverview Heights, as
+rehabilitation. This is concrete evidence for an exception to HUD's default
+classification. Sequoia Villas, California (CAA20120846), has 18 total units in
+HUD, although its bedroom counts sum to 19. California's 2012 allocation report
+and the Tulare housing authority identify 19 total units; the allocation report
+separately lists 18 low-income units. Its opening year still needs confirmation.
+Ohio's agency and operator support Willoughbeach Terrace's 50 units, address,
+and new-construction classification. These three checks do not estimate a
+national error rate.
+
+Missing construction type creates a separate coverage limitation: 1,052 of
+Indiana's 1,353 source records lack it (77.8\%), versus 3.1\% in California.
+River Pointe in Tell City (INA20157173) is one excluded example; Indiana
+describes a new building, and its developer reports opening it in 2015. Thus,
+unknown construction type cannot be equated with rehabilitation. The previous
+entry's statement that only repeated addresses and locations remain was too
+narrow for a claim of complete national construction coverage.
+
+The recommendation is to retain the simple default, document the identified
+exceptions, review state counts most affected by repeated addresses, and assess
+missing-type coverage by state and year. No source values or selected records
+were changed by this search. The external findings are recorded for correction;
+the current dataset still contains the Oconee Park conflict. Recent-year totals
+also remain subject to HUD reporting revisions.
+
+\paragraph{Reproduction.} Root \texttt{make} produces the calculation report in
+\path{tasks/audits/external_benchmarks/report/checks.txt}. The task's README
+records source links, sample definitions, and individual findings. External
+pages were read September 11, 2026. This audit adds no production data source.
 \end{document}
