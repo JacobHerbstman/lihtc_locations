@@ -1,5 +1,6 @@
 # setwd("/Users/jacobherbstman/Desktop/lihtc_locations/tasks/prepare_lihtc/code")
 library(data.table)
+source("../../shared/code/save_data.R")
 library(readxl)
 hud <- as.data.table(read_excel("../temp/LIHTCPUB.xlsx",sheet="Data",col_types="text",na="",trim_ws=FALSE))
 stopifnot(nrow(hud)==55345L,ncol(hud)==80L,!anyNA(hud$hud_id),!anyDuplicated(hud$hud_id))
@@ -50,4 +51,4 @@ x[, name_key := gsub("[^A-Z0-9]","",toupper(project_name))]
 x[, hud_coordinates_present := !is.na(hud_latitude) & !is.na(hud_longitude) &
     hud_latitude>=18 & hud_latitude<=72 & hud_longitude>=-180 & hud_longitude<=180 & hud_longitude!=0]
 setorder(x,hud_id)
-fwrite(x,"../output/projects.csv",na="")
+SaveData(x,"../output/projects.csv","../report/projects.txt","hud_id")

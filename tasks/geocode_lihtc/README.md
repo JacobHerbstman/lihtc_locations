@@ -22,3 +22,10 @@ type, state, coordinates, tract, and matched address. Unqueryable projects remai
 in the upstream table and return through the final left join. Root make is the
 end-to-end build; task-local make uses prepared inputs.
 Source: https://geocoding.geo.census.gov/geocoder/Geocoding_Services_API.html
+
+HUD coordinates now take priority in production. An exact Census match in the
+reported state is a fallback when HUD coordinates are absent. Existing Census
+comparisons are diagnostics, not universal inclusion requirements. The Makefile
+lists request and response files and their input links; request_census.sh holds
+the API call. Existing archived responses are reused unchanged. SaveData writes
+the dataset report when geocodes.csv is saved.

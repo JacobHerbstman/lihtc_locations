@@ -1,7 +1,7 @@
 include ../../../shared/code/shell_functions.make
-all: ../report/checks.txt
+all: ../output/checks.txt
 
-../report/checks.txt: compare_hud.R ../input/LIHTCPUB.xlsx ../input/project_records.csv Makefile | ../report
+../output/checks.txt: compare_hud.R ../input/LIHTCPUB.xlsx ../input/project_records.csv Makefile | ../output
 	$(R) $<
 
 ../input/LIHTCPUB.xlsx: ../../../prepare_lihtc/temp/LIHTCPUB.xlsx | ../input
@@ -10,5 +10,4 @@ all: ../report/checks.txt
 ../input/project_records.csv: ../../../build_lihtc/output/project_records.csv | ../input
 	ln -sf $< $@
 
-link-inputs: ../input/LIHTCPUB.xlsx ../input/project_records.csv
 include ../../../shared/code/generic.make

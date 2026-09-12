@@ -1,89 +1,98 @@
-# Construction-type coverage and automatic exclusions by state
+# Coverage and selection by state
 
-Produce maps and sortable tables for all 50 states and DC. This task reads the
-original HUD workbook and the two production tables. It never changes projects
-or introduces building-specific corrections. Run root `make` for all upstream
-inputs, or task-local `make` against prepared inputs.
+Compare all HUD new-construction records, first-address choices, and the final
+sample using HUD coordinates by default. Also reproduce the former requirement
+for Census corroboration. This task never changes project records or introduces
+building-specific corrections. Root `make` prepares all inputs; task-local `make`
+uses those inputs through the symlinks listed in its Makefile.
 
-## Data and outputs
+## Outputs and definitions
 
-- `state_year_counts.csv`: one row per state and reported year; key `(state, year)`.
-  The grid has 2,040 rows: 51 states including DC, 38 years from 1987 to 2024, and
-  separate `unknown` and `after_2024` groups. Year is HUD placed-in-service year,
-  not the first calendar year in which a database download contained the record.
-- `state_summary.csv`: one row per state (51 rows); sums, rates, recent-period
-  comparisons, and the year-adjusted exclusion diagnostic.
-- `diagnostics.html`: self-contained report with maps, sortable/filterable tables,
-  annual record/unit comparisons, and a state-year completeness heatmap. The two
-  CSV files must accompany it for the download links to work.
-- `type_missing_pct.png`: unknown construction type divided by all source records.
-- `confidence_loss_pct.png`: excluded first addresses divided by all first addresses.
-- `annual_comparison.png`: record counts and observed unit sums under three rules.
+- `state_year_counts.csv`: 2,040 rows keyed by `(state, year)`: 51 states including
+  DC, 38 placed-in-service years from 1987 through 2024, and `unknown`/`after_2024`.
+- `state_summary.csv`: 51 rows keyed by state, containing counts, unit sums, rates,
+  recent-period comparisons, and the year-composition adjustment.
+- `diagnostics.html`: self-contained report with maps and sortable/filterable
+  tables. The CSV download links need the two CSV files alongside the report.
+- `type_missing_pct.png`: unknown construction type divided by all HUD records.
+- `confidence_loss_pct.png`: excluded first records divided by all first records,
+  using the current HUD-default rule.
+- `annual_comparison.png`: annual record counts and nonmissing reported-unit sums.
 - `type_by_year.png`: construction-type missingness in each state and valid year.
 
-Coverage includes every HUD construction type in the 50 states and DC. TYPE blanks
-are unknown, not rehabilitation. Selection comparisons begin with TYPE=1 only.
-All new records, first-address choices, and first addresses passing confidence
-checks remain distinct stages. An additional comparison screens all TYPE=1 records
-with the same individual location/year rules before comparing them with first
-addresses. Tied first records additionally require location agreement.
+Construction-type coverage uses every source record in the 50 states and DC.
+TYPE blanks are unknown, not rehabilitation. The project comparisons start with
+TYPE=1 only. The three count fields are `new_records`, `first_records`, and
+`confident_records`. `corroborated_records` reproduces the former stricter rule.
+All counts use HUD placed-in-service year; unknown years are not assigned to a
+calendar cohort. Recent-period comparisons use observed years 2010–2024.
 
-## Variables and arithmetic
+`*_units` sum reported nonmissing totals; `*_units_known` count contributing
+records. Missing units are not imputed as zero. `confident_bedrooms_known` counts
+retained records with a consistent complete breakdown. Disagreeing hedonics among
+tied first records become missing and do not remove the location.
 
-`hud_records`, `type_unknown`, and `type_known` describe construction-type coverage.
-`new_records`, `first_records`, and `confident_records` are the three sample counts.
-Their `*_units` columns sum nonmissing reported totals; `*_units_known` count
-records contributing to the sum. Missing totals are never imputed as zero.
-`confident_bedrooms_known` counts retained records with a consistent full breakdown.
-The final sample keeps locations when hedonics are missing or inconsistent.
+`later_records`, `same_year_records`, and `uncertain_order_records` account for
+the loss between all TYPE=1 records and first choices. `drop_*` columns account
+for the further loss in priority order: missing year, resyndication, scattered
+site, conflicting tied/fallback coordinates, and other unavailable locations.
+Each record has one primary reason; these counts sum to the total excluded.
 
-`later_records`, `same_year_records`, and `uncertain_order_records` sum to the loss
-between all TYPE=1 records and first-address choices. Every first-address exclusion
-is assigned one reason in priority order: unusable address, missing year,
-resyndication, scattered site, then coordinate or other location problems. The
-`drop_*` counts sum to `first_records - confident_records`. Multiple problems may
-coexist, so this is primary-reason accounting, not a count of every flag.
-`address_missing_count` and `address_multiple_count` describe subsets of unusable
-addresses; the latter matches MULTIPLE, SCATTERED, VARIOUS, semicolons, or ampersands.
+`retained_hud_coordinates` and `retained_census_fallback` identify the point source.
+`retained_unresolved_addresses` counts retained points with an unresolved address
+key; their distinct physical identities have not been established. The unresolved
+address counts and their missing/multiple-address subsets remain diagnostics,
+not automatic exclusions. `retained_coordinate_disagreements` counts retained
+HUD points that differ from Census by more than 500 meters.
 
-`type_missing_pct = 100 * type_unknown / hud_records`.
-`first_reduction_pct = 100 * (new_records - first_records) / new_records`.
-`confidence_loss_pct = 100 * (first_records - confident_records) / first_records`.
-`excess_confidence_loss_pp` compares actual exclusions with exclusions expected
-under national retention rates for each state's own reported-year mix. Positive
-values indicate extra loss beyond that composition difference. Unknown/future
-cohorts are included and have zero confidence retention. This is descriptive,
-not a test proving that retained projects are representative. Recent comparisons
-use observed years 2010–2024; unknown years are not assigned to that period.
+`first_reduction_pct` divides the first-selection loss by all TYPE=1 records.
+`confidence_loss_pct` divides the final-sample loss by first choices.
+`excess_confidence_loss_pp` compares actual exclusions with those expected under
+national retention rates for each state's own reported-year mix. Positive values
+indicate extra loss beyond that composition difference. This is descriptive,
+not a test proving representativeness. `state_share_change_pp` compares each
+state's national record share before selection and in the final sample.
 
-## Provenance and interpretation
+## Sources and build
 
-HUD and Census geocoder sources remain pinned to the existing project snapshots.
-State outlines use the Census 2024 1:20 million ZIP recorded in source.make and
-`data_raw/census_boundaries/2024/README.md`. Alaska and Hawaii are inset separately;
-all maps use the same 0–100% scale. Geography is only for display.
+The original HUD workbook and Census responses retain their existing pinned
+snapshots. State outlines use the Census 2024 1:20 million ZIP; download_states.sh
+contains the URL and checksum, and the Makefile lists the literal source target
+and input link. Saved source snapshots are immutable and are downloaded only when
+absent; a vintage change requires an explicit target/checksum change. Alaska and
+Hawaii use separate insets. Geography is only for display, not project classification.
 
-The results show substantial geographic differences in both missing construction
-type and confidence exclusions. They do not support treating dropped records as
-random across states. No rate-based state exclusions or individual adjudications
-are applied. Passing the automatic checks does not independently validate each
-source construction classification or turn an address into a parcel identifier.
+Only generic.make and shell_functions.make are included. SaveData writes the two
+dataset metadata reports when their CSVs are saved; reports are never Make targets
+or prerequisites. `checks.txt` in the external benchmark task is a substantive
+audit result in output/, separate from dataset metadata reports.
 
-## Verification, September 12, 2026
+## Interpretation
 
-Root and task-local builds pass on GNU Make 3.81, including an unchanged second
-build; `make` in paper/ also passes. A disposable fresh build with `make -j3`
-reproduced CSV, map, and HTML fingerprints. Removing actual outputs and a report
-regenerated the same results. Changing the distance threshold to 250 meters only
-in that fixture reduced retention to 20,488 and updated downstream tables and
-HTML. A simulated failed checksum preserved the existing boundary ZIP. The
-fixture used OMP_NUM_THREADS=1 after macOS sandbox shared-memory restrictions
-interrupted its first attempt; the ordinary project build passed unchanged.
+Accepting HUD coordinates raises the final sample from 21,380 to 25,832 records.
+Kentucky rises from 12 to 94 and Minnesota from 391 to 678. Missing construction
+type is unchanged; geographic selection remains visible. No state-specific
+exceptions, manual adjudications, or weighting are applied. An available HUD point
+does not certify a building footprint or every source construction classification.
 
-Checks confirm unchanged source values, the 488 added first-address choices,
-consensus among tied fields, retention with missing hedonics, unique keys, and
-reconciliation of state/year counts, unit sums, and exclusion reasons. Both maps,
-the annual plot, the heatmap, and rendered logbook entries were inspected.
-Browser interaction with the HTML report could not be verified because browser
-policy blocked local-file navigation; its embedded figures and generated tables
-were checked separately. The source files and deterministic report are retained.
+## Verification of the HUD-default revision
+
+The root build, task-local builds, and paper build pass on GNU Make 3.81. A fresh
+`make -j3` in a disposable fixture reproduced CSV, map, and HTML fingerprints
+without network requests. An unchanged second build does no work. Removing a
+metadata report alone does not trigger rebuilding; removing its dataset regenerates
+both. A synthetic unit change propagated through the data, reports, and state
+tables while retaining the location. Changing the diagnostic distance threshold
+to 250 meters in the fixture did not change final sample membership.
+
+Each acquisition script retrieved a missing source from a local fixture response;
+simulated transfer failures and bad checksums preserved the existing snapshot.
+Changing acquisition implementation did not refresh a saved source. These are
+local acquisition tests, not a live source refresh. The fixture used
+OMP_NUM_THREADS=1 to avoid macOS sandbox shared-memory limitations.
+
+Source fields and first-selected IDs are unchanged. Tests confirm HUD coordinate
+priority, exact Census fallback, exact reproduction of the former sample, retained
+missing hedonics, unique keys, and state/year arithmetic. The updated map, annual
+plot, HTML table contents, and rendered logbook were inspected. HTML interaction
+was not browser-tested because local-file navigation is blocked by browser policy.

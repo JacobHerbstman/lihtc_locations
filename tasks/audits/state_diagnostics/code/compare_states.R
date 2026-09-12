@@ -1,5 +1,6 @@
 # setwd("/Users/jacobherbstman/Desktop/lihtc_locations/tasks/audits/state_diagnostics/code")
 library(data.table)
+source("../../../shared/code/save_data.R")
 x <- fread("../output/state_year_counts.csv")
 stopifnot(!anyDuplicated(x[,.(state,year)]))
 # Expected retained count uses national retention within each cohort and each state's own year mix.
@@ -25,4 +26,4 @@ states <- merge(states,recent,by="state",all.x=TRUE)
 states[,`:=`(recent_type_missing_pct=100*recent_type_unknown/recent_hud_records,
   recent_confidence_loss_pct=fifelse(recent_first>0,100*(1-recent_confident/recent_first),NA_real_))]
 stopifnot(nrow(states)==51L,!anyDuplicated(states$state))
-fwrite(states[order(state)],"../output/state_summary.csv",na="")
+SaveData(states[order(state)],"../output/state_summary.csv","../report/state_summary.txt","state")

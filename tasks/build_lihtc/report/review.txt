@@ -1,27 +1,27 @@
-Rows: 8073
+Rows: 3621
 Key: hud_id complete and unique
-Saved-file MD5: 144efb8fd9cb3f00eed9b77c2661d5d5
+Saved-file MD5: 180cfc17d47d66f5176647f9eb253e55
 column	type	nonmissing	distinct	min	max
-hud_id	character	8073	8073	NA	NA
-project_name	character	8073	7810	NA	NA
-address_key	character	8073	7713	NA	NA
-street	character	7643	6895	NA	NA
-city	character	8053	2988	NA	NA
-state	character	8073	51	NA	NA
-pis_year	integer	7077	39	1987	2024
-total_units	integer	7997	308	1	769
-keep_first	logical	7992	3	NA	NA
-selection_status	character	8073	6	NA	NA
-records_at_address	integer	8073	8	1	16
-resyndicated	integer	3106	3	1	2
-scattered_site	integer	6713	3	1	2
-construction_review	logical	8073	2	NA	NA
-exclusion_reason	character	8073	13	NA	NA
-confident_first	logical	8073	1	NA	NA
-location_status	character	8073	8	NA	NA
-matched_address	character	6451	3389	NA	NA
-hud_latitude	numeric	7145	6156	19.6497	64.837815
-hud_longitude	numeric	7145	6156	-163.871442	-67.840902
-census_latitude	numeric	3659	3387	19.635544481626	64.837893934398
-census_longitude	numeric	3659	3384	-160.431453377052	-68.780720662138
-hud_census_distance_m	numeric	3539	3273	6.42929438488955	130975.476672812
+hud_id	character	3621	3621	NA	NA
+project_name	character	3621	3485	NA	NA
+address_key	character	3621	3387	NA	NA
+street	character	3198	2902	NA	NA
+city	character	3601	1544	NA	NA
+state	character	3621	51	NA	NA
+pis_year	integer	2625	39	1987	2024
+total_units	integer	3552	256	1	769
+keep_first	logical	3540	3	NA	NA
+selection_status	character	3621	6	NA	NA
+records_at_address	integer	3621	8	1	16
+resyndicated	integer	1244	3	1	2
+scattered_site	integer	3028	3	1	2
+construction_review	logical	3621	2	NA	NA
+exclusion_reason	character	3621	9	NA	NA
+confident_first	logical	3621	1	NA	NA
+location_status	character	3621	7	NA	NA
+matched_address	character	2881	2132	NA	NA
+hud_latitude	numeric	2693	2409	21.3261	64.837815
+hud_longitude	numeric	2693	2405	-159.364482	-68.779205
+census_latitude	numeric	2348	2130	21.344089713618	64.837893934398
+census_longitude	numeric	2348	2127	-160.431453377052	-68.780720662138
+hud_census_distance_m	numeric	2228	2014	6.42929438488955	93787.6394585636

@@ -1,5 +1,6 @@
 # setwd("/Users/jacobherbstman/Desktop/lihtc_locations/tasks/geocode_lihtc/code")
 library(data.table)
+source("../../shared/code/save_data.R")
 x <- rbindlist(list(
   fread("../input/response_1.csv",header=FALSE,fill=TRUE,colClasses="character"),
   fread("../input/response_2.csv",header=FALSE,fill=TRUE,colClasses="character"),
@@ -18,4 +19,4 @@ parts <- tstrsplit(x$coordinates,",",fixed=TRUE)
 x[,`:=`(census_longitude=suppressWarnings(as.numeric(parts[[1]])),census_latitude=suppressWarnings(as.numeric(parts[[2]])))]
 stopifnot(x[match_status=="Match",all(!is.na(census_longitude) & !is.na(census_latitude) & grepl("^[0-9]{2}$",census_state))])
 setorder(x,hud_id)
-fwrite(x,"../output/geocodes.csv",na="")
+SaveData(x,"../output/geocodes.csv","../report/geocodes.txt","hud_id")

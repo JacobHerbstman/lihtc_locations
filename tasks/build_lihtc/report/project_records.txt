@@ -1,6 +1,6 @@
 Rows: 29453
 Key: hud_id complete and unique
-Saved-file MD5: 69b13296c8e9f9fa084377149037f8be
+Saved-file MD5: 580a2eb0ac20692b5975c9cd70ebab38
 column	type	nonmissing	distinct	min	max
 state	character	29453	51	NA	NA
 hud_id	character	29453	29453	NA	NA
@@ -60,11 +60,12 @@ expected_state	integer	29453	51	1	56
 census_match	logical	29453	2	NA	NA
 state_agrees	logical	29453	2	NA	NA
 hud_census_distance_m	numeric	24850	23477	0.214564788746254	130975.476672812
-longitude	numeric	28645	26723	-163.871442	-67.031673623654
-latitude	numeric	28645	26727	19.635544481626	64.845397532865
+longitude	numeric	28645	26418	-163.871442	-67.029107
+latitude	numeric	28645	26389	19.6497	64.845532
 location_source	character	29453	3	NA	NA
 location_status	character	29453	8	NA	NA
 location_checked	logical	29453	2	NA	NA
+location_available	logical	29453	2	NA	NA
 records_at_address	integer	29453	8	1	16
 first_year	integer	28480	39	1987	2024
 address_years_complete	logical	29453	2	NA	NA
@@ -78,10 +79,13 @@ construction_review	logical	29453	2	NA	NA
 address_resolved	logical	29453	2	NA	NA
 record_confident	logical	29453	2	NA	NA
 first_location_checked	logical	29453	2	NA	NA
+first_location_available	logical	29453	2	NA	NA
+first_census_coordinates_agree	logical	29453	2	NA	NA
 first_coordinates_agree	logical	29453	2	NA	NA
 first_resyndicated	logical	29453	2	NA	NA
 first_scattered	logical	29453	2	NA	NA
 usable_location	logical	29453	2	NA	NA
 confident_first	logical	29453	2	NA	NA
-exclusion_reason	character	29453	14	NA	NA
+corroborated_first	logical	29453	2	NA	NA
+exclusion_reason	character	29453	10	NA	NA
 review_needed	logical	29453	2	NA	NA

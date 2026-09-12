@@ -38,8 +38,8 @@ main <- map_panel(continental,TRUE)+
   coord_sf(xlim=c(-2450000,2850000),ylim=c(100000,3200000),expand=FALSE,datum=NA)
 ak <- map_panel(st_transform(states[states$STUSPS=="AK",],3338))
 hi <- map_panel(st_transform(states[states$STUSPS=="HI",],3759))
-title <- if(metric=="type_missing_pct") "Where is construction type missing?" else "Where do the confidence checks exclude more records?"
-subtitle <- if(metric=="type_missing_pct") "Share of all HUD records with no construction type · 50 states and DC · HUD 2024 release" else "Share of first-address records excluded · same automatic checks in every state"
+title <- if(metric=="type_missing_pct") "Where is construction type missing?" else "Where do the remaining selection rules exclude records?"
+subtitle <- if(metric=="type_missing_pct") "Share of all HUD records with no construction type · 50 states and DC · HUD 2024 release" else "Share of first-address records excluded · HUD coordinates accepted without Census confirmation"
 png(paste0("../output/",metric,".png"),width=1800,height=1120,res=150)
 grid.newpage()
 print(main,vp=viewport(x=.5,y=.49,width=.98,height=.83))

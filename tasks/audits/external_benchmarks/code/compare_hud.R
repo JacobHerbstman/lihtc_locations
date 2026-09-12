@@ -33,4 +33,4 @@ report <- capture.output({
   cat("\nMD5 fingerprints of the files read, not independent data validation:\n")
   print(tools::md5sum(c("../input/LIHTCPUB.xlsx","../input/project_records.csv")))
 })
-writeLines(sub("[[:blank:]]+$","",report),"../report/checks.txt")
+writeLines(sub("[[:blank:]]+$","",report),"../output/checks.txt")

@@ -36,7 +36,7 @@ excluded from sums; these are not complete unit totals. The selected mean is
 This is an internal selection comparison, not an external validation of the rule.
 New Jersey loses 17.6% of records and 18.5% of units; North Carolina loses 15.2%
 of records but 4.9% of units. Later phases and unresolved ties are not proven
-duplicates. Full state and year comparisons are in [checks.txt](report/checks.txt).
+duplicates. Full state and year comparisons are in [the current diagnostics](../state_diagnostics/output/diagnostics.html).
 
 ## What external project records show
 
@@ -105,3 +105,8 @@ checks the published totals, and writes the calculation report. Published
 benchmark values are transcribed in the script with their URL. Web sources were
 read on September 11, 2026; this audit does not download or update production
 data. All individual findings above remain recommendations outside the dataset.
+
+The executable benchmark calculation is now `output/checks.txt`, declared as a
+substantive audit output in this task Makefile. Dataset metadata reports elsewhere
+are side effects of SaveData. The current location sample uses HUD coordinates by
+default; the earlier counts and recommendations above are historical.

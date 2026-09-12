@@ -1,6 +1,6 @@
 Rows: 28196
 Key: hud_id complete and unique
-Saved-file MD5: 6a1988440307a63434956d14d449ad73
+Saved-file MD5: 8072cab31770d57ee1e7e29b9be9de2d
 column	type	nonmissing	distinct	min	max
 hud_id	character	28196	28196	NA	NA
 project_name	character	27745	26123	NA	NA
@@ -22,10 +22,12 @@ credit_type	integer	24549	5	1	4
 target_family	integer	18288	4	0	2
 target_elderly	integer	16712	4	0	2
 target_disabled	integer	16546	4	0	2
-longitude	numeric	27397	26692	-163.871442	-67.031673623654
-latitude	numeric	27397	26696	19.635544481626	64.845397532865
+longitude	numeric	27394	26383	-163.871442	-67.029107
+latitude	numeric	27394	26354	19.6497	64.845532
 location_source	character	28196	3	NA	NA
 location_status	character	28196	8	NA	NA
+location_available	logical	28196	2	NA	NA
+address_resolved	logical	28196	2	NA	NA
 scattered_site	integer	24329	3	1	2
 resyndicated	integer	7127	3	1	2
 units_conflict	logical	28196	2	NA	NA
@@ -37,6 +39,7 @@ repeat_address_review	logical	28196	2	NA	NA
 construction_review	logical	28196	2	NA	NA
 usable_location	logical	28196	2	NA	NA
 confident_first	logical	28196	2	NA	NA
-exclusion_reason	character	28196	11	NA	NA
+corroborated_first	logical	28196	2	NA	NA
+exclusion_reason	character	28196	7	NA	NA
 source_hud_ids	character	28196	28196	NA	NA
 tied_characteristics_disagree	logical	28196	2	NA	NA

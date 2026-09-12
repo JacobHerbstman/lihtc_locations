@@ -17,8 +17,11 @@ Keep original HUD IDs and source values. The initial siting rule keeps the earli
 new-construction record at the same standardized primary address. Addresses are
 not parcels; preserve later records and account for unresolved ordering automatically.
 Earliest-year ties use a stable ID; disagreeing hedonics become missing. No manual
-adjudication or building-specific overrides enter production. Drop uncertain
-locations from the confidence sample and diagnose exclusions by state and year. Missing dates,
+adjudication or building-specific overrides enter production. Use valid HUD coordinates by default; no numbered address or Census corroboration
+is required for a HUD point. Use exact Census matches in the reported state only
+as fallback when HUD coordinates are absent. Keep Census disagreements diagnostic.
+Drop unavailable or conflicting tied locations from the final sample and diagnose
+exclusions by state and year. Unresolved address identities remain flagged. Missing dates,
 unit counts, or bedrooms must not silently remove otherwise useful locations.
 Census matches are address-range points, not verified building footprints. Keep
 location disagreements and scattered-site scope explicit. Do not copy project
@@ -27,7 +30,7 @@ unit totals across sites or sum repeated financing records.
 ## Source and build contract
 
 - The immutable 2024 HUD ZIP remains in data_raw; its checksum is in the acquisition
-  recipe and README. No refresh without an explicit source-vintage change.
+  download script and README. No refresh without an explicit source-vintage change.
 - The root Makefile is the concrete end-to-end graph. Run root make after upstream
   changes. Task-local make runs from code/ against prepared inputs.
 - Run make in paper/ to check the dataset and compile the paper; do not invoke
@@ -35,12 +38,15 @@ unit totals across sites or sum repeated financing records.
 - Shared execution settings, directory rules, and data reports live in
   tasks/shared/code/. Input links are plain ln -sf rules. Do not restore the old
   recursive status checker, guarded links, or manual phase targets.
-- Support GNU Make 3.81. Each producing rule owns one output; derived reports and
-  selected/review tables have their own explicit dependencies.
+- Support GNU Make 3.81. Each producing rule owns one output. Only generic.make
+  and shell_functions.make are Make includes. Source-specific download scripts
+  are called by explicit source targets in the task Makefiles.
+- SaveData writes metadata reports alongside dataset saves. Reports and execution
+  logs are side effects, never Make targets or prerequisites.
 - Root make setup is the environment bootstrap. Analysis must not install packages.
 - Validate join keys and cardinality. Do not use many-to-many joins or arbitrary
   post-join deduplication. Keep missingness and substantive field checks explicit.
-- Verify affected builds, missing outputs/reports, incrementality, and the rendered
+- Verify affected builds, missing actual outputs, incrementality, and the rendered
   logbook. Inspect reports and use short literal commit messages.
 
 No neighborhood analysis or complete financing-history reconstruction is part of

@@ -96,7 +96,7 @@ also remain subject to HUD reporting revisions.
 
 \paragraph{Reproduction.} Root \texttt{make} produces the report:
 \newline
-\path{tasks/audits/external_benchmarks/report/checks.txt}.\newline
+\path{tasks/audits/external_benchmarks/output/checks.txt}.\newline
 The task's README
 records source links, sample definitions, and individual findings. External
 pages were read September 11, 2026. This audit adds no production data source.
@@ -117,7 +117,7 @@ first-address definition, without assuming that later phases are source errors.
 This change adds 488 first-address choices relative to the earlier rule.
 
 \begin{center}\small
-\input{../tasks/build_lihtc/output/summary.tex}
+\input{corroboration_summary.tex}
 \end{center}
 
 The confidence sample additionally requires a usable street address, a valid
@@ -150,7 +150,7 @@ override: passing these screens does not certify every source classification.
 \section*{State diagnostics: two different denominators}
 \noindent\includegraphics[width=0.90\textwidth]{../tasks/audits/state_diagnostics/output/type_missing_pct.png}
 
-\noindent\includegraphics[width=0.90\textwidth]{../tasks/audits/state_diagnostics/output/confidence_loss_pct.png}
+\noindent\includegraphics[width=0.90\textwidth]{corroboration_exclusions.png}
 
 \small
 The HTML report in \path{tasks/audits/state_diagnostics/output/diagnostics.html}
@@ -160,4 +160,65 @@ second uses first-address records. Boundary source: Census 2024 cartographic
 states, downloaded September 12, 2026 with a pinned SHA-256 checksum. HUD and
 Census geocoder source bytes were not refreshed. Root \texttt{make} regenerates
 these results; task reports record row counts, keys, missingness, and fingerprints.
+\clearpage
+\normalsize
+\section*{Use HUD coordinates and make source acquisition visible}
+\noindent September 12, 2026. Agent-drafted research record; previous revision
+\texttt{93e5f9a}. This entry replaces the requirement for universal Census
+corroboration in the preceding entry.
+
+HUD supplies coordinates for 99 of Kentucky's 102 new-construction records.
+The prior rule excluded 87 records because their addresses were unsuitable for
+Census queries, even though 85 of those records already had HUD coordinates.
+Jacob questioned that restriction and directed the use of HUD coordinates when
+available. The dataset now uses valid HUD coordinates by default, retaining
+Census comparisons as diagnostics. An exact Census address match in the reported
+state supplies a fallback only when HUD coordinates are absent. A street without
+a house number no longer invalidates an available HUD point.
+
+\begin{center}\small
+\input{../tasks/build_lihtc/output/summary.tex}
+\end{center}
+
+The first-address sample remains 28,196 records. The final sample increases by
+4,452 to 25,832 records, with 1,730,065 reported units. It contains 25,763 HUD
+points and 69 Census fallback points. Missing hedonics remain permissible: 249
+retained records lack total units and 6,469 lack a consistent bedroom breakdown.
+The data preserve 1,310 retained HUD--Census disagreements above 500 meters;
+that threshold now describes a comparison, not an exclusion. Two tied earliest
+address groups have conflicting selected coordinates and remain excluded.
+
+Kentucky increases from 12 to 94 retained records; Minnesota increases from 391
+to 678. Kentucky's remaining exclusions are one missing year, two unavailable
+locations, four scattered-site flags, and one resyndication flag, counted in
+that priority order. Unresolved addresses with available points retain their
+HUD IDs; they have not been established as distinct physical addresses. The
+missing construction-type problem is unchanged, and the retained sample should
+still be described as a selected sample rather than complete national coverage.
+
+Source acquisition is now implemented by short named shell scripts. Each task
+Makefile declares the actual source target, input symlink, and output producer;
+only generic.make and shell\_functions.make remain as shared Make includes.
+Dataset metadata reports are saved alongside their datasets through SaveData,
+not represented as separate Make targets. The root retains the explicit
+cross-task dependency graph. The revision follows the explicit input/output
+pattern in the Gottlieb Saiz task and the hclose task discussion, without
+importing older download includes or report-target machinery.
+
+\paragraph{Reproduction.} Root \texttt{make} rebuilds the data, diagnostics, and
+this logbook; \texttt{make} in paper/ checks the data and compiles the paper.
+The pinned HUD workbook and archived Census responses have not changed. Existing
+source snapshots are not refreshed when acquisition implementation changes;
+source-vintage changes require an explicit new target and checksum.
+\clearpage
+\section*{State exclusions with HUD coordinates as the default}
+\noindent\includegraphics[width=\textwidth]{../tasks/audits/state_diagnostics/output/confidence_loss_pct.png}
+
+The state table compares the current rule with the former corroboration rule.
+Kentucky's loss falls from 88.2\% to 7.8\%; Minnesota's falls from 43.7\% to 2.4\%.
+These improvements result from accepting coordinates already in HUD, not from
+finding new projects or introducing individual corrections. National exclusions
+after first-address selection fall from 24.2\% to 8.4\%. Louisiana still loses
+31.0\%, so geographic composition remains relevant even after removing the
+universal-corroboration requirement.
 \end{document}

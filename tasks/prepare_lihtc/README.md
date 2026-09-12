@@ -12,7 +12,8 @@ The workbook has 55,345 rows and 80 columns. The included dictionary still print
 1987–2023 in its year domain; this 2024 release is parsed through 2024.
 8888/9999 are missing-status codes, not years. Source unit fields are retained;
 HUD's adjusted fields are not silently substituted. Coordinates remain source
-coordinates and are checked downstream.
+coordinates and are used by default downstream. A numbered street address is
+required only for Census queries, not to retain an available HUD location.
 
 output/projects.csv retains all 29,453 new-construction records. Standardized
 addresses preserve house-number ranges and unit/suite text; they are not parcel
@@ -23,3 +24,7 @@ vintage and fails rather than accepting a changed rolling download.
 
 No filter uses NONPROG: HUD defines that field as no longer monitored for
 compliance, not never having received LIHTC. Historical construction remains in scope.
+
+The Makefile explicitly declares the source ZIP, its input symlink, extraction,
+and output CSV. download_hud.sh handles acquisition of a missing pinned snapshot.
+SaveData writes the metadata report when the CSV is saved.
