@@ -15,7 +15,10 @@ evidence create a reason to investigate. Do not require universal external revie
 
 Keep original HUD IDs and source values. The initial siting rule keeps the earliest
 new-construction record at the same standardized primary address. Addresses are
-not parcels; retain later records and unresolved ties for review. Missing dates,
+not parcels; preserve later records and account for unresolved ordering automatically.
+Earliest-year ties use a stable ID; disagreeing hedonics become missing. No manual
+adjudication or building-specific overrides enter production. Drop uncertain
+locations from the confidence sample and diagnose exclusions by state and year. Missing dates,
 unit counts, or bedrooms must not silently remove otherwise useful locations.
 Census matches are address-range points, not verified building footprints. Keep
 location disagreements and scattered-site scope explicit. Do not copy project

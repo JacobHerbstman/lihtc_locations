@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage[margin=0.9in]{geometry}
 \usepackage[T1]{fontenc}
+\usepackage{graphicx}
 \usepackage[hidelinks]{hyperref}
 \begin{document}
 \section*{Reset to new-construction project locations}
@@ -15,7 +16,7 @@ pre-reset snapshot.
 
 \begin{center}
 \small
-\input{../tasks/build_lihtc/output/summary.tex}
+\input{reset_summary.tex}
 \end{center}
 
 The main table keeps the earliest new-construction record at each standardized
@@ -93,8 +94,70 @@ were changed by this search. The external findings are recorded for correction;
 the current dataset still contains the Oconee Park conflict. Recent-year totals
 also remain subject to HUD reporting revisions.
 
-\paragraph{Reproduction.} Root \texttt{make} produces the calculation report in
-\path{tasks/audits/external_benchmarks/report/checks.txt}. The task's README
+\paragraph{Reproduction.} Root \texttt{make} produces the report:
+\newline
+\path{tasks/audits/external_benchmarks/report/checks.txt}.\newline
+The task's README
 records source links, sample definitions, and individual findings. External
 pages were read September 11, 2026. This audit adds no production data source.
+\clearpage
+\section*{Automatic selection and geographic coverage}
+\noindent September 12, 2026. Agent-drafted research record; previous revision
+\texttt{6fbe2c2}. This entry supersedes the earlier recommendations for manual
+adjudication. No individual corrections enter production.
+
+Jacob requested state maps and tables of construction-type completeness, a
+comparison of all new-construction records with first addresses, and diagnostics
+of geographic exclusions. Missing or inconsistent hedonics must not remove a
+location. The selected dataset therefore retains earliest-year ties even when
+names or hedonics disagree: the smallest HUD ID labels the address, all tied IDs
+remain recorded, and each conflicting field becomes missing. Missing years at
+repeated addresses still prevent ordering. Later records are omitted by the
+first-address definition, without assuming that later phases are source errors.
+This change adds 488 first-address choices relative to the earlier rule.
+
+\begin{center}\small
+\input{../tasks/build_lihtc/output/summary.tex}
+\end{center}
+
+The confidence sample additionally requires a usable street address, a valid
+1987--2024 placed-in-service year, and a checked location for every tied first
+record. Census must match the state and agree with HUD within 500 meters; an exact
+Census match suffices if HUD coordinates are absent. Scattered-site and
+resyndication flags exclude records. A repeated address alone is not an exclusion.
+Reported total units take priority over the bedroom breakdown; inconsistent
+bedroom counts become missing. Source values remain untouched. The broad,
+first-address, and confidence samples have 1,949,494, 1,862,606, and 1,435,150
+reported units, respectively; missing unit counts are omitted from these sums.
+
+The first-address rule removes 4.3\% of source new-construction records. Confidence
+checks remove a further 24.2\% of first-address records, with large state differences:
+88.2\% in Kentucky, 43.7\% in Minnesota, and 6.4\% in Oregon. Kentucky loses 87
+first-address records to unusable addresses, usually a street without a number.
+Minnesota loses 222 to unusable addresses, often text indicating multiple sites.
+Applying national retention rates within reported-year groups to each state's own
+year mix still leaves excess losses of 68.1 percentage points in Kentucky and
+20.7 in Minnesota. This descriptive adjustment does not establish representativeness.
+
+Missing construction type affects 7,071 of 54,928 source records in the 50 states
+and DC (12.9\%). Indiana's missing share is 77.8\%, compared with California's
+3.1\%. The automatic exclusions are therefore geographically systematic. No
+state-specific exceptions, weighting, or manual review queue is introduced.
+The documented Oconee Park classification conflict remains without an ID-specific
+override: passing these screens does not certify every source classification.
+
+\clearpage
+\section*{State diagnostics: two different denominators}
+\noindent\includegraphics[width=0.90\textwidth]{../tasks/audits/state_diagnostics/output/type_missing_pct.png}
+
+\noindent\includegraphics[width=0.90\textwidth]{../tasks/audits/state_diagnostics/output/confidence_loss_pct.png}
+
+\small
+The HTML report in \path{tasks/audits/state_diagnostics/output/diagnostics.html}
+contains all-state tables, state-year coverage, unit comparisons, and mutually
+exclusive exclusion reasons. The first map uses every source HUD record; the
+second uses first-address records. Boundary source: Census 2024 cartographic
+states, downloaded September 12, 2026 with a pinned SHA-256 checksum. HUD and
+Census geocoder source bytes were not refreshed. Root \texttt{make} regenerates
+these results; task reports record row counts, keys, missingness, and fingerprints.
 \end{document}

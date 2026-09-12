@@ -1,5 +1,5 @@
 Rows: 29453
-Key: hud_id, complete and unique
+Key: hud_id complete and unique
 Saved-file MD5: b3e3268ec5aca90441174f13cbe6d6be
 column	type	nonmissing	distinct	min	max
 hud_id	character	29453	29453	NA	NA

@@ -1,25 +1,27 @@
-Rows: 8292
-Key: hud_id, complete and unique
-Saved-file MD5: 02bf9a313a060e85cd3db230a0c96f12
+Rows: 8073
+Key: hud_id complete and unique
+Saved-file MD5: 144efb8fd9cb3f00eed9b77c2661d5d5
 column	type	nonmissing	distinct	min	max
-hud_id	character	8292	8292	NA	NA
-project_name	character	8292	7963	NA	NA
-address_key	character	8292	7072	NA	NA
-street	character	7862	6255	NA	NA
-city	character	8272	2877	NA	NA
-state	character	8292	51	NA	NA
-pis_year	integer	7937	39	1987	2024
-total_units	integer	8241	310	1	884
-keep_first	logical	7212	3	NA	NA
-selection_status	character	8292	7	NA	NA
-records_at_address	integer	8292	8	1	16
-resyndicated	integer	2947	3	1	2
-scattered_site	integer	6972	3	1	2
-construction_review	logical	8292	2	NA	NA
-location_status	character	8292	8	NA	NA
-matched_address	character	6670	2748	NA	NA
-hud_latitude	numeric	7365	5524	19.6497	64.837815
-hud_longitude	numeric	7365	5521	-163.871442	-67.840902
-census_latitude	numeric	3878	2746	19.635544481626	64.837893934398
-census_longitude	numeric	3878	2743	-160.431453377052	-68.780720662138
-hud_census_distance_m	numeric	3759	2635	6.42929438488955	130975.476672812
+hud_id	character	8073	8073	NA	NA
+project_name	character	8073	7810	NA	NA
+address_key	character	8073	7713	NA	NA
+street	character	7643	6895	NA	NA
+city	character	8053	2988	NA	NA
+state	character	8073	51	NA	NA
+pis_year	integer	7077	39	1987	2024
+total_units	integer	7997	308	1	769
+keep_first	logical	7992	3	NA	NA
+selection_status	character	8073	6	NA	NA
+records_at_address	integer	8073	8	1	16
+resyndicated	integer	3106	3	1	2
+scattered_site	integer	6713	3	1	2
+construction_review	logical	8073	2	NA	NA
+exclusion_reason	character	8073	13	NA	NA
+confident_first	logical	8073	1	NA	NA
+location_status	character	8073	8	NA	NA
+matched_address	character	6451	3389	NA	NA
+hud_latitude	numeric	7145	6156	19.6497	64.837815
+hud_longitude	numeric	7145	6156	-163.871442	-67.840902
+census_latitude	numeric	3659	3387	19.635544481626	64.837893934398
+census_longitude	numeric	3659	3384	-160.431453377052	-68.780720662138
+hud_census_distance_m	numeric	3539	3273	6.42929438488955	130975.476672812

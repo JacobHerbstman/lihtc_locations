@@ -1,6 +1,6 @@
 Rows: 29453
-Key: hud_id, complete and unique
-Saved-file MD5: 5afe0c49e2640266b11bcdae2802c5be
+Key: hud_id complete and unique
+Saved-file MD5: 69b13296c8e9f9fa084377149037f8be
 column	type	nonmissing	distinct	min	max
 state	character	29453	51	NA	NA
 hud_id	character	29453	29453	NA	NA
@@ -67,9 +67,21 @@ location_status	character	29453	8	NA	NA
 location_checked	logical	29453	2	NA	NA
 records_at_address	integer	29453	8	1	16
 first_year	integer	28480	39	1987	2024
-keep_first	logical	28373	3	NA	NA
-selection_status	character	29453	7	NA	NA
+address_years_complete	logical	29453	2	NA	NA
+first_record	logical	29453	2	NA	NA
+representative_hud_id	character	29372	28197	NA	NA
+first_record_count	integer	29453	8	0	9
+keep_first	logical	29372	3	NA	NA
+selection_status	character	29453	6	NA	NA
 repeat_address_review	logical	29453	2	NA	NA
 construction_review	logical	29453	2	NA	NA
-review_needed	logical	29453	2	NA	NA
+address_resolved	logical	29453	2	NA	NA
+record_confident	logical	29453	2	NA	NA
+first_location_checked	logical	29453	2	NA	NA
+first_coordinates_agree	logical	29453	2	NA	NA
+first_resyndicated	logical	29453	2	NA	NA
+first_scattered	logical	29453	2	NA	NA
 usable_location	logical	29453	2	NA	NA
+confident_first	logical	29453	2	NA	NA
+exclusion_reason	character	29453	14	NA	NA
+review_needed	logical	29453	2	NA	NA

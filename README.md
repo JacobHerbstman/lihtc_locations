@@ -18,20 +18,33 @@ Three tasks produce the data:
 1. `prepare_lihtc`: read the pinned original HUD workbook and keep new construction.
 2. `geocode_lihtc`: obtain Census address matches and preserve the raw responses.
 3. `build_lihtc`: select first new-construction records at each standardized primary
-   address, attach basic characteristics and locations, and retain a review list.
+   address, attach basic characteristics and locations, and record exclusions.
 
-Start with `tasks/build_lihtc/output/projects.csv`. `usable_location` identifies
-selected records with checked primary locations and no unresolved repeat or
-resyndication question. The full table includes provisional first-address choices
-and unconfirmed HUD locations with explicit status. Dates and hedonics can remain
-missing independently. This is a project/address dataset, not one building or lot
-per row, and Census matches are address-range points rather than rooftop checks.
+Start with `tasks/build_lihtc/output/confident_projects.csv`: 21,380 dated locations
+that pass the documented address and location checks. `projects.csv` contains the
+broader 28,196 first-address choices, including unconfirmed locations and undated
+unique records. `project_records.csv` preserves all 29,453 source TYPE=1 rows and
+original hedonics. `review.csv` accounts for exclusions; no manual adjudication is
+required. This is a project/address dataset, not one building or lot per row.
+Census matches are address-range points, not rooftop checks.
 
-`project_records.csv` preserves all 29,453 source new-construction rows and their
-selection results. `review.csv` contains all records with repeated-address or
-location questions. Later phases are preserved, not reclassified as errors.
-Shareable reports in each task's report/ describe the saved data and fingerprints.
-The logbook records the reset and its results. The paper remains a research sketch.
+Earliest-year ties use a stable HUD ID and preserve all tied IDs. Conflicting
+characteristics become missing; missing or inconsistent hedonics never exclude a
+location. Repeated addresses with missing dates have uncertain order. Later phases
+are omitted by the first-address definition, not declared source errors.
+
+Open [the state diagnostics](tasks/audits/state_diagnostics/output/diagnostics.html)
+for maps and sortable tables of construction-type coverage, all new construction
+versus first addresses, unit counts, and confidence exclusions. Both state and
+state-year CSV tables are linked from the report. The first-address rule reduces
+records by 4.3%; confidence checks then exclude 24.2% of first-address records.
+These losses differ substantially across states, including after accounting for
+reported-year composition. Missing construction type also varies by state and
+must not be treated as evidence of rehabilitation.
+
+Shareable reports in each task's report/ describe saved data and fingerprints.
+The logbook records consequential decisions and results. Counts above reflect
+September 12, 2026. The paper remains a research sketch.
 
 ## Source and reset
 

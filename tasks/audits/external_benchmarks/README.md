@@ -1,5 +1,12 @@
 # External checks of the simple LIHTC dataset
 
+September 12 update: the findings below describe the September 11 baseline. Current
+sample comparisons are in `../state_diagnostics/output/diagnostics.html`. The
+current automatic rules preserve locations with conflicting hedonics and record
+all exclusions by state and year. Earlier suggestions for individual corrections
+or reviews have not been adopted; no building-specific override enters production.
+The three originally sampled HUD IDs remain fixed in the benchmark script.
+
 September 11, 2026. Baseline: reset revision `36228a3`. These are checks and
 recommendations, not changes to project selection or source values.
 

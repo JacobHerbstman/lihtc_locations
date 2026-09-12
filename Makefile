@@ -1,7 +1,7 @@
 include tasks/shared/code/shell_functions.make
 .DEFAULT_GOAL := all
 .PHONY: all setup
-all: tasks/build_lihtc/output/projects.csv tasks/build_lihtc/output/review.csv tasks/prepare_lihtc/report/projects.txt tasks/geocode_lihtc/report/geocodes.txt tasks/build_lihtc/report/project_records.txt tasks/build_lihtc/report/projects.txt tasks/build_lihtc/report/review.txt logbook/logbook.pdf
+all: tasks/build_lihtc/output/projects.csv tasks/build_lihtc/output/confident_projects.csv tasks/build_lihtc/output/review.csv tasks/prepare_lihtc/report/projects.txt tasks/geocode_lihtc/report/geocodes.txt tasks/build_lihtc/report/project_records.txt tasks/build_lihtc/report/projects.txt tasks/build_lihtc/report/confident_projects.txt tasks/build_lihtc/report/review.txt tasks/audits/state_diagnostics/output/diagnostics.html tasks/audits/state_diagnostics/report/state_summary.txt tasks/audits/state_diagnostics/report/state_year_counts.txt logbook/logbook.pdf
 
 setup:
 	$(MAKE) -C tasks/setup_environment/code
@@ -24,10 +24,13 @@ tasks/build_lihtc/output/project_records.csv: tasks/build_lihtc/code/build_lihtc
 tasks/build_lihtc/output/projects.csv: tasks/build_lihtc/code/select_projects.R tasks/build_lihtc/code/Makefile tasks/build_lihtc/output/project_records.csv
 	$(MAKE) -C tasks/build_lihtc/code ../output/projects.csv
 
+tasks/build_lihtc/output/confident_projects.csv: tasks/build_lihtc/code/select_confident.R tasks/build_lihtc/code/Makefile tasks/build_lihtc/output/projects.csv
+	$(MAKE) -C tasks/build_lihtc/code ../output/confident_projects.csv
+
 tasks/build_lihtc/output/review.csv: tasks/build_lihtc/code/review_projects.R tasks/build_lihtc/code/Makefile tasks/build_lihtc/output/project_records.csv
 	$(MAKE) -C tasks/build_lihtc/code ../output/review.csv
 
-tasks/build_lihtc/output/summary.tex: tasks/build_lihtc/code/summarize_projects.R tasks/build_lihtc/output/project_records.csv
+tasks/build_lihtc/output/summary.tex: tasks/build_lihtc/code/summarize_projects.R tasks/build_lihtc/output/project_records.csv tasks/build_lihtc/output/projects.csv
 	$(MAKE) -C tasks/build_lihtc/code ../output/summary.tex
 
 tasks/prepare_lihtc/report/projects.txt: tasks/prepare_lihtc/output/projects.csv tasks/shared/code/report.R
@@ -42,6 +45,9 @@ tasks/build_lihtc/report/project_records.txt: tasks/build_lihtc/output/project_r
 tasks/build_lihtc/report/projects.txt: tasks/build_lihtc/output/projects.csv tasks/shared/code/report.R
 	$(MAKE) -C tasks/build_lihtc/code ../report/projects.txt
 
+tasks/build_lihtc/report/confident_projects.txt: tasks/build_lihtc/output/confident_projects.csv tasks/shared/code/report.R
+	$(MAKE) -C tasks/build_lihtc/code ../report/confident_projects.txt
+
 tasks/build_lihtc/report/review.txt: tasks/build_lihtc/output/review.csv tasks/shared/code/report.R
 	$(MAKE) -C tasks/build_lihtc/code ../report/review.txt
 
@@ -51,7 +57,34 @@ tasks/prepare_lihtc/temp/LIHTCPUB.xlsx: data_raw/hud_lihtc_property/2024/lihtcpu
 tasks/audits/external_benchmarks/report/checks.txt: tasks/audits/external_benchmarks/code/compare_hud.R tasks/audits/external_benchmarks/code/Makefile tasks/prepare_lihtc/temp/LIHTCPUB.xlsx tasks/build_lihtc/output/project_records.csv
 	$(MAKE) -C tasks/audits/external_benchmarks/code
 
-logbook/logbook.pdf: logbook/logbook.tex tasks/build_lihtc/output/summary.tex tasks/audits/external_benchmarks/report/checks.txt tasks/audits/external_benchmarks/README.md
+data_raw/census_boundaries/2024/cb_2024_us_state_20m.zip: tasks/audits/state_diagnostics/code/source.make
+	$(MAKE) -C tasks/audits/state_diagnostics/code ../../../../data_raw/census_boundaries/2024/cb_2024_us_state_20m.zip
+
+tasks/audits/state_diagnostics/output/state_year_counts.csv: tasks/audits/state_diagnostics/code/summarize_states.R tasks/audits/state_diagnostics/code/Makefile tasks/prepare_lihtc/temp/LIHTCPUB.xlsx tasks/build_lihtc/output/project_records.csv tasks/build_lihtc/output/projects.csv
+	$(MAKE) -C tasks/audits/state_diagnostics/code ../output/state_year_counts.csv
+
+tasks/audits/state_diagnostics/output/state_summary.csv: tasks/audits/state_diagnostics/code/compare_states.R tasks/audits/state_diagnostics/code/Makefile tasks/audits/state_diagnostics/output/state_year_counts.csv
+	$(MAKE) -C tasks/audits/state_diagnostics/code ../output/state_summary.csv
+
+tasks/audits/state_diagnostics/output/%_pct.png: tasks/audits/state_diagnostics/code/map_states.R tasks/audits/state_diagnostics/code/Makefile tasks/audits/state_diagnostics/output/state_summary.csv data_raw/census_boundaries/2024/cb_2024_us_state_20m.zip
+	$(MAKE) -C tasks/audits/state_diagnostics/code ../output/$*_pct.png
+
+tasks/audits/state_diagnostics/output/annual_comparison.png: tasks/audits/state_diagnostics/code/plot_years.R tasks/audits/state_diagnostics/code/Makefile tasks/audits/state_diagnostics/output/state_year_counts.csv
+	$(MAKE) -C tasks/audits/state_diagnostics/code ../output/annual_comparison.png
+
+tasks/audits/state_diagnostics/output/type_by_year.png: tasks/audits/state_diagnostics/code/plot_coverage.R tasks/audits/state_diagnostics/code/Makefile tasks/audits/state_diagnostics/output/state_year_counts.csv
+	$(MAKE) -C tasks/audits/state_diagnostics/code ../output/type_by_year.png
+
+tasks/audits/state_diagnostics/output/diagnostics.html: tasks/audits/state_diagnostics/code/write_report.R tasks/audits/state_diagnostics/code/Makefile tasks/audits/state_diagnostics/output/state_summary.csv tasks/audits/state_diagnostics/output/state_year_counts.csv tasks/audits/state_diagnostics/output/type_missing_pct.png tasks/audits/state_diagnostics/output/confidence_loss_pct.png tasks/audits/state_diagnostics/output/annual_comparison.png tasks/audits/state_diagnostics/output/type_by_year.png
+	$(MAKE) -C tasks/audits/state_diagnostics/code ../output/diagnostics.html
+
+tasks/audits/state_diagnostics/report/state_summary.txt: tasks/audits/state_diagnostics/output/state_summary.csv tasks/shared/code/report.R
+	$(MAKE) -C tasks/audits/state_diagnostics/code ../report/state_summary.txt
+
+tasks/audits/state_diagnostics/report/state_year_counts.txt: tasks/audits/state_diagnostics/output/state_year_counts.csv tasks/shared/code/report.R
+	$(MAKE) -C tasks/audits/state_diagnostics/code ../report/state_year_counts.txt
+
+logbook/logbook.pdf: logbook/logbook.tex logbook/reset_summary.tex tasks/build_lihtc/output/summary.tex tasks/audits/external_benchmarks/report/checks.txt tasks/audits/external_benchmarks/README.md tasks/audits/state_diagnostics/output/type_missing_pct.png tasks/audits/state_diagnostics/output/confidence_loss_pct.png tasks/audits/state_diagnostics/report/state_summary.txt
 	$(MAKE) -C logbook
 
 include tasks/prepare_lihtc/code/source.make

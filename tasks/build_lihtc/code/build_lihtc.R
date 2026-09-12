@@ -40,37 +40,48 @@ x[, location_checked := location_status %in% c("census_hud_agree","census_exact_
 x[scattered_site==1 & location_checked,location_status:="scattered_primary_point_only"]
 x[, location_checked := location_checked & (is.na(scattered_site) | scattered_site!=1)]
 
-# The requested first-location rule is based only on NEW-CONSTRUCTION records.
-# Earlier rehabilitation does not disqualify a construction project.
+# First-address selection uses dates, never the availability of hedonics.
 setorder(x,address_key,pis_year,hud_id,na.last=TRUE)
 x[, `:=`(records_at_address=.N,first_year=if(all(is.na(pis_year))) NA_integer_ else min(pis_year,na.rm=TRUE)),by=address_key]
-x[, keep_first := records_at_address==1L]
-x[, selection_status := "single_new_construction_record"]
-x[records_at_address>1,`:=`(keep_first=NA,selection_status="repeat_address_missing_year")]
-# A date tie is collapsed only when substantive fields agree and name/units are known.
-for (key in unique(x[records_at_address>1,address_key])) {
-  rows <- which(x$address_key==key)
-  if (anyNA(x$pis_year[rows])) next
-  first <- rows[x$pis_year[rows]==min(x$pis_year[rows])]
-  x[rows,`:=`(keep_first=FALSE,selection_status="later_new_construction_at_address")]
-  if (length(first)==1L) {
-    x[first,`:=`(keep_first=TRUE,selection_status="earliest_at_repeated_address")]
-  } else {
-    fields <- c("name_key","pis_year","total_units","low_income_units","bedrooms_0","bedrooms_1","bedrooms_2","bedrooms_3","bedrooms_4plus","scattered_site","credit_type")
-    identical_records <- nrow(unique(x[first,..fields]))==1L && !is.na(x$name_key[first[1]]) && nzchar(x$name_key[first[1]]) && !is.na(x$total_units[first[1]])
-    if (identical_records) {
-      # Stable HUD ID chooses a representative only after all listed attributes agree.
-      x[first,selection_status:="identical_first_record_copy"]
-      x[first[1],`:=`(keep_first=TRUE,selection_status="first_of_identical_records")]
-    } else x[first,`:=`(keep_first=NA,selection_status="conflicting_first_year_tie")]
-  }
-}
+x[, address_years_complete := all(!is.na(pis_year)),by=address_key]
+x[, first_record := records_at_address==1L | (address_years_complete & !is.na(pis_year) & pis_year==first_year)]
+x[, representative_hud_id := if(any(first_record)) min(hud_id[first_record]) else NA_character_,by=address_key]
+x[, first_record_count := sum(first_record),by=address_key]
+x[, keep_first := fifelse(is.na(representative_hud_id),NA,hud_id==representative_hud_id)]
+x[, selection_status := fcase(
+  records_at_address==1L,"single_new_construction_record",
+  !address_years_complete,"repeat_address_missing_year",
+  !first_record,"later_new_construction_at_address",
+  keep_first & first_record_count>1L,"first_of_tied_records",
+  keep_first,"earliest_at_repeated_address",
+  default="same_year_record_at_address")]
 x[, repeat_address_review := records_at_address>1L]
 x[, construction_review := (!is.na(resyndicated) & resyndicated==1)]
-x[, review_needed := repeat_address_review | construction_review | !location_checked]
-x[, usable_location := keep_first %in% TRUE & location_checked & !repeat_address_review & !construction_review]
+x[, address_resolved := !grepl("^UNRESOLVED:",address_key)]
+# Apply the same individual-record screens before comparing all records with first addresses.
+x[, record_confident := address_resolved & !is.na(pis_year) & location_checked & !construction_review]
+x[, `:=`(first_location_checked=any(first_record) & all(location_checked[first_record]),
+  first_coordinates_agree=any(first_record) & uniqueN(paste(longitude[first_record],latitude[first_record]))==1L,
+  first_resyndicated=any(construction_review[first_record]),
+  first_scattered=any(scattered_site[first_record]==1,na.rm=TRUE)),by=address_key]
+# A repeated address alone is not an extra exclusion after applying the chosen first-address rule.
+x[, usable_location := keep_first %in% TRUE & address_resolved & first_location_checked & first_coordinates_agree & !first_resyndicated & !first_scattered]
+x[, confident_first := usable_location & !is.na(pis_year)]
+x[, exclusion_reason := fcase(
+  is.na(keep_first),"repeated_address_missing_year",
+  !keep_first,selection_status,
+  !address_resolved,"unresolved_address",
+  is.na(pis_year),"missing_year",
+  first_resyndicated,"resyndication_flag",
+  first_scattered,"scattered_site",
+  !first_coordinates_agree,"tied_coordinates_disagree",
+  !first_location_checked & location_checked,"other_tied_record_location_uncertain",
+  !first_location_checked,location_status,
+  default="retained")]
+x[, review_needed := exclusion_reason!="retained"]
 # Every raw new-construction record remains here, including later and unresolved records.
 stopifnot(nrow(x)==29453L,!anyDuplicated(x$hud_id))
 stopifnot(x[keep_first %in% TRUE,all(!duplicated(address_key))])
+stopifnot(all(x$confident_first==(x$exclusion_reason=="retained")))
 setorder(x,hud_id)
 fwrite(x,"../output/project_records.csv",na="")

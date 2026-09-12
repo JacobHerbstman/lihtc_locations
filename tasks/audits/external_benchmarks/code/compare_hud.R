@@ -16,7 +16,7 @@ stopifnot(nrow(hud)==55345L,sum(as.numeric(hud$n_unitsr),na.rm=TRUE)==3860546,
   identical(observed$year,published$year),all(observed$properties==published$properties),all(observed$units==published$units))
 
 report <- capture.output({
-  cat("External benchmark calculations: HUD 2024 release; baseline revision 36228a3\n")
+  cat("External benchmark calculations: HUD 2024 release; current first-address rules\n")
   cat("See ../README.md for external evidence and interpretation. No records are changed.\n\n")
   cat("HUD published all-type totals: 55,345 records and 3,860,546 adjusted units. Both match.\n")
   cat("All ten published annual property and adjusted-unit counts also match:\n")
@@ -25,22 +25,9 @@ report <- capture.output({
   coverage <- hud[proj_st %in% c(state.abb,"DC"),.(records=.N,unknown_type=sum(is.na(type)),new_construction=sum(type=="1",na.rm=TRUE)),by=.(state=proj_st)]
   coverage[,unknown_pct:=round(100*unknown_type/records,2)]
   print(coverage[order(-unknown_pct)],nrows=51)
-  cat("\nTotals before and after first-address selection; units are reported total_units, excluding missing.\n")
-  for (sample in c("All new-construction records","Selected first-address records")) {
-    d <- if (sample=="All new-construction records") x else x[keep_first %in% TRUE]
-    cat(sample,"\n",sep="")
-    print(d[,.(records=.N,known_year=sum(!is.na(pis_year)),known_units=sum(!is.na(total_units)),units=sum(total_units,na.rm=TRUE),mean_units=round(mean(total_units,na.rm=TRUE),2),median_units=median(total_units,na.rm=TRUE))])
-  }
-  cat("\nSelection by state. Unresolved records are excluded from selected counts, but preserved in source records.\n")
-  states <- x[,.(raw=.N,selected=sum(keep_first %in% TRUE),raw_units=sum(total_units,na.rm=TRUE),selected_units=sum(total_units[keep_first %in% TRUE],na.rm=TRUE)),by=state]
-  states[,`:=`(records_removed_pct=round(100*(1-selected/raw),2),units_removed_pct=round(100*(1-selected_units/raw_units),2))]
-  print(states[order(-records_removed_pct)],nrows=51)
-  cat("\nSelection by placed-in-service year. NA includes missing/unconfirmed years and 2025 dates outside the study window.\n")
-  print(x[,.(raw=.N,selected=sum(keep_first %in% TRUE),raw_units=sum(total_units,na.rm=TRUE),selected_units=sum(total_units[keep_first %in% TRUE],na.rm=TRUE)),by=pis_year][order(pis_year)],nrows=50)
-  cat("\nReproduce the three exploratory spot checks, sampled from usable locations with PIS 2010-2020:\n")
-  set.seed(20260911)
-  d <- x[usable_location==TRUE & pis_year %between% c(2010,2020)]
-  print(d[sample(.N,3),.(hud_id,project_name,state_project_id,street,city,state,pis_year,total_units,bedrooms_consistent)])
+  cat("\nCurrent selection and unit comparisons are produced by ../state_diagnostics, using the selected table's consensus hedonics.\n")
+  cat("\nThree examples originally sampled at revision 36228a3 using seed 20260911; IDs held fixed as the production rules change:\n")
+  print(x[hud_id %in% c("CAA20120846","GAA20100035","OHA20160031"),.(hud_id,project_name,state_project_id,street,city,state,pis_year,total_units,bedrooms_consistent)])
   cat("\nTargeted missing-type example (not randomly selected):\n")
   print(hud[hud_id=="INA20157173",.(hud_id,project,proj_add,proj_cty,type,yr_pis,n_units,li_units)])
   cat("\nMD5 fingerprints of the files read, not independent data validation:\n")

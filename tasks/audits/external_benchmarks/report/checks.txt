@@ -1,4 +1,4 @@
-External benchmark calculations: HUD 2024 release; baseline revision 36228a3
+External benchmark calculations: HUD 2024 release; current first-address rules
 See ../README.md for external evidence and interpretation. No records are changed.
 
 HUD published all-type totals: 55,345 records and 3,860,546 adjusted units. Both match.
@@ -72,171 +72,9 @@ Construction-type coverage: denominator includes every source record in the 50 s
 51:     UT     561            0              425        0.00
      state records unknown_type new_construction unknown_pct
 
-Totals before and after first-address selection; units are reported total_units, excluding missing.
-All new-construction records
-   records known_year known_units   units mean_units median_units
-     <int>      <int>       <int>   <int>      <num>        <int>
-1:   29453      28457       29321 1949494      66.49           48
-Selected first-address records
-   records known_year known_units   units mean_units median_units
-     <int>      <int>       <int>   <int>      <num>        <int>
-1:   27708      26766       27595 1851152      67.08           48
+Current selection and unit comparisons are produced by ../state_diagnostics, using the selected table's consensus hedonics.
 
-Selection by state. Unresolved records are excluded from selected counts, but preserved in source records.
-     state   raw selected raw_units selected_units records_removed_pct
-    <char> <int>    <int>     <int>          <int>               <num>
- 1:     DE    87       71      5396           4722               18.39
- 2:     NJ   939      774     65257          53177               17.57
- 3:     NC  2368     2007     84767          80597               15.24
- 4:     MS   555      478     24970          22161               13.87
- 5:     NV   259      225     25255          23024               13.13
- 6:     HI   105       95      8187           7286                9.52
- 7:     IN   189      171     11524          10522                9.52
- 8:     ND   188      171      5858           5411                9.04
- 9:     GA  1067      973    105969          95606                8.81
-10:     LA   492      450     26598          24934                8.54
-11:     AR   355      326     16988          15821                8.17
-12:     KS   531      488     21583          19734                8.10
-13:     ID   205      189     10212           9614                7.80
-14:     VA   680      627     57955          53077                7.79
-15:     SC   546      509     28156          26842                6.78
-16:     IL   593      554     38781          35930                6.58
-17:     WA   997      938     80075          75343                5.92
-18:     IA   373      351     16710          15689                5.90
-19:     MI   855      806     49734          47488                5.73
-20:     AL   719      679     37795          35804                5.56
-21:     AZ   392      371     32054          30491                5.36
-22:     OH  1010      957     55677          53363                5.25
-23:     UT   425      403     25467          24470                5.18
-24:     NM   117      111      9328           9053                5.13
-25:     FL   982      932    139189         134336                5.09
-26:     NH   122      116      5338           5170                4.92
-27:     VT   150      143      4887           4662                4.67
-28:     MT   208      199      6785           6583                4.33
-29:     AK    71       68      2670           2553                4.23
-30:     NY  1870     1791    158943         146611                4.22
-31:     DC    95       91      9588           9373                4.21
-32:     MD   315      303     26897          26052                3.81
-33:     CO   563      542     43902          42628                3.73
-34:     CA  3238     3136    247083         239855                3.15
-35:     OK   289      281     14071          13706                2.77
-36:     SD   221      215      7778           7569                2.71
-37:     MA   298      290     19083          18583                2.68
-38:     WV   198      193      7532           7320                2.53
-39:     PA   845      825     37050          36329                2.37
-40:     MO  1059     1038     35017          34282                1.98
-41:     TN   708      694     42449          41289                1.98
-42:     CT   119      117      6724           6576                1.68
-43:     TX  1435     1411    169428         168017                1.67
-44:     OR   395      389     26714          26384                1.52
-45:     WY    82       81      3756           3696                1.22
-46:     WI   705      697     28244          27804                1.13
-47:     NE   359      357     11012          10925                0.56
-48:     MN   698      695     37904          37576                0.43
-49:     ME   236      235      7566           7526                0.42
-50:     KY   102      102      3760           3760                0.00
-51:     RI    43       43      1828           1828                0.00
-     state   raw selected raw_units selected_units records_removed_pct
-    units_removed_pct
-                <num>
- 1:             12.49
- 2:             18.51
- 3:              4.92
- 4:             11.25
- 5:              8.83
- 6:             11.01
- 7:              8.69
- 8:              7.63
- 9:              9.78
-10:              6.26
-11:              6.87
-12:              8.57
-13:              5.86
-14:              8.42
-15:              4.67
-16:              7.35
-17:              5.91
-18:              6.11
-19:              4.52
-20:              5.27
-21:              4.88
-22:              4.16
-23:              3.91
-24:              2.95
-25:              3.49
-26:              3.15
-27:              4.60
-28:              2.98
-29:              4.38
-30:              7.76
-31:              2.24
-32:              3.14
-33:              2.90
-34:              2.93
-35:              2.59
-36:              2.69
-37:              2.62
-38:              2.81
-39:              1.95
-40:              2.10
-41:              2.73
-42:              2.20
-43:              0.83
-44:              1.24
-45:              1.60
-46:              1.56
-47:              0.79
-48:              0.87
-49:              0.53
-50:              0.00
-51:              0.00
-    units_removed_pct
-
-Selection by placed-in-service year. NA includes missing/unconfirmed years and 2025 dates outside the study window.
-    pis_year   raw selected raw_units selected_units
-       <int> <int>    <int>     <int>          <int>
- 1:     1987   321      311      8389           8305
- 2:     1988   665      636     15389          14913
- 3:     1989   662      632     19321          18177
- 4:     1990   679      640     23925          23147
- 5:     1991   715      670     22297          21459
- 6:     1992   744      685     22148          20818
- 7:     1993   759      691     27727          26662
- 8:     1994   753      704     28553          27392
- 9:     1995   992      886     49647          46150
-10:     1996   866      778     50473          49152
-11:     1997   777      708     48261          45938
-12:     1998   791      744     54634          51422
-13:     1999   941      896     68165          65223
-14:     2000   816      791     62508          60560
-15:     2001   840      805     66377          64375
-16:     2002   813      765     67781          63344
-17:     2003   990      934     83768          79800
-18:     2004   998      944     86312          81988
-19:     2005  1011      957     82126          78462
-20:     2006  1012      951     77035          72067
-21:     2007   995      932     72478          66764
-22:     2008   894      829     59498          55370
-23:     2009   735      689     56590          53213
-24:     2010   678      645     46162          43909
-25:     2011   870      826     53167          49268
-26:     2012   867      776     53548          48287
-27:     2013   623      596     36809          35071
-28:     2014   484      465     33868          32274
-29:     2015   538      520     37430          36425
-30:     2016   698      669     49877          47592
-31:     2017   561      534     43599          41016
-32:     2018   582      561     44790          43394
-33:     2019   583      547     47750          45142
-34:     2020   686      649     54687          51720
-35:     2021   681      667     61029          60217
-36:     2022   647      617     60313          57716
-37:     2023   629      598     55238          52876
-38:     2024   561      518     45988          43249
-39:       NA   996      942     71837          68295
-    pis_year   raw selected raw_units selected_units
-
-Reproduce the three exploratory spot checks, sampled from usable locations with PIS 2010-2020:
+Three examples originally sampled at revision 36228a3 using seed 20260911; IDs held fixed as the production rules change:
         hud_id          project_name state_project_id                street
         <char>                <char>           <char>                <char>
 1: CAA20120846        SEQUOIA VILLAS        CA-12-168       269 ALAMEDA CIR
@@ -258,4 +96,4 @@ Targeted missing-type example (not randomly selected):
 
 MD5 fingerprints of the files read, not independent data validation:
             ../input/LIHTCPUB.xlsx       ../input/project_records.csv
-"3e61d563484ad68891cc752d8ee39ce6" "5afe0c49e2640266b11bcdae2802c5be"
+"3e61d563484ad68891cc752d8ee39ce6" "69b13296c8e9f9fa084377149037f8be"

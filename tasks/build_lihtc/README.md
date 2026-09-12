@@ -1,36 +1,60 @@
 # First new-construction locations
 
-Read original-source project records and Census address matches. There is no
-physical-development reconstruction or external adjudication prerequisite.
+Read original HUD new-construction records and archived Census address matches.
+There are no individual corrections or manual adjudications in this build.
 
-`project_records.csv` preserves every original new-construction HUD record with
-its selection and location result. `projects.csv` selects the first dated new
-construction per standardized primary address. Unique records remain even with
-missing years or hedonics. Repeated addresses with missing dates or conflicting
-first-year ties remain unresolved in the record table and review.csv. Exact ties
-can use the smallest HUD ID only if name, date, units, bedroom counts, credit,
-and scattered status agree and name/total units are known. Later records are
-preserved, not called source errors: some are real later phases. All repeated
-addresses require review before treating the first-address rule as verified.
+- `project_records.csv`: all 29,453 original TYPE=1 records in the 50 states and DC,
+ with source values, address groups, selection flags, and exclusion reasons.
+- `projects.csv`: 28,196 first-address choices, including provisional locations and
+ unique records with missing years. This is the broad comparison sample.
+- `confident_projects.csv`: 21,380 first-address records with usable addresses,
+ valid placed-in-service years, and checked primary locations.
+- `review.csv`: excluded records and their reasons. The existing filename is kept
+ for compatibility; it is an accounting table, not a manual review queue.
 
-This is first *new construction*, not first LIHTC financing; rehabilitation
-records are irrelevant to the initial filter. There are no parcel IDs. Address
-standardization does not resolve aliases, nearby buildings, or changing lots.
+## Selection
 
-Census matches in the reported state are checked against HUD coordinates.
-A non-exact string match can be accepted when HUD agrees within the threshold;
-without a HUD comparison, an exact Census match is required.
-A distance above the 500-meter review threshold is a flag, not a proven error.
-Census range-interpolated points are not rooftop validation. If Census does not
-match, existing plausible HUD coordinates remain explicitly unconfirmed.
-Scattered projects keep a primary point with incomplete-site status. The
-`usable_location` flag requires selection, checked location, and no known
-repeat-address/resyndication question; it does not require units or bedrooms.
-Source and Census coordinates remain in project_records.csv for comparison.
-Census coordinates are used when a match agrees with the reported state; where
-sources disagree, that choice is provisional and usable_location is false.
+Keep the earliest new-construction record at each standardized primary address.
+A unique record remains when dates or hedonics are missing. A repeated address
+with any missing year has uncertain order, so no record is selected. Earliest-year
+ties use the smallest HUD ID as a stable label; `source_hud_ids` preserves every
+tied earliest ID. For each characteristic, keep the unique nonmissing value when
+sources agree and otherwise leave it missing. Name or hedonic disagreement does
+not invalidate the address. Never add units across repeated records.
 
-`review.csv` is the bounded list of repeated-address and location questions,
-including all members of repeated groups. No new construction is reclassified
-without evidence. Missing or inconsistent hedonics remain separate field-level
-issues. Run root make for complete freshness, or make here on prepared inputs.
+This is first new construction, not first LIHTC financing. There are no parcel IDs.
+Later phases at the same address are omitted by this definition, even if they
+represent additional construction. Unusable addresses receive separate unresolved
+keys, so their singleton rows remain in the broad table but fail confidence checks.
+
+## Confidence checks
+
+`usable_location` requires first-address selection, a usable address, a checked
+location for every tied earliest record, agreement among their selected coordinates,
+and no scattered-site or resyndication flag. `confident_first` additionally requires
+an observed placed-in-service year from 1987 through 2024. A repeated address alone
+is not an extra exclusion. Missing hedonics never remove a location.
+
+Census must match the reported state. With HUD coordinates, a separation of at most
+500 meters passes; without HUD coordinates, an exact Census match is required.
+HUD-only points remain in the broader table as unconfirmed. Census points are
+address-range matches, not building footprints. Scattered projects retain their
+primary point in the broader table without claiming coverage of all their sites.
+
+`exclusion_reason` counts the first applicable reason: uncertain ordering,
+nonselected later/same-year record, unresolved address, missing year, resyndication,
+scattered site, disagreement among tied coordinates, or another location problem.
+These are reasons for exclusion under our rules, not confirmed source errors.
+
+## Hedonics
+
+Keep reported total units even when the bedroom breakdown disagrees. Set an
+incomplete or inconsistent bedroom breakdown to missing; set low-income units to
+missing when they exceed total units. Disagreement among tied earliest records
+makes the affected field missing. Original values remain in project_records.csv.
+The confidence sample retains 210 records without total units and 5,204 without a
+consistent bedroom breakdown. No building-specific exception is applied.
+
+The state diagnostics task compares record counts, observed unit sums, missingness,
+and exclusion reasons by state and year. Root `make` updates the full graph;
+task-local `make` uses prepared inputs. Current counts are dated September 12, 2026.
