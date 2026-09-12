@@ -5,6 +5,13 @@ placed-in-service year, unit counts, and bedroom mix. HUD's new-construction
 classification is accepted unless a repeat record or concrete inconsistency
 gives a reason to investigate. Missing hedonics do not remove usable locations.
 
+**Version 1.0.0 is locked for analysis.** Read
+[the frozen dataset](releases/v1.0.0/confident_projects.csv), with 25,832 dated
+locations. [Release rules and reproduction](releases/v1.0.0/README.md) and
+[the variable dictionary](releases/v1.0.0/codebook.md) fix the decisions and explain
+the data structure. Git tag: `lihtc-v1.0.0`. Future analysis uses this release;
+`make` only rebuilds task outputs and never overwrites the frozen copy.
+
 ## Build
 
 Run `make setup` once, then `make` from this directory. Each task Makefile visibly
@@ -23,8 +30,9 @@ Three tasks produce the data:
 3. `build_lihtc`: select first new-construction records at each standardized primary
    address, attach basic characteristics and locations, and record exclusions.
 
-Start with `tasks/build_lihtc/output/confident_projects.csv`: 25,832 dated locations
-using valid HUD coordinates by default. An exact Census match in the reported
+The build produces `tasks/build_lihtc/output/confident_projects.csv`: 25,832 dated
+locations using valid HUD coordinates by default. Use its frozen release copy
+above for analysis. An exact Census match in the reported
 state supplies a fallback when HUD coordinates are absent. `projects.csv` contains the
 broader 28,196 first-address choices, including unavailable locations and undated
 unique records. `project_records.csv` preserves all 29,453 source TYPE=1 rows and

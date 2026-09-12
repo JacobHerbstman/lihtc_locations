@@ -1,6 +1,6 @@
 Rows: 29453
 Key: hud_id complete and unique
-Saved-file MD5: b3e3268ec5aca90441174f13cbe6d6be
+Saved-file MD5: e7b5251eaf53d4a7eed96d0a57857339
 column	type	nonmissing	distinct	min	max
 hud_id	character	29453	29453	NA	NA
 project_name	character	29453	27644	NA	NA
@@ -20,7 +20,7 @@ bedrooms_0	integer	25564	181	0	476
 bedrooms_1	integer	26358	236	0	482
 bedrooms_2	integer	26437	227	0	653
 bedrooms_3	integer	26031	162	0	228
-bedrooms_4plus	integer	25301	94	0	161
+bedrooms_4	integer	25301	94	0	161
 credit_type	integer	25589	5	1	4
 target_family	integer	19063	4	0	2
 target_elderly	integer	17317	4	0	2

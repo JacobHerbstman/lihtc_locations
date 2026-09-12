@@ -4,6 +4,12 @@ Read original HUD new-construction records and archived Census address matches.
 Use valid HUD coordinates by default. Census confirmation is not required.
 There are no individual corrections or manual adjudications.
 
+Version 1.0.0 freezes these rules and copies the two selected datasets into
+`releases/v1.0.0/`. Its README and codebook define the locked analysis contract;
+new analyses read that snapshot. The producer still writes only this task's
+outputs. The bedroom source field `N_4BR` is now named `bedrooms_4`, matching the
+pinned HUD dictionary; this naming correction changes no values or selections.
+
 - `project_records.csv`: all 29,453 original TYPE=1 records in the 50 states and DC,
   including source fields, address groups, selection flags, and exclusion reasons.
 - `projects.csv`: 28,196 first-address choices, including undated records and

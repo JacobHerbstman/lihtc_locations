@@ -6,6 +6,12 @@ complexity. Follow the current conversation's explicit research decisions.
 
 ## Research definition
 
+Version 1.0.0 is locked in releases/v1.0.0/ under Git tag lihtc-v1.0.0.
+Exploratory analyses must read that snapshot through explicit input symlinks.
+Do not overwrite the release or change its selection rules in response to plots.
+A later correction needs a new version and a documented substantive reason.
+The release README and codebook specify the frozen rules and variable meanings.
+
 The current task is a national dataset of LIHTC new-construction project locations
 and basic hedonics. Start from the pinned original HUD workbook, not the retired
 physical-development reconstruction. Keep the 50 states and DC and source TYPE=1;

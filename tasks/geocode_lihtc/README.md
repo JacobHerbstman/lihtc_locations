@@ -1,9 +1,12 @@
-# Check project addresses with Census
+# Read archived Census address matches
 
-Submit each queryable new-construction project address once to the free Census
-batch geocoder. Three deterministic batches of at most 10,000 records use the
+The September 11 archive contains the earlier submissions of every queryable
+new-construction address to the free Census batch geocoder. Three deterministic
+batches of at most 10,000 records used the
 published Public_AR_ACS2025 benchmark and Census2020_ACS2025 geography vintage.
-The requests were defined September 11, 2026. These are address-range matches,
+The requests were defined September 11, 2026. Rebuilding the frozen release reads
+these responses and sends no new queries. Only exact, same-state matches for
+missing HUD coordinates supply production fallback points. These are address-range matches,
 not parcel or rooftop verification. Current address evidence does not establish
 historical site boundaries. Census 2020 tract codes are location checks, not a
 choice of historical neighborhood measures for the analysis.
