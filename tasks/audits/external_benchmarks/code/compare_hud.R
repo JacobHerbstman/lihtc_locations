@@ -25,7 +25,7 @@ report <- capture.output({
   coverage <- hud[proj_st %in% c(state.abb,"DC"),.(records=.N,unknown_type=sum(is.na(type)),new_construction=sum(type=="1",na.rm=TRUE)),by=.(state=proj_st)]
   coverage[,unknown_pct:=round(100*unknown_type/records,2)]
   print(coverage[order(-unknown_pct)],nrows=51)
-  cat("\nCurrent selection and unit comparisons are produced by ../state_diagnostics, using the selected table's consensus hedonics.\n")
+  cat("\nCurrent selection and unit comparisons are produced by ../state_diagnostics, using the selected table's cleaned hedonics.\n")
   cat("\nThree examples originally sampled at revision 36228a3 using seed 20260911; IDs held fixed as the production rules change:\n")
   print(x[hud_id %in% c("CAA20120846","GAA20100035","OHA20160031"),.(hud_id,project_name,state_project_id,street,city,state,pis_year,total_units,bedrooms_consistent)])
   cat("\nTargeted missing-type example (not randomly selected):\n")

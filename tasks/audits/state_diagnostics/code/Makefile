@@ -5,8 +5,8 @@ all: ../output/diagnostics.html
 include ../../../shared/code/generic.make
 
 ../output/diagnostics.html: write_report.R ../output/state_summary.csv ../output/state_year_counts.csv \
-    ../output/type_missing_pct.png ../output/confidence_loss_pct.png ../output/annual_comparison.png \
-    ../output/type_by_year.png Makefile | ../output
+    ../output/type_missing_pct.png ../output/coordinates_missing_pct.png ../output/annual_comparison.png \
+    ../output/type_by_year.png ../input/sample_sizes.csv Makefile | ../output
 	$(R) $<
 
 ../output/%_pct.png: map_states.R ../output/state_summary.csv ../input/states.zip Makefile | ../output
@@ -41,3 +41,6 @@ include ../../../shared/code/generic.make
 # Download only when the pinned boundary snapshot is absent.
 ../../../../data_raw/census_boundaries/2024/cb_2024_us_state_20m.zip: | download_states.sh ../temp
 	bash download_states.sh
+
+../input/sample_sizes.csv: ../../../build_lihtc/output/sample_sizes.csv | ../input
+	ln -sf $< $@

@@ -9,7 +9,7 @@ if (!interactive()) {
   stopifnot(length(args)==1L)
   metric <- args[1]
 }
-stopifnot(metric %in% c("type_missing_pct","confidence_loss_pct"))
+stopifnot(metric %in% c("type_missing_pct","coordinates_missing_pct"))
 x <- fread("../output/state_summary.csv")
 states <- st_read("/vsizip/../input/states.zip",quiet=TRUE)
 states <- states[states$STUSPS %in% c(state.abb,"DC"),]
@@ -38,8 +38,8 @@ main <- map_panel(continental,TRUE)+
   coord_sf(xlim=c(-2450000,2850000),ylim=c(100000,3200000),expand=FALSE,datum=NA)
 ak <- map_panel(st_transform(states[states$STUSPS=="AK",],3338))
 hi <- map_panel(st_transform(states[states$STUSPS=="HI",],3759))
-title <- if(metric=="type_missing_pct") "Where is construction type missing?" else "Where do the remaining selection rules exclude records?"
-subtitle <- if(metric=="type_missing_pct") "Share of all HUD records with no construction type · 50 states and DC · HUD 2024 release" else "Share of first-address records excluded · HUD coordinates accepted without Census confirmation"
+title <- if(metric=="type_missing_pct") "Where is construction type missing?" else "Where are HUD coordinates missing?"
+subtitle <- if(metric=="type_missing_pct") "Share of all HUD records with no construction type · 50 states and DC · HUD 2024 release" else "Share of HUD new-construction records without coordinates · 50 states and DC"
 png(paste0("../output/",metric,".png"),width=1800,height=1120,res=150)
 grid.newpage()
 print(main,vp=viewport(x=.5,y=.49,width=.98,height=.83))

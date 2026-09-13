@@ -18,10 +18,10 @@ x <- hud[type == "1" & proj_st %in% c(state.abb, "DC"), .(
   pis_year_raw = yr_pis, allocation_year_raw = yr_alloc, construction_type = type,
   total_units_raw = n_units, low_income_units_raw = li_units,
   hud_adjusted_total_units = n_unitsr, hud_adjusted_low_income_units = li_unitr,
-  bedrooms_0 = n_0br, bedrooms_1 = n_1br, bedrooms_2 = n_2br,
-  bedrooms_3 = n_3br, bedrooms_4 = n_4br,
-  credit_type = credit, target_family = trgt_fam,
-  target_elderly = trgt_eld, target_disabled = trgt_dis,
+  bedrooms_0_raw = n_0br, bedrooms_1_raw = n_1br, bedrooms_2_raw = n_2br,
+  bedrooms_3_raw = n_3br, bedrooms_4_raw = n_4br,
+  credit_type = credit, target_family_raw = trgt_fam,
+  target_elderly_raw = trgt_eld, target_disabled_raw = trgt_dis,
   scattered_site = scattered_site_cd, resyndicated = resyndication_cd,
   hud_latitude = latitude, hud_longitude = longitude, source_note = datanote
 )]
@@ -44,16 +44,33 @@ x[, units_conflict := !is.na(total_units) & !is.na(low_income_units) &
     low_income_units > total_units]
 x[units_conflict == TRUE, low_income_units := NA_real_]
 
-# HUD's N_4BR is labeled "4-bedroom units" in the pinned source dictionary.
-for (field in c("bedrooms_0", "bedrooms_1", "bedrooms_2", "bedrooms_3",
-                "bedrooms_4", "hud_latitude", "hud_longitude")) {
+# Keep valid partial bedroom counts. Blank a breakdown only when it contradicts
+# total units; unavailable categories alone do not invalidate observed categories.
+# HUD labels N_4BR as "4-bedroom units", not "4 or more".
+bedrooms <- c("bedrooms_0", "bedrooms_1", "bedrooms_2", "bedrooms_3", "bedrooms_4")
+for (field in bedrooms) {
+  value <- suppressWarnings(as.numeric(x[[paste0(field, "_raw")]]))
+  value[!is.finite(value) | value < 0 | value != floor(value)] <- NA_real_
+  set(x, j = field, value = value)
+}
+x[, bedrooms_conflict := !is.na(total_units) &
+    (rowSums(.SD, na.rm = TRUE) > total_units |
+     (rowSums(is.na(.SD)) == 0 & rowSums(.SD, na.rm = TRUE) != total_units)),
+  .SDcols = bedrooms]
+x[bedrooms_conflict == TRUE, (bedrooms) := NA_real_]
+x[, bedrooms_consistent := !is.na(total_units) & rowSums(is.na(.SD)) == 0 &
+    rowSums(.SD, na.rm = TRUE) == total_units, .SDcols = bedrooms]
+
+# Targeting indicators: HUD 1=yes, 2=no, 0/blank=not indicated.
+# Derived indicators use 1=yes, 0=no, NA=unknown; source codes remain above.
+for (field in c("target_family", "target_elderly", "target_disabled")) {
+  value <- x[[paste0(field, "_raw")]]
+  set(x, j = field, value = fcase(value == "1", 1L, value == "2", 0L,
+                                 default = NA_integer_))
+}
+for (field in c("hud_latitude", "hud_longitude")) {
   set(x, j = field, value = suppressWarnings(as.numeric(x[[field]])))
 }
-x[, bedrooms_consistent := !is.na(total_units) &
-    !is.na(bedrooms_0 + bedrooms_1 + bedrooms_2 + bedrooms_3 + bedrooms_4) &
-    bedrooms_0 + bedrooms_1 + bedrooms_2 + bedrooms_3 + bedrooms_4 == total_units &
-    bedrooms_0 >= 0 & bedrooms_1 >= 0 & bedrooms_2 >= 0 &
-    bedrooms_3 >= 0 & bedrooms_4 >= 0]
 
 # 3. Standardize address text. Keep house-number ranges and unit/suite text.
 x[, `:=`(
@@ -81,7 +98,6 @@ x[, address_queryable := !is.na(street) & grepl("^[0-9]+", street) &
 x[, address_key := paste(state, city, street, sep = "|")]
 x[address_queryable == FALSE | is.na(city) | city == "",
   address_key := paste0("UNRESOLVED:", hud_id)]
-x[, name_key := gsub("[^A-Z0-9]", "", toupper(project_name))]
 
 # 4. Recognize available HUD points using the existing broad numerical bounds.
 # This is not a state-boundary test or building-footprint validation.

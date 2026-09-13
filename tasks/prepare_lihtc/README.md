@@ -13,12 +13,11 @@ The workbook has 55,345 rows and 80 columns. The included dictionary still print
 8888/9999 are missing-status codes, not years. Source unit fields are retained;
 HUD's adjusted fields are not silently substituted. Coordinates remain source
 coordinates and are used by default downstream. A numbered street address is
-required only for Census queries, not to retain an available HUD location.
+required only to form a shared address key, not to retain an available HUD location.
 
 output/projects.csv retains all 29,453 new-construction records. Standardized
 addresses preserve house-number ranges and unit/suite text; they are not parcel
-IDs. Incomplete or obviously nonphysical addresses are kept but not submitted to
-Census. Run make in code against prepared inputs; root make guarantees all
+IDs. Incomplete or obviously nonphysical addresses retain separate HUD-ID keys. Run make in code against prepared inputs; root make guarantees all
 upstream freshness. The root source-acquisition rule retrieves only the pinned
 vintage and fails rather than accepting a changed rolling download.
 
@@ -28,3 +27,8 @@ compliance, not never having received LIHTC. Historical construction remains in 
 The Makefile explicitly declares the source ZIP, its input symlink, extraction,
 and output CSV. download_hud.sh handles acquisition of a missing pinned snapshot.
 SaveData writes the metadata report when the CSV is saved.
+
+Valid partial bedroom counts remain; contradictory breakdowns become missing,
+with raw counts preserved. Targeting fields preserve the original code and derive
+1=yes, 0=no, missing=unknown indicators. No missing date or characteristic filters
+these 29,453 rows. Census geocoding is outside the production build.

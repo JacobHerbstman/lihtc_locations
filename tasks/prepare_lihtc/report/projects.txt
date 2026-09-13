@@ -1,6 +1,6 @@
 Rows: 29453
 Key: hud_id complete and unique
-Saved-file MD5: e7b5251eaf53d4a7eed96d0a57857339
+Saved-file MD5: 35473b7f82a867639fcc821e91064d3a
 column	type	nonmissing	distinct	min	max
 hud_id	character	29453	29453	NA	NA
 project_name	character	29453	27644	NA	NA
@@ -16,15 +16,15 @@ total_units_raw	integer	29371	425	0	1238
 low_income_units_raw	integer	28998	380	0	884
 hud_adjusted_total_units	integer	29432	425	0	1238
 hud_adjusted_low_income_units	integer	29432	384	0	884
-bedrooms_0	integer	25564	181	0	476
-bedrooms_1	integer	26358	236	0	482
-bedrooms_2	integer	26437	227	0	653
-bedrooms_3	integer	26031	162	0	228
-bedrooms_4	integer	25301	94	0	161
+bedrooms_0_raw	integer	25564	181	0	476
+bedrooms_1_raw	integer	26358	236	0	482
+bedrooms_2_raw	integer	26437	227	0	653
+bedrooms_3_raw	integer	26031	162	0	228
+bedrooms_4_raw	integer	25301	94	0	161
 credit_type	integer	25589	5	1	4
-target_family	integer	19063	4	0	2
-target_elderly	integer	17317	4	0	2
-target_disabled	integer	17136	4	0	2
+target_family_raw	integer	19063	4	0	2
+target_elderly_raw	integer	17317	4	0	2
+target_disabled_raw	integer	17136	4	0	2
 scattered_site	integer	25360	3	1	2
 resyndicated	integer	7378	3	1	2
 hud_latitude	numeric	28456	26201	19.6497	64.845532
@@ -35,11 +35,19 @@ allocation_year	integer	28767	39	1987	2024
 total_units	integer	29321	424	1	1238
 low_income_units	integer	28897	380	0	884
 units_conflict	logical	29453	2	NA	NA
+bedrooms_0	integer	22298	178	0	476
+bedrooms_1	integer	23082	233	0	482
+bedrooms_2	integer	23160	222	0	653
+bedrooms_3	integer	22755	159	0	228
+bedrooms_4	integer	22031	93	0	161
+bedrooms_conflict	logical	29453	2	NA	NA
 bedrooms_consistent	logical	29453	2	NA	NA
+target_family	integer	17786	3	0	1
+target_elderly	integer	13574	3	0	1
+target_disabled	integer	11828	3	0	1
 street	character	29023	27302	NA	NA
 city	character	29433	5432	NA	NA
 zip	integer	28044	9132	1002	99999
 address_queryable	logical	29453	2	NA	NA
 address_key	character	29453	28233	NA	NA
-name_key	character	29453	27470	NA	NA
 hud_coordinates_present	logical	29453	2	NA	NA

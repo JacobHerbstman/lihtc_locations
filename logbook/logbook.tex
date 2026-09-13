@@ -177,7 +177,7 @@ state supplies a fallback only when HUD coordinates are absent. A street without
 a house number no longer invalidates an available HUD point.
 
 \begin{center}\small
-\input{../tasks/build_lihtc/output/summary.tex}
+\input{hud_default_summary.tex}
 \end{center}
 
 The first-address sample remains 28,196 records. The final sample increases by
@@ -212,7 +212,7 @@ source snapshots are not refreshed when acquisition implementation changes;
 source-vintage changes require an explicit new target and checksum.
 \clearpage
 \section*{State exclusions with HUD coordinates as the default}
-\noindent\includegraphics[width=\textwidth]{../tasks/audits/state_diagnostics/output/confidence_loss_pct.png}
+\noindent\includegraphics[width=\textwidth]{hud_default_exclusions.png}
 
 The state table compares the current rule with the former corroboration rule.
 Kentucky's loss falls from 88.2\% to 7.8\%; Minnesota's falls from 43.7\% to 2.4\%.
@@ -309,4 +309,63 @@ downloaded; the appendix included with their author PDF was read. The record-lev
 check confirmed zero retained observations among the 570. Root \texttt{make}
 compiles this entry; production data and the existing exploratory outputs are
 unchanged.
+\clearpage
+\section*{One location dataset with analysis-specific sample sizes}
+\noindent September 12, 2026. Agent-drafted research record; baseline
+\texttt{0a79557}.
+
+Jacob requested a feasible HUD-based definition of new construction, timing and
+basic hedonics, accepting HUD coordinates and reporting changing analysis Ns.
+The main dataset now contains 27,210 first-address locations with HUD coordinates.
+The previously agreed first-address counting rule is retained. The separate
+confidence sample and Census fallback are removed. Undated singleton locations,
+scattered-site and resyndication flags, and conflicting tied HUD coordinates no
+longer exclude an otherwise selected HUD point. This supersedes the sample rules
+in the preceding entries, whose original exhibits are preserved.
+
+\begin{center}\small
+\input{../tasks/build_lihtc/output/summary.tex}
+\end{center}
+
+The main file gains 1,447 HUD-coordinate locations relative to the former 25,763
+HUD points; the former 69 Census fallback points are outside the new definition.
+Kentucky retains 99 locations, compared with 94 previously. The main file includes
+891 missing years, 292 missing total-unit counts, 453 scattered-site flags and
+110 resyndication flags. Its 1,817,049 reported units omit missing counts. HUD's
+primary point does not locate every site in a scattered project, and a retained
+resyndication flag does not establish fresh physical construction.
+
+The all-HUD-ID alternative has 28,456 coordinate records; both alternatives are
+compared by state and year under the same coordinate requirement. First-address
+counting can omit later construction phases, while counting every HUD ID can
+include repeated financing. The all-source ledger accounts for later records,
+earliest-year ties, 81 rows with uncertain repeated-address ordering, and first
+representatives without HUD coordinates. No manual adjudication is introduced.
+
+The hedonics rules retain valid partial bedroom counts for 1,491 locations without
+a complete consistent breakdown. Counts contradicting total units are blanked;
+raw counts remain available. Targeting indicators use 1 for yes, 0 for no and
+missing for not indicated. Missing characteristics do not remove locations.
+Disagreements among earliest ties blank the affected characteristics.
+
+Requiring year and total units yields 26,066 observations. Requiring a complete
+bedroom breakdown as well yields 19,618; adding all three targeting indicators
+leaves 7,013, including none in Hawaii or Virginia. These are illustrative control
+sets, not chosen regression specifications. Reporting each analysis N is necessary;
+comparison on a common sample helps distinguish changed controls from changed
+observations. Coordinate gaps also vary geographically: Maine lacks HUD points
+for 18.2\% of source new-construction rows, compared with 3.4\% nationally.
+Missing construction type remains unchanged, so the dataset does not establish
+complete national construction coverage.
+
+\paragraph{Reproduction and verification.} Root \texttt{make} builds
+\path{tasks/build_lihtc/output/projects.csv}, exclusion accounting, sample Ns,
+state/year diagnostics and this logbook. A fresh GNU Make 3.81 build without
+Census responses or network access reproduced the datasets, figures and HTML.
+A missing output regenerated with its report; a missing report alone triggered
+no work. A synthetic upstream unit change updated downstream results, retained
+the location and blanked contradictory bedrooms. Source-field checks and the
+paper build passed. No source bytes changed. The literature note documents
+paper-specific methods; the first-address rule remains our research definition.
+No neighborhood estimates or regressions were produced.
 \end{document}

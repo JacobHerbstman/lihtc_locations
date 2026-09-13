@@ -1,69 +1,74 @@
-# First new-construction locations
+# Build the first-address location dataset
 
-Read original HUD new-construction records and archived Census address matches.
-Use valid HUD coordinates by default. Census confirmation is not required.
-There are no individual corrections or manual adjudications.
+`output/projects.csv` is the main dataset: 27,210 rows and 34 columns, keyed by
+HUD ID. It includes 891 undated locations and 292 locations without total units.
+`output/project_records.csv` preserves all 29,453 source new-construction rows,
+original fields and selection flags. `output/sample_sizes.csv` gives availability
+of each characteristic and explicit joint samples. The [codebook](codebook.md)
+defines every main-file variable.
 
-The [variable dictionary](codebook.md) describes all 41 columns in the selected
-tables. The bedroom source field `N_4BR` is named `bedrooms_4`, matching the pinned
-HUD dictionary; this naming correction changes no values or selections.
+## Rules, in execution order
 
-- `project_records.csv`: all 29,453 original TYPE=1 records in the 50 states and DC,
-  including source fields, address groups, selection flags, and exclusion reasons.
-- `projects.csv`: 28,196 first-address choices, including undated records and
-  locations whose address could not be standardized for matching.
-- `confident_projects.csv`: 25,832 dated records with available primary locations,
-  after excluding scattered-site/resyndication flags and conflicting tied locations.
-- `review.csv`: excluded records with reasons. The existing filename is retained;
-  it is an accounting table, not a manual review queue.
+1. Read prepared TYPE=1 rows in the 50 states and DC from the pinned HUD 2024 workbook.
+2. Group by standardized state/city/street, before filtering locations. Uppercase,
+   trim whitespace and normalize common street/direction abbreviations. ZIP is not
+   part of the key. A missing/nonqueryable address or missing city gets its own
+   `UNRESOLVED:HUD_ID` key; no fuzzy matching or parcel reconstruction occurs.
+3. Keep the earliest placed-in-service year. Repeated addresses require every year
+   to be usable, otherwise ordering is unresolved. A singleton can be undated.
+   Earliest-year ties use the smallest HUD ID. Later phases are excluded by the
+   counting definition, not classified as errors.
+4. Keep that representative if HUD latitude/longitude pass the existing broad
+   numerical bounds: latitude 18–72, longitude -180–180 and nonzero, both present.
+   In this source, all 997 unavailable coordinate pairs are missing. The rule does
+   not require address completeness, a state-polygon check, or external confirmation.
+   Never substitute a later record or Census point for the representative's location.
+5. For tied earliest records, retain a characteristic when the nonmissing values
+   agree; blank that field when they disagree. Keep all tied IDs. Coordinates stay
+   those of the representative, with disagreement flagged. Any affirmative scattered
+   or resyndication flag among tied earliest rows is retained. These flags do not exclude.
+6. Recheck arithmetic after forming consensus values. Missing or inconsistent
+   hedonics affect fields, not inclusion. Save one main file, without separate
+   dated or complete-case dataset copies.
 
-## First-address selection
+Dates use HUD placed-in-service year, with allocation year separate. Years outside
+1987–2024 and 8888/9999 are missing in derived fields; source strings remain.
+Total units must be a positive integer. Low-income units must be a nonnegative
+integer no larger than observed total units. Reported units take priority over
+HUD adjusted counts. No unit counts are summed across repeated records.
 
-Keep the earliest new-construction record at each standardized primary address.
-A unique record remains when its date or hedonics are missing. A repeated address
-with any missing year has uncertain ordering, so no record is selected. Earliest
-same-year ties use the smallest HUD ID as a stable label; `source_hud_ids` lists
-all tied IDs. Keep a characteristic when its nonmissing source values agree and
-otherwise leave it missing. Never sum units across repeated records.
+Valid partial bedroom counts remain. Negative/noninteger counts become missing.
+If observed counts exceed total units, or a complete breakdown differs from total
+units, blank the breakdown and flag the conflict. Missing categories alone do not
+invalidate observed categories. Complete bedroom-mix analyses use `bedrooms_consistent`.
+Targeting indicators recode HUD yes/no to 1/0 and not-indicated/blank to missing.
 
-The rule uses placed-in-service year, not download date, and new construction,
-not all LIHTC financing. Later phases at the same address are omitted by this
-counting definition. Unresolved addresses receive separate HUD-ID keys. Such a
-record can retain its HUD point, but is not established as a unique physical
-address. `address_resolved` makes that distinction visible. There are no parcel IDs.
+## Exclusion accounting and varying N
 
-## Coordinates and the final sample
+The 29,453 source rows are 27,210 retained, 618 later records, 558 other records in
+earliest-year ties, 81 records with uncertain repeated-address order, and 986
+first representatives without HUD coordinates. This priority makes reasons mutually
+exclusive. Across all source rows, 997 lack HUD coordinates; 11 of them already
+appear in the earlier counting-rule reasons.
 
-`longitude` and `latitude` use HUD when `hud_coordinates_present` passes the
-existing numerical checks. If HUD coordinates are absent, an exact Census match
-in the reported state can supply the point. An inexact Census point without HUD
-coordinates remains provisional. `location_source` identifies the chosen source.
-`location_available` records whether the point meets this source rule.
+There are 26,319 observed years and 26,918 unit counts. Their intersection is 26,066.
+Year, total units and complete bedrooms together are available for 19,618. Adding
+known family, elderly and disabled targeting indicators leaves 7,013. These are
+illustrations of required fields, not an instruction to use every control. Report
+actual regression Ns and compare specifications on a common sample when assessing
+what adding controls changes. Reporting N alone does not establish missingness at random.
 
-`location_status`, `location_checked`, and `hud_census_distance_m` retain the
-Census comparison as diagnostics. A difference above 500 meters does not exclude
-an otherwise available HUD point or replace its coordinates. The threshold in
-the Makefile is explicitly diagnostic. No numbered address is required for HUD
-coordinates. Census fallback points are address-range locations, not rooftops.
+State/year diagnostics report both all-HUD-ID and first-address counts under the
+same coordinate rule, known-unit Ns, partial unit sums, marginal and joint coverage,
+and retained flags. Missing type and missing hedonics can be geographically systematic.
+The source-only rule is feasible and reproducible; it cannot certify every source
+classification or recover construction absent from HUD.
 
-`usable_location` requires first selection, available and agreeing coordinates
-among tied earliest records, and no scattered-site/resyndication flag.
-`confident_first` also requires an observed 1987–2024 placed-in-service year.
-`corroborated_first` reproduces the former Census-corroboration rule for comparison;
-it does not determine inclusion. The state diagnostics show both samples.
+## Build
 
-Exclusions are assigned in priority order: uncertain ordering; nonselected later
-or same-year record; missing year; resyndication; scattered site; conflicting tied
-coordinates; unavailable location. A flag is not a confirmed source error.
-
-## Hedonics and execution
-
-Missing hedonics never remove a location. Reported total units take priority over
-the bedroom breakdown. Inconsistent bedrooms and low-income counts become missing;
-original values remain in project_records.csv. The final sample retains 249 records
-without total units and 6,469 without a consistent bedroom breakdown.
-
-Run root `make` for the full graph, or task-local `make` against prepared inputs.
-Every saved dataset writes its deterministic metadata report via SaveData. Reports
-are side effects, not Make targets or prerequisites. Current counts: September 12,
-2026, following the change to HUD coordinates as the default.
+Root `make` prepares upstream inputs; task-local `make` runs from code/ against
+those inputs. Scripts run in this order: build_lihtc.R, select_projects.R,
+sample_sizes.R, summarize_projects.R. Their Makefile lists every producer and
+input symlink. SaveData writes reports with CSVs. Census geocoding, the old
+confidence filters, select_confident.R and review_projects.R are retired from
+production. The original HUD archive and historical Census responses are unchanged.

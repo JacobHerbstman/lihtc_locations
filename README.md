@@ -1,72 +1,74 @@
 # LIHTC new-construction locations
 
-Build a simple dataset of where LIHTC housing was newly constructed, with its
-placed-in-service year, unit counts, and bedroom mix. HUD's new-construction
-classification is accepted unless a repeat record or concrete inconsistency
-gives a reason to investigate. Missing hedonics do not remove usable locations.
+The main dataset is `tasks/build_lihtc/output/projects.csv`: **27,210 first-address
+locations with HUD coordinates**, drawn from HUD's pinned 2024 release. Use HUD's
+TYPE=1 new-construction classification in the 50 states and DC. Date projects by
+placed-in-service year. Keep missing dates and hedonics; each analysis reports the
+N for the fields it actually uses.
 
-The [selection rules](tasks/build_lihtc/README.md) and
-[variable dictionary](tasks/build_lihtc/codebook.md) document the current methods
-and data structure. Analysis reads the ordinary task outputs described below.
+The [methods](tasks/build_lihtc/README.md), [variable dictionary](tasks/build_lihtc/codebook.md),
+and [coverage and sample-size report](tasks/audits/state_diagnostics/output/diagnostics.html)
+describe the dataset. There are 26,319 usable dates, 26,918 total-unit counts,
+and 20,131 complete consistent bedroom breakdowns. These are overlapping samples.
+The joint year/unit/bedroom sample has 19,618 observations.
 
-## Build
+## Build and execution order
 
-Run `make setup` once, then `make` from this directory. Each task Makefile visibly
-lists its output producers, source files, and input symlinks; only generic.make
-and shell_functions.make are included. Short shell scripts handle downloads.
-Dataset reports are saved with the data and are not Make targets. The root Makefile is the
-explicit end-to-end dependency graph. Task-local Makefiles operate on prepared
-inputs; `make` in `paper/` checks the dataset through the root before compiling.
-GNU Make 3.81 is supported. Sources and Census responses are reused unchanged;
-missing Census responses require network access and send only public addresses.
+Run `make setup` once, then `make` at the repository root. GNU Make 3.81 is supported.
+The root Makefile owns cross-task dependencies. Task Makefiles show literal inputs,
+plain symlinks and output producers; only generic.make and shell_functions.make
+are included. Source download scripts acquire a missing pinned snapshot. Reports
+are written with their CSVs and never act as Make targets.
 
-Three tasks produce the data:
+1. `tasks/prepare_lihtc/code/prepare_lihtc.R` reads the original workbook, selects
+   all 29,453 new-construction rows, preserves source values and cleans individual fields.
+2. `tasks/build_lihtc/code/build_lihtc.R` establishes first-address selection and
+   records an automatic reason for every excluded source row in `project_records.csv`.
+3. `tasks/build_lihtc/code/select_projects.R` saves the main `projects.csv`, using
+   HUD coordinates and consensus hedonics for earliest-year ties.
+4. `tasks/build_lihtc/code/sample_sizes.R` reports marginal and joint Ns in
+   `sample_sizes.csv`. State diagnostics compare counts, units and missingness by state/year.
+5. The root builds the research logbook. `make` in `paper/` checks the dataset
+   through the root and compiles the paper, which remains a research sketch.
 
-1. `prepare_lihtc`: read the pinned original HUD workbook and keep new construction.
-2. `geocode_lihtc`: obtain Census address matches and preserve the raw responses.
-3. `build_lihtc`: select first new-construction records at each standardized primary
-   address, attach basic characteristics and locations, and record exclusions.
+There is one main location file. The former `confident_projects.csv` and
+`review.csv` outputs are retired; exclusion accounting is in `project_records.csv`.
+Census geocoding is outside the production build. Its task and original responses
+remain available as a historical audit; no geocoder is needed to build this dataset.
 
-Start with `tasks/build_lihtc/output/confident_projects.csv`: 25,832 dated
-locations using valid HUD coordinates by default. An exact Census match in the reported
-state supplies a fallback when HUD coordinates are absent. `projects.csv` contains the
-broader 28,196 first-address choices, including unavailable locations and undated
-unique records. `project_records.csv` preserves all 29,453 source TYPE=1 rows and
-original hedonics. `review.csv` accounts for exclusions; no manual adjudication is
-required. This is a project/address dataset, not one building or lot per row.
-HUD coordinates are accepted as reported; Census fallback points are address-range
-locations. Neither is treated as a verified building footprint.
+## Counting definition and limits
 
-Earliest-year ties use a stable HUD ID and preserve all tied IDs. Conflicting
-characteristics become missing; missing or inconsistent hedonics never exclude a
-location. Repeated addresses with missing dates have uncertain order. Later phases
-are omitted by the first-address definition, not declared source errors.
+First-address counting retains the earliest new-construction record at the same
+standardized state/city/street. It precedes the coordinate requirement. A later
+record with coordinates cannot replace an earlier record without coordinates.
+Earliest-year ties use a stable HUD ID; conflicting hedonics become missing.
+Repeated addresses with incomplete dates have uncertain order and are excluded
+automatically. Undated singletons remain. Unresolved addresses retain separate
+HUD IDs; addresses are not parcel identifiers.
 
-Open [the state diagnostics](tasks/audits/state_diagnostics/output/diagnostics.html)
-for maps and sortable tables of construction-type coverage, all new construction
-versus first addresses, unit counts, and confidence exclusions. Both state and
-state-year CSV tables are linked from the report. The first-address rule reduces
-records by 4.3%; the final-sample rules then exclude 8.4% of first-address records.
-The report also reproduces the former Census-corroboration sample (21,380).
-Remaining losses differ across states, including after accounting for
-reported-year composition. Missing construction type also varies by state and
-must not be treated as evidence of rehabilitation.
+The all-ID alternative has 28,456 HUD-coordinate records. Its counts and reported
+units are compared with first-address counts by state and year. First-address
+counting can omit later construction phases; counting all IDs can include repeated
+financing. Neither is a verified count of distinct physical buildings.
 
-Shareable reports in each task's report/ describe saved data and fingerprints.
-The logbook records consequential decisions and results. Counts above reflect
-September 12, 2026. The paper remains a research sketch.
+Scattered-site, resyndication and conflicting tied-coordinate flags no longer
+exclude locations. HUD supplies a primary project point, not a verified building
+footprint. Scattered-site units remain project totals and are never copied across
+sites. Missing construction type varies by state: this is HUD-reported new
+construction with available locations, not a census of every LIHTC construction.
+No manual adjudication, individual overrides, weighting or imputation enters production.
 
-## Source and reset
+## Source and research history
 
-The HUD 2024 release was downloaded August 8, 2026 and contains 55,345 source
-project records. Its original archive remains in data_raw; extraction checks the
-recorded checksum. Census uses Public_AR_ACS2025 and Census2020_ACS2025, with
-request definitions recorded September 11, 2026. Returned tract codes do not
-establish the eventual historical neighborhood specification.
+The HUD 2024 archive was retrieved August 8, 2026. It contains 55,345 project
+records and remains unchanged in `data_raw/hud_lihtc_property/2024/lihtcpub.zip`.
+SHA-256: `e07acee706174b276f89596d614ac5699efa9848659e5834fdfb5198fa0a7288`.
+The rolling download must match that checksum; a new release needs an explicit
+source-vintage change. No older development reconstruction enters this build.
 
-On September 11, 2026, Jacob requested replacing the prior reconstruction with
-this three-step workflow. Old task code, reviews, and exploratory sources were
-removed from the active tree. Git history remains; a complete pre-reset snapshot
-including untracked work is at `/tmp/lihtc_locations_before_reset_2026-09-11.tar.gz`.
-That snapshot is outside the build and system temporary storage is not permanent.
-No old development links or adjudications enter this pipeline.
+On September 11, 2026, Jacob requested a reset to source-based construction
+records. Git and the logbook retain that history. A pre-reset temporary snapshot
+is at `/tmp/lihtc_locations_before_reset_2026-09-11.tar.gz`; temporary storage is
+not permanent. Settled methodological choices do not require release copies or tags.
+The [literature note](tasks/audits/external_benchmarks/literature_methods.md) describes
+paper-specific methods and their limits. Counts above are from September 12, 2026.

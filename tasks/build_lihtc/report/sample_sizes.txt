@@ -1,0 +1,8 @@
+Rows: 18
+Key: sample complete and unique
+Saved-file MD5: 7eb19341a01a41cfdfd9219b68606d2e
+column	type	nonmissing	distinct	min	max
+sample	character	18	18	NA	NA
+n	integer	18	18	7013	27210
+missing_from_master	integer	18	18	0	20197
+available_pct	numeric	18	18	25.7736126424109	100

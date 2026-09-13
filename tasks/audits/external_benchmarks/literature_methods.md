@@ -69,3 +69,14 @@ temporary storage. Docling was unavailable; the PDF-reading tool fell back to
 `pdftotext -layout`, whose output has some degraded typography. Relevant prose
 was inspected in context. No effect estimates were extracted or reproduced, no
 new exploratory plots were generated, and no production data were changed.
+
+## September 12 implementation update
+
+The simplified production dataset now uses HUD coordinates only, retains the
+previously agreed first-address counting rule, and keeps missing dates/hedonics
+and scope flags in one main file. Census fallback and extra confidence filters
+are removed. Partial valid bedroom counts remain; tables report marginal and
+joint Ns. This adopts transparent source-based selection and analysis-specific
+missingness handling. The first-address rule remains our research definition,
+not a cleaning recipe established by the papers above. Later construction phases
+and repeated financing motivate the all-HUD-ID comparison in the state/year audit.
