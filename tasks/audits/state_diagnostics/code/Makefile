@@ -7,7 +7,14 @@ include ../../../shared/code/generic.make
 ../output/diagnostics.html: write_report.R ../output/state_summary.csv ../output/state_year_counts.csv \
     ../output/type_missing_pct.png ../output/coordinates_missing_pct.png ../output/annual_comparison.png \
     ../output/type_by_year.png ../input/sample_sizes.csv ../input/summary_statistics.csv \
-    ../input/category_counts.csv Makefile | ../output
+    ../input/category_counts.csv ../output/project_characteristics.png Makefile | ../output
+	$(R) $<
+
+../output/project_characteristics.png: plot_characteristics.R ../output/characteristic_distributions.csv Makefile | ../output
+	$(R) $<
+
+../output/characteristic_distributions.csv: summarize_characteristics.R ../input/projects.csv \
+    ../../../shared/code/save_data.R Makefile | ../output ../report
 	$(R) $<
 
 ../output/%_pct.png: map_states.R ../output/state_summary.csv ../input/states.zip Makefile | ../output

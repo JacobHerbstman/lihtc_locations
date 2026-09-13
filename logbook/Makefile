@@ -6,5 +6,6 @@ logbook.pdf: logbook.tex reset_summary.tex corroboration_summary.tex corroborati
     ../tasks/audits/external_benchmarks/README.md \
     ../tasks/audits/state_diagnostics/output/type_missing_pct.png \
     ../tasks/audits/state_diagnostics/output/coordinates_missing_pct.png \
+    ../tasks/audits/state_diagnostics/output/project_characteristics.png \
     ../tasks/audits/state_diagnostics/output/state_summary.csv
 	pdflatex -halt-on-error -interaction=nonstopmode logbook.tex

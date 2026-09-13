@@ -75,6 +75,18 @@ tasks/audits/state_diagnostics/output/type_by_year.png: \
     tasks/audits/state_diagnostics/output/state_year_counts.csv
 	$(MAKE) -C tasks/audits/state_diagnostics/code ../output/type_by_year.png
 
+tasks/audits/state_diagnostics/output/characteristic_distributions.csv: \
+    tasks/audits/state_diagnostics/code/summarize_characteristics.R \
+    tasks/audits/state_diagnostics/code/Makefile tasks/build_lihtc/output/projects.csv \
+    tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/state_diagnostics/code ../output/characteristic_distributions.csv
+
+tasks/audits/state_diagnostics/output/project_characteristics.png: \
+    tasks/audits/state_diagnostics/code/plot_characteristics.R \
+    tasks/audits/state_diagnostics/code/Makefile \
+    tasks/audits/state_diagnostics/output/characteristic_distributions.csv
+	$(MAKE) -C tasks/audits/state_diagnostics/code ../output/project_characteristics.png
+
 tasks/audits/state_diagnostics/output/diagnostics.html: \
     tasks/audits/state_diagnostics/code/write_report.R tasks/audits/state_diagnostics/code/Makefile \
     tasks/audits/state_diagnostics/output/state_summary.csv \
@@ -84,7 +96,8 @@ tasks/audits/state_diagnostics/output/diagnostics.html: \
     tasks/audits/state_diagnostics/output/type_missing_pct.png \
     tasks/audits/state_diagnostics/output/coordinates_missing_pct.png \
     tasks/audits/state_diagnostics/output/annual_comparison.png \
-    tasks/audits/state_diagnostics/output/type_by_year.png
+    tasks/audits/state_diagnostics/output/type_by_year.png \
+    tasks/audits/state_diagnostics/output/project_characteristics.png
 	$(MAKE) -C tasks/audits/state_diagnostics/code ../output/diagnostics.html
 
 logbook/logbook.pdf: logbook/logbook.tex logbook/reset_summary.tex logbook/corroboration_summary.tex \
@@ -94,6 +107,7 @@ logbook/logbook.pdf: logbook/logbook.tex logbook/reset_summary.tex logbook/corro
     tasks/audits/external_benchmarks/output/checks.txt tasks/audits/external_benchmarks/README.md \
     tasks/audits/state_diagnostics/output/type_missing_pct.png \
     tasks/audits/state_diagnostics/output/coordinates_missing_pct.png \
+    tasks/audits/state_diagnostics/output/project_characteristics.png \
     tasks/audits/state_diagnostics/output/state_summary.csv
 	$(MAKE) -C logbook
 

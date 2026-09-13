@@ -23,6 +23,16 @@ sample-size, numeric-summary and category-count tables through explicit input li
   by all HUD records in the relevant state or state/year.
 - `coordinates_missing_pct.png`: missing HUD coordinates divided by all TYPE=1 rows.
 - `annual_comparison.png`: source, main HUD-ID and first-address counts and units.
+- `characteristic_distributions.csv`: project-size bins and bedroom shares,
+  keyed by measure/category. Each row has its count, denominator, percentage and
+  number of contributing projects. The data report accompanies the CSV.
+- `project_characteristics.png`: equal-project-weight size distribution and
+  equal-unit-weight bedroom mix, using complete consistent bedroom breakdowns.
+
+Actual dollar rents are not present in the original property workbook. The HTML
+explains this and links the separate tenant data and external benchmark evidence.
+The annual comparison shades 2023–2024 because HUD marks those cohorts incomplete.
+The dataset still retains them.
 
 `new_records` counts all source TYPE=1 rows. `selected_records` counts the main
 file and equals `hud_coordinate_records`. `drop_no_hud` is the sole production
@@ -88,3 +98,12 @@ not trigger rebuilding. A synthetic unit change before cleaning propagates to
 project values, summary tables and HTML while retaining the project. Root and
 paper builds pass. The annual figure, rendered logbook, HTML table contents and
 CSV links were inspected; HTML browser interaction was not tested.
+
+For the September 12 distribution addition, independent Python counts reproduce
+every size bin and bedroom share. Main-data and existing-summary fingerprints
+match revision 7770ce1, and the original HUD SHA-256 is unchanged. A fresh build
+reproduces the new CSV and figure as well as the HTML; a synthetic change to a
+unit count updates bedroom coverage and the figure. Deleting the new distribution
+CSV regenerates its data report, while deleting its report alone does not rebuild.
+Root, task-local and paper builds are current. Both revised figures and the new
+rendered logbook pages were inspected; all local HTML links resolve.

@@ -15,12 +15,30 @@ observed <- hud[yr_pis %in% as.character(2015:2024),
 stopifnot(nrow(hud)==55345L,sum(as.numeric(hud$n_unitsr),na.rm=TRUE)==3860546,
   identical(observed$year,published$year),all(observed$properties==published$properties),all(observed$units==published$units))
 
+# Compare published construction shares with the raw known-type denominator.
+# Small discrepancies are findings,
+# not grounds to change the source classification or the selected project IDs.
+construction <- hud[yr_pis %in% as.character(2015:2024),
+  .(known_type=sum(type %in% as.character(1:4)), new=sum(type=="1",na.rm=TRUE)),
+  by=.(year=as.integer(yr_pis))][order(year)]
+construction[, workbook_pct := 100 * new / known_type]
+construction[, published_pct := c(53.7,58.9,57.4,59.3,60.1,63.2,67.8,68.9,72.4,76.8)]
+construction[, difference_pp := workbook_pct - published_pct]
+stopifnot(identical(construction$year,2015:2024))
+
 report <- capture.output({
   cat("External benchmark calculations: HUD 2024 release; HUD project-ID sample\n")
   cat("See ../README.md for external evidence and interpretation. No records are changed.\n\n")
   cat("HUD published all-type totals: 55,345 records and 3,860,546 adjusted units. Both match.\n")
   cat("All ten published annual property and adjusted-unit counts also match:\n")
   print(observed)
+  cat("\nNew-construction share among known types, all geographies (percent and percentage-point differences):\n")
+  print(construction)
+  cat(sprintf("All years: %.5f%% in the workbook, 61.5%% published.\n",
+              100*sum(hud$type=="1",na.rm=TRUE)/sum(hud$type %in% as.character(1:4))))
+  cat(sprintf("Maximum absolute annual difference: %.5f percentage points. Cause not established.\n",
+              max(abs(construction$difference_pp))))
+  cat("HUD marks 2023 and 2024 as incomplete; their lower counts cannot establish a construction decline.\n")
   cat("\nConstruction-type coverage: denominator includes every source record in the 50 states and DC.\n")
   coverage <- hud[proj_st %in% c(state.abb,"DC"),.(records=.N,unknown_type=sum(is.na(type)),new_construction=sum(type=="1",na.rm=TRUE)),by=.(state=proj_st)]
   coverage[,unknown_pct:=round(100*unknown_type/records,2)]

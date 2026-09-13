@@ -462,4 +462,54 @@ characteristic matches its own prepared HUD record. Independent summary calculat
 a fresh GNU Make 3.81 build without Census responses or network access, missing-output
 recovery and synthetic input-change propagation passed. Detailed checks are in
 the state-diagnostics README. Original source bytes are unchanged.
+\clearpage
+\section*{Project characteristics, rent availability and external checks}
+\noindent September 12, 2026. Agent-drafted research record; baseline
+\texttt{7770ce1}. Jacob requested Git synchronization, basic descriptive statistics
+and feasible external sanity checks.
+
+The 28,456-project sample remains unchanged. Mean project size is 67.2 units,
+the median is 48, and the middle half spans 27--82 units (28,342 reported counts).
+Mean low-income units are 60.4 (27,938 reported counts); these different Ns prevent
+interpreting the ratio of the means as a low-income share. The new figure counts
+each project once for the size distribution and each reported unit once for the
+bedroom distribution. Bedroom shares use a common set of 21,153 complete,
+consistent projects containing 1,347,818 reported units. Partial breakdowns remain
+available in the main data but do not enter that distribution.
+
+All 80 source columns and the dictionary inside the pinned 2024 HUD archive were
+checked for rent. There is no dollar rent variable. Income/rent ceilings,
+below-ceiling set-asides and rental-assistance indicators cannot measure actual
+rent. HUD's separate tenant collection publishes rent-burden tables; a later
+tenant observation would not measure rent at construction. The public 2022
+property-tabulation ZIP returned an empty response with a web-application firewall
+challenge, so its fields and match coverage were not verified. No rent proxy or
+new source entered production.
+
+The raw workbook exactly matches HUD's published 55,345 properties and 3,860,546
+adjusted units, including all ten annual property counts and adjusted-unit totals
+for 2015--2024. Its all-geography new-construction share among known types is
+61.43085\%, versus 61.5\% published. Annual discrepancies are at most 0.33415
+percentage points; their cause is not established, and classifications were not
+changed to force agreement. This validates the import and broad agreement with
+a publication of the same source, not independent completeness. HUD explicitly
+marks 2023--2024 incomplete, so the annual figure now shades those years.
+
+The recommended independent check is a systematic comparison with agency lists
+of completed new construction for matching states and mature cohorts, initially
+2010--2019. State project IDs can support automatic matching after uniqueness
+checks, with match rates and count, date and unit discrepancies reported by state
+and cohort. No individual adjudication is required. NCSHA's agency survey has
+4\% and 9\% new-construction breakouts, but describes allocations; the California
+annual report also reports award trends. These cannot be directly equated to
+placed-in-service counts. Neither comparison has been performed.
+
+\paragraph{Sources and reproduction.} Source URLs and scope are recorded in
+\path{tasks/audits/external_benchmarks/README.md}. Root \texttt{make} builds the
+distribution CSV and report, figures, HTML, benchmark calculations and logbook.
+The existing numeric summaries continue to report variable-specific Ns.
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth]{../tasks/audits/state_diagnostics/output/project_characteristics.png}
+\end{center}
 \end{document}

@@ -13,6 +13,14 @@ total-unit counts. Mean project size is 67.2 units; the median is 48. The joint
 year/unit/complete-bedroom sample has 20,627 observations. These requirements
 apply to specific analyses, not to additional master datasets.
 
+The report also shows project-size distributions and bedroom mix, with explicit
+denominators. **Actual dollar rents are not in the HUD property source.** Rent
+restrictions and rental-assistance indicators are not observed rents.
+See the [external checks](tasks/audits/external_benchmarks/README.md) for comparisons
+with HUD's published totals and a feasible agency-data audit. HUD marks the
+2023–2024 cohorts incomplete; they remain in the dataset and are shaded in the
+annual figure.
+
 ## Build and execution order
 
 Run `make setup` once, then `make` at the repository root. GNU Make 3.81 is supported.

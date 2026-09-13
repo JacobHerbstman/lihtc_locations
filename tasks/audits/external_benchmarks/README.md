@@ -1,5 +1,67 @@
 # External checks of the simple LIHTC dataset
 
+## September 12: project summaries and feasible external benchmarks
+
+The current HUD-ID sample has 28,456 projects. Mean reported size is 67.2 units
+(N=28,342), versus a median of 48 and an interquartile range of 27–82.
+Mean low-income units are 60.4 (N=27,938). These means have different denominators;
+their ratio is not the average low-income share. The distribution figure in the
+state diagnostics uses 21,153 complete, consistent bedroom breakdowns for its
+unit-weighted bedroom shares. No project selection or source values changed.
+
+**Rent availability.** All 80 columns and the dictionary inside the pinned 2024
+archive were checked. There is no actual dollar rent variable. INC_CEIL is the
+elected income/rent ceiling, LOW_CEIL indicates a lower set-aside, CEILUNIT counts
+such units, and rental-assistance fields describe program participation.
+None can be used as observed rent. HUD's separate
+[tenant tables](https://www.huduser.gov/portal/datasets/lihtc/tenant.html) publish
+rent burdens and assistance. The
+[November 2025 documentation](https://www.huduser.gov/portal/Datasets/lihtc/LIHTC-TenantDataDocumentation.pdf),
+pp. 2–3 and 6, describes coverage limitations and distinguishes actual rents from
+program rent limits. The public 2022 property-tabulation ZIP returned an empty
+HTTP 202 response with an AWS WAF challenge on September 12; its contents could
+not be inspected. No dollar-rent availability or merge coverage is claimed for
+that file. A future tenant-data merge would measure rents at its observation
+date, not historical rent when a project entered service.
+
+**Checks performed.** The
+[HUD 2024 published table](https://www.huduser.gov/portal/Datasets/lihtc/LIHTC-2024-Tables.pdf)
+matches the raw workbook's 55,345 projects and 3,860,546 adjusted units, including
+all ten annual project counts and adjusted-unit totals for 2015–2024.
+The extended compare_hud.R calculation finds 29,641 TYPE=1 records among 48,251
+records with known construction type across all geographies: 61.43085%, versus
+61.5% published. Annual 2015–2024 differences range from -0.33415 to +0.15473
+percentage points. Their cause is unresolved. The classifications have not been
+altered to force agreement. Published adjusted units (N_UNITSR) and all-type totals
+are not targets for our narrower sample or its reported-unit field (N_UNITS).
+These checks validate transcription and broad agreement with a separate
+publication of the same source; they do not establish independent completeness.
+The publication explicitly marks 2023–2024 incomplete. The annual figure now
+shades those cohorts.
+
+**A feasible independent comparison.** Use agency administrative lists with
+construction type, completion year, agency project ID and units. Compare completed
+new-construction projects for the same state and mature cohorts, initially
+2010–2019, and report source counts/units, automatic match rates, unmatched counts,
+and date/unit disagreements. Validate state-ID uniqueness before a join; a repeated
+ID should be reported separately rather than generating a many-to-many match.
+Keep this as an audit with no individual overrides or automatic production drops.
+It has not yet been run.
+
+The [NCSHA Factbook guide](https://www.ncsha.org/hfa-factbook-online-data-visualization-and-reports-user-guide/)
+identifies separate 9% and 4% tables with new-construction breakouts from an
+agency survey. Those tables concern allocations, not completed projects.
+They can check allocation-cohort scale and geographic patterns, allowing for
+awards that do not become completed projects. They cannot be equated to our
+placed-in-service totals. Full reports require member or purchased access.
+The [California 2024 annual report](https://www.treasurer.ca.gov/sites/default/files/2025-12/2024-TCAC.pdf)
+also publishes new-construction award trends, but has the same timing mismatch.
+Neither source has been merged here, and neither is an excuse for individual
+building searches. Housing agencies also supply HUD, so a separate administrative
+list is not wholly independent of the underlying reporting system.
+
+## Earlier research record
+
 For the September 12 review of papers' data methods, see
 [LIHTC papers: missing locations and sample construction](literature_methods.md).
 It documents the justification and limits of automatic location exclusions;

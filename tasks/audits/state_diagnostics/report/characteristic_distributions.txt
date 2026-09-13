@@ -1,0 +1,11 @@
+Rows: 11
+Key: measure, category complete and unique
+Saved-file MD5: 42e2422c471d34bc4db155c172eeaddf
+column	type	nonmissing	distinct	min	max
+category	character	11	11	NA	NA
+count	integer	11	11	1471	543565
+category_order	integer	11	6	1	6
+measure	character	11	2	NA	NA
+denominator	integer	11	2	28342	1347818
+projects_with_data	integer	11	2	21153	28342
+percent	numeric	11	11	2.6189737783588	40.3292581045809
