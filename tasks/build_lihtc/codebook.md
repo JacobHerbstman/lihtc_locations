@@ -1,12 +1,12 @@
-# Version 1.0.0 variable dictionary
+# Selected-project variable dictionary
 
-Both release CSVs have the same 41 columns. Empty CSV fields mean missing; they
+Both `projects.csv` and `confident_projects.csv` have the same 41 columns. Empty CSV fields mean missing; they
 are not zero. HUD IDs, state project IDs, and ZIP codes should be read as text.
 For example, from the repository root:
 
 ```r
 projects <- data.table::fread(
-  "releases/v1.0.0/confident_projects.csv",
+  "tasks/build_lihtc/output/confident_projects.csv",
   na.strings = "",
   colClasses = c(hud_id = "character", state_project_id = "character", zip = "character")
 )
@@ -80,13 +80,13 @@ comparison terminology and is not an exclusion for a valid HUD point.
 | `bedrooms_consistent` | TRUE if the complete cleaned bedroom breakdown sums to cleaned total units and contains only nonnegative integers. Otherwise all bedroom counts are blank. |
 | `records_at_address` | Number of source new-construction records at the address key, including later records. Unresolved HUD-ID keys necessarily have one. |
 | `first_record_count` | Number of records tied at the selected earliest year; one for a singleton. |
-| `selection_status` | `single_new_construction_record`, `earliest_at_repeated_address`, or `first_of_tied_records` in these release files. |
+| `selection_status` | `single_new_construction_record`, `earliest_at_repeated_address`, or `first_of_tied_records` in these selected tables. |
 | `repeat_address_review` | TRUE when more than one new-construction record shares the key. A compatibility name for an automatic flag; no manual queue and no extra exclusion. |
 | `construction_review` | TRUE when the representative source row has a resyndication flag. The final selection checks every tied earliest row, not only this flag. |
 | `usable_location` | Selected first address with accepted, agreeing coordinates for every earliest record, and no affirmative scattered-site/resyndication flag. Does not require a year. |
 | `confident_first` | `usable_location` plus observed 1987–2024 `pis_year`. TRUE for every row in `confident_projects.csv`; the filter defining that file. |
 | `corroborated_first` | Would pass the former universal Census-corroboration rule; diagnostic comparison only. Does not select the current sample. |
-| `exclusion_reason` | `retained` for the dated file; otherwise one primary reason according to the priority in the release README. Additional flags may coexist. |
+| `exclusion_reason` | `retained` for the dated file; otherwise one primary reason according to the priority in the task README. Additional flags may coexist. |
 | `tied_characteristics_disagree` | TRUE if at least one consensus field has disagreeing nonmissing values across earliest tied rows. Affected fields are blanked; this flag itself does not exclude a location. |
 
 For audit joins, `project_records.csv` has one row per original HUD ID and includes

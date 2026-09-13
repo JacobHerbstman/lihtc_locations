@@ -222,14 +222,15 @@ after first-address selection fall from 24.2\% to 8.4\%. Louisiana still loses
 31.0\%, so geographic composition remains relevant even after removing the
 universal-corroboration requirement.
 \clearpage
-\section*{Lock the project-location dataset before exploration}
+\section*{Settle the methods before exploration}
 \noindent September 12, 2026. Agent-drafted research record; previous revision
-\texttt{3bba0c8}.\newline
-Release tag: \texttt{lihtc-v1.0.0}.
+\texttt{3bba0c8}. Updated after Jacob clarified the intended scope.
 
-Jacob requested a finalized dataset with fixed decisions and readable code before
-viewing further exploratory results. Version 1.0.0 freezes the existing
-first-address and HUD-coordinate rules. It contains 25,832 dated project
+Jacob requested settled methodological choices and readable code before viewing
+further exploratory results. A separate versioned copy and Git tag were created
+in error and removed after he clarified that no literal release freeze was
+intended. Analysis continues to use ordinary task outputs under the agreed
+first-address and HUD-coordinate rules. The dated table contains 25,832 project
 locations: 25,763 HUD points and 69 exact Census fallback points. A companion
 file preserves all 28,196 first-address choices, including excluded and undated
 records. Missing hedonics do not exclude projects: the dated file retains 249
@@ -244,7 +245,7 @@ The remaining source records comprise 570 unqueryable addresses, 228 unmatched
 queries, 10 tied matches, and 117 non-exact matches. HUD coordinates account for
 nearly all of the final sample's location coverage.
 
-The release README fixes the source vintage, address normalization, date window,
+The task documentation describes the source vintage, address normalization, date window,
 earliest-year ordering, automatic tie handling, location source priority,
 scattered-site and resyndication exclusions, and treatment of missing hedonics.
 The variable dictionary specifies all 41 columns, including source category
@@ -255,18 +256,21 @@ values. The main R scripts now expose the transformations in numbered, linear
 blocks with visible reads and writes. A comparison with the previous outputs
 found identical rows, IDs, values, and ordering after that one column rename.
 
-This freeze does not resolve source coverage limitations. The dated file retains
+The methods do not resolve source coverage limitations. The dated file retains
 882 records whose address identity is unresolved and 1,310 HUD--Census distance
 disagreements above 500 meters. Missing construction type and other exclusions
 vary across states; the known external Oconee Park classification conflict remains
-documented without an individual override. The release is a fixed selected sample,
+documented without an individual override. This remains a selected sample,
 not a complete census of construction or verified building footprints.
 
-\paragraph{Reproduction.} The release lives in \path{releases/v1.0.0/}.
-It includes exact copies of the two selected datasets and their producer reports,
-source/output SHA-256 fingerprints, and recorded runtime versions. Root
-\texttt{make} writes task outputs and cannot overwrite this snapshot. Reproduction
-checks compare those outputs with the frozen files. Further analyses must read
-this version; changing a source or selection rule requires a new release and a
-documented reason. No new exploratory plots were introduced for the freeze.
+\paragraph{Reproduction.} Run root \texttt{make}; the selected dataset is
+\path{tasks/build_lihtc/output/confident_projects.csv}. The task README and
+\path{tasks/build_lihtc/codebook.md} describe the methods and variables.
+The readability cleanup reproduced all existing values after the bedroom-column
+rename. A fresh build using the saved sources required no network requests and
+produced identical datasets. Missing actual output regenerated the same CSV and
+report; missing metadata alone did not trigger a build. Removing the unnecessary
+release copies and instructions changes no data or selection rule. The original
+HUD and Census source snapshots remain preserved. No new exploratory plots were
+introduced.
 \end{document}
