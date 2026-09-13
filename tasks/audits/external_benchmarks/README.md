@@ -1,5 +1,10 @@
 # External checks of the simple LIHTC dataset
 
+For the September 12 review of papers' data methods, see
+[LIHTC papers: missing locations and sample construction](literature_methods.md).
+It documents the justification and limits of automatic location exclusions;
+no individual building searches or new production corrections were added.
+
 September 12 update: the findings below describe the September 11 baseline. Current
 sample comparisons are in `../state_diagnostics/output/diagnostics.html`. The
 current automatic rules preserve locations with conflicting hedonics and record
