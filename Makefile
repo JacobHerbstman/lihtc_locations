@@ -2,6 +2,7 @@ include tasks/shared/code/shell_functions.make
 .DEFAULT_GOAL := all
 .PHONY: all setup
 all: tasks/build_lihtc/output/projects.csv tasks/build_lihtc/output/sample_sizes.csv \
+ tasks/build_lihtc/output/summary_statistics.csv tasks/build_lihtc/output/category_counts.csv \
  tasks/audits/state_diagnostics/output/diagnostics.html logbook/logbook.pdf
 
 setup:
@@ -26,9 +27,18 @@ tasks/build_lihtc/output/sample_sizes.csv: tasks/build_lihtc/code/sample_sizes.R
     tasks/build_lihtc/code/Makefile tasks/build_lihtc/output/projects.csv tasks/shared/code/save_data.R
 	$(MAKE) -C tasks/build_lihtc/code ../output/sample_sizes.csv
 
+tasks/build_lihtc/output/summary_statistics.csv: tasks/build_lihtc/code/summary_statistics.R \
+    tasks/build_lihtc/code/Makefile tasks/build_lihtc/output/projects.csv tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/build_lihtc/code ../output/summary_statistics.csv
+
+tasks/build_lihtc/output/category_counts.csv: tasks/build_lihtc/code/category_counts.R \
+    tasks/build_lihtc/code/Makefile tasks/build_lihtc/output/projects.csv tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/build_lihtc/code ../output/category_counts.csv
+
 tasks/build_lihtc/output/summary.tex: tasks/build_lihtc/code/summarize_projects.R \
     tasks/build_lihtc/code/Makefile tasks/build_lihtc/output/project_records.csv \
-    tasks/build_lihtc/output/projects.csv tasks/build_lihtc/output/sample_sizes.csv
+    tasks/build_lihtc/output/projects.csv tasks/build_lihtc/output/sample_sizes.csv \
+    tasks/build_lihtc/output/summary_statistics.csv
 	$(MAKE) -C tasks/build_lihtc/code ../output/summary.tex
 
 tasks/prepare_lihtc/temp/LIHTCPUB.xlsx: data_raw/hud_lihtc_property/2024/lihtcpub.zip \
@@ -68,7 +78,8 @@ tasks/audits/state_diagnostics/output/type_by_year.png: \
 tasks/audits/state_diagnostics/output/diagnostics.html: \
     tasks/audits/state_diagnostics/code/write_report.R tasks/audits/state_diagnostics/code/Makefile \
     tasks/audits/state_diagnostics/output/state_summary.csv \
-    tasks/build_lihtc/output/sample_sizes.csv \
+    tasks/build_lihtc/output/sample_sizes.csv tasks/build_lihtc/output/summary_statistics.csv \
+    tasks/build_lihtc/output/category_counts.csv \
     tasks/audits/state_diagnostics/output/state_year_counts.csv \
     tasks/audits/state_diagnostics/output/type_missing_pct.png \
     tasks/audits/state_diagnostics/output/coordinates_missing_pct.png \
@@ -78,7 +89,8 @@ tasks/audits/state_diagnostics/output/diagnostics.html: \
 
 logbook/logbook.pdf: logbook/logbook.tex logbook/reset_summary.tex logbook/corroboration_summary.tex \
     logbook/corroboration_exclusions.png logbook/hud_default_summary.tex \
-    logbook/hud_default_exclusions.png tasks/build_lihtc/output/summary.tex \
+    logbook/hud_default_exclusions.png logbook/first_address_summary.tex \
+    tasks/build_lihtc/output/summary.tex \
     tasks/audits/external_benchmarks/output/checks.txt tasks/audits/external_benchmarks/README.md \
     tasks/audits/state_diagnostics/output/type_missing_pct.png \
     tasks/audits/state_diagnostics/output/coordinates_missing_pct.png \

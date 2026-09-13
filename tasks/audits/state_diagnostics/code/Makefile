@@ -6,7 +6,8 @@ include ../../../shared/code/generic.make
 
 ../output/diagnostics.html: write_report.R ../output/state_summary.csv ../output/state_year_counts.csv \
     ../output/type_missing_pct.png ../output/coordinates_missing_pct.png ../output/annual_comparison.png \
-    ../output/type_by_year.png ../input/sample_sizes.csv Makefile | ../output
+    ../output/type_by_year.png ../input/sample_sizes.csv ../input/summary_statistics.csv \
+    ../input/category_counts.csv Makefile | ../output
 	$(R) $<
 
 ../output/%_pct.png: map_states.R ../output/state_summary.csv ../input/states.zip Makefile | ../output
@@ -43,4 +44,10 @@ include ../../../shared/code/generic.make
 	bash download_states.sh
 
 ../input/sample_sizes.csv: ../../../build_lihtc/output/sample_sizes.csv | ../input
+	ln -sf $< $@
+
+../input/summary_statistics.csv: ../../../build_lihtc/output/summary_statistics.csv | ../input
+	ln -sf $< $@
+
+../input/category_counts.csv: ../../../build_lihtc/output/category_counts.csv | ../input
 	ln -sf $< $@

@@ -1,0 +1,14 @@
+Rows: 9
+Key: variable complete and unique
+Saved-file MD5: 825c78b1f0efcdda7d64ce5b8b67ec6a
+column	type	nonmissing	distinct	min	max
+variable	character	9	9	NA	NA
+n	integer	9	9	21306	28342
+missing	integer	9	9	114	7150
+mean	numeric	9	9	1.70712475359057	2005.24388470905
+sd	numeric	9	9	7.25887186606913	64.3929452953496
+min	integer	9	3	0	1987
+p25	integer	9	6	0	1997
+median	integer	9	8	0	2005
+p75	integer	9	8	0	2013
+max	integer	9	8	161	2024

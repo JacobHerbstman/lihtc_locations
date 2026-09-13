@@ -324,7 +324,7 @@ longer exclude an otherwise selected HUD point. This supersedes the sample rules
 in the preceding entries, whose original exhibits are preserved.
 
 \begin{center}\small
-\input{../tasks/build_lihtc/output/summary.tex}
+\input{first_address_summary.tex}
 \end{center}
 
 The main file gains 1,447 HUD-coordinate locations relative to the former 25,763
@@ -411,4 +411,55 @@ Counts use the current all-record file and the two example IDs
 \texttt{AKA20090010} and \texttt{AKA20110020}. This review updates the research
 record only; it does not change the main file's 27,210 observations. Root
 \texttt{make} compiles this entry.
+\clearpage
+\section*{Count HUD new-construction project IDs}
+\noindent September 12, 2026. Agent-drafted research record; baseline
+\texttt{7b7ffd8}. Jacob accepted the HUD project-ID definition after the preceding review.
+
+The main dataset now keeps every unique HUD ID classified as new construction
+in the 50 states and DC with its own HUD coordinates. Shared addresses no longer
+remove later records, collapse same-year records, or force characteristics to
+agree. Each project retains its own cleaned fields. Missing dates and hedonics
+remain permissible, and scattered-site and resyndication flags remain visible.
+
+\begin{center}\small
+\input{../tasks/build_lihtc/output/summary.tex}
+\end{center}
+
+The change restores 1,246 HUD-coordinate records: 617 later-year records, 550
+additional earliest-year records and 79 records at addresses with uncertain
+ordering. Both Weeks Field Estates phases now remain with their own dates and
+unit counts. Removing consensus also restores total-unit counts for 190 previously
+selected records. The main file includes 943 missing placed-in-service years,
+114 missing total-unit counts and 1,427 valid partial bedroom breakdowns.
+
+Reported total units sum to 1,903,603 across 28,342 known counts. The middle half
+of projects has 27--82 units. Known family targeting covers 17,365 projects, of
+which 63.1\% report yes; the elderly and disabled shares are 44.7\% of 13,236 and
+31.5\% of 11,535, respectively. Target populations can overlap. Unknown targeting
+is missing rather than no. Year, total units and a complete bedroom mix are
+jointly available for 20,627 projects; adding all three targeting indicators leaves
+7,384. Summary tables explicitly show each denominator.
+
+First-address counting now runs only in state diagnostics. It yields 27,210
+records and 1,834,264 reported units using each selected record's own hedonics.
+The former consensus-based sum was 1,817,049; the historical exhibit is preserved.
+Comparing the main and first-address series now varies counting alone. Counts,
+known-unit Ns and reported units are compared for every state and year, including
+separate unknown and after-release date groups. Kentucky retains 99 records.
+
+The main dataset retains 2,287 records with repeated standardized addresses,
+467 scattered-site flags and 115 resyndication flags. These remain HUD-reported
+project records, not independently verified distinct physical construction.
+Unit totals should not be copied across scattered sites or interpreted as a
+verified housing stock. Missing construction type and geographic coordinate gaps
+remain unchanged; no manual overrides or source refresh were introduced.
+
+\paragraph{Reproduction and verification.} Root \texttt{make} builds
+\path{tasks/build_lihtc/output/projects.csv}, summary tables, state/year diagnostics
+and this logbook; \texttt{make} in paper/ checks the data and paper. Every main
+characteristic matches its own prepared HUD record. Independent summary calculations,
+a fresh GNU Make 3.81 build without Census responses or network access, missing-output
+recovery and synthetic input-change propagation passed. Detailed checks are in
+the state-diagnostics README. Original source bytes are unchanged.
 \end{document}

@@ -1,81 +1,90 @@
-# Source coverage and available characteristics by state
+# Project summary statistics, coverage and counting comparison
 
-This task describes the main first-address/HUD-coordinate dataset without changing
-selection. Root `make` prepares inputs. Scripts run in order: summarize_states.R,
-compare_states.R, the three plotting scripts, and write_report.R. Each input,
-symlink and output producer is visible in the task Makefile.
+The main dataset keeps every HUD TYPE=1 project ID with its own HUD coordinates
+in the 50 states and DC. This task describes the dataset and computes the optional
+first-address comparison; it never changes production selection or hedonics.
 
-## Outputs
+Root `make` prepares inputs. `summarize_states.R` reads all source records and
+main projects, computes first-address choices within the audit, and aggregates by
+state/year. `compare_states.R` sums counts by state before forming rates. Plotting
+scripts and `write_report.R` produce maps and HTML; the latter reads the main task's
+sample-size, numeric-summary and category-count tables through explicit input links.
 
-- `state_year_counts.csv`: 2,040 rows keyed by state/year, covering 50 states and
-  DC, 1987–2024, and separate unknown/after_2024 groups.
-- `state_summary.csv`: 51 rows with source counts, selected counts, unit sums,
-  marginal and joint availability, retained flags and year-adjusted loss diagnostics.
-- `diagnostics.html`: self-contained maps and sortable/filterable tables, including
-  the main task's sample_sizes.csv. Keep both state CSVs alongside it for download links.
-- `type_missing_pct.png`: missing construction type divided by all source HUD records.
-- `coordinates_missing_pct.png`: missing HUD coordinates divided by all TYPE=1 records.
-- `annual_comparison.png`: source, all located HUD IDs, and first-address locations,
-  with reported units under each definition.
-- `type_by_year.png`: construction-type missingness by state and valid year.
+## Outputs and denominators
 
-## Denominators
+- `state_year_counts.csv`: 2,040 rows keyed by state/year, covering the 50 states
+  and DC, 1987–2024, and separate unknown/after_2024 groups.
+- `state_summary.csv`: 51 rows with source and main counts, first-address counts,
+  reported unit sums and known-unit Ns, marginal/joint coverage and retained flags.
+- `diagnostics.html`: self-contained figures and sortable/filterable tables, including
+  project size, bedroom counts, targeting, credit types, missingness and sample Ns.
+  CSV links refer to ordinary project output files, so preserve the directory layout.
+- `type_missing_pct.png` and `type_by_year.png`: missing construction type divided
+  by all HUD records in the relevant state or state/year.
+- `coordinates_missing_pct.png`: missing HUD coordinates divided by all TYPE=1 rows.
+- `annual_comparison.png`: source, main HUD-ID and first-address counts and units.
 
-`new_records` counts source TYPE=1 rows. `hud_coordinate_records` counts all such
-IDs with HUD points. `selected_records` counts the main first-address/HUD-point
-sample. The latter two apply the same coordinate requirement. `first_records`
-is the intermediate first-address count before requiring coordinates.
+`new_records` counts all source TYPE=1 rows. `selected_records` counts the main
+file and equals `hud_coordinate_records`. `drop_no_hud` is the sole production
+exclusion: main plus missing-coordinate rows equals all new-construction source
+rows in every state/year. Dates and hedonics do not determine main inclusion.
 
-`new_units`, `hud_coordinate_units` and `selected_units` sum nonmissing reported
-totals; `new_units_known`, `hud_coordinate_units_known` and `units_known` count
-contributors. If no counts are known, a zero aggregate is an empty sum, not evidence
-of zero housing. All-ID sums may include repeated financing.
+`new_units`, `selected_units` and `first_address_units` sum known total-unit
+counts; `new_units_known`, `units_known` and `first_address_units_known` count
+contributors. An empty sum is not evidence of zero housing. The sums are reported
+project totals, not verified distinct physical stock; repeated financing may remain.
 
-`drop_uncertain_order`, `drop_later`, `drop_same_year`, `drop_no_hud` are mutually
-exclusive source-row exclusion counts, in that priority. Their sum plus selected
-records equals new_records in every state/year cell. An undated singleton remains
-in the master and appears in unknown or after_2024, not a fabricated calendar year.
+## First-address comparison
+
+The audit first identifies the earliest placed-in-service year at each standardized
+state/city/street across all source TYPE=1 rows. A singleton may be undated. A
+repeated address with any missing year has uncertain ordering in this comparison.
+Earliest-year ties use the smallest HUD ID; only then is HUD-coordinate availability
+required. Each chosen record keeps its own cleaned hedonics. No values are combined
+across records, so only the counting rule differs from the main sample.
+
+`first_address_records` counts that comparison sample. `first_omitted_later`,
+`first_omitted_same_year` and `first_omitted_uncertain_order` describe HUD-coordinate
+records kept in the main file but omitted from this comparison. Their sum plus
+first_address_records equals the main count in every state/year. These are counting
+choices, not source-error classifications or a manual queue.
+
+The main sample has 28,456 records versus 27,210 first-address records, a 4.4%
+reduction. Corresponding reported units are 1,903,603 versus 1,834,264. The former
+first-address consensus policy produced 1,817,049; that policy is retired and its
+historical table is preserved in the logbook.
+
+## Availability and scope
 
 `year_known`, `units_known`, `low_income_units_known`, `bedrooms_known`,
-`family_known`, `elderly_known` and `disabled_known` count availability separately.
-Bedroom availability here requires the complete consistent five-category breakdown;
-individual bedroom-field availability is in the main sample_sizes.csv.
+`family_known`, `elderly_known` and `disabled_known` count available fields.
+Bedroom availability here requires the complete consistent five-category breakdown.
+Individual valid partial counts remain in the main dataset and summary tables.
 `year_units_known`, `year_units_bedrooms_known` and `all_controls_known` are joint
-Ns. The last additionally requires all three targeting indicators. These example
-control sets do not prescribe later regressions. Missing indicators are not recoded
-to no, and sample availability does not select another master dataset.
+Ns. The last additionally requires all three targeting indicators. They illustrate
+requirements, not chosen regression specifications or additional master samples.
 
-Scattered, resyndicated, unresolved-address and tied-coordinate-disagreement counts
-are retained flags, not exclusion reasons. No state exceptions or weights are used.
+Scattered, resyndicated, unresolved-address and repeated-address counts remain
+flags. No state-specific exceptions, weighting or source replacement occurs.
+`excess_coordinate_loss_pp` and `excess_controls_loss_pp` compare observed state
+availability with national availability at each state's own cohort composition,
+including unknown dates. Positive values indicate extra loss beyond that year mix,
+not a correction for selection bias. Unadjusted counts and rates remain primary.
 
-`excess_coordinate_loss_pp` and `excess_controls_loss_pp` compare each state's
-observed availability with national availability at its own cohort composition,
-including unknown dates as a separate cohort. Positive values indicate extra loss
-beyond that year mix, not proof of selection bias or its absence. The unadjusted
-counts and rates remain primary.
-
-## Findings and sources
-
-The main sample contains 27,210 locations; Kentucky retains 99. Requiring year,
-units and a complete bedroom mix gives 19,618 nationally. Adding known family,
-elderly and disabled targeting indicators gives 7,013, including none in Hawaii
-or Virginia. Coordinate gaps are also uneven: 18.2% in Maine versus 3.4% nationally.
-Showing changing Ns is necessary but does not make missingness random.
-
-Source bytes are unchanged: HUD 2024 and Census 2024 1:20 million state boundaries.
-The boundary download script pins its checksum. Geography is for maps only.
-Census geocoder responses are not a dependency. SaveData writes metadata reports
-with each CSV; reports never enter Make targets or prerequisites.
+HUD 2024 and Census 2024 1:20 million boundary bytes remain pinned and unchanged.
+Boundaries are for display only; Census geocoder responses are not a dependency.
+SaveData writes reports alongside each CSV; reports never enter Make dependencies.
 
 ## Verification
 
-The source-field and sample checks pass, including unchanged first-address IDs,
-exact use of representative HUD points, retained missing dates/hedonics/scope
-flags, and state/year exclusion arithmetic. A fresh GNU Make 3.81 build without
-Census responses or network access reproduced the datasets, maps and HTML. An
-unchanged second build did no work; deleting the main CSV regenerated its data
-and metadata report, while deleting metadata alone did not trigger a build. A
-synthetic prepared-input unit change propagated to the main file, state tables
-and HTML, retained the location and blanked its contradictory bedroom counts.
-Root and paper builds passed. The map, annual figure and rendered logbook were
-inspected; HTML table contents were checked, but browser interaction was not tested.
+All main-file fields match the corresponding prepared HUD ID; later phases,
+same-year records and undated records at repeated addresses remain. The source,
+coordinate and first-address counts reconcile in every state/year. Independent
+Python calculations reproduce numeric N, means, sample SDs, medians and ranges;
+category counts and both percentage denominators reconcile. A fresh GNU Make 3.81
+build without Census responses or network access reproduces the data, figures
+and HTML. Missing actual data regenerates its report; missing reports alone do
+not trigger rebuilding. A synthetic unit change before cleaning propagates to
+project values, summary tables and HTML while retaining the project. Root and
+paper builds pass. The annual figure, rendered logbook, HTML table contents and
+CSV links were inspected; HTML browser interaction was not tested.

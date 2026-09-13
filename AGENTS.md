@@ -16,28 +16,29 @@ exclude rehabilitation, mixed construction/rehabilitation, and existing building
 Assume new construction is correct unless repeated records or concrete conflicting
 evidence create a reason to investigate. Do not require universal external review.
 
-Keep original HUD IDs and source values. Retain the existing first-address rule:
-select the earliest new-construction record at standardized state/city/street,
-before requiring coordinates. Earliest-year ties use the smallest HUD ID and
-consensus hedonics. Repeated addresses with missing years have unresolved order
-and are excluded automatically; undated singletons remain. Unresolved address text
-gets a separate HUD-ID key. Addresses are not parcels; later phases are omitted
-by this counting definition, not declared errors. Compare with all HUD IDs under
-the same coordinate rule by state and year.
+The main observation is one unique HUD project ID with TYPE=1 and its own HUD
+coordinates. Keep every such ID; do not deduplicate by address, require complete
+ordering, combine phases, or replace a record's hedonics with cross-record
+consensus. Flag repeated standardized addresses and preserve each record's
+scattered-site and resyndication codes. First-address counting is a sensitivity
+comparison computed only in the state-diagnostics task. It uses the same cleaned
+record values as the main dataset; only the counting rule differs.
 
-Use the representative's HUD coordinates only. No Census fallback, geocoder
-confirmation, numbered-address requirement, or scattered-site/resyndication/tied-
-coordinate exclusion enters the main dataset. Keep those scope/conflict flags
-visible. Missing dates or hedonics do not remove otherwise selected locations.
-Keep valid partial bedroom counts; blank only invalid or contradictory fields.
-Report variable-specific and joint Ns, plus state/year missingness. Actual analyses
-must report their actual Ns; control comparisons should also use a common sample.
-No manual adjudication, building-specific overrides, or imputation enter production.
-Do not copy scattered-site project totals across sites or sum repeated financing
-as if it were established distinct physical construction. HUD points are primary
-project locations, not verified building footprints. The main file is
-tasks/build_lihtc/output/projects.csv; the old confident_projects.csv is retired.
-Census code and raw responses remain a historical audit outside the root build.
+Use HUD coordinates only. No Census fallback, geocoder confirmation, numbered-
+address requirement, or scope-flag exclusion enters the main dataset. Missing
+dates and hedonics do not remove locations. Keep valid partial bedroom counts;
+blank invalid or contradictory fields within each source record. Report summary
+statistics with variable-specific and joint Ns, plus state/year missingness.
+Actual analyses must report actual Ns; control comparisons should also use a
+common sample. No manual adjudication, building-specific overrides or imputation
+enter production. All source HUD IDs are checked for uniqueness.
+
+Preserve original source values and row-level provenance. Do not copy project
+unit totals across scattered sites. Summed units describe HUD-reported project
+records, not a verified stock of unique physical housing; repeated financing may
+remain. HUD points are primary project locations, not verified footprints. The
+main file is tasks/build_lihtc/output/projects.csv. Census code and responses
+remain a historical audit outside the root build; confident_projects.csv is retired.
 
 ## Source and build contract
 

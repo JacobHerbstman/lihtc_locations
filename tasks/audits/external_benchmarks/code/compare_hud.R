@@ -16,7 +16,7 @@ stopifnot(nrow(hud)==55345L,sum(as.numeric(hud$n_unitsr),na.rm=TRUE)==3860546,
   identical(observed$year,published$year),all(observed$properties==published$properties),all(observed$units==published$units))
 
 report <- capture.output({
-  cat("External benchmark calculations: HUD 2024 release; current first-address rules\n")
+  cat("External benchmark calculations: HUD 2024 release; HUD project-ID sample\n")
   cat("See ../README.md for external evidence and interpretation. No records are changed.\n\n")
   cat("HUD published all-type totals: 55,345 records and 3,860,546 adjusted units. Both match.\n")
   cat("All ten published annual property and adjusted-unit counts also match:\n")

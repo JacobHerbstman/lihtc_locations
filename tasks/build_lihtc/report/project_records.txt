@@ -1,6 +1,6 @@
 Rows: 29453
 Key: hud_id complete and unique
-Saved-file MD5: 2d31efeebd234ffe6166ec8b62323a7a
+Saved-file MD5: 089052ef767862ae657f57934d6051ed
 column	type	nonmissing	distinct	min	max
 hud_id	character	29453	29453	NA	NA
 project_name	character	29453	27644	NA	NA
@@ -52,16 +52,9 @@ address_queryable	logical	29453	2	NA	NA
 address_key	character	29453	28233	NA	NA
 hud_coordinates_present	logical	29453	2	NA	NA
 records_at_address	integer	29453	8	1	16
-address_years_complete	logical	29453	2	NA	NA
-first_year	integer	28480	39	1987	2024
-first_record	logical	29453	2	NA	NA
-representative_hud_id	character	29372	28197	NA	NA
-first_record_count	integer	29453	8	0	9
-keep_first	logical	29372	3	NA	NA
-selection_status	character	29453	6	NA	NA
+repeated_address	logical	29453	2	NA	NA
+address_resolved	logical	29453	2	NA	NA
 latitude	numeric	28456	26201	19.6497	64.845532
 longitude	numeric	28456	26230	-163.871442	-67.029107
-address_resolved	logical	29453	2	NA	NA
-tied_coordinates_disagree	logical	29453	2	NA	NA
 selected	logical	29453	2	NA	NA
-exclusion_reason	character	29453	5	NA	NA
+exclusion_reason	character	29453	2	NA	NA

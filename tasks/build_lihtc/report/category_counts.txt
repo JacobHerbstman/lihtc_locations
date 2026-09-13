@@ -1,0 +1,12 @@
+Rows: 22
+Key: variable, category complete and unique
+Saved-file MD5: 715d9ee677d96e2292d265725914fb85
+column	type	nonmissing	distinct	min	max
+variable	character	22	7	NA	NA
+value	integer	16	6	0	4
+n	integer	22	22	115	26169
+total_n	integer	22	1	28456	28456
+known_n	integer	22	7	7356	28456
+percent_all	numeric	22	22	0.404132696092213	91.963030643801
+percent_known	numeric	16	17	1.56334964654704	98.436650353453
+category	character	22	7	NA	NA

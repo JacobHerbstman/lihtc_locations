@@ -1,6 +1,6 @@
 Rows: 2040
 Key: state, year complete and unique
-Saved-file MD5: ea176d9a6d2f5b3efe45fdf24d5a8915
+Saved-file MD5: f40169c68a052aa8a7d10d1791457f76
 column	type	nonmissing	distinct	min	max
 state	character	2040	51	NA	NA
 year	character	2040	40	NA	NA
@@ -10,27 +10,26 @@ new_records	integer	2040	109	0	225
 new_units	integer	2040	1122	0	31001
 new_units_known	integer	2040	110	0	222
 hud_coordinate_records	integer	2040	106	0	220
-hud_coordinate_units	integer	2040	1096	0	30502
-hud_coordinate_units_known	integer	2040	103	0	217
-first_records	integer	2040	101	0	221
-drop_uncertain_order	integer	2040	10	0	16
-drop_later	integer	2040	9	0	22
-drop_same_year	integer	2040	17	0	33
-drop_no_hud	integer	2040	15	0	16
-selected_records	integer	2040	98	0	216
-selected_units	integer	2040	1091	0	29969
-year_known	integer	2040	95	0	174
-units_known	integer	2040	100	0	216
-low_income_units_known	integer	2040	102	0	216
-bedrooms_known	integer	2040	81	0	210
-family_known	integer	2040	82	0	216
-elderly_known	integer	2040	56	0	216
-disabled_known	integer	2040	56	0	216
-year_units_known	integer	2040	97	0	172
-year_units_bedrooms_known	integer	2040	79	0	131
+drop_no_hud	integer	2040	15	0	24
+first_address_records	integer	2040	98	0	216
+first_address_units	integer	2040	1099	0	29969
+first_address_units_known	integer	2040	99	0	216
+first_omitted_uncertain_order	integer	2040	10	0	15
+first_omitted_later	integer	2040	9	0	22
+first_omitted_same_year	integer	2040	16	0	33
+selected_records	integer	2040	106	0	220
+selected_units	integer	2040	1096	0	30502
+year_known	integer	2040	103	0	215
+units_known	integer	2040	103	0	217
+low_income_units_known	integer	2040	104	0	217
+bedrooms_known	integer	2040	86	0	211
+family_known	integer	2040	87	0	220
+elderly_known	integer	2040	62	0	220
+disabled_known	integer	2040	61	0	220
+year_units_known	integer	2040	100	0	215
+year_units_bedrooms_known	integer	2040	83	0	164
 all_controls_known	integer	2040	48	0	70
 unresolved_addresses	integer	2040	23	0	49
 scattered_records	integer	2040	18	0	28
-resyndicated_records	integer	2040	8	0	7
-tied_records	integer	2040	15	0	33
-tied_coordinate_disagreements	integer	2040	2	0	1
+resyndicated_records	integer	2040	9	0	8
+repeated_address_records	integer	2040	25	0	67

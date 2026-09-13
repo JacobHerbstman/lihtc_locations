@@ -127,3 +127,15 @@ Reproduce the exclusion counts from `project_records.csv` by restricting to
 `exclusion_reason`. For the 617 later-year records, the phase-name count uses
 `grepl("PHASE", project_name, ignore.case = TRUE)`; timing uses
 `pis_year - first_year <= 5`. Production code and data are unchanged by this review.
+
+## Adoption after the first-address reassessment
+
+Jacob accepted the HUD-ID definition. Production now keeps every unique TYPE=1
+HUD ID with HUD coordinates and its own cleaned fields: 28,456 records. Shared
+addresses and resyndication are flags; first-address counts are a sensitivity
+comparison computed inside state diagnostics. Cross-record consensus is removed.
+The historical queries above refer to revision `7b7ffd8` and its predecessors;
+`selected` now depends only on HUD coordinates and the former ordering/exclusion
+fields are no longer part of the production record table. The current audit
+compares 27,210 first-address records using their own hedonics with all 28,456 IDs.
+It does not restore the former consensus policy or any manual adjudication.
