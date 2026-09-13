@@ -55,3 +55,19 @@ Root `make`, `make -C paper`, subsequent idle dry runs, and `git diff --check`
 passed. The generated maps and the new logbook pages were visually inspected.
 These checks establish reproducibility and count consistency; they do not verify
 each HUD coordinate or resolve historical changes in Census definitions.
+
+## New York City addition, September 13, 2026
+
+The same city list and explicit map targets now include New York City (Census
+place GEOID 3651000). All 851 retained project points in the city match latest
+tract data. The city table retains 2,324 intersecting tracts, of which 1,919 have
+zero matched project points inside the city. Counts use the same whole-tract and
+city-boundary rules as the earlier maps.
+
+Changing the city list through root `make -j3` regenerated the city datasets and
+built all three previously absent New York maps. The existing Chicago and Detroit
+tract rows, income-group results and six map files remained identical. The HTML
+contains all nine maps, with its three embedded New York images matching the PNG
+files exactly. The new maps, data reports and updated logbook were inspected;
+root and paper builds, idle root/task builds, and `git diff --check` passed.
+No national acquisition, cleaning or tract assignment reran.

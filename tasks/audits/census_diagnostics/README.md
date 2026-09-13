@@ -1,7 +1,7 @@
 # Census and city diagnostics
 
 The task reads national tract/project outputs and 2024 tract/place polygons through
-plain symlinks. `cities.csv` selects Chicago and Detroit; it is the only city-specific
+plain symlinks. `cities.csv` selects Chicago, Detroit and New York City; it is the only city-specific
 input. Add the desired official place ID and corresponding map targets to show another
 city. Acquisition and cleaning remain national.
 

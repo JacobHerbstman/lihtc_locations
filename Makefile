@@ -215,13 +215,16 @@ tasks/audits/census_diagnostics/output/%.png: tasks/audits/census_diagnostics/co
 	$(MAKE) -C tasks/audits/census_diagnostics/code ../output/$*.png
 
 tasks/audits/census_diagnostics/output/diagnostics.html: tasks/audits/census_diagnostics/code/write_report.R \
+    tasks/audits/census_diagnostics/code/cities.csv \
     tasks/audits/census_diagnostics/code/Makefile tasks/audits/census_diagnostics/output/city_income_groups.csv \
     tasks/audits/census_diagnostics/output/city_tracts.csv tasks/assign_lihtc_tracts/output/projects_with_tracts.csv \
     tasks/audits/census_diagnostics/output/coverage_by_state.csv \
     tasks/audits/census_diagnostics/output/coverage_by_vintage.csv \
     tasks/audits/census_diagnostics/output/1714000_income.png tasks/audits/census_diagnostics/output/1714000_race.png \
     tasks/audits/census_diagnostics/output/1714000_homeowners.png tasks/audits/census_diagnostics/output/2622000_income.png \
-    tasks/audits/census_diagnostics/output/2622000_race.png tasks/audits/census_diagnostics/output/2622000_homeowners.png
+    tasks/audits/census_diagnostics/output/2622000_race.png tasks/audits/census_diagnostics/output/2622000_homeowners.png \
+    tasks/audits/census_diagnostics/output/3651000_income.png tasks/audits/census_diagnostics/output/3651000_race.png \
+    tasks/audits/census_diagnostics/output/3651000_homeowners.png
 	$(MAKE) -C tasks/audits/census_diagnostics/code ../output/diagnostics.html
 
 tasks/audits/census_diagnostics/output/summary.tex: tasks/audits/census_diagnostics/code/summarize_census.R \

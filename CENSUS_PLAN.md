@@ -2,7 +2,7 @@
 
 Implemented September 13, 2026, following Jacob's September 12 plan and approval.
 The 28,456-project HUD sample and all previous project values are preserved.
-Chicago is first; Detroit exercises the same code. National acquisition is independent
+Chicago is first; Detroit and New York City exercise the same code. National acquisition is independent
 of the city selection in `tasks/audits/census_diagnostics/code/cities.csv`.
 The [verification record](tasks/audits/census_diagnostics/verification.md) documents
 the unchanged HUD sample, complete tract coverage within each source, and fresh build.

@@ -4,6 +4,7 @@ all: ../output/city_tracts.csv ../output/city_income_groups.csv \
     ../output/coverage_by_state.csv ../output/coverage_by_cohort.csv ../output/coverage_by_vintage.csv \
     ../output/1714000_income.png ../output/1714000_race.png ../output/1714000_homeowners.png \
     ../output/2622000_income.png ../output/2622000_race.png ../output/2622000_homeowners.png \
+    ../output/3651000_income.png ../output/3651000_race.png ../output/3651000_homeowners.png \
     ../output/diagnostics.html ../output/summary.tex
 
 include ../../../shared/code/generic.make
@@ -33,10 +34,11 @@ include ../../../shared/code/generic.make
     ../input/projects_with_tracts.csv ../input/tracts_2024.gpkg ../input/places_2024.gpkg Makefile | ../output
 	$(R) map_city.R $* homeowners
 
-../output/diagnostics.html: write_report.R ../output/city_income_groups.csv ../output/city_tracts.csv \
+../output/diagnostics.html: write_report.R cities.csv ../output/city_income_groups.csv ../output/city_tracts.csv \
     ../input/projects_with_tracts.csv ../output/coverage_by_state.csv ../output/coverage_by_vintage.csv \
     ../output/1714000_income.png ../output/1714000_race.png ../output/1714000_homeowners.png \
-    ../output/2622000_income.png ../output/2622000_race.png ../output/2622000_homeowners.png Makefile | ../output
+    ../output/2622000_income.png ../output/2622000_race.png ../output/2622000_homeowners.png \
+    ../output/3651000_income.png ../output/3651000_race.png ../output/3651000_homeowners.png Makefile | ../output
 	$(R) $<
 
 ../output/summary.tex: summarize_census.R ../output/coverage_by_state.csv ../output/coverage_by_vintage.csv \

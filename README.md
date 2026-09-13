@@ -3,7 +3,7 @@
 The [Census extension](CENSUS_PLAN.md) adds national tract characteristics and
 income-ceiling fields. It combines NHGIS 1980/1990/2000 with ACS five-year releases
 2010–2024, retains tracts with zero LIHTC, and expresses monetary characteristics
-in 2024 dollars. [Chicago and Detroit maps and coverage tables](tasks/audits/census_diagnostics/output/diagnostics.html)
+in 2024 dollars. [Chicago, Detroit and New York City maps and coverage tables](tasks/audits/census_diagnostics/output/diagnostics.html)
 use the same national pipeline.
 
 The main dataset is `tasks/build_lihtc/output/projects.csv`: **28,456 HUD-reported

@@ -642,7 +642,7 @@ not area-weighted or clipped numerically. The current city comparison reports
 current housing-unit denominators; national baseline-window counts separately
 use the prior observation's housing units. Maps are descriptive current context,
 not evidence of neighborhood conditions when a project was built or a causal
-siting effect. Chicago and Detroit run through identical code.
+siting effect. All listed cities run through identical code.
 
 The separate HUD area-income-limit workbook remains unavailable: the official
 2024 MTSP endpoint returned HTTP 202, zero bytes and an AWS WAF challenge. Its
@@ -658,11 +658,9 @@ are save side effects. The Census coverage and city exhibits are in
 \path{tasks/audits/census_diagnostics/output/diagnostics.html}.
 
 A fresh build from the recorded sources reproduced all 41 CSV outputs and six
-city maps exactly. Checks preserved every original HUD field, reproduced baseline
-timing and dollar factors, and reconciled tract and city counts. Root and paper
-builds passed; the rendered results were inspected. Build propagation and failed
-download checks are recorded in
-\path{tasks/audits/census_diagnostics/verification.md}.
+city maps exactly. Checks preserved the original HUD fields, reproduced baseline
+timing and dollar factors, and reconciled tract and city counts. Builds and rendered
+results passed review; the task's verification record describes the remaining checks.
 
 \clearpage
 \begin{center}

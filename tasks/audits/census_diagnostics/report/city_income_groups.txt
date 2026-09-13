@@ -1,19 +1,19 @@
-Rows: 24
+Rows: 36
 Key: place_geoid, sample, income_group complete and unique
-Saved-file MD5: d0dd29530a48d38b6c4b72cc7502e56d
+Saved-file MD5: 92650e331af402d4b28434854ad5d35d
 column	type	nonmissing	distinct	min	max
-place_geoid	integer	24	2	1714000	2622000
-city_name	character	24	2	NA	NA
-sample	character	24	2	NA	NA
-income_group	character	24	6	NA	NA
-tracts	integer	24	10	19	157
-tracts_without_lihtc	integer	24	16	15	145
-lihtc_projects	integer	24	10	4	65
-projects_known_units	integer	24	10	4	65
-lihtc_units_known	integer	24	12	258	5011
-tracts_known_housing	integer	24	10	19	157
-housing_units_known	integer	24	18	8885	297733
-projects_in_tracts_known_housing	integer	24	10	4	65
-lihtc_units_in_tracts_known_housing	integer	24	12	258	5011
-projects_per_1000_current_housing	numeric	24	18	0.061660555017537	0.787844682048396
-lihtc_units_per_1000_current_housing	numeric	24	18	4.08410499704392	48.5087225661227
+place_geoid	integer	36	3	1714000	3651000
+city_name	character	36	3	NA	NA
+sample	character	36	2	NA	NA
+income_group	character	36	6	NA	NA
+tracts	integer	36	13	19	438
+tracts_without_lihtc	integer	36	21	15	401
+lihtc_projects	integer	36	16	4	458
+projects_known_units	integer	36	16	4	457
+lihtc_units_known	integer	36	18	258	50912
+tracts_known_housing	integer	36	13	19	438
+housing_units_known	integer	36	24	8885	906471
+projects_in_tracts_known_housing	integer	36	16	4	458
+lihtc_units_in_tracts_known_housing	integer	36	18	258	50912
+projects_per_1000_current_housing	numeric	36	24	0.061660555017537	0.787844682048396
+lihtc_units_per_1000_current_housing	numeric	36	24	4.08410499704392	63.018792255343
