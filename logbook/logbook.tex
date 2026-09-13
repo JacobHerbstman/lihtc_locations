@@ -368,4 +368,47 @@ the location and blanked contradictory bedrooms. Source-field checks and the
 paper build passed. No source bytes changed. The literature note documents
 paper-specific methods; the first-address rule remains our research definition.
 No neighborhood estimates or regressions were produced.
+\clearpage
+\section*{First address can discard later construction phases}
+\noindent September 12, 2026. Agent-drafted methods reassessment; baseline
+\texttt{ace2cc0}. Production data are unchanged by this review.
+
+Jacob questioned whether retaining only the first new-construction record at an
+address serves the intended dataset of new LIHTC construction, dates and basic
+hedonics. The review finds a substantive reason to change that recommendation:
+HUD explicitly describes separate construction phases sharing one representative
+address while remaining separate project records. An address therefore does not
+supply a sufficient duplicate identifier.
+
+The first-address rule removes 1,246 of 28,456 new-construction records with HUD
+coordinates. These are 617 later-year records, 550 additional earliest-year ties
+and 79 records with unresolved ordering. Among the later-year records, 122 have
+PHASE in their names and 522 are within five years of the first record. These
+patterns support the possibility of additional phases; they do not verify every
+record or its incremental units.
+
+The source lists Weeks Field Estates Phase I at 1301 Kellum Street with 74 units
+and a 2009 placed-in-service year, and Phase II at the same address with 56 units
+and a 2011 year. Both have HUD coordinates and new-construction classifications.
+Our rule retains the first and removes the second on address ordering alone.
+This example illustrates what the rule does; no building-specific investigation
+or manual correction was performed.
+
+The recommendation is to make each HUD-reported new-construction project ID the
+main observation, retaining HUD coordinates, dates and its own available hedonics.
+Shared addresses and resyndication remain flags. First-address counts would be
+retained as a sensitivity comparison. This better matches counting reported
+construction projects; first-address counting measures the first reported event
+at an address. Neither definition eliminates all source errors. The prior decision
+to retain first-address selection should have been reassessed against this
+research objective before describing the methods as settled.
+
+\paragraph{Sources and reproduction.} HUD, \emph{Updating the LIHTC Database:
+Projects Placed in Service Through 2006}, printed pp.~68--69, explains the
+project/address distinction. The exact link and current-data queries are in
+\path{tasks/audits/external_benchmarks/literature_methods.md}.
+Counts use the current all-record file and the two example IDs
+\texttt{AKA20090010} and \texttt{AKA20110020}. This review updates the research
+record only; it does not change the main file's 27,210 observations. Root
+\texttt{make} compiles this entry.
 \end{document}
