@@ -20,3 +20,6 @@ paper/*.out
 paper/*.bbl
 paper/*.blg
 # Keep the pinned HUD source; generated data live in task outputs.
+
+# NHGIS prohibits unrestricted redistribution; acquisition specifications and reports are tracked.
+data_raw/nhgis/

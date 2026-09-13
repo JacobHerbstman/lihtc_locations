@@ -1,5 +1,11 @@
 # LIHTC new-construction locations
 
+The [Census extension](CENSUS_PLAN.md) adds national tract characteristics and
+income-ceiling fields. It combines NHGIS 1980/1990/2000 with ACS five-year releases
+2010–2024, retains tracts with zero LIHTC, and expresses monetary characteristics
+in 2024 dollars. [Chicago and Detroit maps and coverage tables](tasks/audits/census_diagnostics/output/diagnostics.html)
+use the same national pipeline.
+
 The main dataset is `tasks/build_lihtc/output/projects.csv`: **28,456 HUD-reported
 new-construction project IDs with HUD coordinates**. It uses TYPE=1 in the 50
 states and DC from the pinned 2024 release. Every ID keeps its own placed-in-service
@@ -37,9 +43,25 @@ are written with their CSVs and never act as Make targets.
    own cleaned fields in the main `projects.csv`.
 4. `sample_sizes.R`, `summary_statistics.R` and `category_counts.R` in the same
    directory produce availability, continuous summaries and category frequencies.
-5. The state-diagnostics task compares first-address counts and units with the main
-   dataset, and describes state/year missingness. The root also builds the logbook.
-   `make` in `paper/` checks the data through the root and compiles the research sketch.
+5. `tasks/fetch_census/code/Makefile` acquires explicit ACS, NHGIS and price-index
+   snapshots. `CENSUS_API_KEY` and `IPUMS_API_KEY` come from the existing private R
+   environment; keys never enter the repository or request logs.
+6. `tasks/clean_census/code/Makefile` cleans the national tract observations and
+   prepares native tract/place polygons. Nominal values, source years, margins of
+   error, real values, counts and denominators remain explicit.
+7. `tasks/assign_lihtc_tracts/code/Makefile` assigns the HUD points to each tract
+   geography and to 2024 Census places. It joins latest and prior observations and
+   counts projects starting from all tracts.
+8. The two audit tasks produce construction/sample diagnostics and Census/city
+   diagnostics. Root `make` also builds the logbook. `make` in `paper/` checks the
+   data through the root and compiles the research sketch.
+
+The location file remains unchanged in membership. The extended project file is
+`tasks/assign_lihtc_tracts/output/projects_with_tracts.csv`; the all-tract observation
+file with zero counts is `tasks/assign_lihtc_tracts/output/tract_lihtc_counts.csv`.
+NHGIS source archives are kept locally in `data_raw/nhgis/` and excluded from Git
+because NHGIS restricts redistribution. The explicit extract selections and
+source fingerprints are tracked; replication needs an authorized NHGIS account.
 
 There is one main location file. The former `confident_projects.csv` and
 `review.csv` outputs are retired; exclusion accounting is in `project_records.csv`.

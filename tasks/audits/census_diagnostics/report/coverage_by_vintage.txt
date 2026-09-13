@@ -1,0 +1,17 @@
+Rows: 18
+Key: source, period_end complete and unique
+Saved-file MD5: 4d8a495c6ed82d624a6434614118ea53
+column	type	nonmissing	distinct	min	max
+source	character	18	2	NA	NA
+period_end	integer	18	18	1980	2024
+tracts	integer	18	9	46728	84415
+states	integer	18	1	51	51
+income_observed	integer	18	18	44424	82720
+rent_observed	integer	18	18	17847	79181
+home_value_observed	integer	18	18	0	81039
+homeowner_share_observed	integer	18	16	44424	83364
+race_observed	integer	18	18	46469	83617
+college_observed	integer	18	17	44584	83596
+income_moe_observed	integer	18	16	0	82720
+new_lihtc_projects	integer	17	18	475	8738
+tracts_zero_new_lihtc	integer	17	18	45685	83889

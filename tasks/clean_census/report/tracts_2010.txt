@@ -1,0 +1,5 @@
+Features: 72765
+CRS: EPSG 4326
+Key: native Census GEOID, complete and unique
+Repaired invalid geometries: 44
+Source ZIP MD5: f31952a96a8d68dfa0a75e54ed3ac08d

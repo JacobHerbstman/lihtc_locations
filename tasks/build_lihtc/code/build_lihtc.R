@@ -5,7 +5,10 @@ source("../../shared/code/save_data.R")
 # 1. Read every prepared HUD new-construction record, preserving its own fields.
 x <- fread("../input/projects.csv", na.strings = "", colClasses = c(
   hud_id = "character", zip = "character", zip_raw = "character",
-  state_project_id = "character"
+  state_project_id = "character",
+  income_ceiling_raw = "character", lower_income_ceiling_raw = "character",
+  lower_ceiling_units_raw = "character",
+  hud_tract_1990 = "character", hud_tract_2000 = "character", hud_tract_2010 = "character", hud_tract_2020 = "character", hud_place_1990 = "character", hud_place_2000 = "character", hud_place_2010 = "character", hud_place_2020 = "character"
 ))
 stopifnot(nrow(x) == 29453L, !anyNA(x$hud_id), !anyDuplicated(x$hud_id))
 

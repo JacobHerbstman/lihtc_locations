@@ -512,4 +512,160 @@ The existing numeric summaries continue to report variable-specific Ns.
 \begin{center}
 \includegraphics[width=\textwidth]{../tasks/audits/state_diagnostics/output/project_characteristics.png}
 \end{center}
+\clearpage
+\section*{Plan national neighborhood data and city comparisons}
+\noindent September 12, 2026. Agent-drafted research record; baseline
+\texttt{93f537e}. Jacob requested an implementation plan to add HUD income-ceiling
+fields, Census demographics and tract assignments. Chicago is the first city;
+the same pipeline must expand quickly to other major cities.
+
+The plan uses three national tasks: fetch Census tables and boundaries, clean
+demographic observations, and attach neighborhoods to the existing HUD project
+IDs. Income-ceiling fields will be added in the existing LIHTC tasks. The current
+28,456-project sample and source bytes are unchanged. No production acquisition,
+new demographic merge, city sample, or exploratory neighborhood result has been
+implemented by this planning work.
+
+ACS tract median household income describes the neighborhood. Multiplying it
+by 50 or 60 percent cannot recover the project's LIHTC income or rent limit.
+HUD publishes area income limits based on family income, household size and
+program adjustments; dollar affordability benchmarks require that separate source.
+ACS neighborhood median gross rent can be attached as its own characteristic.
+Actual project rents remain unavailable.
+
+The existing Census credential mechanism in aldermanic\_privilege works here
+without copying or printing the key. Small requests returned 1,332 Cook County
+tract records from 2024 ACS and 1,344 from 2000 SF3. The documented 1990 SF3
+endpoint returned HTTP 404. NHGIS metadata access works with the existing IPUMS
+key; 1980 and 1990 STF3 include tract-level income, tenure and race tables.
+An initial unauthorized response came from an incorrectly formatted header and
+was resolved without changing the key. These probes establish limited feasibility,
+not completed source acquisition; no NHGIS extract was requested.
+
+HUD's original workbook also supplies vintage-specific tract IDs. Among selected
+projects, the counts with 11-digit codes are 19,538 for 1990, 21,957 for 2000,
+28,455 for 2010 and 24,029 for 2020. These are format checks only. The proposal
+uses codes that match the relevant Census geography and assigns missing cases
+from the existing HUD points and same-vintage polygons. A missing or ambiguous
+assignment remains visible without dropping the project.
+
+The proposed current context uses 2020--2024 ACS. A separate baseline context
+uses the latest demographic observation ending strictly before the project's
+placed-in-service year, retaining the source window and its age. It predates
+placed-in-service, not necessarily planning or construction. The 1980 Census is
+needed for pre-existing characteristics of the earliest LIHTC cohorts. Native
+tract boundaries remain explicit; this avoids requiring historical count
+interpolation for a point-to-neighborhood join. The 2005--2009 ACS has documented
+geographic exceptions and is deferred from the initial historical join.
+
+National source files will include neighborhoods with no LIHTC projects. A
+common city audit will select official place boundaries, flag edge tracts, and
+compare project and reported-unit distributions with neighborhood housing-unit
+distributions. City-specific source downloads, hand-adjusted building matches
+and cross-vintage joins based only on an unchanged-looking tract code are not
+part of the proposal.
+
+\paragraph{Sources and reproduction.} The implementation order, table keys,
+variable definitions, source links and completion checks are in
+\path{CENSUS_PLAN.md}. Root \texttt{make} compiles this planning entry; the
+planning work makes no change to the data-producing graph.
+
+\clearpage
+\section*{Build national Census context and retain zero-project tracts}
+\noindent September 13, 2026. Agent-drafted research record; source-code baseline
+\texttt{93f537e}. Jacob authorized the Census extension, named the geography task
+\texttt{assign\_lihtc\_tracts}, requested real dollars and all tracts, and selected
+Chicago first with rapid expansion to major cities.
+
+The HUD sample is unchanged: all 28,456 IDs and all 31 previous fields match the
+pre-extension file exactly. INC\_CEIL, LOW\_CEIL, CEILUNIT and original tract/place
+codes are now carried through. There are 19,525 reported elected-ceiling categories;
+8,931 are missing. Fifteen lower-ceiling unit counts conflict with known total
+units or valid counts and become missing. Fifty indicator/count pairs disagree;
+those flags do not force reconciliation or remove a project. Income averaging
+remains a category, not a presumed common percentage.
+
+National source acquisition now includes 1980/1990/2000 NHGIS sample-based tract
+tables, all 51 state/DC responses for each ACS five-year release ending 2010--2024,
+and national native tract/place boundaries. Responses are archived unchanged;
+private API keys remain in the established R environment. NHGIS v21.0 extract
+selections, source fingerprints and reports are recorded. Its archives remain local
+under the provider's redistribution terms. The 2010/2011 education calculation
+uses the source table by sex; later releases use the combined table.
+
+All observed tracts enter the demographic file, whether or not they contain LIHTC.
+Counts retain separate known-unit Ns. Historical suppression and documented bounded
+medians are missing as exact estimates, while raw values and annotations remain.
+The 1980 college measure is four or more completed years; later years measure a
+bachelor's degree or more. Asian/Pacific Islander categories are not silently
+converted to Asian alone. The 1980 source has weak usable rent coverage; positive
+published medians are retained unless suppressed or documented as bounds.
+
+The final geography rule assigns both cities and tracts from the same recorded
+HUD point. Supplied tract IDs and disagreements remain available; 1,352 source
+codes present in the 2024 boundary file differ from the tract containing the point.
+This is not proof of an error in either field. It makes the spatial description
+follow the retained location consistently, without replacing or verifying coordinates.
+Unmatched points and multiple polygon matches remain explicit; no nearest polygon
+or building-specific decision is used.
+
+An intermediate explanatory check mistakenly combined Detroit, Michigan and
+Detroit, Texas by place name (119 points) and compared that with Michigan's 118.
+The production city filter always used official place GEOIDs and was correct.
+That mistaken comparison is not evidence of a tract error and is not the basis
+for the final point-based research definition.
+
+The latest context is 2020--2024 ACS. Baseline is the latest source observation
+ending strictly before placed-in-service, with its period and age retained. Missing
+fields do not trigger older-value or future-value substitution. Boundary snapshots
+and demographic release years are separate; a tract still must match its actual
+release. Annual geography exceptions and early untracted areas can leave gaps.
+Missing context never removes the HUD project.
+
+Real-dollar fields use 2024 dollars with Census's published continuous national
+historical-income index: R-CPI-U-RS before 2000, chained CPI-U thereafter. BLS's
+all-years R-CPI-U-RS workbook returned HTTP 403; the available Census series was
+adopted explicitly, not as an automatic download fallback. This differs from the
+all-years R-CPI-U-RS convention for official ACS comparisons. Income dollar years
+are 1979/1989/1999 in the historical Censuses, while housing dollars use the Census
+year. ACS already expresses dollar values in the final survey year. Estimates and
+monetary MOEs use the same conversion. This adjusts prices over time, not local
+cost-of-living differences; it does not turn tract household income into a HUD
+program eligibility limit.
+
+\clearpage
+\input{../tasks/audits/census_diagnostics/output/summary.tex}
+
+City geography is fixed at 2024. All positive-area overlapping tracts are kept,
+with an edge flag and an interior-tract sensitivity. Whole-tract demographics are
+not area-weighted or clipped numerically. The current city comparison reports
+current housing-unit denominators; national baseline-window counts separately
+use the prior observation's housing units. Maps are descriptive current context,
+not evidence of neighborhood conditions when a project was built or a causal
+siting effect. Chicago and Detroit run through identical code.
+
+The separate HUD area-income-limit workbook remains unavailable: the official
+2024 MTSP endpoint returned HTTP 202, zero bytes and an AWS WAF challenge. Its
+source task fails before publishing data and is separate from the working Census
+build. Dollar eligibility benchmarks have not been constructed. Correct HUD area
+and household-size matching, including New England towns, still requires the
+accessible source. No ACS-based rent or eligibility proxy is substituted.
+
+\paragraph{Sources and reproduction.} \path{CENSUS_PLAN.md} records actual methods,
+source links, fields and remaining source access. Root \texttt{make} owns the full
+graph; task Makefiles use explicit inputs, outputs and plain symlinks. Data reports
+are save side effects. The Census coverage and city exhibits are in
+\path{tasks/audits/census_diagnostics/output/diagnostics.html}.
+
+A fresh build from the recorded sources reproduced all 41 CSV outputs and six
+city maps exactly. Checks preserved every original HUD field, reproduced baseline
+timing and dollar factors, and reconciled tract and city counts. Root and paper
+builds passed; the rendered results were inspected. Build propagation and failed
+download checks are recorded in
+\path{tasks/audits/census_diagnostics/verification.md}.
+
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth,height=0.90\textheight,keepaspectratio]{../tasks/audits/census_diagnostics/output/1714000_income.png}
+\end{center}
 \end{document}

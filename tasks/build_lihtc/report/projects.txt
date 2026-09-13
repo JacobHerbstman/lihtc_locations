@@ -1,6 +1,6 @@
 Rows: 28456
 Key: hud_id complete and unique
-Saved-file MD5: c283ac867b62df4546844636f800574f
+Saved-file MD5: 1b38a55215b363d545b6523b8e5eb7b2
 column	type	nonmissing	distinct	min	max
 hud_id	character	28456	28456	NA	NA
 project_name	character	28456	26759	NA	NA
@@ -33,3 +33,20 @@ address_key	character	28456	27246	NA	NA
 address_resolved	logical	28456	2	NA	NA
 records_at_address	integer	28456	7	1	16
 repeated_address	logical	28456	2	NA	NA
+income_ceiling_raw	integer	21397	5	1	9
+income_ceiling_type	character	19525	4	NA	NA
+lower_income_ceiling_raw	integer	16861	3	1	2
+lower_income_ceiling	integer	16861	3	0	1
+lower_ceiling_units_raw	integer	11857	199	0	348
+lower_ceiling_units	integer	11842	195	0	323
+lower_ceiling_units_conflict	logical	28456	2	NA	NA
+lower_ceiling_indicator_conflict	logical	28456	2	NA	NA
+low_income_share	numeric	27838	1758	0	1
+hud_tract_1990	character	28456	11676	NA	NA
+hud_tract_2000	character	28456	12902	NA	NA
+hud_tract_2010	character	28456	15599	NA	NA
+hud_tract_2020	character	28456	14820	NA	NA
+hud_place_1990	integer	15524	1552	3	9034
+hud_place_2000	integer	19902	4990	100	89150
+hud_place_2010	integer	28420	5556	100	99999
+hud_place_2020	integer	24009	5088	100	99999

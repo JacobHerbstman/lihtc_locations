@@ -20,6 +20,12 @@ x <- hud[type == "1" & proj_st %in% c(state.abb, "DC"), .(
   hud_adjusted_total_units = n_unitsr, hud_adjusted_low_income_units = li_unitr,
   bedrooms_0_raw = n_0br, bedrooms_1_raw = n_1br, bedrooms_2_raw = n_2br,
   bedrooms_3_raw = n_3br, bedrooms_4_raw = n_4br,
+  income_ceiling_raw = inc_ceil, lower_income_ceiling_raw = low_ceil,
+  lower_ceiling_units_raw = ceilunit,
+  hud_tract_1990 = fips1990, hud_tract_2000 = fips2000,
+  hud_tract_2010 = fips2010, hud_tract_2020 = fips2020,
+  hud_place_1990 = place1990, hud_place_2000 = place2000,
+  hud_place_2010 = place2010, hud_place_2020 = place2020,
   credit_type = credit, target_family_raw = trgt_fam,
   target_elderly_raw = trgt_eld, target_disabled_raw = trgt_dis,
   scattered_site = scattered_site_cd, resyndicated = resyndication_cd,
@@ -43,6 +49,22 @@ x[total_units == 0, total_units := NA_real_]
 x[, units_conflict := !is.na(total_units) & !is.na(low_income_units) &
     low_income_units > total_units]
 x[units_conflict == TRUE, low_income_units := NA_real_]
+
+# HUD's elected ceiling is categorical; income averaging does not identify unit-level limits.
+x[, income_ceiling_type := fcase(income_ceiling_raw == "1", "50_pct_ami",
+  income_ceiling_raw == "2", "60_pct_ami", income_ceiling_raw == "3", "income_averaging",
+  default = NA_character_)]
+x[, lower_income_ceiling := fcase(lower_income_ceiling_raw == "1", 1L,
+  lower_income_ceiling_raw == "2", 0L, default = NA_integer_)]
+x[, lower_ceiling_units := suppressWarnings(as.numeric(lower_ceiling_units_raw))]
+x[, lower_ceiling_units_conflict := !is.na(lower_ceiling_units) &
+  (lower_ceiling_units < 0 | lower_ceiling_units != floor(lower_ceiling_units) |
+   (!is.na(total_units) & lower_ceiling_units > total_units))]
+x[lower_ceiling_units_conflict == TRUE, lower_ceiling_units := NA_real_]
+x[, lower_ceiling_indicator_conflict := !is.na(lower_income_ceiling) & !is.na(lower_ceiling_units) &
+  ((lower_income_ceiling == 0L & lower_ceiling_units > 0) |
+   (lower_income_ceiling == 1L & lower_ceiling_units == 0))]
+x[, low_income_share := low_income_units / total_units]
 
 # Keep valid partial bedroom counts. Blank a breakdown only when it contradicts
 # total units; unavailable categories alone do not invalidate observed categories.

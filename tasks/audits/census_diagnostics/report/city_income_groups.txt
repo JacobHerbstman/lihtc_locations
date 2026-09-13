@@ -1,0 +1,19 @@
+Rows: 24
+Key: place_geoid, sample, income_group complete and unique
+Saved-file MD5: d0dd29530a48d38b6c4b72cc7502e56d
+column	type	nonmissing	distinct	min	max
+place_geoid	integer	24	2	1714000	2622000
+city_name	character	24	2	NA	NA
+sample	character	24	2	NA	NA
+income_group	character	24	6	NA	NA
+tracts	integer	24	10	19	157
+tracts_without_lihtc	integer	24	16	15	145
+lihtc_projects	integer	24	10	4	65
+projects_known_units	integer	24	10	4	65
+lihtc_units_known	integer	24	12	258	5011
+tracts_known_housing	integer	24	10	19	157
+housing_units_known	integer	24	18	8885	297733
+projects_in_tracts_known_housing	integer	24	10	4	65
+lihtc_units_in_tracts_known_housing	integer	24	12	258	5011
+projects_per_1000_current_housing	numeric	24	18	0.061660555017537	0.787844682048396
+lihtc_units_per_1000_current_housing	numeric	24	18	4.08410499704392	48.5087225661227

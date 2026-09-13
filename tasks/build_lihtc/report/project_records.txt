@@ -1,6 +1,6 @@
 Rows: 29453
 Key: hud_id complete and unique
-Saved-file MD5: 089052ef767862ae657f57934d6051ed
+Saved-file MD5: 3a788ce35c3c86097cdcc0b704336d57
 column	type	nonmissing	distinct	min	max
 hud_id	character	29453	29453	NA	NA
 project_name	character	29453	27644	NA	NA
@@ -21,6 +21,17 @@ bedrooms_1_raw	integer	26358	236	0	482
 bedrooms_2_raw	integer	26437	227	0	653
 bedrooms_3_raw	integer	26031	162	0	228
 bedrooms_4_raw	integer	25301	94	0	161
+income_ceiling_raw	integer	21871	5	1	9
+lower_income_ceiling_raw	integer	17254	3	1	2
+lower_ceiling_units_raw	integer	12055	199	0	348
+hud_tract_1990	character	29453	12113	NA	NA
+hud_tract_2000	character	29453	13357	NA	NA
+hud_tract_2010	character	29453	15648	NA	NA
+hud_tract_2020	character	29453	14843	NA	NA
+hud_place_1990	integer	15553	1555	3	9034
+hud_place_2000	integer	19947	4998	100	89150
+hud_place_2010	integer	28420	5556	100	99999
+hud_place_2020	integer	24041	5099	100	99999
 credit_type	integer	25589	5	1	4
 target_family_raw	integer	19063	4	0	2
 target_elderly_raw	integer	17317	4	0	2
@@ -35,6 +46,12 @@ allocation_year	integer	28767	39	1987	2024
 total_units	integer	29321	424	1	1238
 low_income_units	integer	28897	380	0	884
 units_conflict	logical	29453	2	NA	NA
+income_ceiling_type	character	19996	4	NA	NA
+lower_income_ceiling	integer	17254	3	0	1
+lower_ceiling_units	integer	12040	195	0	323
+lower_ceiling_units_conflict	logical	29453	2	NA	NA
+lower_ceiling_indicator_conflict	logical	29453	2	NA	NA
+low_income_share	numeric	28786	1778	0	1
 bedrooms_0	integer	22298	178	0	476
 bedrooms_1	integer	23082	233	0	482
 bedrooms_2	integer	23160	222	0	653

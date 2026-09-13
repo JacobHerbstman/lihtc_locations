@@ -1,0 +1,14 @@
+Rows: 28456
+Key: hud_id complete and unique
+Saved-file MD5: 3409c14e2a7e918bddb0f845a2de059e
+column	type	nonmissing	distinct	min	max
+hud_id	character	28456	28456	NA	NA
+state	character	28456	51	NA	NA
+boundary_year	integer	28456	1	2020	2020
+hud_tract_source	character	28456	14820	NA	NA
+tract_geoid	integer64	28444	16331	1001020300	56043000200
+assignment_method	character	28456	2	NA	NA
+point_candidates	integer	28456	2	0	1
+hud_tract_in_boundary_file	logical	28456	2	NA	NA
+hud_tract_disagrees	logical	24017	3	NA	NA
+assigned_state_fips	integer	28444	52	1	56

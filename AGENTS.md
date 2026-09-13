@@ -37,7 +37,7 @@ Preserve original source values and row-level provenance. Do not copy project
 unit totals across scattered sites. Summed units describe HUD-reported project
 records, not a verified stock of unique physical housing; repeated financing may
 remain. HUD points are primary project locations, not verified footprints. The
-main file is tasks/build_lihtc/output/projects.csv. Census code and responses
+main file is tasks/build_lihtc/output/projects.csv. Census geocoder code and responses
 remain a historical audit outside the root build; confident_projects.csv is retired.
 
 ## Source and build contract
@@ -62,6 +62,12 @@ remain a historical audit outside the root build; confident_projects.csv is reti
 - Verify affected builds, missing actual outputs, incrementality, and the rendered
   logbook. Inspect reports and use short literal commit messages.
 
-No neighborhood analysis or complete financing-history reconstruction is part of
-this reset. Research logs describe observations, rules, and unresolved questions
+The authorized Census extension fetches all national tracts, combines historical
+NHGIS and ACS observations, and assigns projects in assign_lihtc_tracts. Retain
+tracts with zero LIHTC projects and all original LIHTC rows. Assign tracts and
+cities from the same HUD point; retain supplied HUD tract codes and disagreement
+flags. No coordinate replacement or source-ID fallback. Keep source periods,
+geography vintages, denominators and dollar years explicit. Chicago is the first
+city in a national workflow. Complete financing-history reconstruction remains
+out of scope. Research logs describe observations, rules, and unresolved questions
 without treating a flag as a confirmed error.

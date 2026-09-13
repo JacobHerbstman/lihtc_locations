@@ -1,0 +1,15 @@
+Rows: 51
+Key: state complete and unique
+Saved-file MD5: 65639a4e5eec0f36b8f3e6be32b6c623
+column	type	nonmissing	distinct	min	max
+state	character	51	51	NA	NA
+projects	integer	51	51	43	3206
+known_pis_year	integer	51	50	43	3189
+latest_tract_matched	integer	51	51	43	3203
+baseline_tract_matched	integer	51	51	43	3181
+latest_income_observed	integer	51	50	42	3166
+baseline_income_observed	integer	51	51	43	3168
+latest_homeowner_observed	integer	51	51	43	3203
+baseline_homeowner_observed	integer	51	51	43	3176
+latest_tract_absent_from_release	integer	51	2	0	5
+baseline_tract_absent_from_release	integer	51	2	0	2

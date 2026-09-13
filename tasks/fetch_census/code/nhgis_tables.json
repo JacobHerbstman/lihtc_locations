@@ -1,0 +1,57 @@
+{
+  "datasets": {
+    "1980_STF3": {
+      "dataTables": [
+        "NT1A",
+        "NT4A",
+        "NT12",
+        "NT13",
+        "NT14A",
+        "NT48A",
+        "NT69",
+        "NT91A",
+        "NT97B",
+        "NT127"
+      ],
+      "geogLevels": [
+        "tract"
+      ]
+    },
+    "1990_STF3": {
+      "dataTables": [
+        "NP1",
+        "NP12",
+        "NP57",
+        "NP80A",
+        "NP121",
+        "NH1",
+        "NH8",
+        "NH43A",
+        "NH61A"
+      ],
+      "geogLevels": [
+        "tract"
+      ]
+    },
+    "2000_SF3a": {
+      "dataTables": [
+        "NP007B",
+        "NP037C",
+        "NP053A",
+        "NP087B",
+        "NH001A",
+        "NH007A",
+        "NH063A",
+        "NH076A"
+      ],
+      "geogLevels": [
+        "tract"
+      ]
+    }
+  },
+  "dataFormat": "csv_no_header",
+  "geographicExtents": [
+    "*"
+  ],
+  "description": "LIHTC national historical tract characteristics: 1980, 1990, 2000"
+}

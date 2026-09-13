@@ -1,6 +1,6 @@
 # Main-project variable dictionary
 
-`output/projects.csv` has 28,456 rows and 31 columns. One row is one original
+`output/projects.csv` has 28,456 rows and 48 columns. One row is one original
 HUD project ID classified as new construction and carrying HUD coordinates.
 Every row keeps its own date and hedonics. Empty CSV cells mean missing, never zero.
 Read IDs and ZIP codes as text, for example from the repository root:
@@ -71,3 +71,22 @@ numeric characteristic; quantiles use R's default type 7. `category_counts.csv`
 gives one row per observed category (including Missing), its count, all-project
 N, known N, percent of all and percent among known. Actual analyses report their
 own Ns. Credit codes are categorical; they are not averaged numerically.
+
+
+## HUD affordability and geography fields added September 13, 2026
+
+- `income_ceiling_raw`: source INC_CEIL; `income_ceiling_type`: 50_pct_ami,
+  60_pct_ami, income_averaging, or missing. The third category is not a unit-level limit.
+- `lower_income_ceiling_raw`: source LOW_CEIL; `lower_income_ceiling`: 1=yes, 0=no,
+  missing=not reported.
+- `lower_ceiling_units_raw`: source CEILUNIT; `lower_ceiling_units`: nonnegative
+  integer no greater than known total units. Invalid counts are missing with
+  `lower_ceiling_units_conflict`; inconsistent indicator/count pairs have
+  `lower_ceiling_indicator_conflict`, without forced reconciliation.
+- `low_income_share`: low_income_units / total_units when both are usable.
+- `hud_tract_1990/2000/2010/2020`: source FIPS1990/FIPS2000/FIPS2010/FIPS2020.
+- `hud_place_1990/2000/2010/2020`: source PLACE1990/PLACE2000/PLACE2010/PLACE2020.
+  Read these as character fields; original nonnumeric missing codes are retained.
+
+These additions do not change any previous field or project inclusion. Census
+context is in a separate extended project file; see [Census methods](../../CENSUS_PLAN.md).

@@ -1,0 +1,16 @@
+Rows: 1732
+Key: state, cohort complete and unique
+Saved-file MD5: 74b4fbd2e0cd6f3c79341d2abcd958dd
+column	type	nonmissing	distinct	min	max
+state	character	1732	51	NA	NA
+cohort	character	1732	39	NA	NA
+projects	integer	1732	105	1	229
+known_pis_year	integer	1732	103	0	215
+latest_tract_matched	integer	1732	103	1	229
+baseline_tract_matched	integer	1732	101	0	214
+latest_income_observed	integer	1732	104	1	229
+baseline_income_observed	integer	1732	100	0	214
+latest_homeowner_observed	integer	1732	103	1	229
+baseline_homeowner_observed	integer	1732	101	0	214
+latest_tract_absent_from_release	integer	1732	3	0	2
+baseline_tract_absent_from_release	integer	1732	2	0	1

@@ -1,0 +1,7 @@
+Extract: 13
+{
+  "shapefiles": [
+    "us_tract_2024_tl2024"
+  ],
+  "description": "LIHTC national 2024 native tract boundaries"
+}

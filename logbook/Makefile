@@ -7,5 +7,7 @@ logbook.pdf: logbook.tex reset_summary.tex corroboration_summary.tex corroborati
     ../tasks/audits/state_diagnostics/output/type_missing_pct.png \
     ../tasks/audits/state_diagnostics/output/coordinates_missing_pct.png \
     ../tasks/audits/state_diagnostics/output/project_characteristics.png \
-    ../tasks/audits/state_diagnostics/output/state_summary.csv
+    ../tasks/audits/state_diagnostics/output/state_summary.csv \
+    ../tasks/audits/census_diagnostics/output/summary.tex \
+    ../tasks/audits/census_diagnostics/output/1714000_income.png
 	pdflatex -halt-on-error -interaction=nonstopmode logbook.tex

@@ -1,0 +1,7 @@
+Extract: 12
+{
+  "shapefiles": [
+    "us_tract_2020_tl2020"
+  ],
+  "description": "LIHTC national 2020 native tract boundaries"
+}

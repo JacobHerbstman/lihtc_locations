@@ -1,0 +1,10 @@
+Rows: 28456
+Key: hud_id complete and unique
+Saved-file MD5: 839dc9e6dfa1c0efd767fbd4289885ce
+column	type	nonmissing	distinct	min	max
+hud_id	character	28456	28456	NA	NA
+place_vintage	integer	28456	1	2024	2024
+place_candidates	integer	28456	2	0	1
+place_geoid	integer	25383	6189	100988	5684925
+place_name	character	25383	4802	NA	NA
+place_status	character	28456	2	NA	NA
