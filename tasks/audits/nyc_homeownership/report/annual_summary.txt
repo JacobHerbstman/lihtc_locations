@@ -1,0 +1,13 @@
+Rows: 36
+Key: placement_year complete and unique
+Saved-file MD5: 061134fd7199c91b0dd3ce4b228c8934
+column	type	nonmissing	distinct	min	max
+placement_year	integer	36	36	1987	2022
+period_end	integer	36	15	1980	2021
+boundary_year	integer	36	5	1980	2020
+projects	integer	36	24	0	48
+tract_years	integer	36	10	2115	2229
+housing_units	integer	36	15	2946367	3590893
+project_mean_homeowner_pct	numeric	33	34	1.2402088772846	29.1256157635468
+housing_weighted_homeowner_pct	numeric	36	15	23.1319822368231	33.2802037859885
+location_gap_pp	numeric	33	34	-27.4264313349656	5.99363352672369

@@ -6,6 +6,12 @@ income-ceiling fields. It combines NHGIS 1980/1990/2000 with ACS five-year relea
 in 2024 dollars. [Chicago, Detroit and New York City maps and coverage tables](tasks/audits/census_diagnostics/output/diagnostics.html)
 use the same national pipeline.
 
+The [New York timing comparison](tasks/audits/nyc_homeownership/output/diagnostics.html)
+compares placements through 2002 with 2003–2022 using prior homeownership and
+all NYC tracts, including zero placements. Its [methods and findings](tasks/audits/nyc_homeownership/README.md)
+distinguish the negative homeowner association in both periods from a change in
+that association over time.
+
 The main dataset is `tasks/build_lihtc/output/projects.csv`: **28,456 HUD-reported
 new-construction project IDs with HUD coordinates**. It uses TYPE=1 in the 50
 states and DC from the pinned 2024 release. Every ID keeps its own placed-in-service

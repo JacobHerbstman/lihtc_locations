@@ -1,0 +1,25 @@
+Rows: 851
+Key: hud_id complete and unique
+Saved-file MD5: c66733e90f28f403dded362b868f8d49
+column	type	nonmissing	distinct	min	max
+hud_id	character	851	851	NA	NA
+pis_year	integer	848	35	1990	2023
+total_units	integer	850	291	5	1238
+longitude	numeric	851	783	-74.162625	-73.748729
+latitude	numeric	851	780	40.572965	40.904241
+baseline_tract_geoid	integer64	848	418	36005000200	36085031901
+baseline_tract_match_status	character	851	2	NA	NA
+baseline_period_start	integer	848	17	1980	2018
+baseline_period_end	integer	848	17	1980	2022
+baseline_boundary_year	integer	848	7	1980	2024
+baseline_age_years	integer	848	11	1	10
+baseline_homeowner_share	numeric	846	595	0	0.781663516068053
+baseline_owner_occupied	integer	848	362	0	4731
+baseline_occupied_units	integer	848	559	0	12278
+baseline_housing_units	integer	848	570	0	12799
+county_fips	integer	848	6	36005	36085
+in_years	logical	851	2	NA	NA
+era	character	848	3	NA	NA
+location_in_panel	logical	851	2	NA	NA
+sample_status	character	851	4	NA	NA
+analysis_included	logical	851	2	NA	NA

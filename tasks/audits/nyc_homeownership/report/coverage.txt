@@ -1,0 +1,22 @@
+Rows: 4
+Key: specification, era complete and unique
+Saved-file MD5: 5cfa502b632560819e1fa98a5f09a9b4
+column	type	nonmissing	distinct	min	max
+specification	character	4	2	NA	NA
+era	character	4	2	NA	NA
+years	integer	4	4	2	20
+projects	integer	4	4	41	700
+projects_with_prior_tract	integer	4	4	41	700
+projects_in_analysis	integer	4	4	41	698
+projects_missing_homeowners	integer	4	3	0	2
+projects_known_units	integer	4	4	41	697
+units_known	integer	4	4	5422	91462
+tract_years	integer	4	4	4434	44061
+tract_years_in_analysis	integer	4	4	4326	42937
+zero_project_tract_years	integer	4	4	4288	42355
+housing_unit_years	integer	4	4	6401636	66857050
+mean_prior_age_at_projects	numeric	4	4	1.53658536585366	6.98098859315589
+max_prior_age_at_projects	integer	4	2	2	10
+project_mean_homeowner_pct	numeric	4	4	12.1790675466935	15.4320137639679
+housing_weighted_homeowner_pct	numeric	4	3	27.5080811368619	31.6331833300388
+projects_per_10000_housing_years	numeric	4	4	0.025775042001886	0.104401854404285

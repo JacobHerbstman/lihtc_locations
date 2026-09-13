@@ -1,0 +1,18 @@
+Rows: 40
+Key: specification, era, homeowner_bin complete and unique
+Saved-file MD5: 5b2f681a08014be03f1b48979cfc58fe
+column	type	nonmissing	distinct	min	max
+era	character	40	2	NA	NA
+homeowner_bin	integer	40	10	0	9
+tract_years	integer	40	38	58	7447
+tract_codes	integer	40	29	29	820
+zero_project_tract_years	integer	40	40	58	7302
+housing_unit_years	integer	40	40	33208	13860157
+projects	integer	40	23	0	331
+projects_known_units	integer	40	23	0	331
+units_known	integer	40	27	0	40388
+specification	character	40	2	NA	NA
+bin_lower_pct	integer	40	10	0	90
+bin_upper_pct	integer	40	10	10	100
+projects_per_10000_housing_years	numeric	40	27	0	0.259248744941891
+known_units_per_10000_housing_years	numeric	40	27	0	29.1396410589

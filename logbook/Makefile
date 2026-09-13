@@ -9,5 +9,9 @@ logbook.pdf: logbook.tex reset_summary.tex corroboration_summary.tex corroborati
     ../tasks/audits/state_diagnostics/output/project_characteristics.png \
     ../tasks/audits/state_diagnostics/output/state_summary.csv \
     ../tasks/audits/census_diagnostics/output/summary.tex \
-    ../tasks/audits/census_diagnostics/output/1714000_income.png
+    ../tasks/audits/census_diagnostics/output/1714000_income.png \
+    ../tasks/audits/nyc_homeownership/output/summary.tex \
+    ../tasks/audits/nyc_homeownership/output/rates_main.png \
+    ../tasks/audits/nyc_homeownership/output/rates_same_2000.png \
+    ../tasks/audits/nyc_homeownership/output/placement_maps.png
 	pdflatex -halt-on-error -interaction=nonstopmode logbook.tex

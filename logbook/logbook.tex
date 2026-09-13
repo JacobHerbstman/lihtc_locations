@@ -666,4 +666,64 @@ results passed review; the task's verification record describes the remaining ch
 \begin{center}
 \includegraphics[width=\textwidth,height=0.90\textheight,keepaspectratio]{../tasks/audits/census_diagnostics/output/1714000_income.png}
 \end{center}
+
+\clearpage
+\section*{New York placements and homeownership before and after 2002}
+\noindent September 13, 2026. Agent-drafted research record; source-code baseline
+\texttt{65e50d7}. Jacob proposed examining whether increasing member deference
+shifted LIHTC placements away from homeowner neighborhoods. He approved a comparison
+of 1987--2002 with 2003--2022, excluding HUD's incomplete 2023--2024 cohorts.
+
+The first comparison shows a strongly negative homeowner gradient in both periods,
+without clear evidence that its proportional size increased after 2002. With year
+effects, ten percentage points more prior homeownership corresponds to 34.6\%
+fewer placements earlier and 35.8\% fewer later. The ratio of these rate ratios is
+0.982, with a tract-code-clustered 95\% interval of 0.848--1.136. These are
+associations, not effects of homeownership or a change in land-use institutions.
+
+The maps and raw rates show many more placements in the later period, particularly
+in low-homeowner neighborhoods. Absolute rate differences between neighborhood
+types are larger later; that does not itself establish a stronger proportional
+association after accounting for the increase in overall placement volume.
+
+\input{../tasks/audits/nyc_homeownership/output/summary.tex}
+
+Every available native NYC tract enters each study year, including zero placements.
+Rates divide counts by baseline housing-unit-years. Homeownership uses the latest
+observation ending before placed-in-service, which can be ten years old. The
+2001--2002 versus 2003--2010 comparison holds the source and boundaries at the
+2000 Census. Its relative gradients are also similar, although its early sample
+contains only 41 projects.
+
+Of 851 NYC records, three lack a year and 24 are in incomplete recent cohorts.
+Two of the remaining 824 projects have zero baseline housing and no defined
+homeowner share, leaving 822 for rate/model comparisons. No master row is deleted.
+All-zero year or borough/year strata remain in the rate denominators but provide
+no Poisson slope information; their omitted model Ns are reported.
+
+There are no retained project records dated 1987--1989, so this sample cannot
+provide a pre-Morris comparison. The Supreme Court decision was issued March 22,
+1989; the Campaign Finance Board documents Vallone's term-limit departure after
+the 2001 election. The proposed evolution of member deference is a hypothesis,
+not a treatment observed here. Placed-in-service is not an approval or construction
+start date, and the data do not identify projects requiring discretionary review.
+Financing, land availability, neighborhood change, approval lags and geographic
+changes prevent a causal interpretation of the period comparison.
+
+\paragraph{Sources and reproduction.} The dated choices and official institutional
+sources are in \path{tasks/audits/nyc_homeownership/README.md}. Root \texttt{make}
+builds the audit's project file, tract/year data, rates, models and figures; the
+HTML report records sample sizes, intervals and annual source years. The national
+HUD and Census files are unchanged. Verification checks are documented with the
+audit.
+
+\begin{center}
+\includegraphics[width=\textwidth]{../tasks/audits/nyc_homeownership/output/rates_main.png}
+\includegraphics[width=\textwidth]{../tasks/audits/nyc_homeownership/output/rates_same_2000.png}
+\end{center}
+
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth]{../tasks/audits/nyc_homeownership/output/placement_maps.png}
+\end{center}
 \end{document}

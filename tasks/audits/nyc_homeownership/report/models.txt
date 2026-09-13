@@ -1,0 +1,17 @@
+Rows: 12
+Key: specification, adjustment, comparison complete and unique
+Saved-file MD5: bd27446f0d9cd70fb183875f0cfc00de
+column	type	nonmissing	distinct	min	max
+specification	character	12	2	NA	NA
+adjustment	character	12	2	NA	NA
+comparison	character	12	3	NA	NA
+log_rate_change	numeric	12	12	-0.626300491631413	0.0731336476669212
+standard_error	numeric	12	12	0.0378618698803481	0.130932863925383
+rate_ratio	numeric	12	12	0.534565777952498	1.07587431539881
+ci_low	numeric	12	12	0.41509056623144	0.883675185982139
+ci_high	numeric	12	12	0.618724423725059	1.37345094429154
+p_value	numeric	12	12	2.18841037335009e-28	0.895823681325768
+tract_years	integer	12	4	16938	70977
+tract_code_clusters	integer	12	3	2163	2722
+projects	integer	12	2	304	822
+zero_stratum_tract_years_omitted	integer	12	4	0	22051

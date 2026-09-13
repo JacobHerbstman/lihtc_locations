@@ -1,0 +1,23 @@
+Rows: 79523
+Key: placement_year, tract_geoid complete and unique
+Saved-file MD5: a2c8b3949e141f19afcf86e3783ae4d0
+column	type	nonmissing	distinct	min	max
+placement_year	integer	79523	36	1987	2022
+tract_geoid	integer64	79523	2814	36005000100	36085990100
+source	character	79523	2	NA	NA
+period_start	integer	79523	15	1980	2017
+period_end	integer	79523	15	1980	2021
+boundary_year	integer	79523	5	1980	2020
+homeowner_share	numeric	77409	29560	0	1
+owner_occupied	integer	79487	2184	0	6454
+occupied_units	integer	79487	4324	0	12998
+housing_units	integer	79523	4610	0	13036
+baseline_age_years	integer	79523	10	1	10
+county_fips	integer	79523	5	36005	36085
+era	character	79523	2	NA	NA
+borough	character	79523	5	NA	NA
+new_projects	integer	79523	5	0	5
+projects_known_units	integer	79523	5	0	5
+new_units_known	integer	79523	304	0	1305
+analysis_included	logical	79523	2	NA	NA
+homeowner_bin	integer	77409	11	0	9

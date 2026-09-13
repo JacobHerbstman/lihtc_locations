@@ -240,3 +240,69 @@ data_raw/hud_income_limits/2024/MTSP-Data-FY24.xlsx: | tasks/fetch_hud_income_li
 
 logbook/logbook.pdf: tasks/audits/census_diagnostics/output/summary.tex \
     tasks/audits/census_diagnostics/output/1714000_income.png
+
+# NYC timing comparison uses prior homeownership and every native tract/year.
+all: tasks/audits/nyc_homeownership/output/diagnostics.html tasks/audits/nyc_homeownership/output/summary.tex
+
+tasks/audits/nyc_homeownership/output/project_sample.csv: tasks/audits/nyc_homeownership/code/project_sample.R \
+    tasks/audits/nyc_homeownership/code/periods.csv tasks/audits/nyc_homeownership/code/Makefile \
+    tasks/assign_lihtc_tracts/output/projects_with_tracts.csv tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/nyc_homeownership/code ../output/project_sample.csv
+
+tasks/audits/nyc_homeownership/output/tract_years.csv: tasks/audits/nyc_homeownership/code/build_panel.R \
+    tasks/audits/nyc_homeownership/code/periods.csv tasks/audits/nyc_homeownership/code/Makefile \
+    tasks/audits/nyc_homeownership/output/project_sample.csv tasks/clean_census/output/tract_demographics.csv tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/nyc_homeownership/code ../output/tract_years.csv
+
+tasks/audits/nyc_homeownership/output/coverage.csv: tasks/audits/nyc_homeownership/code/summarize_coverage.R \
+    tasks/audits/nyc_homeownership/code/periods.csv tasks/audits/nyc_homeownership/code/Makefile \
+    tasks/audits/nyc_homeownership/output/project_sample.csv tasks/audits/nyc_homeownership/output/tract_years.csv tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/nyc_homeownership/code ../output/coverage.csv
+
+tasks/audits/nyc_homeownership/output/binned_rates.csv: tasks/audits/nyc_homeownership/code/summarize_rates.R \
+    tasks/audits/nyc_homeownership/code/periods.csv tasks/audits/nyc_homeownership/code/Makefile \
+    tasks/audits/nyc_homeownership/output/tract_years.csv tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/nyc_homeownership/code ../output/binned_rates.csv
+
+tasks/audits/nyc_homeownership/output/annual_summary.csv: tasks/audits/nyc_homeownership/code/summarize_annual.R \
+    tasks/audits/nyc_homeownership/code/Makefile tasks/audits/nyc_homeownership/output/tract_years.csv tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/nyc_homeownership/code ../output/annual_summary.csv
+
+tasks/audits/nyc_homeownership/output/models.csv: tasks/audits/nyc_homeownership/code/fit_models.R \
+    tasks/audits/nyc_homeownership/code/periods.csv tasks/audits/nyc_homeownership/code/Makefile \
+    tasks/audits/nyc_homeownership/output/tract_years.csv tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/nyc_homeownership/code ../output/models.csv
+
+tasks/audits/nyc_homeownership/output/rates_%.png: tasks/audits/nyc_homeownership/code/plot_rates.R \
+    tasks/audits/nyc_homeownership/code/periods.csv tasks/audits/nyc_homeownership/code/Makefile \
+    tasks/audits/nyc_homeownership/output/binned_rates.csv
+	$(MAKE) -C tasks/audits/nyc_homeownership/code ../output/rates_$*.png
+
+tasks/audits/nyc_homeownership/output/annual_homeownership.png: tasks/audits/nyc_homeownership/code/plot_annual.R \
+    tasks/audits/nyc_homeownership/code/periods.csv \
+    tasks/audits/nyc_homeownership/code/Makefile tasks/audits/nyc_homeownership/output/annual_summary.csv
+	$(MAKE) -C tasks/audits/nyc_homeownership/code ../output/annual_homeownership.png
+
+tasks/audits/nyc_homeownership/output/placement_maps.png: tasks/audits/nyc_homeownership/code/plot_maps.R \
+    tasks/audits/nyc_homeownership/code/periods.csv \
+    tasks/audits/nyc_homeownership/code/Makefile tasks/audits/nyc_homeownership/output/project_sample.csv \
+    tasks/clean_census/output/places_2024.gpkg
+	$(MAKE) -C tasks/audits/nyc_homeownership/code ../output/placement_maps.png
+
+tasks/audits/nyc_homeownership/output/summary.tex: tasks/audits/nyc_homeownership/code/summarize_results.R \
+    tasks/audits/nyc_homeownership/code/Makefile tasks/audits/nyc_homeownership/output/coverage.csv \
+    tasks/audits/nyc_homeownership/output/models.csv
+	$(MAKE) -C tasks/audits/nyc_homeownership/code ../output/summary.tex
+
+tasks/audits/nyc_homeownership/output/diagnostics.html: tasks/audits/nyc_homeownership/code/write_report.R \
+    tasks/audits/nyc_homeownership/output/annual_summary.csv \
+    tasks/audits/nyc_homeownership/code/Makefile tasks/audits/nyc_homeownership/output/coverage.csv \
+    tasks/audits/nyc_homeownership/output/models.csv tasks/audits/nyc_homeownership/output/project_sample.csv \
+    tasks/audits/nyc_homeownership/output/rates_main.png tasks/audits/nyc_homeownership/output/rates_same_2000.png \
+    tasks/audits/nyc_homeownership/output/annual_homeownership.png tasks/audits/nyc_homeownership/output/placement_maps.png
+	$(MAKE) -C tasks/audits/nyc_homeownership/code ../output/diagnostics.html
+
+logbook/logbook.pdf: tasks/audits/nyc_homeownership/output/summary.tex \
+    tasks/audits/nyc_homeownership/output/rates_main.png \
+    tasks/audits/nyc_homeownership/output/rates_same_2000.png \
+    tasks/audits/nyc_homeownership/output/placement_maps.png
