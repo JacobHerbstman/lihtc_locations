@@ -1,6 +1,6 @@
 Rows: 111983
 Key: place_geoid, placement_year, tract_geoid complete and unique
-Saved-file MD5: a8a00ea8108dbef3d2766d312ebc7dbb
+Saved-file MD5: 267e215a70a156fc5fa5b18fc7654de5
 column	type	nonmissing	distinct	min	max
 place_geoid	integer	111983	2	1714000	3651000
 placement_year	integer	111983	36	1987	2022
@@ -17,7 +17,7 @@ city_name	character	111983	2	NA	NA
 city_overlap_share	numeric	111846	3943	9.71418269405823e-25	1
 interior_tract	logical	111983	2	NA	NA
 baseline_age_years	integer	111983	10	1	10
-era	character	111983	2	NA	NA
+era	character	111983	1	NA	NA
 new_projects	integer	111983	5	0	5
 homeowner_eligible	logical	111983	2	NA	NA
 analysis_included	logical	111983	2	NA	NA

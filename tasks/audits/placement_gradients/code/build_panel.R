@@ -24,8 +24,7 @@ x <- rbindlist(lapply(period$first_year:period$last_year, function(year) {
   z[, placement_year := year]
   z
 }))
-x[, `:=`(baseline_age_years = placement_year - period_end,
-  era = fifelse(placement_year <= period$cutoff_year, "through_2002", "after_2002"))]
+x[, `:=`(baseline_age_years = placement_year - period_end, era = "pooled")]
 
 # 2. Count only projects whose HUD point is inside the city. Keep zero-project tracts.
 p <- fread("../output/project_sample.csv", na.strings = "", colClasses = c(

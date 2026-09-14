@@ -16,8 +16,7 @@ x <- merge(x, t[, .(place_geoid, baseline_tract_geoid = tract_geoid,
   by = c("place_geoid", "baseline_boundary_year", "baseline_tract_geoid"), all.x = TRUE, sort = FALSE)
 stopifnot(nrow(period) == 1L, !anyDuplicated(x$hud_id), nrow(x) == p[place_geoid %in% cities$place_geoid, .N])
 x[, in_years := !is.na(pis_year) & pis_year >= period$first_year & pis_year <= period$last_year]
-x[, era := fifelse(is.na(pis_year), NA_character_,
-  fifelse(pis_year <= period$cutoff_year, "through_2002", "after_2002"))]
+x[, era := fifelse(in_years, "pooled", NA_character_)]
 x[, location_in_panel := in_years & baseline_tract_match_status == "matched" & !is.na(city_overlap_share)]
 x[, sample_status := fcase(is.na(pis_year), "missing_project_year",
   pis_year %in% 2023:2024, "incomplete_HUD_cohort", !in_years, "outside_study_years",

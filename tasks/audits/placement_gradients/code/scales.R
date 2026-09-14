@@ -2,7 +2,7 @@
 library(data.table)
 source("../../../shared/code/save_data.R")
 x <- fread("../output/tract_years.csv", na.strings = "", colClasses = c(place_geoid = "character"))
-# A fixed, within-city scale pools both eras, equally weighting eligible tract-years.
+# A fixed, within-city scale uses the full study window, equally weighting eligible tract-years.
 z <- melt(x[analysis_included == TRUE], id.vars = c("place_geoid", "city_name"),
   measure.vars = c("homeowner_share", "nh_black_share", "log_income"), variable.name = "variable")
 s <- z[, .(mean = mean(value), sd = sd(value), tract_years = .N), by = .(place_geoid, city_name, variable)]

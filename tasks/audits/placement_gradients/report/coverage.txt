@@ -1,21 +1,21 @@
-Rows: 4
+Rows: 2
 Key: place_geoid, era complete and unique
-Saved-file MD5: f24eec5816fbf55cd12b0bd4ea287ff0
+Saved-file MD5: 5929e599e25544199bdfb6377aba1fd5
 column	type	nonmissing	distinct	min	max
-place_geoid	integer	4	2	1714000	3651000
-era	character	4	2	NA	NA
-city_name	character	4	2	NA	NA
-tract_years	integer	4	4	14886	44061
-homeowner_tract_years	integer	4	4	14644	42937
-common_tract_years	integer	4	4	14410	42705
-common_zero_project_tract_years	integer	4	4	14370	42126
-matched_projects	integer	4	4	47	700
-homeowner_projects	integer	4	4	47	698
-common_projects	integer	4	4	46	695
-projects_missing_homeownership	integer	4	3	0	2
-projects_missing_black_share	integer	4	3	0	2
-projects_missing_income	integer	4	3	0	5
-interior_common_projects	integer	4	4	46	649
-housing_unit_years	integer	4	4	20149706	66737653
-mean_baseline_age_at_projects	numeric	4	4	3.26330935251799	5.23387096774194
-dated_projects	integer	4	4	47	700
+place_geoid	integer	2	2	1714000	3651000
+era	character	2	1	NA	NA
+city_name	character	2	2	NA	NA
+tract_years	integer	2	2	32460	79523
+homeowner_tract_years	integer	2	2	32091	77409
+common_tract_years	integer	2	2	31818	77141
+common_zero_project_tract_years	integer	2	2	31671	76449
+matched_projects	integer	2	2	174	824
+homeowner_projects	integer	2	2	173	822
+common_projects	integer	2	2	172	819
+projects_missing_homeownership	integer	2	2	1	2
+projects_missing_black_share	integer	2	2	1	2
+projects_missing_income	integer	2	2	2	5
+interior_common_projects	integer	2	2	170	762
+housing_unit_years	integer	2	2	45800398	114840305
+mean_baseline_age_at_projects	numeric	2	2	3.56166056166056	4.96511627906977
+dated_projects	integer	2	2	174	824

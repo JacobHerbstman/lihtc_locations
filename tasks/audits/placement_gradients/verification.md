@@ -1,5 +1,15 @@
 # Verification, September 14, 2026
 
+## Pooled update
+
+Jacob subsequently requested pooling 1987–2022 in both cities. The current models estimate one slope per characteristic within each city and retain year effects. All 24 output estimates have `comparison = pooled`; there are no time interactions. Coverage now has one row per city.
+
+The same independent conditional-Poisson calculation reproduces all 12 pooled separate-model slopes, including the interior sensitivity. Project-to-panel context, common model Ns, latest-prior timing and the original NYC tract-year values reconcile. Samples and standardization scales remain unchanged. Root and task builds, `make -C paper`, unchanged-build checks, figure inspection and the new rendered logbook entry are checked for this update. The preceding split-period table and figure are preserved as dated logbook snapshots, so their historical interpretation is not paired with pooled estimates.
+
+The checks below document the initial split-period build, before this update.
+
+## Initial split-period build
+
 - Root `make -j3`, task-local `make`, and `make -C paper` complete under GNU Make 3.81. The shared execution settings serialize recursive production. Unchanged second builds do no work.
 - Independent checks compare all 79,523 NYC tract-year keys and the prior observation, boundary, homeowner, housing and project fields with the previous NYC audit. They match exactly, as does the original homeowner eligibility flag. National source and earlier audit files are unchanged.
 - Project-to-panel joins reproduce each matched project's prior observation and all three characteristics. Coverage and analysis flags reconcile. NYC retains 819 common-sample projects and 76,449 eligible zero-project tract-years; Chicago retains 172 and 31,671. All three separate regressions and the joint model have identical fitted rows and project counts within each city/geographic sample.

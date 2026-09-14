@@ -1,6 +1,6 @@
 Rows: 1030
 Key: hud_id complete and unique
-Saved-file MD5: da6e34c8c801ff231c73ca213594a4e8
+Saved-file MD5: 6cc81eeb946ec8027fa4eb008b223c93
 column	type	nonmissing	distinct	min	max
 place_geoid	integer	1030	2	1714000	3651000
 baseline_boundary_year	integer	1023	7	1980	2024
@@ -19,7 +19,7 @@ city_name	character	1030	2	NA	NA
 city_overlap_share	numeric	998	345	0.692370506285007	1
 interior_tract	logical	998	3	NA	NA
 in_years	logical	1030	2	NA	NA
-era	character	1023	3	NA	NA
+era	character	998	2	NA	NA
 location_in_panel	logical	1030	2	NA	NA
 sample_status	character	1030	5	NA	NA
 analysis_included	logical	1030	2	NA	NA

@@ -384,4 +384,5 @@ tasks/audits/placement_gradients/output/diagnostics.html: tasks/audits/placement
 	$(MAKE) -C tasks/audits/placement_gradients/code ../output/diagnostics.html
 
 logbook/logbook.pdf: tasks/audits/placement_gradients/output/summary.tex \
-    tasks/audits/placement_gradients/output/gradients.png
+    tasks/audits/placement_gradients/output/gradients.png \
+    logbook/placement_gradients_split_summary.tex logbook/placement_gradients_split.png

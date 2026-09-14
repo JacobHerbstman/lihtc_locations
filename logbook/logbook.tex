@@ -740,7 +740,7 @@ and 56\% higher. Chicago differs: income and Black share have similar proportion
 strength early, both larger than homeownership. Later, the homeowner and income
 gradients are very similar and larger than the Black-share gradient.
 
-\input{../tasks/audits/placement_gradients/output/summary.tex}
+\input{placement_gradients_split_summary.tex}
 
 These comparisons use the same complete sample for all three characteristics
 within each city. The scales are fixed across periods: approximately 25.5 percentage
@@ -798,6 +798,40 @@ reproduce all 24 separate-model period slopes, including the boundary check,
 within $6\times10^{-8}$ in log-rate units. Fresh-build and propagation checks
 are recorded in the audit's verification file. National source files and earlier
 audit outputs are unchanged.
+
+\begin{center}
+\includegraphics[width=\textwidth]{placement_gradients_split.png}
+\end{center}
+\clearpage
+\section*{Pool the full study period in both cities}
+\noindent September 14, 2026. Agent-drafted update; source-code baseline
+\texttt{efa6c1a}. Jacob clarified that the current comparison should pool
+1987--2022 in both cities. This supersedes the split-period specification in the
+preceding entry, whose original table and figure are retained as dated snapshots.
+
+New York's pooled homeowner gradient remains the largest of the three. One
+standard deviation higher homeownership corresponds to a placement rate ratio
+of 0.323, compared with 0.491 for income and 1.504 for Black share. Chicago's
+income ratio is 0.429, its homeowner ratio is 0.467 and its Black-share ratio is
+1.913. Income is somewhat stronger than homeownership in Chicago, while Black
+share is somewhat smaller, ranking the absolute log rate changes.
+
+\input{../tasks/audits/placement_gradients/output/summary.tex}
+
+Including all three characteristics together leaves New York's homeowner ratio
+at 0.479 (95\% interval 0.390--0.590). Chicago's becomes 0.930
+(0.676--1.282), while its income ratio is 0.495 (0.368--0.666).
+These remain descriptive associations; the pooled specification does not estimate
+a change after 2002.
+
+Pooling imposes one slope across years within each city. Annual placement-volume
+effects remain, and neighborhoods retain their historical observations ending
+before opening. The 819 NYC and 172 Chicago projects, all source values, housing
+denominators, geographic selections and standardization scales are unchanged.
+The original NYC tract-year values still match exactly. Independent conditional
+Poisson calculations reproduce the twelve separate-model slopes, including the
+interior sensitivity. Root \texttt{make} generates the pooled estimates and
+report; the task's README and verification record describe the updated calculation.
 
 \begin{center}
 \includegraphics[width=\textwidth]{../tasks/audits/placement_gradients/output/gradients.png}
