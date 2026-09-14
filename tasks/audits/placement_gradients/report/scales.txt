@@ -1,0 +1,12 @@
+Rows: 6
+Key: place_geoid, variable complete and unique
+Saved-file MD5: 45be2aa15de3d30d97d871d4206c69c2
+column	type	nonmissing	distinct	min	max
+place_geoid	integer	6	2	1714000	3651000
+city_name	character	6	2	NA	NA
+variable	character	6	3	NA	NA
+mean	numeric	6	6	0.249979189659537	11.0849250893
+sd	numeric	6	6	0.236214824398829	0.511002577296372
+tract_years	integer	6	2	31818	77141
+natural_change	numeric	6	2	0.0953101798043249	0.1
+sd_in_percent_units	numeric	6	6	23.6214824398829	66.6961615312635

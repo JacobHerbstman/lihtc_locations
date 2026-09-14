@@ -1,0 +1,25 @@
+Rows: 1030
+Key: hud_id complete and unique
+Saved-file MD5: da6e34c8c801ff231c73ca213594a4e8
+column	type	nonmissing	distinct	min	max
+place_geoid	integer	1030	2	1714000	3651000
+baseline_boundary_year	integer	1023	7	1980	2024
+baseline_tract_geoid	integer64	1023	534	17031010200	36085031901
+hud_id	character	1030	1030	NA	NA
+pis_year	integer	1023	35	1990	2023
+total_units	integer	1029	296	5	1238
+baseline_tract_match_status	character	1030	2	NA	NA
+baseline_period_end	integer	1023	17	1980	2022
+baseline_age_years	integer	1023	11	1	10
+baseline_homeowner_share	numeric	1020	723	0	1
+baseline_nh_black_share	numeric	1020	740	0	1
+baseline_median_household_income_2024	numeric	1016	755	11084.8356997972	253169.796407186
+baseline_housing_units	integer	1023	682	0	12799
+city_name	character	1030	2	NA	NA
+city_overlap_share	numeric	998	345	0.692370506285007	1
+interior_tract	logical	998	3	NA	NA
+in_years	logical	1030	2	NA	NA
+era	character	1023	3	NA	NA
+location_in_panel	logical	1030	2	NA	NA
+sample_status	character	1030	5	NA	NA
+analysis_included	logical	1030	2	NA	NA

@@ -306,3 +306,82 @@ logbook/logbook.pdf: tasks/audits/nyc_homeownership/output/summary.tex \
     tasks/audits/nyc_homeownership/output/rates_main.png \
     tasks/audits/nyc_homeownership/output/rates_same_2000.png \
     tasks/audits/nyc_homeownership/output/placement_maps.png
+
+# Compare prior homeownership, race and income in New York and Chicago.
+all: tasks/audits/placement_gradients/output/diagnostics.html tasks/audits/placement_gradients/output/summary.tex
+
+tasks/audits/placement_gradients/output/city_tracts.csv: tasks/audits/placement_gradients/code/city_tracts.R \
+    tasks/audits/placement_gradients/code/Makefile \
+    tasks/audits/placement_gradients/code/cities.csv \
+    tasks/clean_census/output/places_2024.gpkg \
+    tasks/clean_census/output/tracts_1980.gpkg \
+    tasks/clean_census/output/tracts_1990.gpkg \
+    tasks/clean_census/output/tracts_2000.gpkg \
+    tasks/clean_census/output/tracts_2010.gpkg \
+    tasks/clean_census/output/tracts_2020.gpkg \
+    tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/placement_gradients/code ../output/city_tracts.csv
+
+tasks/audits/placement_gradients/output/project_sample.csv: tasks/audits/placement_gradients/code/project_sample.R \
+    tasks/audits/placement_gradients/code/Makefile \
+    tasks/audits/placement_gradients/code/cities.csv \
+    tasks/audits/placement_gradients/code/periods.csv \
+    tasks/audits/placement_gradients/output/city_tracts.csv \
+    tasks/assign_lihtc_tracts/output/projects_with_tracts.csv \
+    tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/placement_gradients/code ../output/project_sample.csv
+
+tasks/audits/placement_gradients/output/tract_years.csv: tasks/audits/placement_gradients/code/build_panel.R \
+    tasks/audits/placement_gradients/code/Makefile \
+    tasks/audits/placement_gradients/code/periods.csv \
+    tasks/audits/placement_gradients/output/city_tracts.csv \
+    tasks/audits/placement_gradients/output/project_sample.csv \
+    tasks/clean_census/output/tract_demographics.csv \
+    tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/placement_gradients/code ../output/tract_years.csv
+
+tasks/audits/placement_gradients/output/coverage.csv: tasks/audits/placement_gradients/code/summarize_coverage.R \
+    tasks/audits/placement_gradients/code/Makefile \
+    tasks/audits/placement_gradients/output/tract_years.csv \
+    tasks/audits/placement_gradients/output/project_sample.csv \
+    tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/placement_gradients/code ../output/coverage.csv
+
+tasks/audits/placement_gradients/output/scales.csv: tasks/audits/placement_gradients/code/scales.R \
+    tasks/audits/placement_gradients/code/Makefile \
+    tasks/audits/placement_gradients/output/tract_years.csv \
+    tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/placement_gradients/code ../output/scales.csv
+
+tasks/audits/placement_gradients/output/models.csv: tasks/audits/placement_gradients/code/fit_models.R \
+    tasks/audits/placement_gradients/code/Makefile \
+    tasks/audits/placement_gradients/code/periods.csv \
+    tasks/audits/placement_gradients/output/tract_years.csv \
+    tasks/audits/placement_gradients/output/scales.csv \
+    tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/placement_gradients/code ../output/models.csv
+
+tasks/audits/placement_gradients/output/gradients.png: tasks/audits/placement_gradients/code/plot_gradients.R \
+    tasks/audits/placement_gradients/code/Makefile \
+    tasks/audits/placement_gradients/code/periods.csv \
+    tasks/audits/placement_gradients/output/models.csv
+	$(MAKE) -C tasks/audits/placement_gradients/code ../output/gradients.png
+
+tasks/audits/placement_gradients/output/summary.tex: tasks/audits/placement_gradients/code/summarize_results.R \
+    tasks/audits/placement_gradients/code/Makefile \
+    tasks/audits/placement_gradients/output/models.csv \
+    tasks/audits/placement_gradients/output/coverage.csv
+	$(MAKE) -C tasks/audits/placement_gradients/code ../output/summary.tex
+
+tasks/audits/placement_gradients/output/diagnostics.html: tasks/audits/placement_gradients/code/write_report.R \
+    tasks/audits/placement_gradients/code/Makefile \
+    tasks/audits/placement_gradients/code/periods.csv \
+    tasks/audits/placement_gradients/output/models.csv \
+    tasks/audits/placement_gradients/output/coverage.csv \
+    tasks/audits/placement_gradients/output/scales.csv \
+    tasks/audits/placement_gradients/output/project_sample.csv \
+    tasks/audits/placement_gradients/output/gradients.png
+	$(MAKE) -C tasks/audits/placement_gradients/code ../output/diagnostics.html
+
+logbook/logbook.pdf: tasks/audits/placement_gradients/output/summary.tex \
+    tasks/audits/placement_gradients/output/gradients.png

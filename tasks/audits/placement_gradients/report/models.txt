@@ -1,0 +1,23 @@
+Rows: 72
+Key: place_geoid, sample, model, variable, comparison complete and unique
+Saved-file MD5: 00929db5f85725633c0d39a457a9c6b9
+column	type	nonmissing	distinct	min	max
+place_geoid	integer	72	2	1714000	3651000
+city_name	character	72	2	NA	NA
+sample	character	72	2	NA	NA
+model	character	72	2	NA	NA
+variable	character	72	3	NA	NA
+comparison	character	72	3	NA	NA
+log_rate_change	numeric	72	72	-1.18075599865187	0.671849862329777
+standard_error	numeric	72	72	0.0420840696002747	0.355325548344866
+rate_ratio	numeric	72	72	0.307046524076995	1.95785573639248
+ci_low	numeric	72	72	0.215204717298635	1.50040455747079
+ci_high	numeric	72	72	0.38119914331413	2.70946894060878
+p_value	numeric	72	72	1.87744793041495e-48	0.989615681280615
+natural_rate_ratio	numeric	72	72	0.629574410883198	1.17226864303829
+natural_ci_low	numeric	72	72	0.54772163871436	1.1257338369759
+natural_ci_high	numeric	72	72	0.685272069636474	1.31824977801519
+tract_years	integer	72	4	23682	70709
+tract_code_clusters	integer	72	4	1097	2703
+projects	integer	72	4	170	819
+zero_year_tract_years_omitted	integer	72	4	5746	8198

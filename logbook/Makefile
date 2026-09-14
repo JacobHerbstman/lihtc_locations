@@ -13,5 +13,7 @@ logbook.pdf: logbook.tex reset_summary.tex corroboration_summary.tex corroborati
     ../tasks/audits/nyc_homeownership/output/summary.tex \
     ../tasks/audits/nyc_homeownership/output/rates_main.png \
     ../tasks/audits/nyc_homeownership/output/rates_same_2000.png \
-    ../tasks/audits/nyc_homeownership/output/placement_maps.png
+    ../tasks/audits/nyc_homeownership/output/placement_maps.png \
+    ../tasks/audits/placement_gradients/output/summary.tex \
+    ../tasks/audits/placement_gradients/output/gradients.png
 	pdflatex -halt-on-error -interaction=nonstopmode logbook.tex

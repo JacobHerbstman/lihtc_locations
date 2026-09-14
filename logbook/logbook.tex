@@ -726,4 +726,80 @@ audit.
 \begin{center}
 \includegraphics[width=\textwidth]{../tasks/audits/nyc_homeownership/output/placement_maps.png}
 \end{center}
+\clearpage
+\section*{Compare homeowner, Black-share and income gradients in New York and Chicago}
+\noindent September 14, 2026. Agent-drafted research record; source-code baseline
+\texttt{cdeda68}. Jacob requested a comparison of gradient magnitudes and extended
+the same check to Chicago.
+
+New York's homeowner gradient is the strongest of these three associations in
+both periods. For a one-standard-deviation increase, placement rates are about
+66\% lower through 2002 and 68\% lower afterward; the corresponding income
+associations are 43\% and 52\% lower, and the Black-share associations are 25\%
+and 56\% higher. Chicago differs: income and Black share have similar proportional
+strength early, both larger than homeownership. Later, the homeowner and income
+gradients are very similar and larger than the Black-share gradient.
+
+\input{../tasks/audits/placement_gradients/output/summary.tex}
+
+These comparisons use the same complete sample for all three characteristics
+within each city. The scales are fixed across periods: approximately 25.5 percentage
+points of homeownership, 31.1 points of Black share and 64.1\% higher income in
+New York; 23.6 points, 42.3 points and 66.7\% in Chicago. Magnitude means the
+absolute log rate change, so doubling and halving represent equal proportional
+strength. The rankings describe point estimates, without a formal cross-variable
+test of their ordering. A larger positive percentage is not automatically a
+stronger association than a smaller negative percentage.
+
+Including all three characteristics together changes Chicago's interpretation.
+Its homeowner rate ratio becomes 1.004 earlier and 0.893 later, with both 95\%
+intervals including one. Its income association remains negative, with ratios
+0.586 and 0.465. In New York the homeowner association remains large after these
+controls: ratios 0.413 and 0.488. This shows overlap among neighborhood
+characteristics, not that income or homeownership causes siting outcomes.
+
+Chicago's separate homeowner coefficient is more negative later, but its
+later-to-earlier rate-ratio estimate is 0.704 with a 95\% interval of
+0.381--1.302. New York's corresponding estimate is 0.949 (0.653--1.379).
+Neither establishes a stronger homeowner association after 2002. New York's
+Black-share association does increase in this specification, but that is not
+an identified effect of member deference. Chicago uses the same descriptive
+cutoff without asserting a common institutional change.
+
+The common sample includes 819 New York projects (124 early, 695 later) and
+172 Chicago projects (46 early, 126 later). New York loses three projects with
+missing income beyond the previous homeowner sample. Chicago has 174 dated
+projects in the study years; one lacks income and another lacks positive baseline
+housing and defined shares. All excluded observations remain in the master.
+The panel retains 76,449 eligible zero-project tract-years in New York and 31,671
+in Chicago. Missing unit counts do not exclude a record.
+
+\clearpage
+Every original New York tract-year and its homeowner, housing and project values
+matches the previous audit exactly. Chicago uses native tracts overlapping 2024
+city limits, with whole-tract demographics and housing exposure; its project
+counts include only HUD points inside the city. Restricting to tracts at least
+99\% inside city limits preserves the broad ordering in both cities. New York's
+main universe includes demographic rows absent from a boundary snapshot, while
+the interior check requires an observed polygon.
+
+Timing remains the latest observation ending strictly before opening. Shares are
+homeowner and non-Hispanic Black shares; income is log median household income in
+2024 dollars. The sources, native boundaries, housing-unit offset, year effects and
+tract-code-clustered intervals follow the prior analysis. Approval timing,
+discretionary review, land availability and omitted characteristics still prevent
+a causal interpretation.
+
+\paragraph{Sources and reproduction.}
+\path{tasks/audits/placement_gradients/README.md} documents the definitions and
+linear execution order. Root \texttt{make} builds the common samples, scales,
+estimates, figure and report. Independent conditional-Poisson calculations
+reproduce all 24 separate-model period slopes, including the boundary check,
+within $6\times10^{-8}$ in log-rate units. Fresh-build and propagation checks
+are recorded in the audit's verification file. National source files and earlier
+audit outputs are unchanged.
+
+\begin{center}
+\includegraphics[width=\textwidth]{../tasks/audits/placement_gradients/output/gradients.png}
+\end{center}
 \end{document}
