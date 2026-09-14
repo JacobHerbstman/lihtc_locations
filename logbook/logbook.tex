@@ -836,4 +836,40 @@ report; the task's README and verification record describe the updated calculati
 \begin{center}
 \includegraphics[width=\textwidth]{../tasks/audits/placement_gradients/output/gradients.png}
 \end{center}
+\clearpage
+\section*{Add prior neighborhood vacancy and housing density}
+\noindent September 14, 2026. Agent-drafted update; source-code baseline
+\texttt{ef182f5}. Jacob requested prior neighborhood housing controls and asked
+whether the models include year fixed effects. All original and added-control
+models include year effects estimated separately within each city.
+
+Adding vacancy and log housing density makes the joint homeowner association
+more negative in New York: its rate ratio per standard deviation changes from
+0.479 to 0.319. Chicago's changes from 0.930 to 0.733, but its adjusted 95\%
+interval is 0.504--1.065, including one. New York's is 0.268--0.380. Income
+remains negatively associated with placement in both cities; Black-share
+associations are smaller after adjustment. These are point-estimate changes,
+without a formal test of the difference between specifications.
+
+\input{../tasks/audits/placement_gradients/output/housing_controls.tex}
+
+Vacancy is vacant units divided by all housing units; density is units per square
+kilometer of the full mapped native tract, entered in logs. Both housing counts
+and vacancy come from the same observation ending before opening. NHGIS clips
+coastal and Great Lakes waters but retains inland water, so mapped density is a
+broad housing measure rather than a measure of developable land. Missing polygon
+areas are not replaced with another vintage. Four zero-project NYC tract-years
+lack area; the before/after comparison uses identical rows. No project is lost.
+
+\paragraph{Reproduction.} Root \texttt{make} builds the extended panel, estimates,
+comparison and HTML report. All prior panel fields, original standardization
+scales and 24 original estimates are unchanged, as are the original pooled table
+and figure. Independent conditional-Poisson calculations reproduce all 24
+controlled focal slopes, including joint and interior specifications, within
+$10^{-6}$ log-rate units. Source definitions and verification are recorded in
+\path{tasks/audits/placement_gradients/README.md} and its verification file.
+
+\begin{center}
+\includegraphics[width=\textwidth]{../tasks/audits/placement_gradients/output/housing_controls.png}
+\end{center}
 \end{document}

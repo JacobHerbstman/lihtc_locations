@@ -2,7 +2,8 @@ include ../../../shared/code/shell_functions.make
 .DEFAULT_GOAL := all
 all: ../output/city_tracts.csv ../output/project_sample.csv ../output/tract_years.csv \
     ../output/coverage.csv ../output/scales.csv ../output/models.csv \
-    ../output/gradients.png ../output/summary.tex ../output/diagnostics.html
+    ../output/gradients.png ../output/summary.tex ../output/diagnostics.html \
+    ../output/housing_controls.png ../output/housing_controls.tex
 
 include ../../../shared/code/generic.make
 
@@ -39,8 +40,15 @@ include ../../../shared/code/generic.make
 ../output/summary.tex: summarize_results.R ../output/models.csv ../output/coverage.csv Makefile | ../output
 	$(R) $<
 
+../output/housing_controls.png: plot_housing_controls.R periods.csv ../output/models.csv Makefile | ../output
+	$(R) $<
+
+../output/housing_controls.tex: summarize_housing_controls.R ../output/models.csv ../output/coverage.csv Makefile | ../output
+	$(R) $<
+
 ../output/diagnostics.html: write_report.R periods.csv ../output/models.csv ../output/coverage.csv \
-    ../output/scales.csv ../output/project_sample.csv ../output/gradients.png Makefile | ../output
+    ../output/scales.csv ../output/project_sample.csv ../output/gradients.png \
+    ../output/housing_controls.png Makefile | ../output
 	$(R) $<
 
 ../input/projects_with_tracts.csv: ../../../assign_lihtc_tracts/output/projects_with_tracts.csv | ../input

@@ -1,6 +1,6 @@
 Rows: 2
 Key: place_geoid, era complete and unique
-Saved-file MD5: 5929e599e25544199bdfb6377aba1fd5
+Saved-file MD5: 81cae84db8db0fb584130e07b1c67241
 column	type	nonmissing	distinct	min	max
 place_geoid	integer	2	2	1714000	3651000
 era	character	2	1	NA	NA
@@ -17,5 +17,12 @@ projects_missing_black_share	integer	2	2	1	2
 projects_missing_income	integer	2	2	2	5
 interior_common_projects	integer	2	2	170	762
 housing_unit_years	integer	2	2	45800398	114840305
+controls_tract_years	integer	2	2	31818	77137
+controls_zero_project_tract_years	integer	2	2	31671	76445
+controls_projects	integer	2	2	172	819
+controls_housing_unit_years	integer	2	2	45800398	114840193
+missing_vacancy_tract_years	integer	2	1	0	0
+missing_density_tract_years	integer	2	2	0	4
+controls_interior_projects	integer	2	2	170	762
 mean_baseline_age_at_projects	numeric	2	2	3.56166056166056	4.96511627906977
 dated_projects	integer	2	2	174	824

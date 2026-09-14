@@ -3,7 +3,7 @@ library(data.table)
 library(ggplot2)
 period <- fread("periods.csv")
 x <- fread("../output/models.csv")
-x <- x[sample == "all_city_tracts" & comparison == "pooled"]
+x <- x[sample == "all_city_tracts" & comparison == "pooled" & adjustment == "baseline"]
 x[, variable := factor(variable, levels = c("log_income", "nh_black_share", "homeowner_share"),
   labels = c("Household income", "Black population share", "Homeowner share"))]
 x[, model := factor(model, levels = c("separate", "joint"),

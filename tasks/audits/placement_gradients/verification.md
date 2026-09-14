@@ -1,5 +1,16 @@
 # Verification, September 14, 2026
 
+## Vacancy and density update
+
+- All 111,983 prior panel rows and their existing fields match the saved pre-control panel exactly. Original standardization scales and all 24 baseline estimates are unchanged. The original pooled figure and TeX table also retain their SHA-256 fingerprints.
+- Vacancy reconciles with vacant/all housing counts. Density reconciles with prior housing units divided by native mapped area in square kilometers. CSV rounding introduces at most `4.94e-15` relative arithmetic differences in density. Log density uses only positive density.
+- The controls sample excludes exactly four original eligible NYC tract-years with missing polygon area, all with zero projects. There is no project loss and no eligible missing vacancy. Both before/after specifications have identical fitted rows and project counts within each city and geographic sample.
+- Independently profiled out year intercepts and optimized the conditional Poisson likelihood jointly over all focal and housing-control coefficients, without using `glm`. All 24 controlled focal slopes, spanning separate/joint models and both geographic samples, agree within `9.37e-7` log-rate units. Every production model explicitly retains `factor(placement_year)`.
+- A fresh disposable fixture using the affected root rules reproduced all 11 outputs and all six SaveData reports byte-for-byte. Deleting its `models.csv` and model report and requesting the root HTML target regenerated both. Changing only the fixture end year to 2021 propagated to the extended panel, coverage, scales, models and both added-control exhibits, with the report's date label following the change.
+- Root `make -j3`, task-local `make`, and `make -C paper` complete under GNU Make 3.81. Unchanged root/task builds do no work. Inspected the saved reports, comparison figure, and rendered logbook pages 24–25; `git diff --check` passes. No national source files changed or new data were acquired.
+
+Mapped tract area includes inland water; this analysis does not measure land-only or developable-area density. Before/after confidence intervals are not a hypothesis test that the coefficient change differs from zero.
+
 ## Pooled update
 
 Jacob subsequently requested pooling 1987–2022 in both cities. The current models estimate one slope per characteristic within each city and retain year effects. All 24 output estimates have `comparison = pooled`; there are no time interactions. Coverage now has one row per city.

@@ -16,5 +16,7 @@ logbook.pdf: logbook.tex reset_summary.tex corroboration_summary.tex corroborati
     ../tasks/audits/nyc_homeownership/output/placement_maps.png \
     ../tasks/audits/placement_gradients/output/summary.tex \
     ../tasks/audits/placement_gradients/output/gradients.png \
+    ../tasks/audits/placement_gradients/output/housing_controls.tex \
+    ../tasks/audits/placement_gradients/output/housing_controls.png \
     placement_gradients_split_summary.tex placement_gradients_split.png
 	pdflatex -halt-on-error -interaction=nonstopmode logbook.tex

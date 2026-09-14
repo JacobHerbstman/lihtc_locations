@@ -1,7 +1,7 @@
 # setwd("/Users/jacobherbstman/Desktop/lihtc_locations/tasks/audits/placement_gradients/code")
 library(data.table)
 c <- fread("../output/coverage.csv")
-m <- fread("../output/models.csv")[sample == "all_city_tracts" & model == "separate"]
+m <- fread("../output/models.csv")[sample == "all_city_tracts" & model == "separate" & adjustment == "baseline"]
 lines <- c("\\begin{center}\\begin{tabular}{lrrrr}\\hline",
   "City & Projects & Homeowner & Black share & Income \\\\ \\hline")
 for (city in unique(c$city_name)) {

@@ -1,6 +1,6 @@
 Rows: 111983
 Key: place_geoid, placement_year, tract_geoid complete and unique
-Saved-file MD5: 267e215a70a156fc5fa5b18fc7654de5
+Saved-file MD5: 2a65cbd1706e76762f35f5571581b5f8
 column	type	nonmissing	distinct	min	max
 place_geoid	integer	111983	2	1714000	3651000
 placement_year	integer	111983	36	1987	2022
@@ -13,12 +13,19 @@ homeowner_share	numeric	109500	41068	0	1
 nh_black_share	numeric	110007	40003	0	1
 median_household_income_2024	numeric	108959	42014	5334.9667896679	338182.454664914
 housing_units	integer	111983	4909	0	13036
+occupied_units	integer	111931	4560	0	12998
+vacant_units	integer	111931	1189	0	2378
+vacancy_share	numeric	109566	36658	0	1
 city_name	character	111983	2	NA	NA
 city_overlap_share	numeric	111846	3943	9.71418269405823e-25	1
 interior_tract	logical	111983	2	NA	NA
+tract_area	numeric	111846	12074	8298.57320585102	21666239.9275897
 baseline_age_years	integer	111983	10	1	10
 era	character	111983	1	NA	NA
 new_projects	integer	111983	5	0	5
 homeowner_eligible	logical	111983	2	NA	NA
 analysis_included	logical	111983	2	NA	NA
 log_income	numeric	108959	41981	8.58203793872452	12.7313408355229
+housing_units_per_sq_km	numeric	111846	43868	0	199793.38120811
+log_housing_density	numeric	109614	43867	-1.05223867574743	12.2050390175613
+controls_included	logical	111983	2	NA	NA

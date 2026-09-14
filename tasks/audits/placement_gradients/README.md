@@ -44,7 +44,35 @@ Run root `make`. With upstream inputs prepared, `make -C tasks/audits/placement_
 3. `build_panel.R` reads national `tract_demographics.csv`, membership and project records. It builds one row per city, opening year and native tract, with zero counts where appropriate.
 4. `summarize_coverage.R` reports project and tract-year coverage by city over the full study period. Missing-variable counts overlap; they are not additive.
 5. `scales.R` records each city's fixed means, standard deviations and natural-unit conversions.
-6. `fit_models.R` estimates separate and joint models, including the interior-tract check. `models.csv` contains 24 pooled coefficient estimates: two cities × two geographic samples × two model types × three variables.
-7. `plot_gradients.R`, `summarize_results.R` and `write_report.R` make the figure, logbook table and self-contained HTML report from those outputs.
+6. `fit_models.R` estimates separate and joint models, including the interior-tract check. `models.csv` now contains 72 pooled focal estimates: two cities × two geographic samples × three adjustment specifications × two model types × three variables.
+7. `plot_gradients.R` and `summarize_results.R` retain the original pooled figure and table. `plot_housing_controls.R` and `summarize_housing_controls.R` compare the added controls on identical samples. `write_report.R` combines them in the self-contained HTML report.
 
 The root and local Makefiles explicitly list inputs and outputs. Every saved CSV writes its standard report through `SaveData`; reports are side effects rather than build targets.
+
+## Add prior vacancy and housing density
+
+Jacob requested the neighborhood-housing-control comparison. **All specifications already included year fixed effects, estimated separately within each city.** The new specifications retain them, as well as the housing-unit offset, 1987–2022 pooling, tract-code-clustered intervals and original standardization scales.
+
+Two additional controls enter together:
+
+- `vacancy_share`: `(housing_units - occupied_units) / housing_units` from the same prior demographic observation as the other characteristics. It enters linearly, scaled in ten-percentage-point units.
+- `log_housing_density`: log of `housing_units / (tract_area / 1e6)`. `tract_area` is the full native polygon's area in square meters, already computed in equal-area EPSG:6933 by `city_tracts.R`. It enters scaled by `log(2)`, so its coefficient corresponds to doubling density. These rescalings do not alter the fitted model.
+
+The density denominator is **mapped tract area**, not Census land-only area or developable land. [NHGIS's GIS documentation](https://www.nhgis.org/gis-files) describes clipping coastal and Great Lakes waters, while [NHGIS staff clarify that polygon areas retain inland water](https://forum.ipums.org/t/land-area-variable-for-1990-census-tracts/3836). This consistent mapped-area definition uses the existing recorded sources across all native vintages. No newer area's value fills a missing historical polygon. The housing counts and vacancy share continue to end strictly before opening.
+
+`controls_included` requires the original common sample and both controls. `adjustment = baseline` reproduces the original pooled model; `same_sample` repeats it on this controls sample; `housing_controls` adds vacancy and density on those exact rows. Both the one-characteristic and joint models receive this comparison. The geographic sensitivity retains the existing 99%-inside rule.
+
+No project is lost. Chicago retains 172 projects and all 31,818 eligible tract-years. NYC retains 819 projects and 77,137 of 77,141 eligible tract-years; four zero-project rows have no historical polygon area. No eligible row lacks vacancy. The master, all previous panel fields, original scales, 24 original estimates, original figure and original table remain unchanged.
+
+With all three focal characteristics together, the rate ratios for one standard deviation higher characteristic are:
+
+| City | Characteristic | Before housing controls, same sample | Add vacancy and density |
+| --- | --- | ---: | ---: |
+| New York | Homeowner share | 0.479 | 0.319 |
+| New York | Black share | 1.285 | 1.218 |
+| New York | Income | 0.725 | 0.787 |
+| Chicago | Homeowner share | 0.930 | 0.733 |
+| Chicago | Black share | 1.217 | 1.100 |
+| Chicago | Income | 0.495 | 0.618 |
+
+NYC's homeowner association becomes more negative after adjustment. Chicago's also becomes more negative, but its adjusted 95% interval is 0.504–1.065, including one. NYC's adjusted homeowner interval is 0.268–0.380. The income associations remain negative in both cities and the Black-share associations are smaller. These comparisons do not test whether a coefficient change is statistically significant and do not establish causality. Density and vacancy describe existing housing conditions; they do not measure actual development capacity, zoning or discretionary review.

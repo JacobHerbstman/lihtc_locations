@@ -6,10 +6,11 @@ source("../../../shared/code/save_data.R")
 t <- fread("../output/city_tracts.csv", colClasses = c(place_geoid = "character", tract_geoid = "character"))
 d <- fread("../input/tract_demographics.csv", na.strings = "", colClasses = c(tract_geoid = "character"),
   select = c("tract_geoid", "source", "period_start", "period_end", "boundary_year",
-    "homeowner_share", "nh_black_share", "median_household_income_2024", "housing_units"))
+    "homeowner_share", "nh_black_share", "median_household_income_2024", "housing_units",
+    "occupied_units", "vacant_units", "vacancy_share"))
 stopifnot(!anyDuplicated(d[, .(period_end, tract_geoid)]),
   !anyDuplicated(t[, .(boundary_year, tract_geoid)]))
-d <- merge(d, t[, .(tract_geoid, boundary_year, place_geoid, city_name, city_overlap_share, interior_tract)],
+d <- merge(d, t[, .(tract_geoid, boundary_year, place_geoid, city_name, city_overlap_share, interior_tract, tract_area)],
   by = c("tract_geoid", "boundary_year"), all.x = TRUE, sort = FALSE)
 # The earlier NYC universe includes demographic rows even when the boundary snapshot lacks a polygon.
 d[substr(tract_geoid, 1L, 5L) %in% c("36005", "36047", "36061", "36081", "36085"),
@@ -39,10 +40,18 @@ x[, homeowner_eligible := !is.na(homeowner_share) & !is.na(housing_units) & hous
 x[, analysis_included := homeowner_eligible & !is.na(nh_black_share) &
   !is.na(median_household_income_2024) & median_household_income_2024 > 0]
 x[, log_income := log(median_household_income_2024)]
+# 3. Density uses the complete native mapped tract area in square kilometers.
+# NHGIS clips coastal/Great Lakes waters; inland water remains. This is not buildable land.
+x[, housing_units_per_sq_km := fifelse(!is.na(tract_area) & tract_area > 0,
+  housing_units / (tract_area / 1e6), NA_real_)]
+x[, log_housing_density := fifelse(housing_units_per_sq_km > 0,
+  log(housing_units_per_sq_km), NA_real_)]
+x[, controls_included := analysis_included & is.finite(vacancy_share) & is.finite(log_housing_density)]
 stopifnot(sum(x$new_projects) == p[location_in_panel == TRUE, .N],
   x[analysis_included == TRUE, sum(new_projects)] == p[analysis_included == TRUE, .N],
   all(x$baseline_age_years > 0), all(na.omit(x$homeowner_share) %between% c(0, 1)),
-  all(na.omit(x$nh_black_share) %between% c(0, 1)))
+  all(na.omit(x$nh_black_share) %between% c(0, 1)),
+  all(na.omit(x$vacancy_share) %between% c(0, 1)))
 setorder(x, place_geoid, placement_year, tract_geoid)
 SaveData(x, "../output/tract_years.csv", "../report/tract_years.txt",
   c("place_geoid", "placement_year", "tract_geoid"))

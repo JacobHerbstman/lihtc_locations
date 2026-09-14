@@ -308,7 +308,8 @@ logbook/logbook.pdf: tasks/audits/nyc_homeownership/output/summary.tex \
     tasks/audits/nyc_homeownership/output/placement_maps.png
 
 # Compare prior homeownership, race and income in New York and Chicago.
-all: tasks/audits/placement_gradients/output/diagnostics.html tasks/audits/placement_gradients/output/summary.tex
+all: tasks/audits/placement_gradients/output/diagnostics.html tasks/audits/placement_gradients/output/summary.tex \
+    tasks/audits/placement_gradients/output/housing_controls.tex
 
 tasks/audits/placement_gradients/output/city_tracts.csv: tasks/audits/placement_gradients/code/city_tracts.R \
     tasks/audits/placement_gradients/code/Makefile \
@@ -373,6 +374,16 @@ tasks/audits/placement_gradients/output/summary.tex: tasks/audits/placement_grad
     tasks/audits/placement_gradients/output/coverage.csv
 	$(MAKE) -C tasks/audits/placement_gradients/code ../output/summary.tex
 
+tasks/audits/placement_gradients/output/housing_controls.png: tasks/audits/placement_gradients/code/plot_housing_controls.R \
+    tasks/audits/placement_gradients/code/Makefile tasks/audits/placement_gradients/code/periods.csv \
+    tasks/audits/placement_gradients/output/models.csv
+	$(MAKE) -C tasks/audits/placement_gradients/code ../output/housing_controls.png
+
+tasks/audits/placement_gradients/output/housing_controls.tex: tasks/audits/placement_gradients/code/summarize_housing_controls.R \
+    tasks/audits/placement_gradients/code/Makefile tasks/audits/placement_gradients/output/models.csv \
+    tasks/audits/placement_gradients/output/coverage.csv
+	$(MAKE) -C tasks/audits/placement_gradients/code ../output/housing_controls.tex
+
 tasks/audits/placement_gradients/output/diagnostics.html: tasks/audits/placement_gradients/code/write_report.R \
     tasks/audits/placement_gradients/code/Makefile \
     tasks/audits/placement_gradients/code/periods.csv \
@@ -380,9 +391,12 @@ tasks/audits/placement_gradients/output/diagnostics.html: tasks/audits/placement
     tasks/audits/placement_gradients/output/coverage.csv \
     tasks/audits/placement_gradients/output/scales.csv \
     tasks/audits/placement_gradients/output/project_sample.csv \
-    tasks/audits/placement_gradients/output/gradients.png
+    tasks/audits/placement_gradients/output/gradients.png \
+    tasks/audits/placement_gradients/output/housing_controls.png
 	$(MAKE) -C tasks/audits/placement_gradients/code ../output/diagnostics.html
 
 logbook/logbook.pdf: tasks/audits/placement_gradients/output/summary.tex \
     tasks/audits/placement_gradients/output/gradients.png \
+    tasks/audits/placement_gradients/output/housing_controls.tex \
+    tasks/audits/placement_gradients/output/housing_controls.png \
     logbook/placement_gradients_split_summary.tex logbook/placement_gradients_split.png

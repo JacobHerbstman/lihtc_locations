@@ -1,23 +1,24 @@
-Rows: 24
-Key: place_geoid, sample, model, variable, comparison complete and unique
-Saved-file MD5: b24383fbc0a68a47f6627118c36a148c
+Rows: 72
+Key: place_geoid, sample, adjustment, model, variable, comparison complete and unique
+Saved-file MD5: 1dfcf2229f18ab8343b19216ca8fa3da
 column	type	nonmissing	distinct	min	max
-place_geoid	integer	24	2	1714000	3651000
-city_name	character	24	2	NA	NA
-sample	character	24	2	NA	NA
-model	character	24	2	NA	NA
-variable	character	24	3	NA	NA
-comparison	character	24	1	NA	NA
-log_rate_change	numeric	24	24	-1.1780424667506	0.648627067922351
-standard_error	numeric	24	24	0.0398475726305184	0.16988282800993
-rate_ratio	numeric	24	24	0.307880836069416	1.91291272607993
-ci_low	numeric	24	24	0.252246731757767	1.57545362445435
-ci_high	numeric	24	24	0.375785281966827	2.32265491081396
-p_value	numeric	24	24	3.78066321089953e-48	0.963424437132876
-natural_rate_ratio	numeric	24	24	0.630244238121027	1.16584601779373
-natural_ci_low	numeric	24	24	0.582893397071582	1.11427727480326
-natural_ci_high	numeric	24	24	0.68144158379611	1.22062353410407
-tract_years	integer	24	4	23682	70709
-tract_code_clusters	integer	24	4	1097	2703
-projects	integer	24	4	170	819
-zero_year_tract_years_omitted	integer	24	4	5746	8198
+place_geoid	integer	72	2	1714000	3651000
+city_name	character	72	2	NA	NA
+sample	character	72	2	NA	NA
+adjustment	character	72	3	NA	NA
+model	character	72	2	NA	NA
+variable	character	72	3	NA	NA
+comparison	character	72	1	NA	NA
+log_rate_change	numeric	72	54	-1.49910212482487	0.648627067922351
+standard_error	numeric	72	54	0.0383141212755081	0.190711942043908
+rate_ratio	numeric	72	54	0.223330593148492	1.91291272607993
+ci_low	numeric	72	54	0.187036212925106	1.57545362445435
+ci_high	numeric	72	54	0.266667898456804	2.32265491081396
+p_value	numeric	72	54	8.74475441354496e-68	0.963424437132876
+natural_rate_ratio	numeric	72	54	0.555734964979439	1.16584601779373
+natural_ci_low	numeric	72	54	0.518423119846642	1.11427727480326
+natural_ci_high	numeric	72	54	0.595732210770342	1.22062353410407
+tract_years	integer	72	5	23682	70709
+tract_code_clusters	integer	72	5	1097	2703
+projects	integer	72	4	170	819
+zero_year_tract_years_omitted	integer	72	5	5746	8198
