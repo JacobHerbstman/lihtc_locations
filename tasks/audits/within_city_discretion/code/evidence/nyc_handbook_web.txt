@@ -1,0 +1,463 @@
+Zoning Handbook 2018 Chapter 1 - DCP (https://www.nyc.gov/assets/planning/download/pdf/about/publications/zoning-handbook/zoning-handbook-01.pdf)
+citeturn100view0 [wordlim: 200] Crawled: today; Content type: application/pdf; Number of pages: 26; Source: open({"ref_id":"https://www.nyc.gov/assets/planning/download/pdf/about/publications/zoning-handbook/zoning-handbook-01.pdf","lineno":1444}); Total lines: 1744
+L1276@P18: in some areas with good access to public transportation
+L1285@P18: while commercial and community facility uses require
+L1286@P18: bike parking for employees, with the amount calculated by
+L1287@P18: applying a ratio to the size of their oor space (ZR 36-711).
+L1288@P18: ese requirements may be waived for small buildings.
+L1289@P18: e Resolution also requires many commercial and
+L1290@P18: manufacturing uses to provide o-street loading berths
+L1291@P18: to accommodate trucks delivering or distributing goods.
+L1292@P18: e number of berths required depends on the use, zoning
+L1293@P18-19: district and size of the establishment (ZR 36-60, 44-50). 23
+L1294@P19: Introduction to Zoning
+L1295@P19: A series of streetscape allowances and requirements
+L1296@P19: help ensure new buildings contribute to their
+L1297@P19: neighborhoods.
+L1298@P19: 1. Ground floor use regulations may require certain
+L1299@P19: uses and minimum levels of transparency for
+L1300@P19: windows.
+L1301@P19: 2. Qualifying ground floor regulations allow additional
+L1302@P19: building height in exchange for taller ground floors.
+L1303@P19: 3. Street wall regulations establish the relationship
+L1304@P19: between the building facade and the sidewalk.
+L1305@P19: 4. Articulation allowances add visual interest to a
+L1306@P19: facade.
+L1307@P19: 5. Sign rules allow businesses to direct attention to
+L1308@P19: their stores.
+L1309@P19: 6. Planting rules include street tree planting and,
+L1310@P19: potentially, other planting in front of a building.
+L1311@P19: 7. Parking location rules restrict parking from being
+L1312@P19: located in front of a building and can require spaces
+L1313@P19: to be screened or buffered from the sidewalk (or
+L1314@P19: “wrapped”) by other uses.
+L1315@P19: 1
+L1316@P19: 2
+L1317@P19: 4 3
+L1318@P19: 5
+L1319@P19: 6
+L1320@P19: 7
+L1321@P19: Streetscape Regulations
+L1322@P19: Streetscape
+L1323@P19: Since 1961, informed by the contributions of Jane Jacobs
+L1324@P19: and other urbanists, planners in New York City have
+L1325@P19: increasingly recognized the importance of how buildings
+L1326@P19: interact with public areas like the sidewalk, and the Zoning
+L1327@P19: Resolution has evolved to reect this.
+L1328@P19: Vibrant commercial corridors are oen the lifeblood
+L1329@P19: of neighborhoods and in New York City the ground
+L1330@P19: oor of the building will oen “hug” the sidewalk so
+L1331@P19: that large, transparent show windows displaying retail
+L1332@P19: wares, and frequent store entrances, are readily accessible
+L1333@P19: to passersby. Residential streets, on the other hand,
+L1334@P19: can provide for a degree of separation from the noise,
+L1335@P19: crowds and tra
+L1336@P19: c of the city, and have dierent physical
+L1337@P19: qualities underpinning their success, such as street
+L1338@P19: trees continuously lining the block, building facades
+L1339@P19: maintaining a relatively uniform separation from the
+L1340@P19: sidewalk and architectural articulation that adds visual
+L1341@P19: interest. For both types of conditions, the streetscape,
+L1342@P19: or design quality of the street, plays a pivotal role in
+L1343@P19: providing an enjoyable environment for both pedestrians
+L1344@P19: and occupants of the adjoining buildings.
+L1345@P19: Streetscape regulations have no dedicated chapter in the
+L1346@P19: Resolution, and so are oen located within the Chapters
+L1347@P19: governing use, bulk or parking.
+L1348@P19: Ground Floor Use Regulations
+L1349@P19: In some Commercial Districts, ground oor use
+L1350@P19: regulations require uses along the sidewalk to consist
+L1351@P19: primarily of neighborhood retail and service uses.
+L1352@P19: Buildings must also provide transparency, generally in
+L1353@P19: the form of shop windows, so they are inviting to those
+L1354@P19: walking by. Collectively, these rules help to prevent large
+L1355@P19: expanses of blank walls, residential lobbies or apartments
+L1356@P19: at ground level, which can disrupt the continuity of a
+L1357@P19: commercial corridor dependent on pedestrian activity.
+L1358@P19: Ground oor requirements are sometimes required by
+L1359@P19-20: a particular zoning district, but more commonly are 24
+L1360@P20: An accessory sign directs attention to a business,
+L1361@P20: profession, commodity, service or entertainment
+L1362@P20: conducted, sold or offered on the same zoning lot.
+L1363@P20: Signage Types
+L1364@P20: An advertising sign directs attention to a business,
+L1365@P20: profession, commodity, service or entertainment
+L1366@P20: conducted, sold or offered on a different zoning lot.
+L1367@P20: An illuminated sign uses artificial light or reflected
+L1368@P20: light from an artificial source.
+L1369@P20: included as part of a special purpose district (see Chapter
+L1370@P20: 7), as part of special rules for certain areas (see Chapter
+L1371@P20: 6), or as supplemental requirements for qualifying ground
+L1372@P20: oors for certain Quality Housing buildings
+L1373@P20: (ZR 23-662, 35-652).
+L1374@P20: Street Wall Rules
+L1375@P20: Many contextual districts prescribe where the street wall
+L1376@P20: of a building may be located in relation to the sidewalk or
+L1377@P20: neighboring buildings. Sometimes these rules require new
+L1378@P20: buildings to “line up” with the existing buildings on either
+L1379@P20: side, while at other times the rules specify how close to
+L1380@P20: the street a building must be located. Generally, residential
+L1381@P20: rules try to ensure that buildings are close enough to the
+L1382@P20: street to establish a sense of enclosure, but not so close
+L1383@P20: so as to erode a sense of privacy for building occupants.
+L1384@P20: Commercial rules, on the other hand, try to ensure that
+L1385@P20: buildings are as close to the street as possible so ground
+L1386@P20: oor retail and service uses enliven the pedestrian
+L1387@P20: experience. Collectively, these street wall location rules
+L1388@P20: help establish or maintain consistency along a block-front.
+L1389@P20: Articulation allowances complement these street wall
+L1390@P20: location rules by allowing portions of the building’s wall
+L1391@P20: to project forward or to be recessed beyond the locations
+L1392@P20: prescribed, accommodating varied facades reminiscent of
+L1393@P20: the city’s older building stock. Other bulk regulations allow
+L1394@P20: for architectural features such as dormers and balconies,
+L1395@P20: subject to size limitations.
+L1396@P20: Signs
+L1397@P20: When an owner or tenant wants to provide signage on a
+L1398@P20: lot, whether a
+L1399@P20: xed to a building or on a sign pole, it is
+L1400@P20: regulated by the Zoning Resolution. For the purposes of
+L1401@P20: zoning, signage is characterized as a use regulation, and
+L1402@P20: all signs are classied as either accessory or advertising,
+L1403@P20: depending on whether the sign is promoting a business,
+L1404@P20: product or service that is located on the zoning lot
+L1405@P20: (accessory), or not (advertising). Within each district,
+L1406@P20: the Resolution lays out which type is permitted, along
+L1407@P20: with whether or not they can be illuminated or ashing,
+L1408@P20: and what their size and location can be on the lot. In
+L1409@P20: general, only very limited accessory signage is permitted
+L1410@P20: in Residence Districts, while Commercial Districts and
+L1411@P20: Manufacturing Districts have more generous allowances.
+L1412@P20: Advertising signs are limited to Manufacturing Districts
+L1413@P20: and a few Commercial Districts . Certain areas of the
+L1414@P20: city, such as Times Square and Coney Island, have special
+L1415@P20: signage rules that add to their distinct character.
+L1416@P20: Planting Rules
+L1417@P20: Street trees and planted areas are required in many zoning
+L1418@P20: districts. Trees must be planted at regular intervals along
+L1419@P20: the sidewalk in front of the entire zoning lot for most new
+L1420@P20: developments and signicant enlargements in all zoning
+L1421@P20: districts. Additionally, for residential buildings, open areas
+L1422@P20: in front of a building may be required to be planted with
+L1423@P20: grass or other vegetation.
+L1424@P20: Parking Design Requirements
+L1425@P20: Parking-related rules have been created to help make
+L1426@P20: the provision of o-street parking spaces less disruptive
+L1427@P20: to both pedestrians and on-street parkers. Curb cut
+L1428@P20: limitations restrict the width, frequency and location of
+L1429@P20: curb cuts for driveways and entrances to larger parking
+L1430@P20: facilities. Parking location rules require that any parking
+L1431@P20: spaces be screened from the street, while screening and
+L1432@P20: buering rules provide separation from the exhaust,
+L1433@P20: lights and noise associated with parking garages and lots.
+L1434@P20: In areas with ground oor use requirements, o-street
+L1435@P20: parking spaces typically must not be visible from the
+L1436@P20: street, so are oen required to be surrounded by – or
+L1437@P20: “wrapped” with – these ground oor uses. Bioswale
+L1438@P20: requirements for certain parking lots accessory to
+L1439@P20: commercial and community facility uses serve the same
+L1440@P20: aesthetic purpose of screening parking, but also serve an
+L1441@P20-21: environmental function by managing storm water run-o.25
+L1442@P21: Introduction to Zoning
+L1443@P21: Other Zoning Fundamentals
+L1444@P21: As-of-right versus Discretionary
+L1445@P21: In general, when a building is being developed, enlarged
+L1446@P21: or otherwise altered within the existing zoning regulations,
+L1447@P21: construction can proceed as-of-right by ling for building
+L1448@P21: permits at the Department of Buildings. If modications
+L1449@P21: to zoning regulations are needed in order to proceed,
+L1450@P21: either in the form of special permissions set forth in the
+L1451@P21: Zoning Resolution or amendments to the applicable
+L1452@P21: regulations themselves, this will require a governmental
+L1453@P21: planning body to use its judgment about the merits of
+L1454@P21: the permission requested, which occurs through a public
+L1455@P21: review process. For this reason, the application procedures
+L1456@P21: that change the baseline zoning rules or grant other
+L1457@P21: permissions are called discretionary actions.
+L1458@P21: Special Permits
+L1459@P21: Sometimes the Zoning Resolution allows predened
+L1460@P21: modications to the as-of-right use, bulk or parking
+L1461@P21: regulations at the discretion of a planning body so the
+L1462@P21: merits of the proposal can be considered by the general
+L1463@P21: public, a group of expert planners, as well as (in some
+L1464@P21: instances) elected o
+L1465@P21: cials. A proposed land use may be
+L1466@P21: appropriate, but may require review to evaluate the specic
+L1467@P21: characteristics of the project or its context before it is
+L1468@P21: allowed. e most common review processes are special
+L1469@P21: permits granted by either the City Planning Commission
+L1470@P21: (CPC) or the Board of Standards and Appeals (BSA).
+L1471@P21: Each has a slightly dierent public review process, set
+L1472@P21: forth in the City Charter. e Resolution species the
+L1473@P21: special permits that are available to modify the underlying
+L1474@P21: regulations, the extent of the permitted modications,
+L1475@P21: what criteria, or “ndings,” need to be met in order to be
+L1476@P21: granted the permit, and which agency has discretion to
+L1477@P21: grant or deny the application. Special permits involving
+L1478@P21: larger planning decisions are generally issued by the CPC
+L1479@P21: and are subject to a more extensive process than BSA
+L1480@P21: special permits which address generally narrower land use
+L1481@P21: considerations. When a special permit is granted by the
+L1482@P21: CPC or BSA, it is granting permission for specic zoning
+L1483@P21: waivers or modications requested by the application for
+L1484@P21: a specic development to occur. However, the body
+L1485@P21: granting the permit may sometimes incorporate relevant
+L1486@P21: conditions and safeguards in its approvals to ensure that
+L1487@P21: the resulting project does not have adverse eects on the
+L1488@P21: surrounding area.
+L1489@P21: Because these discretionary actions are all site-specic,
+L1490@P21: applicants are most oen private property owners
+L1491@P21: or developers.
+L1492@P21: Zoning Amendments
+L1493@P21: Zoning regulations are regularly updated to reect
+L1494@P21: the changing needs and priorities of the city and its
+L1495@P21: neighborhoods. However, instances arise where a
+L1496@P21: development is not permitted by current zoning even
+L1497@P21: though it would advance sound planning objectives in
+L1498@P21: a manner consistent with the broad purpose and form
+L1499@P21: of the Zoning Resolution. If there is no special permit
+L1500@P21: available under the current zoning that would enable the
+L1501@P21: project to occur, the development team may pursue an
+L1502@P21: amendment to the Zoning Resolution itself. Amendments
+L1503@P21: are of two types, depending on whether the changes are
+L1504@P21: being made to the Resolution’s maps or text. Zoning map
+L1505@P21: amendments and zoning text amendments each have
+L1506@P21: dierent processes.
+L1507@P21: A zoning map amendment entails changing the zoning
+L1508@P21: designation for an area, whether a relatively small one or
+L1509@P21: an entire neighborhood. An example would be changing
+L1510@P21: the zoning district for a block near a subway station to
+L1511@P21: allow additional housing to be built. Zoning districts must
+L1512@P21: be drawn based on land use planning considerations, such
+L1513@P21: as the location or conguration of lots and the type of
+L1514@P21: development considered appropriate in its respective area.
+L1515@P21: Zoning boundaries based solely on ownership and lacking
+L1516@P21: any underlying land use rationale may be considered “spot
+L1517@P21: zoning,” which is impermissible.
+L1518@P21: A zoning text amendment can introduce new rules or
+L1519@P21: amend existing rules. e creation of the FRESH food store
+L1520@P21: program, which established oor area incentives for the
+L1521@P21: development of grocery stores selling fresh and healthy
+L1522@P21: produce in underserved neighborhoods, is an example of
+L1523@P21: a zoning text amendment. A zoning text amendment may
+L1524@P21: also create a new special permit, enabling new rules to be
+L1525@P21: accessed through a discretionary review process.
+L1526@P21: Sometimes both text and map changes are needed,
+L1527@P21: as when a new special purpose district is written into
+L1528@P21: the zoning text and designated on the zoning map or
+L1529@P21: when a zoning map change occurs and the Mandatory
+L1530@P21: Inclusionary Housing program is applied within the
+L1531@P21: rezoned area.
+L1532@P21: Under Section 201 of the City Charter any taxpayer,
+L1533@P21: Community Board, Borough Board, Borough President,
+L1534@P21: the Mayor, or the land use committee of the City Council
+L1535@P21: (if two-thirds of the committee members approve) can
+L1536@P21: apply for a zoning amendment. However, for site-specic
+L1537@P21: changes, the property owner must agree to the application.
+L1538@P21: e most common applicants for zoning amendments are
+L1539@P21: the Department of City Planning, other public agencies
+L1540@P21: and private property owners. In 2017, 39 zoning map
+L1541@P21: amendments and 47 zoning text amendments were
+L1542@P21: adopted; some aected a small area while others modied
+L1543@P21: zoning rules throughout the city.
+L1544@P21: Variances
+L1545@P21: As a matter of law, zoning must allow relief if applying
+L1546@P21: the regulations of the Zoning Resolution would result
+L1547@P21: in practical di
+L1548@P21: culties or unnecessary hardship
+L1549@P21: for a property owner because of factors such as site
+L1550@P21: irregularities. In these instances, an applicant can seek
+L1551@P21-22: zoning relief through a variance at the BSA.26
+L1552@P22: While zoning regulations seek to accommodate common
+L1553@P22: conditions they cannot possibly contemplate every single
+L1554@P22: site irregularity created by a range of issues, such as
+L1555@P22: intersecting street grids, rail infrastructure, underground
+L1556@P22: streams or large rock outcrops. If the Resolution oered
+L1557@P22: no relief for property holders impacted by obstacles such
+L1558@P22: as these, the ordinance could be subject to constitutional
+L1559@P22: challenges. However, in order to be considered for a
+L1560@P22: variance, the conditions that create the irregularity cannot
+L1561@P22: be self-created — a property owner cannot subdivide a
+L1562@P22: lot in a manner that makes development di
+L1563@P22: cult and then
+L1564@P22: petition for a variance to modify the zoning based on this
+L1565@P22: di
+L1566@P22: culty.
+L1567@P22: DCP and DOB
+L1568@P22: While the Department of City Planning, in conjunction
+L1569@P22: with the CPC, oversees the preparation and incorporation
+L1570@P22: of zoning changes into the Zoning Resolution, the
+L1571@P22: Department of Buildings (DOB) is the agency tasked
+L1572@P22: by the City Charter with administering and enforcing
+L1573@P22: the Resolution. For practical reasons, the review and
+L1574@P22: enforcement of compliance with both the Zoning
+L1575@P22: Resolution and Construction Codes is conducted by DOB.
+L1576@P22: As part of this process, DOB is responsible for interpreting
+L1577@P22: how the zoning regulations apply to a particular property.
+L1578@P22: In rare instances, an interpretation of the zoning may be
+L1579@P22: appealed to the BSA.
+L1580@P22: Once a development team is ready to begin construction,
+L1581@P22: the architect or engineer will le the building plans at DOB
+L1582@P22: to obtain a building permit, and DOB sta will review the
+L1583@P22: application to ensure that the proposal complies with the
+L1584@P22: relevant regulations of the Zoning Resolution and other
+L1585@P22: regulations, including the Construction Codes, Fire Code,
+L1586@P22: and Energy Code. e Construction Codes set standards
+L1587@P22: for the design, construction, alteration and maintenance of
+L1588@P22: buildings for the health, safety and welfare of its occupants,
+L1589@P22: and include the Building Code, the Fuel and Gas Code,
+L1590@P22: the Mechanical Code and the Plumbing Code. Once DOB
+L1591@P22: determines that the proposed building complies with all
+L1592@P22: the applicable regulations, they will issue a building permit
+L1593@P22: and the developer can commence construction.
+L1594@P22: When a building has completed construction, the owner
+L1595@P22: can obtain a certicate of occupancy (CO or “C of O”)
+L1596@P22: from DOB denoting the intended use of each oor of
+L1597@P22: the building. Only when all work is completely nished
+L1598@P22: on every oor can a nal CO be obtained. COs must be
+L1599@P22: amended for changes of use, egress or occupancy type.
+L1600@P22: Odds and Ends
+L1601@P22: Split Lots
+L1602@P22: Sometimes a zoning district boundary will divide a zoning
+L1603@P22: lot into dierent zoning districts. is type of property is
+L1604@P22: known as a split lot. Split lots generally fall into one of two
+L1605@P22: categories, depending on how the zoning lot is divided.
+L1606@P22: Where the boundary divides a pre-existing zoning lot
+L1607@P22: into two unequal portions, so that the proportion of one
+L1608@P22: district versus the other is relatively small, the “25-foot
+L1609@P22: rule” may be applied, which allows for the rules governing
+L1610@P22: the zoning district mapped in larger proportion to be
+L1611@P22: applied over the entire lot (ZR 77-11).
+L1612@P22: In other cases, the zoning regulations for each district are
+L1613@P22: generally applied to the portion of the lot mapped within
+L1614@P22: that district (ZR 77-02, 77-03), with a few modications.
+L1615@P22: For example, there are special oor area ratio (FAR)
+L1616@P22: regulations that allow the generation of a “blended FAR,”
+L1617@P22: or weighted average, and for modest redistribution of
+L1618@P22: oor area across the boundary (ZR 77-22). A zoning lot,
+L1619@P22: 60 percent of which is located within an R7X District and
+L1620@P22: 40 percent in an R6A District, would multiply the FARs
+L1621@P22: for the respective district by the percentage of the lot in
+L1622@P22: each portion to determine a blended FAR. In this case, the
+L1623@P22: blended FAR for the entire zoning lot would be 4.2 ((60%
+L1624@P22: x 5.0) + (40% x 3.0) = 3.0+1.2). e maximum permitted
+L1625@P22: oor area on each portion of the zoning lot would either
+L1626@P22: be the FAR permitted for the district or the blended FAR,
+L1627@P22: whichever is higher. is would allow the R6A portion to
+L1628@P22: absorb a little bit of the FAR from the R7X portion, but not
+L1629@P22: vice versa.
+L1630@P22: Mergers and Development Transfers
+L1631@P22: When the actual built oor area on a zoning lot is
+L1632@P22: less than the permitted oor area, the property owner
+L1633@P22: cannot lawfully be simply deprived of the remaining
+L1634@P22: development rights. To reect the nature of these property
+L1635@P22: rights without encouraging the demolition of underbuilt
+L1636@P22: buildings, these unused development rights may be used
+L1637@P22: in another development or enlargement.
+L1638@P22: A common way for these unused development rights to be
+L1639@P22: utilized is through a zoning lot merger. is involves the
+L1640@P22: joining of two or more adjacent zoning lots into a larger
+L1641@P22: new zoning lot. Mergers are very common, and as long
+L1642@P22: as the new zoning lot meets the denitional requirements
+L1643@P22: for a zoning lot (ZR 12-10), such as having 10 feet of
+L1644@P22: contiguous boundary between adjoining tax lots, they are
+L1645@P22: permitted. e owners of the respective tax lots codify this
+L1646@P22: transaction by entering into a Zoning Lot Development
+L1647@P22: Agreement (ZLDA), which is recorded against each of the
+L1648@P22: properties. A merged lot becomes subject to all provisions
+L1649@P22: of zoning as a single zoning lot.
+L1650@P22: Zoning lot mergers are separate and distinct from
+L1651@P22: a “transfer of development rights,” which involves
+L1652@P22: transferring unused development rights from one zoning
+L1653@P22: lot to another through certain special mechanisms dened
+L1654@P22: to address specic planning objectives. ere are typically
+L1655@P22: limits placed on the amount of transfer that occur to any
+L1656@P22: one site.
+L1657@P22: e most prevalent type of transfer involves shiing
+L1658@P22: the unused rights from a landmarked building (the
+L1659@P22-23: “generating site”) to a “receiving site,” a separate zoning 27
+L1660@P23: Introduction to Zoning
+L1661@P23: R7
+L1662@P23: C4
+L1663@P23: Commercial regulations may be
+L1664@P23: applied to this portion of the lot
+L1665@P23: A zoning lot merger is the joining of two or more adjacent
+L1666@P23: zoning lots into one new zoning lot. Unused development
+L1667@P23: rights may be shifted from one lot to another,
+L1668@P23: as-of-right, as long as the merged lot complies with all
+L1669@P23: bulk regulations.
+L1670@P23: 25 Foot Rule
+L1671@P23: Where a zoning district boundary divides a zoning lot so
+L1672@P23: that the entirety of the smaller portion is within 25 feet
+L1673@P23: of the district boundary, the 25-foot rule may be applied,
+L1674@P23: which permits the use or bulk rules of the larger portion
+L1675@P23: to be applied over the entire zoning lot.
+L1676@P23: A transfer of development rights (TDR) allows for the
+L1677@P23: transfer of unused development rights from one zoning
+L1678@P23: lot to another through certain special mechanisms
+L1679@P23: defined to address specific planning objectives.
+L1680@P23: New building Existing building Receiving site Generating site
+L1681@P23: <25’
+L1682@P23: lot that is in close proximity to the landmark — either Zoning Lot Merger Transfer of Development Rights
+L1683@P23: next to, across the street from or diagonally across an
+L1684@P23: intersection from it. is allowance is available, by special
+L1685@P23: permit of the City Planning Commission, in most districts
+L1686@P23: (ZR 74-79) and is described in more detail in Chapter 6.
+L1687@P23: A few special purpose districts utilize unique transfer of
+L1688@P23: development rights mechanisms to achieve broader policy
+L1689@P23: goals, including the Special Midtown District, the Special
+L1690@P23: West Chelsea District, the Special Lower Manhattan
+L1691@P23: District and the Special Sheepshead Bay District. In
+L1692@P23: the Special Midtown District, some subdistricts have
+L1693@P23: diering provisions that broaden the eligible receiving
+L1694@P23: sites of transferred oor area. For example, the eater
+L1695@P23: Subdistrict allows transfers from specic theaters around
+L1696@P23: Times Square to other sites within the subdistrict (ZR
+L1697@P23: 81-744). e Special West Chelsea District allows zoning
+L1698@P23: lots under or adjacent to the High Line, within the High
+L1699@P23: Line Transfer Corridor, to transfer development rights to
+L1700@P23-24: facilitate views from the High Line park itself (ZR 98-30).28
+L1701@P24: Use regulations limit the permissible
+L1702@P24: uses that can locate on a zoning lot
+L1703@P24: Depending on the use,
+L1704@P24: minimum lot widths and
+L1705@P24: lot areas may apply
+L1706@P24: The combination of open area and
+L1707@P24: height regulations establishes a
+L1708@P24: building envelope
+L1709@P24: Street wall location rules help
+L1710@P24: ensure new buildings align with the
+L1711@P24: location of neighboring buildings
+L1712@P24: Open area regulations, in the form of yards, minimum
+L1713@P24: open space, or maximum lot coverage restrict the
+L1714@P24: building footprint. Yard requirements may come in the
+L1715@P24: form of front yard, side yard or rear yard regulations
+L1716@P24: Height regulations limit the shape of the
+L1717@P24: building. In contextual districts, this is often a
+L1718@P24: fixed height limit. In non-contextual districts, a
+L1719@P24: sky exposure plane may be applied
+L1720@P24: Putting it All Together
+L1721@P24: Use, bulk, parking and streetscape regulations layer on each
+L1722@P24: other to help shape what is permissible through zoning on
+L1723@P24-25: each property.29
+L1724@P25: Introduction to Zoning
+L1725@P25: In buildings containing residences,
+L1726@P25: regulations dictate the maximum number
+L1727@P25: of dwelling units that can be provided
+L1728@P25: Articulation allowances and permitted obstructions
+L1729@P25: allow many of the architectural features associated with
+L1730@P25: common building types – from decks and porches to bay
+L1731@P25: windows, balconies and dormers
+L1732@P25: Parking regulations stipulate the
+L1733@P25: amount of vehicle parking that is
+L1734@P25: permitted, and how much is required
+L1735@P25: The maximum floor area permitted
+L1736@P25: determines how large a building can
+L1737@P25: be constructed within the envelope
+L1738@P25: Other streetscape rules set forth minimum street
+L1739@P25: tree planting requirements, front yard planting rules
+L1740@P25: and other requirements to enhance the public realm
+L1741@P25: Minimum distances are required
+L1742@P25: between legally required windows in a
+L1743@P25: housing unit facing certain lot lines
+

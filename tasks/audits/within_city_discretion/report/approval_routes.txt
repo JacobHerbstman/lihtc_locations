@@ -1,0 +1,29 @@
+Rows: 12
+Key: route_id complete and unique
+Saved-file MD5: 1e6830184777a44560e41e5b1d3cf261
+column	type	nonmissing	distinct	min	max
+place_geoid	integer	12	8	644000	5363000
+route_id	character	12	12	NA	NA
+route_name	character	12	12	NA	NA
+trigger	character	12	12	NA	NA
+local_subjective_review	integer	11	3	0	1
+subjective_denial_code	integer	8	3	0	1
+binding_land_use_actor	character	12	11	NA	NA
+binding_board_approval	character	11	4	NA	NA
+elected_approval	integer	11	3	0	1
+advisory_or_comment_role	character	12	12	NA	NA
+appeal_or_request	character	12	11	NA	NA
+state_limit	character	12	7	NA	NA
+affordable_exception	character	12	10	NA	NA
+evidence_ids	character	12	11	NA	NA
+scope_limit	character	12	12	NA	NA
+board_conditions_binding	character	1	2	NA	NA
+city_name	character	12	8	NA	NA
+pilot_category	character	12	4	NA	NA
+short_description	character	12	8	NA	NA
+answer	character	12	8	NA	NA
+city_trigger	character	12	8	NA	NA
+date_evidence	character	12	8	NA	NA
+city_scope_limit	character	12	8	NA	NA
+reference_year	integer	12	1	2022	2022
+coding_status	character	12	1	NA	NA

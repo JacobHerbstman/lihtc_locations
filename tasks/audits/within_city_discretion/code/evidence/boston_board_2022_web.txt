@@ -1,0 +1,158 @@
+ (https://www.boston.gov/sites/default/files/file/2022/04/TD%202%20BPDA%20BRA%20City%20Clerk%2004.14.2022.pdf)
+citeturn106view0 [wordlim: 200] Crawled: last month; Content type: application/pdf; Number of pages: 7; Source: open({"ref_id":"https://www.boston.gov/sites/default/files/file/2022/04/TD%202%20BPDA%20BRA%20City%20Clerk%2004.14.2022.pdf","lineno":null}); Total lines: 155
+L0@P0: April 12, 2022
+L1@P0: Mr. Alex Geourntas, City Clerk
+L2@P0: City Hall, Room 601
+L3@P0: Boston, MA 02201
+L4@P0: Dear Sir:
+L5@P0: Notice is hereby given in accordance with Section 23B of Chapter 39, as Amended,
+L6@P0: of the General Laws; and, with Section 20b of Chapter 30A of the General Laws, that
+L7@P0: the Meeting of the Boston Redevelopment Authority d/b/a the Boston Planning &
+L8@P0: Development Agency will be held at 3:30 p.m. on Thursday, April 14, 2022 televised
+L9@P0: on Boston City TV (Xfinity Channel 24, RCN Channel 13, and Verizon Fios Channel
+L10@P0: 962) and livestreamed on boston.gov.
+L11@P0: BOSTON REDEVELOPMENT AUTHORITY
+L12@P0: D/B/A BOSTON PLANNING & DEVELOPMENT AGENCY
+L13@P0: BOARD OF DIRECTORS’ MEETING AGENDA
+L14@P0: SCHEDULED FOR APRIL 14, 2022 AT 3:30 P.M.
+L15@P0: _____________________________________________________________________________________
+L16@P0: EXECUTIVE SESSION
+L17@P0: Executive session pursuant to M.G.L. c. 30A, § 21(a)(2) to conduct strategy
+L18@P0: sessions in preparation for contract negotiations with nonunion personnel
+L19@P0: and to conduct contract negotiations with nonunion personnel.
+L20@P0: OPEN SESSION
+L21@P0: 1. Approval of contract with nonunion personnel.
+L22@P0: MINUTES/SCHEDULING
+L23@P0: 2. Request authorization for the approval of the Minutes of the March 10, 2022
+L24@P0-1: Meeting. 2
+L25@P1: 3. Request authorization to schedule a Public Hearing on May 12, 2022 at 5:30
+L26@P1: p.m., or at such a time and date deemed appropriate by the Director, to
+L27@P1: consider the proposed Saint Elizabeth’s Medical Center 2021-2025
+L28@P1: Institutional Master Plan.
+L29@P1: 4. Request authorization to schedule a Public Hearing on May 12, 2022 at 5:40
+L30@P1: p.m., or at such a time and date deemed appropriate by the Director, to
+L31@P1: consider the First Amendment to the Development Plan for Planned
+L32@P1: Development Area No. 95, 80 East Berkeley Street in the South End.
+L33@P1: PLANNING AND ZONING
+L34@P1: 5. Board of Appeal
+L35@P1: LICENSE AGREEMENT/LEASE/MEMORANDUM OF AGREEMENT/EASEMENT
+L36@P1: 6. Request authorization to enter into a License Agreement with Richard Taylor
+L37@P1: or related party of Nubian Gallery for the temporary use of a portion of the
+L38@P1: commonly referred Blair Lot located on a portion of 1, 2 and 4 Palmer Street
+L39@P1: 2180-2190 Washington Street and 2148 Washington Street for construction
+L40@P1: laydown and support for the Nubian Gallery Building located at
+L41@P1: 2164 Washington Street in the Nubian Square in Roxbury.
+L42@P1: 7. Request authorization to amend the Lease with Charlestown Marina, LLC for
+L43@P1: use of Water Parcel D to establish the market rate effective May 1, 2022.
+L44@P1: 8. Request authorization to enter into a License Agreement with the
+L45@P1: Courageous Sailing Center of Boston, Inc. for use of portions of Pier 3,
+L46@P1: adjacent land and water sheet area within the Charlestown Navy Yard.
+L47@P1: REQUEST FOR PROPOSALS/INVITATION FOR BIDS/CONTRACTS
+L48@P1: 9. Request authorization to advertise and issue an Invitation for Bids for Pile
+L49@P1-2: Rehabilitation at Pier 4 located within the Charlestown Navy Yard. 3
+L50@P2: 10. Request authorization to advertise and issue an Invitation for Bids, pursuant
+L51@P2: to Chapter 30, Section 39M of Massachusetts General Laws, for Electrical
+L52@P2: Repair & Maintenance of BRA-owned properties.
+L53@P2: TENTATIVE/FINAL DESIGNATION/EXTENSION/CONVEYANCE
+L54@P2: 11. Request authorization to grant tentative designation of Asian Community
+L55@P2: Development Corporation, as Redeveloper of BPDA-owned Parcel R-1 in the
+L56@P2: South Cove Urban Renewal Area, Project No. Mass R-92, located at 0, 55 and
+L57@P2: 57 Hudson Street, 0, 52, 54, 56 and 58 Tyler Street and O Holland Place in the
+L58@P2: Chinatown neighborhood of Boston, as a mixed-use building consisting of
+L59@P2: affordable housing with space anticipated for a Chinatown branch library;
+L60@P2: and to take all related actions
+L61@P2: 12. Request authorization to extend Tentative Designation status of NUBA LLC as
+L62@P2: Redeveloper of a portion of Parcel 8 located at Harrison Avenue and
+L63@P2: Washington Street in the Nubian Square area of Roxbury; and to take all
+L64@P2: related actions.
+L65@P2: 13. Request authorization to award Tentative Designation to the Frederick
+L66@P2: Douglass Peace Park Stewardship Committee and the Boston Food Forest
+L67@P2: Coalition Inc., for the sale of Parcels X-26B and X-26-2 in the South End Urban
+L68@P2: Renewal Area, Project No. Mass R-56 known as the Frederick Douglass Peace
+L69@P2: Garden; and to take all related actions
+L70@P2: 14. Request authorization to petition the Public Improvement Commission to
+L71@P2: widen and relocate portions of the public way surrounding BPDA owned
+L72@P2: Union Park to incorporate certain edge slivers of land on Union Street Park,
+L73@P2: also known as Parcel 7-2 in the former Government Center Urban Renewal
+L74@P2-3: Area, into a public Right of Way; and to take all related actions. 4
+L75@P3: CERTIFICATE OF COMPLETION
+L76@P3: 15. Request authorization to issue a Certificate of Completion for the successful
+L77@P3: completion of Phase 3A of the Old Colony Chapter 121A Project, located at 20
+L78@P3: Reverend Richard Burke Street and 229 East Eighth Street in South Boston.
+L79@P3: 16. Request authorization to issue a Certificate of Completion for the successful
+L80@P3: completion of the Seaport Square Block L-4 Project, located at 55 Pier 4
+L81@P3: Boulevard, also known as 111 Harbor Way, in the South Boston Waterfront.
+L82@P3: 17. Request authorization to issue a Certificate of Completion for the successful
+L83@P3: completion of the new hotel building located at 99 Blackstone Street,
+L84@P3: Downtown Boston.
+L85@P3: URBAN RENEWAL
+L86@P3: 18. Request authorization to adopt a Minor Modification to certain Urban
+L87@P3: Renewal Plans with respect to the extension of the Plan period for up to
+L88@P3: eleven months or until March 31, 2023, in order to evaluate the necessity of a
+L89@P3: longer-term extension of certain Urban Renewal Plan.
+L90@P3: South End
+L91@P3: 19. Request authorization to adoption of a Minor Modification to the South End
+L92@P3: Urban Renewal Plan, Project No. Mass R-56 regarding the use of Parcels X30A, X-30A-1, X-30B, X-30C, and X-30D in the South End Urban Renewal Area,
+L93@P3: Mass. Project No. R-129; and Parcels X-35, X-35-1 and X- 36 in the Campus
+L94@P3: High School Urban Renewal Area, Mass. Project No. R- 129 with addresses of
+L95@P3: 1130 Tremont Street, 175-177 Ruggles Street, 0 Tremont Street, four adjacent
+L96@P3: parcels each known as 0 Melnea Cass Boulevard and 0 St. Francis de Sales
+L97@P3: Court also known as the “Crescent Parcel”; and to enter into a Development
+L98@P3: Regulatory Agreement with Drexel Village LLC to govern the entirety of the
+L99@P3-4: Project Site for the Drexel Village project; and to take all related actions.5
+L100@P4: ARTICLE 80 DEVELOPMENT/IDP
+L101@P4: NOT OPEN TO PUBLIC TESTIMONY
+L102@P4: Dorchester
+L103@P4: 20. Request authorization to issue a Certification of Approval in accordance with
+L104@P4: Article 80E, Small Project Review of the Zoning Code for the Notice of Project
+L105@P4: Change increasing the affordable units from 5 IDP units to 17 restricted
+L106@P4: affordable units located at 500 Talbot Avenue; and to take all related actions.
+L107@P4: South Boston
+L108@P4: 21. Request authorization to issue a Certification of Approval in accordance with
+L109@P4: Article 80E, Small Project Review of the Zoning Code for the construction of a
+L110@P4: mixed-use life sciences building, with Bio Safety Levels I and II only, including
+L111@P4: office space; research/development uses and including active ground floor
+L112@P4: space located at 202 West First Street; and to take all related actions.
+L113@P4: Allston
+L114@P4: 22. Request authorization to issue a Certification of Approval in accordance with
+L115@P4: Article 80E, Small Project Review of the Zoning Code for the construction of
+L116@P4: 38 condominium units, including 8 IDP units, 25 below-grade parking spaces
+L117@P4: and 40 bicycle spaces located at 14 Gardner Street; and to take all related
+L118@P4: actions.
+L119@P4: Hyde Park
+L120@P4: 23. Request authorization to issue a Certification of Approval in accordance with
+L121@P4: Article 80E, Small Project Review of the Zoning Code for the Notice of Project
+L122@P4: Change reducing the 45 residential rental units to 40 residential rental units,
+L123@P4: including 5 IDP units, and an increase of three-bedroom units located at 30
+L124@P4-5: Thorn Street; and to take all related actions. 6
+L125@P5: Charlestown
+L126@P5: 24. Request authorization to issue a Scoping Determination waiving further
+L127@P5: review pursuant to Article 80B, Section 80B-5.3(d) of the Zoning Code for the
+L128@P5: construction of a 99,500 square-foot life sciences building including 81,500
+L129@P5: square feet of office and research and development space, with ancillary
+L130@P5: parking at shared parking lot that spans the site and 440 Rutherford Avenue
+L131@P5: and 44 indoor bicycle spaces located at 420 Rutherford Avenue; and to take
+L132@P5: all related actions.
+L133@P5: PUBLIC HEARING – OPEN TO PUBLIC TESTIMONY
+L134@P5: 25. 5:30 p.m.: Request authorization to approve the Development Plan for
+L135@P5: Planned Development Area No. 133, 355 Bennington Street, East Boston,
+L136@P5: pursuant to Section 80C of the Boston Zoning Code; to petition the Boston
+L137@P5: Zoning Commission for approval of the Development Plan and the
+L138@P5: associated map amendment; to issue a Scoping Determination waiving
+L139@P5: further review pursuant to Article 80B, Section 80B-5.3(d) of the Zoning Code
+L140@P5: for the construction of 170 residential rental units, 6,985 square feet of
+L141@P5: ground floor retail space, 81 structured parking spaces, 170 residential
+L142@P5: bicycle storage spaces and 34 visitor short-term bicycle spaces; and to take
+L143@P5: all related actions.
+L144@P5: ADMINISTRATION AND FINANCE
+L145@P5: 26. Request authorization to disbursement of $150,000.00 to the Mayor's Office
+L146@P5: of Arts and Culture to conduct planning and analysis of waterfront civic and
+L147@P5: cultural facilities and programs within the South Boston Waterfront; and to
+L148@P5: enter into a Grant Agreement with the Mayor’s Office of Arts and Culture;
+L149@P5-6: and to take all related actions. 7
+L150@P6: 27. Personnel
+L151@P6: 28. Contractual
+L152@P6: 29. Director’s Update
+L153@P6: Very truly yours,
+L154@P6: Teresa Polhemus, Secretary
+

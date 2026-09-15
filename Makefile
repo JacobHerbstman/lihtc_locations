@@ -509,3 +509,68 @@ tasks/audits/local_control/output/metro_summary.tex: tasks/audits/local_control/
 	$(MAKE) -C tasks/audits/local_control/code ../output/metro_summary.tex
 
 logbook/logbook.pdf: tasks/audits/local_control/output/metro_summary.tex
+
+# Within-city approval-route pilot; separate from metro counts.
+all: tasks/audits/within_city_discretion/output/diagnostics.html
+
+data_raw/approval_rules/2026-09-15/sf_hcd_2023.pdf:
+	$(MAKE) -C tasks/audits/within_city_discretion/code ../../../../data_raw/approval_rules/2026-09-15/sf_hcd_2023.pdf
+
+data_raw/approval_rules/2026-09-15/seattle_ord126741.pdf:
+	$(MAKE) -C tasks/audits/within_city_discretion/code ../../../../data_raw/approval_rules/2026-09-15/seattle_ord126741.pdf
+
+data_raw/approval_rules/2026-09-15/boston_article80_proposal_2025.pdf:
+	$(MAKE) -C tasks/audits/within_city_discretion/code ../../../../data_raw/approval_rules/2026-09-15/boston_article80_proposal_2025.pdf
+
+tasks/audits/within_city_discretion/output/evidence.csv: tasks/audits/within_city_discretion/code/build_evidence.R \
+    tasks/audits/within_city_discretion/code/evidence_notes.csv \
+    tasks/audits/within_city_discretion/code/sources.csv \
+    tasks/audits/local_control/output/locus_city_text.csv \
+    tasks/audits/within_city_discretion/code/evidence/boston_board_2022_web.txt \
+    tasks/audits/within_city_discretion/code/evidence/haa_court_web.txt \
+    tasks/audits/within_city_discretion/code/evidence/la_site_plan_web.txt \
+    tasks/audits/within_city_discretion/code/evidence/nyc_handbook_web.txt \
+    tasks/audits/within_city_discretion/code/evidence/seattle_2025_web.txt \
+    data_raw/approval_rules/2026-09-15/sf_hcd_2023.pdf \
+    data_raw/approval_rules/2026-09-15/seattle_ord126741.pdf \
+    data_raw/approval_rules/2026-09-15/boston_article80_proposal_2025.pdf \
+    tasks/shared/code/save_data.R \
+    tasks/audits/within_city_discretion/code/Makefile
+	$(MAKE) -C tasks/audits/within_city_discretion/code ../output/evidence.csv
+
+tasks/audits/within_city_discretion/output/approval_routes.csv: tasks/audits/within_city_discretion/code/build_routes.R \
+    tasks/audits/within_city_discretion/code/route_coding.csv \
+    tasks/audits/within_city_discretion/code/city_coding.csv \
+    tasks/audits/placement_gradients/code/cities.csv \
+    tasks/audits/within_city_discretion/output/evidence.csv \
+    tasks/shared/code/save_data.R \
+    tasks/audits/within_city_discretion/code/Makefile
+	$(MAKE) -C tasks/audits/within_city_discretion/code ../output/approval_routes.csv
+
+tasks/audits/within_city_discretion/output/city_comparison.csv: tasks/audits/within_city_discretion/code/compare_cities.R \
+    tasks/audits/within_city_discretion/code/city_coding.csv \
+    tasks/audits/placement_gradients/output/models.csv \
+    tasks/shared/code/save_data.R \
+    tasks/audits/within_city_discretion/code/Makefile
+	$(MAKE) -C tasks/audits/within_city_discretion/code ../output/city_comparison.csv
+
+tasks/audits/within_city_discretion/output/city_comparison.png: tasks/audits/within_city_discretion/code/plot_comparison.R \
+    tasks/audits/within_city_discretion/output/city_comparison.csv \
+    tasks/audits/within_city_discretion/code/Makefile
+	$(MAKE) -C tasks/audits/within_city_discretion/code ../output/city_comparison.png
+
+tasks/audits/within_city_discretion/output/diagnostics.html: tasks/audits/within_city_discretion/code/write_report.R \
+    tasks/audits/within_city_discretion/output/approval_routes.csv \
+    tasks/audits/within_city_discretion/output/city_comparison.csv \
+    tasks/audits/within_city_discretion/output/evidence.csv \
+    tasks/audits/within_city_discretion/output/city_comparison.png \
+    tasks/audits/within_city_discretion/README.md \
+    tasks/audits/within_city_discretion/code/Makefile
+	$(MAKE) -C tasks/audits/within_city_discretion/code ../output/diagnostics.html
+
+tasks/audits/within_city_discretion/output/summary.tex: tasks/audits/within_city_discretion/code/summarize_tex.R \
+    tasks/audits/within_city_discretion/output/city_comparison.csv \
+    tasks/audits/within_city_discretion/code/Makefile
+	$(MAKE) -C tasks/audits/within_city_discretion/code ../output/summary.tex
+
+logbook/logbook.pdf: tasks/audits/within_city_discretion/output/summary.tex tasks/audits/within_city_discretion/output/city_comparison.png

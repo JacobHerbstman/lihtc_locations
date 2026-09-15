@@ -66,3 +66,7 @@ Build a short chain of tables, with evidence carried forward:
 6. **Resolve timing before historical claims.** The saved legal snapshot is from 2026 while the existing LIHTC gradients pool 1987–2022. A first comparison would describe current written institutions versus long-run placement patterns. It would not measure the law faced at construction, explain the 2002 NYC break, or establish causality. Historical legal versions or independently dated institutional changes are required for those claims. The government inventory's 2022 reference year also does not reconstruct metro institutions throughout 1987–2022.
 
 The legal-score comparison remains downstream of the common coding definition and source coverage. The independently defined metro-inventory comparison is in `output/metro_diagnostics.html`: eight metros, three proxies, three gradients, both established tract samples, and all city omissions. No old phrase score is used. The city list and existing LIHTC models remain unchanged.
+
+## September 15 pilot
+
+The [within-city pilot](../within_city_discretion/README.md) implements the route/evidence tables and compares all three existing city gradients alongside them. It documents state-law limits in California, the Seattle affordable exception and the conditional force of Board recommendations. Boston's operative 2022 text and a common dated proposal comparison remain unresolved. No selected-route average is interpreted as a city exposure share.

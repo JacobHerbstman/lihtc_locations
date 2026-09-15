@@ -1,0 +1,210 @@
+CB 121048 - Summary and Fiscal Note v2 (https://clerk.seattle.gov/~public/fnote/121048.pdf)
+citeturn107view0 [wordlim: 200] Crawled: last week; Content type: application/pdf; Number of pages: 6; Source: open({"ref_id":"https://clerk.seattle.gov/~public/fnote/121048.pdf","lineno":null}); Total lines: 207
+L0@P0: Chanda Emery
+L1@P0: SDCI Design Review Interim SUM
+L2@P0: D2b
+L3@P0: 1
+L4@P0: Template last revised: December 9, 2024
+L5@P0: SUMMARY and FISCAL NOTE
+L6@P0: Department: Dept. Contact: CBO Contact:
+L7@P0: Seattle Department of
+L8@P0: Construction and Inspections
+L9@P0: Chanda Emery Jennifer Breeze
+L10@P0: 1. BILL SUMMARY
+L11@P0: Legislation Title: AN ORDINANCE relating to land use and zoning; adopting temporary
+L12@P0: regulations to exempt housing projects that meet Mandatory Housing Affordability requirements
+L13@P0: using on-site performance units from Design Review, and allowing permit applicants for all
+L14@P0: housing subject to Full Design Review the option of complying with Design Review pursuant to
+L15@P0: Administrative Design review; temporarily suspending and allowing voluntary design review of
+L16@P0: proposed development in Titles 23 and 25 of the Seattle Municipal Code, consistent with
+L17@P0: Chapter 333, Laws of 2023; and amending Section 23.41.004 of the Seattle Municipal Code.
+L18@P0: Summary and Background of the Legislation: During the 2023 session, the State legislature
+L19@P0: passed House Bill (HB) 1293, which requires Seattle and other cities and counties that have a
+L20@P0: design review program to meet certain requirements.
+L21@P0: HB 1293 requirements include:
+L22@P0:  Using objective rather than subjective guidelines;
+L23@P0:  Having only one public meeting as part of the review process;
+L24@P0:  Regulating building exteriors only;
+L25@P0:  Maintaining the density, height, bulk, or scale at what zoning allows; and
+L26@P0:  Integrating design review into the development permit process.
+L27@P0: In addition, the City Council adopted a Statement of Legislative Intent (SLI), City Council SLI
+L28@P0: SDCI 4A1, in 2022. The SLI directed Seattle Department of Construction and Inspections
+L29@P0: (SDCI) and Office of Planning and Community Development (OPCD) to work with a
+L30@P0: stakeholder group to analyze the outcomes of Seattle’s design review program and recommend
+L31@P0: best practices, and options for program modifications, including addressing barriers to equitable
+L32@P0: participation. SDCI and OPCD delivered this analysis to Council in August 2024. The Mayor’s
+L33@P0: Housing Subcabinet has also directed SDCI to make land use codes and permitting processes
+L34@P0: simpler and more efficient, to reduce the time and cost of permitting housing.
+L35@P0: SDCI is proposing amendments to the land use code to update design review to carry out state
+L36@P0: law, direction from the City Council and Mayor. Carrying out these state mandates is intended to
+L37@P0: update the design review program to be more efficient, better meet the current needs of the City
+L38@P0: for new investment, particularly in varying and more housing options throughout the City and
+L39@P0: focus the program on good design outcomes for development projects that are most likely to
+L40@P0-1: impact the character of neighborhoods.Chanda Emery
+L41@P1: SDCI Design Review Interim SUM
+L42@P1: D2b
+L43@P1: 2
+L44@P1: Template last revised: December 9, 2024
+L45@P1: This legislation would temporarily suspend required design review for six months, making
+L46@P1: design review voluntary for proposed development. These regulations will be in place while
+L47@P1: SDCI works to update the design review program and guidelines as required by ESHB 1293, as
+L48@P1: well as updating affordable housing measures. These permanent changes are intended to update
+L49@P1: the design review program to be more efficient; better meet the current needs of the city for new
+L50@P1: investment, particularly in varying and more housing options throughout the city; and focus the
+L51@P1: program on good design outcomes for developments that are most likely to impact the character
+L52@P1: of neighborhoods with the highest concentrations of residents and visitors. The additional time is
+L53@P1: needed for City staff to respond to the stakeholder and public engagement recommendations and
+L54@P1: to work through code amendments, Director’s Rules, Tips, and guidance documents to clarify
+L55@P1: code requirements and procedures. Permanent legislation and new Design Guidelines are
+L56@P1: anticipated for council review following the 2025 budget process.
+L57@P1: The interim suspension applies to three types of design review: Streamlined Design Review
+L58@P1: (SDR), Administrative Design Review (ADR), and Full Design Review (FDR) with Design
+L59@P1: Review Board (DRB) input. Design review does not apply to single-family detached residences.
+L60@P1: Design review does not include life and safety reviews which are regulated by other permits and
+L61@P1: other parts of the Seattle Municipal Code.
+L62@P1: This legislation also reenacts temporary regulations established by Ordinance 126854 for six
+L63@P1: months. The temporary regulations exempt proposed development that meet Mandatory Housing
+L64@P1: Affordability requirements using on-site performance units and low-income housing from
+L65@P1: Design Review, but allow the Director to approve departures for qualifying proposed
+L66@P1: development as a Type I decision.
+L67@P1: On September 15th the LUC amended the bill to allow projects that opt-in to design review and
+L68@P1: would meet the thresholds for FDR to instead have the option of being processed under ADR,
+L69@P1: and to make a technical correction. No additional budgetary impacts are anticipated.
+L70@P1: 3. SUMMARY OF FINANCIAL IMPLICATIONS
+L71@P1: Does this legislation have financial impacts to the City? Yes No
+L72@P1: 3.d. Other Impacts
+L73@P1: Does the legislation have other financial impacts to The City of Seattle, including direct or
+L74@P1: indirect, one-time or ongoing costs, that are not included in Sections 3.a through 3.c? If so,
+L75@P1: please describe these financial impacts.
+L76@P1: No, the legislation does not have any associated costs. The proposed legislation would suspend
+L77@P1-2: required Design Review and would not add additional staffing or program costs.Chanda Emery
+L78@P2: SDCI Design Review Interim SUM
+L79@P2: D2b
+L80@P2: 3
+L81@P2: Template last revised: December 9, 2024
+L82@P2: If the legislation has costs, but they can be absorbed within existing operations, please
+L83@P2: describe how those costs can be absorbed. The description should clearly describe if the
+L84@P2: absorbed costs are achievable because the department had excess resources within their
+L85@P2: existing budget or if by absorbing these costs the department is deprioritizing other work
+L86@P2: that would have used these resources.
+L87@P2: No, the legislation does not have any associated costs. The proposed legislation would suspend
+L88@P2: required Design Review and would not add additional staffing or program costs.
+L89@P2: Please describe any financial costs or other impacts of not implementing the legislation.
+L90@P2: No, the legislation does not have any associated costs. The proposed legislation would suspend
+L91@P2: required Design Review and would not add additional staffing or program costs. Not
+L92@P2: implementing the legislation makes the City vulnerable to legal challenges for money damages
+L93@P2: which could result in financial impacts to the City.
+L94@P2: 4. OTHER IMPLICATIONS
+L95@P2: a. Please describe how this legislation may affect any departments besides the originating
+L96@P2: department.
+L97@P2: The City department with direct responsibility for implementation and enforcement of this
+L98@P2: legislation is the Seattle Department of Construction and Inspections (SDCI), the originating
+L99@P2: department.
+L100@P2: b. Does this legislation affect a piece of property? If yes, please attach a map and explain
+L101@P2: any impacts on the property. Please attach any Environmental Impact Statements,
+L102@P2: Determinations of Non-Significance, or other reports generated for this property.
+L103@P2: Yes. The legislation affects properties citywide, largely zoned multifamily, commercial,
+L104@P2: downtown and industrial. The SDCI recommended thresholds for design review of permit
+L105@P2: applications would result in an estimated reduction of 58 design review applications per year.
+L106@P2: This is a roughly estimated 40 percent reduction from the 145 applications reviewed per year
+L107@P2: for a representative base year that is a higher activity year.
+L108@P2: c. Please describe any perceived implication for the principles of the Race and Social
+L109@P2: Justice Initiative.
+L110@P2: i. How does this legislation impact vulnerable or historically disadvantaged
+L111@P2: communities? How did you arrive at this conclusion? In your response please
+L112@P2: consider impacts within City government (employees, internal programs) as well
+L113@P2: as in the broader community.
+L114@P2: The legislation is not anticipated to negatively impact vulnerable or historically
+L115@P2: disadvantaged communities. Potential benefits of the proposal to those communities
+L116@P2-3: include:Chanda Emery
+L117@P3: SDCI Design Review Interim SUM
+L118@P3: D2b
+L119@P3: 4
+L120@P3: Template last revised: December 9, 2024
+L121@P3:  Encouraging the production of housing by speeding up permitting (and thus
+L122@P3: project completion) for some projects, allowing units to reach the housing market
+L123@P3: more quickly, increasing supply; and
+L124@P3:  Enhancing web-based tools, which could allow for increased efficiency and
+L125@P3: transparency in the permit process.
+L126@P3: SDCI’s engagement strategy included focused outreach and engagement with Black,
+L127@P3: Indigenous, and People of Color (BIPOC) communities, BIPOC Design Review
+L128@P3: Stakeholders (BIPOC DRS), Design Review Boad members past and present, SDCI
+L129@P3: Design Review staff, BIPOC-led social development organizations and BIPOC youth.
+L130@P3: Feedback gathered from BIPOC communities focused on program and guideline
+L131@P3: deficiencies; community assets and priorities; public engagement methods; and
+L132@P3: considerations for fostering equitable development in Seattle. Community members
+L133@P3: expressed that the overall complexity and timeliness of the process can be a large
+L134@P3: barrier to the successful completion of development projects. Thus, the draft
+L135@P3: legislation was prepared to address these concerns by simplifying the processes and
+L136@P3: steps and streamlining the process (refer to “Seattle Design Review Program &
+L137@P3: Design Guidelines: Fall 2024 Outreach” report prepared by Seva Workshop, January
+L138@P3: 2025 for additional information).
+L139@P3: ii. Please attach any Racial Equity Toolkits or other racial equity analyses in the
+L140@P3: development and/or assessment of the legislation.
+L141@P3: In October and November of 2024, SDCI engaged with over 1,500 community
+L142@P3: members about the Design Review program and Design Guidelines and how they can
+L143@P3: be improved to address community goals and issues, support equitable development,
+L144@P3: and support needed and future development in their communities. The engagement
+L145@P3: was conducted through stakeholder interviews and focus groups, outreach at
+L146@P3: community events, and an online survey.
+L147@P3: An analysis of survey responses, interviews, and focus group discussions centered on
+L148@P3: five specific themes: the Design Review program, design guidelines, community
+L149@P3: assets and priorities, public engagement, and equitable development. The feedback
+L150@P3: collected was utilized to formulate recommendations and identify areas for further
+L151@P3: exploration to enhance the program, prioritize community goals and interests, support
+L152@P3: new development that is mindful of and encourages culturally rooted and enriched
+L153@P3: urban design.
+L154@P3: iii. What is the Language Access Plan for any communications to the public?
+L155@P3: Project documents including the SEPA Draft legislation and the City’s SEPA
+L156@P3: Determination, pursuant to environmental review under the State Environmental
+L157@P3: Policy Act (SEPA) will be published on the SDCI website with options for multiple
+L158@P3: languages including the top tier languages used in Seattle. Notices will also be
+L159@P3: published in the The Daily Journal of Commerce and in the City’s Land Use
+L160@P3-4: Information Bulletin.Chanda Emery
+L161@P4: SDCI Design Review Interim SUM
+L162@P4: D2b
+L163@P4: 5
+L164@P4: Template last revised: December 9, 2024
+L165@P4: d. Climate Change Implications
+L166@P4: i. Emissions: How is this legislation likely to increase or decrease carbon emissions
+L167@P4: in a material way? Please attach any studies or other materials that were used to
+L168@P4: inform this response.
+L169@P4: This legislation is likely to have little to no impact on carbon emissions. The proposal
+L170@P4: does not change current zoning including land and shoreline uses. The proposed
+L171@P4: changes would continue to allow land uses and land use patterns that are compatible
+L172@P4: with the objectives and intent of the Comprehensive Plan.
+L173@P4: ii. Resiliency: Will the action(s) proposed by this legislation increase or decrease
+L174@P4: Seattle’s resiliency (or ability to adapt) to climate change in a material way? If
+L175@P4: so, explain. If it is likely to decrease resiliency in a material way, describe what
+L176@P4: will or could be done to mitigate the effects.
+L177@P4: This legislation is likely to have no impact on climate change.
+L178@P4: e. If this legislation includes a new initiative or a major programmatic expansion: What
+L179@P4: are the specific long-term and measurable goal(s) of the program? How will this
+L180@P4: legislation help achieve the program’s desired goal(s)? What mechanisms will be used
+L181@P4: to measure progress towards meeting those goals?
+L182@P4: This legislation does not include a new initiative nor any major programmatic expansion.
+L183@P4: 5. CHECKLIST
+L184@P4:  Is a public hearing required?
+L185@P4: Yes. The City Council is required to hold a public hearing on the proposal and will
+L186@P4: conduct a public hearing during their review of the proposed legislation anticipated to be
+L187@P4: held in 2025.
+L188@P4:  Is publication of notice with The Daily Journal of Commerce and/or The Seattle
+L189@P4: Times required?
+L190@P4: Yes. Publication of notice of the Council public hearing will be made in The Daily
+L191@P4: Journal of Commerce and in the City’s Land Use Information Bulletin. Environmental
+L192@P4: review under the State Environmental Policy Act (SEPA) is also required for this
+L193@P4: legislation, and publication of notice of the environmental determination was also made
+L194@P4: in The Daily Journal of Commerce and in the City’s Land Use Information Bulletin.
+L195@P4: If this legislation changes spending and/or revenues for a fund, have you reviewed
+L196@P4: the relevant fund policies and determined that this legislation complies?
+L197@P4-5: Yes.Chanda Emery
+L198@P5: SDCI Design Review Interim SUM
+L199@P5: D2b
+L200@P5: 6
+L201@P5: Template last revised: December 9, 2024
+L202@P5: Does this legislation create a non-utility CIP project that involves a shared financial
+L203@P5: commitment with a non-City partner agency or organization?
+L204@P5: No.
+L205@P5: 6. ATTACHMENTS
+L206@P5: Summary Attachments: None.
+

@@ -1,0 +1,9 @@
+file,url,sha256,bytes,acquisition,retrieved
+sf_hcd_2023.pdf,https://sfplanning.org/sites/default/files/documents/housing-for-all/housingelement-HCD-housing-policy-and-practice-review-102423.pdf,cdc3c0e7769a5dbf3c7287a1be2dd8776e82789e73cc2104de96b85d0f4b1b98,1800705,original_pdf_via_curl,2026-09-15
+seattle_ord126741.pdf,https://clerk.seattle.gov/~archives/Ordinances/Ord_126741.pdf,f30f4b6da85eeb39221da964d28091b06add6a042a46c322790bc3f78a1c6100,219590,original_pdf_via_curl,2026-09-15
+boston_article80_proposal_2025.pdf,https://www.bostonplans.org/getattachment/f078b57f-df0b-443e-bdb8-2f1f5aa3a5ea,bfbec2c0bdea83cd164ec6bb753261d33819f72d8259fded1aae3a3f53a76914,540199,original_pdf_via_curl,2026-09-15
+evidence/boston_board_2022_web.txt,https://www.boston.gov/sites/default/files/file/2022/04/TD%202%20BPDA%20BRA%20City%20Clerk%2004.14.2022.pdf,cac8ed8688dfe07dfb8b7dbb00798f712ad7e95bcf2aa3fa057f651011426997,11014,web_tool_excerpt_not_original_bytes,2026-09-15
+evidence/haa_court_web.txt,https://law.justia.com/cases/california/court-of-appeal/2021/a159320.html,2645787e11280fb6c19bb02ae12e1f18729e35288363f0392ae71f696340ff5b,35571,web_tool_excerpt_not_original_bytes,2026-09-15
+evidence/la_site_plan_web.txt,https://codelibrary.amlegal.com/codes/los_angeles/e137bc46-ef58-4045-84b6-473b7b610129/lapz/0-0-0-13183,725f9c2d97fa94d2fac526726da93d5e58ac7ab07778ab49546eb69e54d91cc9,22683,web_tool_excerpt_not_original_bytes,2026-09-15
+evidence/nyc_handbook_web.txt,https://www.nyc.gov/assets/planning/download/pdf/about/publications/zoning-handbook/zoning-handbook-01.pdf,85d38724824e65dc48ab6b1245e12c8c9f666e57f65a3a2e76b5efda3ab3a70b,28024,web_tool_excerpt_not_original_bytes,2026-09-15
+evidence/seattle_2025_web.txt,https://clerk.seattle.gov/~public/fnote/121048.pdf,f64f438a9fbfbf5d8de0d6c0450a96fa196a076d7c7883f491db68692e50300f,15665,web_tool_excerpt_not_original_bytes,2026-09-15

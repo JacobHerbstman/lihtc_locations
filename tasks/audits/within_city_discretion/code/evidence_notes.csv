@@ -1,0 +1,22 @@
+evidence_id,source_type,source_locator,section,interpretation
+atl_use,locus,train-00001-of-00008.parquet:126494,16-08.003(4),RG multifamily is a permitted principal use.
+atl_permit,locus,train-00001-of-00008.parquet:127228,16-30.004 and 16-30.005,Building permit checks zoning conformity; occupancy certificate requires compliance.
+hou_authority,locus,train-00006-of-00008.parquet:191531,42-70 through 42-72,Director and commission responsibilities; verify standards as well as actor.
+hou_approval,locus,train-00006-of-00008.parquet:191534,42-75(b),Commission shall approve complying referred development plats.
+chi_certification,locus,train-00002-of-00008.parquet:80983,17-13-1300 through 1303,Ordinary zoning certification; title is inside a multi-section raw chunk.
+chi_threshold,locus,train-00002-of-00008.parquet:80725,17-8-0513-A,Mandatory residential planned-development thresholds by zoning district.
+chi_affordable,locus,train-00002-of-00008.parquet:80727,17-8-0513-C,Government-assisted and elderly unit thresholds increase 20%.
+chi_recommend,locus,train-00002-of-00008.parquet:80920,17-13-0605,Plan Commission sends a recommendation to Council committee.
+chi_council,locus,train-00002-of-00008.parquet:80922,17-13-0607,City Council is the final PD decision maker.
+chi_findings,locus,train-00002-of-00008.parquet:80928,17-13-0609-B,"Compatibility with surrounding uses, density and building scale."
+sea_full,locus,train-00007-of-00008.parquet:168092,23.41.014 F-G,Board recommendation and binding Director design decision; last amendment 2020.
+sea_admin,locus,train-00007-of-00008.parquet:168093,23.41.016 F-G,Director applies design priorities and public comments; last amendment 2022.
+nyc_asofright,web_excerpt,evidence/nyc_handbook_web.txt,2018 Handbook printed page 25 / PDF page 22,As-of-right permit route distinguished from discretionary special permissions.
+la_siteplan,web_excerpt,evidence/la_site_plan_web.txt,"LAMC 16.05 C-D, E-F and appeal provisions","Threshold, ministerial exception, Director decision and compatibility findings."
+ca_haa,web_excerpt,evidence/haa_court_web.txt,"2021 A159320 opinion, discussion of section 65589.5(j)",Court rejects subjective design guideline as reason to deny HAA-compliant housing.
+bos_board,web_excerpt,evidence/boston_board_2022_web.txt,"April 14, 2022 board agenda",Corroborates historical Article 80 review; agenda is not the complete governing law.
+sea_later,web_excerpt,evidence/seattle_2025_web.txt,2025 CB121048 fiscal note,Subsequent proposed reform; not used to backdate 2022 power.
+sf_hcd,pdf,sf_hcd_2023.pdf,"HCD 2023 review, printed pp. 8, 15-16, 25-27","Retrospective evidence on local review, HAA conflicts and SB35; not a 2022 code compilation."
+sea_affordable,pdf,seattle_ord126741.pdf,"Ordinance 126741, recitals and section 2",December 2022 act records prior exemption and renews it; 40%/60% eligibility and application timing.
+bos_proposal,pdf,boston_article80_proposal_2025.pdf,Cover dated July 2025; pp. 70-77,Proposed modernization text; excluded from operative-2022 coding.
+sea_board_conditions,locus,train-00007-of-00008.parquet:168090,23.41.008 F.3,Four-member recommendation constrains permit conditions; Director departure requires an enumerated inconsistency or legal conflict.

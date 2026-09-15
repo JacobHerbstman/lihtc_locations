@@ -1,0 +1,14 @@
+# Verification — September 15, 2026
+
+Baseline: `744aaa8`. New audit only; existing LIHTC production and placement models are unchanged.
+
+- Root `make` completed, including the new task and 30-page logbook. `make -C paper` completed its root data check; the unchanged paper PDF was already current and was not recompiled. Subsequent root `make` had nothing to do.
+- A fresh disposable task fixture, invoked with GNU Make 3.81 and `make -j4` (the shared settings serialize recipes), reproduced all three CSV outputs byte-for-byte. Evidence has 21 unique keys, routes have 12 unique keys and eight cities, and the matched comparison has 48 unique city/sample/variable keys. Each save produced its standard report.
+- The fixture's unchanged second build ran no R scripts. Removing the actual plot rebuilt it and the HTML consumer without rebuilding data. Changing the route-source timestamp rebuilt routes and HTML without refitting or rejoining models. Simulated changes were separated by more than one second because GNU Make 3.81 compares second-resolution modification times; an initial same-second test did not trigger the expected HTML refresh.
+- An incorrect recorded SHA-256 caused the evidence build to fail before rewriting its previous output. A separate failed-curl fixture preserved the original raw PDF bytes. Tests used copied raw PDFs, not writable links to the original cache.
+- An actual root build after changing the route-source timestamp reached only routes and HTML. A subsequent root build was unchanged. The root graph and task Makefile list every source, script and output explicitly.
+- Programmatic HTML inspection found all twelve route sections, eight city sections, evidence anchors and local links. This caught and resolved overlapping `trigger`/`scope_limit` names in the route/context join. City-context columns now have explicit names and every route appears in the report.
+- Inspected the rendered three-panel PNG on a white background and the new logbook page 30. No new logbook overflow or LaTeX warnings. Browser rendering of the HTML was not inspected; the report was queued in the app and its file structure checked.
+- Existing placement-gradient `models.csv` still has MD5 `aa0bd89f1c1cea94e6bc798c76a77ea7`. The matched results preserve estimates, intervals and actual Ns; no models were re-estimated. The authored code and tables passed the staged whitespace check; verbatim web excerpts retain provider whitespace and are excluded from that formatting check.
+
+These checks establish source integrity, data joins, rendering of the static exhibits and build behavior. They do not independently validate the legal judgments. Boston's operative 2022 rules and other explicitly missing denial fields remain unresolved. External web excerpts are retrieved text, not complete original documents. No city-level discretion correlation or causal claim is produced from the pilot.

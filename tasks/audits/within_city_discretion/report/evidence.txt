@@ -1,0 +1,14 @@
+Rows: 21
+Key: evidence_id complete and unique
+Saved-file MD5: 9e71874e32c34f6379eb185f66dd47a1
+column	type	nonmissing	distinct	min	max
+evidence_id	character	21	21	NA	NA
+source_type	character	21	3	NA	NA
+source_locator	character	21	21	NA	NA
+section	character	21	21	NA	NA
+interpretation	character	21	21	NA	NA
+source_url	character	21	9	NA	NA
+source_version	character	21	9	NA	NA
+place_geoid	integer	13	5	1304000	5363000
+header	character	21	21	NA	NA
+content	character	21	19	NA	NA

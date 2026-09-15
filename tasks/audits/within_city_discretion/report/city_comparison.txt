@@ -1,0 +1,35 @@
+Rows: 48
+Key: place_geoid, sample, variable complete and unique
+Saved-file MD5: 76c4fd44bf32f65a498300b23e89710c
+column	type	nonmissing	distinct	min	max
+place_geoid	integer	48	8	644000	5363000
+city_name	character	48	8	NA	NA
+sample	character	48	2	NA	NA
+adjustment	character	48	1	NA	NA
+model	character	48	1	NA	NA
+variable	character	48	3	NA	NA
+comparison	character	48	1	NA	NA
+log_rate_change	numeric	48	48	-1.18363083482212	0.641929991891454
+standard_error	numeric	48	48	0.0561363050655687	0.301984693813241
+rate_ratio	numeric	48	48	0.306165083229712	1.90014460636883
+ci_low	numeric	48	48	0.253218158262408	1.208116754833
+ci_high	numeric	48	48	0.37018300279997	3.08039435323637
+p_value	numeric	48	48	1.9354467682661e-37	0.903999259580533
+natural_rate_ratio	numeric	48	48	0.628865542783864	1.28510136916886
+natural_ci_low	numeric	48	48	0.559541964196747	1.10743815322772
+natural_ci_high	numeric	48	48	0.677442288117742	1.49126659960765
+tract_years	integer	48	16	2638	70708
+tract_code_clusters	integer	48	16	212	2702
+projects	integer	48	15	76	819
+zero_year_tract_years_omitted	integer	48	13	0	8198
+pilot_category	character	48	4	NA	NA
+short_description	character	48	8	NA	NA
+answer	character	48	8	NA	NA
+trigger	character	48	8	NA	NA
+date_evidence	character	48	8	NA	NA
+scope_limit	character	48	8	NA	NA
+reference_year	integer	48	1	2022	2022
+coding_status	character	48	1	NA	NA
+percent_change	numeric	48	48	-37.1134457216136	28.510136916886
+percent_ci_low	numeric	48	48	-44.0458035803253	10.743815322772
+percent_ci_high	numeric	48	48	-32.2557711882258	49.126659960765
