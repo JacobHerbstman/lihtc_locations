@@ -409,3 +409,103 @@ logbook/logbook.pdf: tasks/audits/placement_gradients/output/cross_city.tex \
     logbook/placement_gradients_pooled_summary.tex logbook/placement_gradients_pooled.png \
     logbook/placement_gradients_housing_controls.tex logbook/placement_gradients_housing_controls.png \
     logbook/placement_gradients_split_summary.tex logbook/placement_gradients_split.png
+
+# Reuse the unchanged LOCUS raw files from the sibling project; start the measurement here.
+all: tasks/audits/local_control/output/diagnostics.html
+
+tasks/audits/local_control/output/locus_city_text.csv: tasks/audits/local_control/code/extract_locus.R \
+    tasks/audits/local_control/code/Makefile tasks/audits/local_control/code/city_keys.csv \
+    tasks/audits/local_control/code/source_hashes.csv tasks/audits/placement_gradients/code/cities.csv \
+    ../local_laws/data_raw/locus_v1/20260507/train-00000-of-00008.parquet \
+    ../local_laws/data_raw/locus_v1/20260507/train-00001-of-00008.parquet \
+    ../local_laws/data_raw/locus_v1/20260507/train-00002-of-00008.parquet \
+    ../local_laws/data_raw/locus_v1/20260507/train-00003-of-00008.parquet \
+    ../local_laws/data_raw/locus_v1/20260507/train-00004-of-00008.parquet \
+    ../local_laws/data_raw/locus_v1/20260507/train-00005-of-00008.parquet \
+    ../local_laws/data_raw/locus_v1/20260507/train-00006-of-00008.parquet \
+    ../local_laws/data_raw/locus_v1/20260507/train-00007-of-00008.parquet tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/local_control/code ../output/locus_city_text.csv
+
+tasks/audits/local_control/output/locus_city_coverage.csv: tasks/audits/local_control/code/summarize_coverage.R \
+    tasks/audits/local_control/code/Makefile tasks/audits/placement_gradients/code/cities.csv \
+    tasks/audits/local_control/output/locus_city_text.csv tasks/shared/code/save_data.R
+	$(MAKE) -C tasks/audits/local_control/code ../output/locus_city_coverage.csv
+
+tasks/audits/local_control/output/coverage.tex: tasks/audits/local_control/code/summarize_coverage_tex.R \
+    tasks/audits/local_control/code/Makefile tasks/audits/local_control/output/locus_city_coverage.csv
+	$(MAKE) -C tasks/audits/local_control/code ../output/coverage.tex
+
+tasks/audits/local_control/output/diagnostics.html: tasks/audits/local_control/code/write_report.R \
+    tasks/audits/local_control/code/Makefile tasks/audits/local_control/README.md \
+    tasks/audits/local_control/MEASUREMENT_PLAN.md tasks/audits/local_control/output/locus_city_coverage.csv \
+    tasks/audits/local_control/output/locus_city_text.csv
+	$(MAKE) -C tasks/audits/local_control/code ../output/diagnostics.html
+
+logbook/logbook.pdf: tasks/audits/local_control/output/coverage.tex
+
+# Census government inventory and fixed metro/population definitions.
+
+data_raw/census_governments/2026-09-15/govt_units_2022.ZIP: tasks/fetch_local_governments/code/Makefile
+	$(MAKE) -C tasks/fetch_local_governments/code ../../../data_raw/census_governments/2026-09-15/govt_units_2022.ZIP
+
+data_raw/census_governments/2026-09-15/list1_2020.xls: tasks/fetch_local_governments/code/Makefile
+	$(MAKE) -C tasks/fetch_local_governments/code ../../../data_raw/census_governments/2026-09-15/list1_2020.xls
+
+data_raw/census_governments/2026-09-15/list2_2020.xls: tasks/fetch_local_governments/code/Makefile
+	$(MAKE) -C tasks/fetch_local_governments/code ../../../data_raw/census_governments/2026-09-15/list2_2020.xls
+
+data_raw/census_governments/2026-09-15/co-est2021-alldata.csv: tasks/fetch_local_governments/code/Makefile
+	$(MAKE) -C tasks/fetch_local_governments/code ../../../data_raw/census_governments/2026-09-15/co-est2021-alldata.csv
+
+all: tasks/fetch_local_governments/output/source_inventory.csv tasks/audits/local_control/output/metro_fragmentation.csv
+
+tasks/fetch_local_governments/output/source_inventory.csv: tasks/fetch_local_governments/code/report_sources.R \
+    tasks/fetch_local_governments/code/Makefile tasks/shared/code/save_data.R \
+    data_raw/census_governments/2026-09-15/govt_units_2022.ZIP \
+    data_raw/census_governments/2026-09-15/list1_2020.xls \
+    data_raw/census_governments/2026-09-15/list2_2020.xls \
+    data_raw/census_governments/2026-09-15/co-est2021-alldata.csv
+	$(MAKE) -C tasks/fetch_local_governments/code ../output/source_inventory.csv
+
+tasks/audits/local_control/output/governments.csv: tasks/audits/local_control/code/build_metro_governments.R \
+    tasks/audits/local_control/code/Makefile tasks/shared/code/save_data.R \
+    tasks/audits/placement_gradients/code/cities.csv \
+    data_raw/census_governments/2026-09-15/govt_units_2022.ZIP \
+    data_raw/census_governments/2026-09-15/list1_2020.xls data_raw/census_governments/2026-09-15/list2_2020.xls
+	$(MAKE) -C tasks/audits/local_control/code ../output/governments.csv
+
+tasks/audits/local_control/output/metro_fragmentation.csv: tasks/audits/local_control/code/summarize_metros.R \
+    tasks/audits/local_control/code/Makefile tasks/shared/code/save_data.R \
+    tasks/audits/placement_gradients/code/cities.csv tasks/audits/local_control/output/governments.csv \
+    data_raw/census_governments/2026-09-15/list1_2020.xls data_raw/census_governments/2026-09-15/co-est2021-alldata.csv
+	$(MAKE) -C tasks/audits/local_control/code ../output/metro_fragmentation.csv
+
+all: tasks/audits/local_control/output/metro_correlations.csv tasks/audits/local_control/output/metro_gradients.png
+
+tasks/audits/local_control/output/metro_comparison.csv: tasks/audits/local_control/code/compare_metros.R \
+    tasks/audits/local_control/code/Makefile tasks/shared/code/save_data.R \
+    tasks/audits/local_control/output/metro_fragmentation.csv tasks/audits/placement_gradients/output/models.csv
+	$(MAKE) -C tasks/audits/local_control/code ../output/metro_comparison.csv
+
+tasks/audits/local_control/output/metro_correlations.csv: tasks/audits/local_control/code/correlate_metros.R \
+    tasks/audits/local_control/code/Makefile tasks/shared/code/save_data.R tasks/audits/local_control/output/metro_comparison.csv
+	$(MAKE) -C tasks/audits/local_control/code ../output/metro_correlations.csv
+
+tasks/audits/local_control/output/metro_gradients.png: tasks/audits/local_control/code/plot_metros.R \
+    tasks/audits/local_control/code/Makefile tasks/audits/local_control/output/metro_comparison.csv
+	$(MAKE) -C tasks/audits/local_control/code ../output/metro_gradients.png
+
+all: tasks/audits/local_control/output/metro_diagnostics.html
+
+tasks/audits/local_control/output/metro_diagnostics.html: tasks/audits/local_control/code/write_metro_report.R \
+    tasks/audits/local_control/code/Makefile tasks/audits/local_control/output/metro_fragmentation.csv \
+    tasks/audits/local_control/output/metro_comparison.csv tasks/audits/local_control/output/metro_correlations.csv \
+    tasks/audits/local_control/output/metro_gradients.png
+	$(MAKE) -C tasks/audits/local_control/code ../output/metro_diagnostics.html
+
+tasks/audits/local_control/output/metro_summary.tex: tasks/audits/local_control/code/summarize_metros_tex.R \
+    tasks/audits/local_control/code/Makefile tasks/audits/local_control/output/metro_fragmentation.csv \
+    tasks/audits/local_control/output/metro_correlations.csv
+	$(MAKE) -C tasks/audits/local_control/code ../output/metro_summary.tex
+
+logbook/logbook.pdf: tasks/audits/local_control/output/metro_summary.tex

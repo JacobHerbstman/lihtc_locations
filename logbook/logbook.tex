@@ -933,4 +933,78 @@ report from the existing pinned national sources. The task's
 \path{README.md} describes definitions, magnitudes and the boundary sensitivity;
 \path{verification.md} records checks and the Wharton source URL and checksum.
 The source folder is \path{tasks/audits/placement_gradients/code}.
+\clearpage
+\section*{Restart local-control measurement from raw legal text}
+\noindent September 15, 2026. Agent-drafted source assessment; baseline
+\texttt{3628269}. Jacob asked to inspect the earlier local-laws task and develop
+fresh discretion and fragmentation measures using its raw data.
+
+The LOCUS public release contains city text for seven of the eight LIHTC cities.
+Los Angeles city is absent; its county code is not a substitute. Inspected NYC
+and San Francisco provisions have charter form, which does not establish
+coverage of their separate zoning/planning codes. Chunk and topic counts below
+measure source coverage, not discretion.
+
+\input{../tasks/audits/local_control/output/coverage.tex}
+
+The fresh extract preserves all 24,991 original city chunks, including Process
+and Context, with full text, headings, source labels and shard/row identifiers.
+All eight shard hashes match the publisher inventory; the recorded revision is
+in the task README. May 7, 2026 is the source snapshot date, not the law's effective
+date. The \href{https://arxiv.org/html/2606.19334v1#S3}{LOCUS paper}
+describes a selective county-harmonized release. No old phrase score, segmentation
+or model-assisted pilot labels enter this reset. Exact source-row comparisons
+verify text preservation, including embedded quotes and the one empty content string.
+
+The proposed legal observation is a city, snapshot and residential approval route.
+For a zoning-compliant apartment proposal, record binding board/elected-body
+approval, subjective findings and the number of required decision bodies separately.
+Hearings and advisory recommendations are not vetoes. Keep rezoning, discretionary
+use, appeals and overrides explicit. Written powers may miss informal member deference.
+Source coverage and consistent evidence-backed coding remain unfinished; unknowns
+stay missing. No legal-discretion correlation is estimated here.
+
+Jacob chose to retain metro fragmentation separately. The following entry uses
+Census government counts, counts per resident and central-city population share.
+These are broader proxies than land-use authority. A concentration measure would
+require nonoverlapping areas of authority, not overlapping city/county populations.
+
+\paragraph{Reproduction.} Root \texttt{make setup} records dependencies.
+Root \texttt{make} builds this audit. Its task folder is
+\path{tasks/audits/local_control/}. The README
+records sources and execution order; \path{MEASUREMENT_PLAN.md} defines variables
+and remaining legal work. Existing LIHTC data and gradient results are unchanged.
+\clearpage
+\section*{First metro-fragmentation comparison}
+\noindent September 15, 2026. Agent-drafted analysis; baseline \texttt{3628269}.
+Jacob chose to keep metropolitan fragmentation separate from within-city
+approval powers. This first pass uses Census government counts and population;
+the LOCUS legal measures remain unfinished.
+
+\paragraph{Definition.} One observation pairs a selected central city with its
+MSA. The 2022 Census government inventory is assigned by its primary county to
+March 2020 MSA boundaries. Exclude schools, special districts and functionally
+dormant governments; retain the dormant-inclusive count separately. No selected
+MSA has a dormant unit. The denominator sums disjoint county populations from
+vintage 2021 estimates; selected cities' inventory populations are also dated 2021.
+The count describes general-purpose governments, not zoning authorities.
+Census primary-county assignments can miss territorial membership across MSA
+boundaries. City/county powers and overlaps differ across states.
+
+\input{../tasks/audits/local_control/output/metro_summary.tex}
+
+\paragraph{Finding.} The raw government-count correlation with the homeowner
+gradient is $-0.50$, but becomes $+0.08$ without New York. Counts per 100,000
+residents give $-0.09$. Thus this pass does not establish a stable homeowner
+relationship. Larger central-city share measures greater reach, rather than
+greater fragmentation; its homeowner correlation also changes sign without NYC.
+The HTML report shows all three demographic gradients, coefficient intervals,
+rank correlations and the existing interior-tract sensitivity. City-specific
+year effects and joint housing controls remain in the unchanged LIHTC models.
+
+\paragraph{Interpretation and reproduction.} These eight cities are not a
+representative sample. Equal-weight correlations of noisy slopes and modern
+institutions describe central-city associations, not historical effects or
+MSA-wide sorting. Root \texttt{make} reaches the acquisition and audit tasks.
+Their READMEs document raw hashes, government assignment, model Ns and city omissions.
 \end{document}

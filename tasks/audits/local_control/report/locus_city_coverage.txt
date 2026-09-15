@@ -1,0 +1,16 @@
+Rows: 8
+Key: place_geoid complete and unique
+Saved-file MD5: a63dbfa428489bc726a0f50a3b48501f
+column	type	nonmissing	distinct	min	max
+place_geoid	integer	8	8	644000	5363000
+city_name	character	8	8	NA	NA
+raw_chunks	integer	8	8	0	8667
+text_characters	integer	7	8	2002459	15800319
+median_chunk_characters	numeric	7	8	563	1648
+max_chunk_characters	integer	7	8	46516	221231
+source_zoning_building_chunks	integer	7	8	58	3878
+source_process_chunks	integer	7	8	107	461
+source_process_without_topic	integer	7	8	107	461
+distinct_headers	integer	7	8	732	8627
+city_in_public_release	logical	8	2	NA	NA
+legal_coverage_status	character	8	2	NA	NA

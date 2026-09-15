@@ -1,0 +1,17 @@
+Rows: 38736
+Key: government_id complete and unique
+Saved-file MD5: 45fa543ae1c51880aa374bb2d065a110
+column	type	nonmissing	distinct	min	max
+county_geoid	integer	38736	3138	1001	56045
+government_id	integer	38736	38736	100001	251375
+government_name	character	38736	25357	NA	NA
+government_type	character	38736	3	NA	NA
+functionally_active	character	38736	2	NA	NA
+place_geoid	integer	38736	38736	100124	5699045
+source_population	integer	38736	13035	0	9829544
+source_population_year	integer	38736	11	2000	2022
+cbsa	integer	1940	9	12060	42660
+in_selected_metro	logical	38736	2	NA	NA
+government_year	integer	38736	1	2022	2022
+metro_boundary_vintage	character	38736	1	NA	NA
+metro_assignment	character	38736	1	NA	NA

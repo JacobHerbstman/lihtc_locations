@@ -1,6 +1,6 @@
 # setwd("/Users/jacobherbstman/Desktop/lihtc_locations/tasks/setup_environment/code")
 options(repos=c(CRAN="https://cloud.r-project.org"))
-packages <- c("data.table","readxl","ggplot2","sf","jsonlite","curl","sandwich")
+packages <- c("data.table","readxl","ggplot2","sf","jsonlite","curl","sandwich","DBI","duckdb")
 for (package in packages) {
   if (!requireNamespace(package,quietly=TRUE)) install.packages(package)
 }

@@ -1,0 +1,8 @@
+Rows: 4
+Key: source_file complete and unique
+Saved-file MD5: f0cb0a6ce164e2e7cb28265eeb271210
+column	type	nonmissing	distinct	min	max
+source_file	character	4	4	NA	NA
+reference_period	character	4	4	NA	NA
+expected_sha256	character	4	4	NA	NA
+bytes	integer	4	4	212480	11459763

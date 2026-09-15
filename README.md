@@ -19,6 +19,15 @@ composition and income with year effects, vacancy and housing-density controls.
 Its [methods and findings](tasks/audits/placement_gradients/README.md) distinguish
 the descriptive gradients from the still-unmeasured local-control hypothesis.
 
+The [local-control source assessment](tasks/audits/local_control/output/diagnostics.html)
+starts from the unchanged LOCUS raw text in the sibling `local_laws` project.
+It reports city coverage and links a [new measurement proposal](tasks/audits/local_control/MEASUREMENT_PLAN.md)
+for board/elected-body approval, subjective standards and separate binding decision-makers.
+Those legal measures remain unfinished. The separate [metro-fragmentation comparison](tasks/audits/local_control/output/metro_diagnostics.html)
+uses Census government counts, counts per resident and central-city population shares.
+It shows all three demographic gradients and each city omission; the homeowner
+relationship is not stable in this first eight-metro comparison.
+
 The main dataset is `tasks/build_lihtc/output/projects.csv`: **28,456 HUD-reported
 new-construction project IDs with HUD coordinates**. It uses TYPE=1 in the 50
 states and DC from the pinned 2024 release. Every ID keeps its own placed-in-service

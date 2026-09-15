@@ -1,0 +1,45 @@
+Rows: 48
+Key: place_geoid, sample, variable complete and unique
+Saved-file MD5: 95133d0cae3dc8cb88733df286710a37
+column	type	nonmissing	distinct	min	max
+place_geoid	integer	48	8	644000	5363000
+city_name	character	48	8	NA	NA
+sample	character	48	2	NA	NA
+adjustment	character	48	1	NA	NA
+model	character	48	1	NA	NA
+variable	character	48	3	NA	NA
+comparison	character	48	1	NA	NA
+log_rate_change	numeric	48	48	-1.18363083482212	0.641929991891454
+standard_error	numeric	48	48	0.0561363050655687	0.301984693813241
+rate_ratio	numeric	48	48	0.306165083229712	1.90014460636883
+ci_low	numeric	48	48	0.253218158262408	1.208116754833
+ci_high	numeric	48	48	0.37018300279997	3.08039435323637
+p_value	numeric	48	48	1.9354467682661e-37	0.903999259580533
+natural_rate_ratio	numeric	48	48	0.628865542783864	1.28510136916886
+natural_ci_low	numeric	48	48	0.559541964196747	1.10743815322772
+natural_ci_high	numeric	48	48	0.677442288117742	1.49126659960765
+tract_years	integer	48	16	2638	70708
+tract_code_clusters	integer	48	16	212	2702
+projects	integer	48	15	76	819
+zero_year_tract_years_omitted	integer	48	13	0	8198
+cbsa	integer	48	8	12060	42660
+central_city_population	integer	48	8	496461	8467513
+population_year	integer	48	1	2021	2021
+metro_name	character	48	8	NA	NA
+metro_population	integer	48	8	4011553	19768458
+metro_counties	integer	48	8	2	29
+active_county_governments	integer	48	7	2	29
+active_municipal_governments	integer	48	8	36	379
+active_township_governments	integer	48	4	0	208
+general_purpose_governments	integer	48	8	69	583
+census_inclusive_governments	integer	48	8	69	583
+dormant_governments	integer	48	1	0	0
+governments_per_100k	numeric	48	8	0.954040411151409	6.00424776870166
+central_city_population_share	numeric	48	8	0.0808035416378447	0.428334521589898
+government_year	integer	48	1	2022	2022
+metro_boundary_vintage	character	48	1	NA	NA
+population_vintage	integer	48	1	2021	2021
+metro_assignment	character	48	1	NA	NA
+natural_log_rate_change	numeric	48	48	-0.463837808592037	0.250837601748537
+natural_log_ci_low	numeric	48	48	-0.580636751010131	0.102049377791134
+natural_log_ci_high	numeric	48	48	-0.389430913446658	0.39962582570594

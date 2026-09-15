@@ -1,0 +1,11 @@
+Rows: 162
+Key: sample, variable, measure, omitted_city complete and unique
+Saved-file MD5: 6813ba45bf5c131f46bac8822d94ae0c
+column	type	nonmissing	distinct	min	max
+sample	character	162	2	NA	NA
+variable	character	162	3	NA	NA
+measure	character	162	3	NA	NA
+omitted_city	character	162	9	NA	NA
+n_cities	integer	162	2	7	8
+pearson	numeric	162	162	-0.862942028681457	0.962855265344387
+spearman	numeric	162	48	-0.678571428571428	0.892857142857143

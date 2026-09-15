@@ -1,0 +1,23 @@
+Rows: 24991
+Key: chunk_id complete and unique
+Saved-file MD5: c08ed4ca1ba0a84659fee617ff676661
+column	type	nonmissing	distinct	min	max
+place_geoid	integer	24991	7	667000	5363000
+city_name	character	24991	7	NA	NA
+source_file	character	24991	7	NA	NA
+source_row	numeric	24991	24991	73862	264964
+header	character	24991	24505	NA	NA
+content	character	24991	24932	NA	NA
+is_substantive	logical	24991	2	NA	NA
+source_function	character	24991	4	NA	NA
+source_topic	character	20093	6	NA	NA
+source_jurisdiction_type	character	24991	1	NA	NA
+state	character	24991	7	NA	NA
+city	character	24991	7	NA	NA
+county	logical	0	1	NA	NA
+enforcement_discretion	numeric	24991	8523	-2.203125	3.0390625
+opacity	numeric	24991	8946	-2.478515625	2.642578125
+paternalism	numeric	24991	9384	-2.681640625	4.4140625
+problem_salience	numeric	24991	8834	-1.85546875	2.802734375
+source_version_sha	character	24991	1	NA	NA
+chunk_id	character	24991	24991	NA	NA

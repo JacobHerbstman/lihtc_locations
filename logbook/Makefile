@@ -18,5 +18,7 @@ logbook.pdf: logbook.tex reset_summary.tex corroboration_summary.tex corroborati
     ../tasks/audits/placement_gradients/output/cross_city.png \
     placement_gradients_pooled_summary.tex placement_gradients_pooled.png \
     placement_gradients_housing_controls.tex placement_gradients_housing_controls.png \
-    placement_gradients_split_summary.tex placement_gradients_split.png
+    placement_gradients_split_summary.tex placement_gradients_split.png \
+    ../tasks/audits/local_control/output/coverage.tex \
+    ../tasks/audits/local_control/output/metro_summary.tex
 	pdflatex -halt-on-error -interaction=nonstopmode logbook.tex

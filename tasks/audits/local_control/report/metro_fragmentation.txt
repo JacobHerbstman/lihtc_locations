@@ -1,0 +1,24 @@
+Rows: 8
+Key: place_geoid complete and unique
+Saved-file MD5: 955a9f56c0ffcf9695ae9da40721e158
+column	type	nonmissing	distinct	min	max
+cbsa	integer	8	8	12060	42660
+place_geoid	integer	8	8	644000	5363000
+city_name	character	8	8	NA	NA
+central_city_population	integer	8	8	496461	8467513
+population_year	integer	8	1	2021	2021
+metro_name	character	8	8	NA	NA
+metro_population	integer	8	8	4011553	19768458
+metro_counties	integer	8	8	2	29
+active_county_governments	integer	8	7	2	29
+active_municipal_governments	integer	8	8	36	379
+active_township_governments	integer	8	4	0	208
+general_purpose_governments	integer	8	8	69	583
+census_inclusive_governments	integer	8	8	69	583
+dormant_governments	integer	8	1	0	0
+governments_per_100k	numeric	8	8	0.954040411151409	6.00424776870166
+central_city_population_share	numeric	8	8	0.0808035416378447	0.428334521589898
+government_year	integer	8	1	2022	2022
+metro_boundary_vintage	character	8	1	NA	NA
+population_vintage	integer	8	1	2021	2021
+metro_assignment	character	8	1	NA	NA
