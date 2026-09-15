@@ -3,15 +3,16 @@ library(data.table)
 library(sf)
 source("../../../shared/code/save_data.R")
 
-# 1. Retain the earlier NYC audit's five-county universe. Chicago uses city overlaps.
+# 1. Retain the earlier NYC audit's five-county universe. Other cities use city overlaps.
 cities <- fread("cities.csv", colClasses = "character")
 places <- st_read("../input/places_2024.gpkg", quiet = TRUE)
 stopifnot(!anyDuplicated(cities$place_geoid), all(cities$place_geoid %in% places$place_geoid))
 places <- places[match(cities$place_geoid, places$place_geoid), ]
+states <- paste(sprintf("'%s'", unique(places$state_fips)), collapse = ", ")
 out <- list()
 for (year in c(1980, 1990, 2000, 2010, 2020)) {
   tracts <- st_read(paste0("../input/tracts_", year, ".gpkg"),
-    query = "SELECT * FROM tracts WHERE state_fips IN ('17', '36')", quiet = TRUE)
+    query = paste0("SELECT * FROM tracts WHERE state_fips IN (", states, ")"), quiet = TRUE)
   for (i in seq_len(nrow(cities))) {
     city <- places[i, ]
     candidates <- tracts[tracts$state_fips == city$state_fips, ]

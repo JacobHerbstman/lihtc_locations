@@ -1,25 +1,25 @@
-Rows: 1030
+Rows: 2191
 Key: hud_id complete and unique
-Saved-file MD5: 6cc81eeb946ec8027fa4eb008b223c93
+Saved-file MD5: d0ec7635374d18decd35fbfef416ff71
 column	type	nonmissing	distinct	min	max
-place_geoid	integer	1030	2	1714000	3651000
-baseline_boundary_year	integer	1023	7	1980	2024
-baseline_tract_geoid	integer64	1023	534	17031010200	36085031901
-hud_id	character	1030	1030	NA	NA
-pis_year	integer	1023	35	1990	2023
-total_units	integer	1029	296	5	1238
-baseline_tract_match_status	character	1030	2	NA	NA
-baseline_period_end	integer	1023	17	1980	2022
-baseline_age_years	integer	1023	11	1	10
-baseline_homeowner_share	numeric	1020	723	0	1
-baseline_nh_black_share	numeric	1020	740	0	1
-baseline_median_household_income_2024	numeric	1016	755	11084.8356997972	253169.796407186
-baseline_housing_units	integer	1023	682	0	12799
-city_name	character	1030	2	NA	NA
-city_overlap_share	numeric	998	345	0.692370506285007	1
-interior_tract	logical	998	3	NA	NA
-in_years	logical	1030	2	NA	NA
-era	character	998	2	NA	NA
-location_in_panel	logical	1030	2	NA	NA
-sample_status	character	1030	5	NA	NA
-analysis_included	logical	1030	2	NA	NA
+place_geoid	integer	2191	8	644000	5363000
+baseline_boundary_year	integer	2156	7	1980	2024
+baseline_tract_geoid	integer64	2156	1172	6037101210	53033011802
+hud_id	character	2191	2191	NA	NA
+pis_year	integer	2156	39	1987	2024
+total_units	integer	2189	333	2	1238
+baseline_tract_match_status	character	2191	2	NA	NA
+baseline_period_end	integer	2156	18	1980	2023
+baseline_age_years	integer	2156	11	1	10
+baseline_homeowner_share	numeric	2153	1560	0	1
+baseline_nh_black_share	numeric	2153	1585	0	1
+baseline_median_household_income_2024	numeric	2138	1606	10038.6601466993	253169.796407186
+baseline_housing_units	integer	2156	1296	0	12799
+city_name	character	2191	8	NA	NA
+city_overlap_share	numeric	2040	751	0.00441726181383073	1
+interior_tract	logical	2040	3	NA	NA
+in_years	logical	2191	2	NA	NA
+era	character	2040	2	NA	NA
+location_in_panel	logical	2191	2	NA	NA
+sample_status	character	2191	5	NA	NA
+analysis_included	logical	2191	2	NA	NA

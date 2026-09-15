@@ -1,13 +1,13 @@
-Rows: 15564
+Rows: 27649
 Key: place_geoid, boundary_year, tract_geoid complete and unique
-Saved-file MD5: 787835055b435b4d753dd1142e55773a
+Saved-file MD5: 8294c20ec16b9cef8b19c68cca1c9e1f
 column	type	nonmissing	distinct	min	max
-tract_geoid	integer64	15564	4007	17031010100	36085032300
-place_geoid	integer	15564	2	1714000	3651000
-overlap_area	numeric	15564	12059	3.46944695195361e-18	21666239.9275909
-tract_area	numeric	15564	12073	8298.57320585102	21666239.9275897
-city_overlap_share	numeric	15564	3943	9.71418269405823e-25	1
-boundary_year	integer	15564	5	1980	2020
-city_name	character	15564	2	NA	NA
-place_vintage	integer	15564	1	2024	2024
-interior_tract	logical	15564	2	NA	NA
+tract_geoid	integer64	27649	9400	6001427500	53033026700
+place_geoid	integer	27649	8	644000	5363000
+overlap_area	numeric	27649	22467	3.46944695195361e-18	54015760.8713679
+tract_area	numeric	27649	22545	8298.57320585102	1494502904.57605
+city_overlap_share	numeric	27649	8487	9.71418269405823e-25	1
+boundary_year	integer	27649	5	1980	2020
+city_name	character	27649	8	NA	NA
+place_vintage	integer	27649	1	2024	2024
+interior_tract	logical	27649	2	NA	NA

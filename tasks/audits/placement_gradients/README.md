@@ -1,12 +1,12 @@
-# New York and Chicago placement gradients
+# LIHTC placement gradients across cities
 
-Jacob asked whether the prior-homeowner gradient is larger than the racial or income gradient, and requested the same comparison for Chicago. This audit compares those associations on a common sample. It leaves the HUD master, national Census files and previous NYC homeowner analysis unchanged.
+Jacob asked whether the prior-homeowner gradient is larger than the racial or income gradient, then requested more cities to explore whether local control might explain differences. The current comparison includes Atlanta, Boston, Chicago, Houston, Los Angeles, New York City, San Francisco and Seattle, selected before inspecting their new model estimates. This audit compares those associations on a common sample. It leaves the HUD master, national Census files and previous NYC homeowner analysis unchanged.
 
 ## Definitions chosen for this comparison
 
-- Pool all opening years 1987–2022 separately within each city, as Jacob subsequently requested for both cities. Estimate one slope per characteristic per city, retaining year effects.
+- Pool all opening years 1987–2022 separately within each city, following Jacob’s request to pool the comparison. Estimate one slope per characteristic per city, retaining year effects.
 - Count HUD new-construction project records whose retained HUD point is inside each 2024 Census place boundary. These are placed-in-service dates, not approval dates. Exclude the incomplete 2023–2024 cohorts from this analysis.
-- Keep all native NYC tracts in its five borough counties, exactly as in the previous homeowner audit. For Chicago, select native tracts with positive-area overlap with the 2024 city boundary, including tracts with no projects. Demographics and exposure remain whole-tract values. The interior sensitivity requires at least 99% of tract area inside the city, using the same rule in both cities. NYC demographic rows absent from a boundary snapshot remain in the main universe; they cannot enter the interior sensitivity.
+- Keep all native NYC tracts in its five borough counties, exactly as in the previous homeowner audit. For cities other than NYC, select native tracts with positive-area overlap with the 2024 city boundary, including tracts with no projects. Demographics and exposure remain whole-tract values. The interior sensitivity requires at least 99% of tract area inside the city, using the same rule in every city. NYC demographic rows absent from a boundary snapshot remain in the main universe; they cannot enter the interior sensitivity.
 - Use the latest Census observation ending strictly before opening, for projects and alternative tracts alike. Openings in 1987–1990 use 1980 Census data, 1991–2000 use 1990, 2001–2010 use 2000, and 2011–2022 use ACS releases ending 2010–2021. No interpolation, field-specific backfilling or static latest-context substitution.
 - Homeowner share is owner-occupied housing divided by occupied housing; racial composition is **non-Hispanic Black population share**, matching the earlier racial maps. Income is log median household income in 2024 dollars, using the existing national historical-income price index. This adjusts dollars over time, not across local living costs.
 - Require all three characteristics and positive baseline housing for these regressions only. Preserve every project in the audit project file and report losses. Missing unit counts do not exclude a project.
@@ -16,7 +16,51 @@ Jacob asked whether the prior-homeowner gradient is larger than the racial or in
 
 Separate models describe total associations, which can overlap. The joint model asks how much association remains when comparing tracts with the other two characteristics held fixed. Neither identifies causal effects of neighborhood characteristics or member deference.
 
-## Findings: pooled 1987–2022
+## Eight-city comparison, September 15, 2026
+
+The existing specification now runs for six additional cities. `cities.csv` records Census place GEOIDs, not name matches. Tract acquisition within the audit selects states from those places, preserving the previous NYC and Chicago samples. The model and timing rules are unchanged. Earlier two-city logbook exhibits are preserved as dated snapshots.
+
+The main comparison includes all three focal characteristics, prior vacancy and log housing density jointly, with city-specific year effects. For the **same ten-percentage-point increase in homeowner share**, adjusted placement-rate changes are:
+
+| City | Projects | Homeowner change | 95% interval |
+| --- | ---: | ---: | ---: |
+| New York City | 819 | −36.1% | −40.3% to −31.5% |
+| Boston | 86 | −25.2% | −41.8% to −3.8% |
+| Seattle | 190 | −19.3% | −37.3% to +4.0% |
+| Los Angeles | 410 | −17.6% | −25.2% to −9.2% |
+| Chicago | 172 | −12.3% | −25.2% to +2.7% |
+| Houston | 99 | −11.2% | −20.3% to −1.1% |
+| San Francisco | 112 | −9.6% | −21.0% to +3.5% |
+| Atlanta | 135 | −6.6% | −20.9% to +10.4% |
+
+The project count is 2,023 of 2,040 city projects dated 1987–2022. The three demographic requirements and positive housing exposure exclude 17 projects; adding vacancy and density loses no further projects. It removes four zero-project NYC tract-years. The full master remains unchanged. Actual fitted Ns, eligible zero-project rows and ordered exclusions are in the report. All state and city selections were made before reading these new estimates; this is a selected comparison, not a representative national sample.
+
+For comparing **characteristics within a city**, use city-specific standard deviations. Adjusted joint rate ratios per one SD are:
+
+| City | Homeowner share | Non-Hispanic Black share | Income |
+| --- | ---: | ---: | ---: |
+| New York City | 0.319 | 1.218 | 0.787 |
+| Boston | 0.538 | 1.495 | 0.578 |
+| Seattle | 0.607 | 1.336 | 0.607 |
+| Los Angeles | 0.596 | 0.957 | 0.412 |
+| Chicago | 0.733 | 1.100 | 0.618 |
+| Houston | 0.740 | 1.531 | 0.656 |
+| San Francisco | 0.774 | 1.011 | 0.596 |
+| Atlanta | 0.856 | 1.900 | 0.434 |
+
+Homeownership has the largest absolute standardized log association in New York and Boston, and is effectively tied with income in Seattle. Income is strongest in Los Angeles, San Francisco, Chicago and Atlanta. Houston's Black-share and income associations are close, both larger than homeownership. These are point-estimate comparisons, not formal tests of ordering. The natural-scale figure uses 10 points for either share and 10% for income; those different increments should not rank the three characteristics.
+
+Restricting to tracts at least 99% inside the city preserves all eight negative homeowner point estimates but changes Atlanta from −6.6% to −17.5% (135 to 113 projects), and San Francisco from −9.6% to −5.0% (112 to 86). Atlanta's magnitude is particularly sensitive to this geography choice. The report retains both samples and their intervals, without choosing the stronger result after inspection.
+
+### What this says about local control
+
+NYC stands out, but these estimates do not form a simple coastal-city pattern: San Francisco's homeowner gradient is small and uncertain after controls. We have not assigned cities subjective NIMBY labels or treated the slopes as measures of local control.
+
+An external source check downloaded the [author-posted January 2020 Wharton regulation file](https://fnce.wharton.upenn.edu/profile/gyourko/) on September 15, 2026. It contains **no exact state/place-code matches for these eight city governments**. The [Gyourko–Hartley–Krimmel paper](https://realestate.wharton.upenn.edu/wp-content/uploads/2022/04/w835.pdf) explains that respondents are overwhelmingly suburban jurisdictions. Metropolitan averages therefore cannot substitute for our central cities' governments. This source is a read-only coverage investigation, not an input to the analysis; its URL, checksum and reproducible check are in `verification.md`.
+
+A direct local-control comparison still requires a dated, independently defined city-government measure of discretionary review, neighborhood vetoes or council-member control. The pooled descriptive gradients cannot establish that mechanism and also reflect state allocation rules, land availability and other city differences. We make no cross-city causal claim and have not selected a regulatory classification using the results.
+
+## Earlier two-city findings: pooled 1987–2022
 
 The common sample remains 819 NYC projects and 172 Chicago projects. NYC's original 79,523 tract-year rows and their homeowner, housing and project fields still match the prior homeowner audit exactly. Pooling changes the slope specification, not the projects, characteristics, baseline years, denominators or standardization scales.
 
@@ -44,12 +88,12 @@ Run root `make`. With upstream inputs prepared, `make -C tasks/audits/placement_
 3. `build_panel.R` reads national `tract_demographics.csv`, membership and project records. It builds one row per city, opening year and native tract, with zero counts where appropriate.
 4. `summarize_coverage.R` reports project and tract-year coverage by city over the full study period. Missing-variable counts overlap; they are not additive.
 5. `scales.R` records each city's fixed means, standard deviations and natural-unit conversions.
-6. `fit_models.R` estimates separate and joint models, including the interior-tract check. `models.csv` now contains 72 pooled focal estimates: two cities × two geographic samples × three adjustment specifications × two model types × three variables.
-7. `plot_gradients.R` and `summarize_results.R` retain the original pooled figure and table. `plot_housing_controls.R` and `summarize_housing_controls.R` compare the added controls on identical samples. `write_report.R` combines them in the self-contained HTML report.
+6. `fit_models.R` estimates separate and joint models, including the interior-tract check. `models.csv` contains 288 pooled focal estimates: eight cities × two geographic samples × three adjustment specifications × two model types × three variables.
+7. `plot_gradients.R` and `summarize_results.R` show separate and joint pooled associations without housing controls. `plot_housing_controls.R` and `summarize_housing_controls.R` compare the added controls on identical samples. `plot_cross_city.R` and `summarize_cross_city.R` show the adjusted joint estimates for fixed natural increments across cities. `write_report.R` combines them in the self-contained HTML report.
 
 The root and local Makefiles explicitly list inputs and outputs. Every saved CSV writes its standard report through `SaveData`; reports are side effects rather than build targets.
 
-## Add prior vacancy and housing density
+## Housing controls introduced in the earlier two-city comparison
 
 Jacob requested the neighborhood-housing-control comparison. **All specifications already included year fixed effects, estimated separately within each city.** The new specifications retain them, as well as the housing-unit offset, 1987–2022 pooling, tract-code-clustered intervals and original standardization scales.
 

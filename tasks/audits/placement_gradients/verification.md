@@ -1,4 +1,38 @@
-# Verification, September 14, 2026
+# Verification
+
+## Eight-city extension, September 15, 2026
+
+- The selected places are Atlanta `1304000`, Boston `2507000`, Chicago `1714000`, Houston `4835000`, Los Angeles `0644000`, New York City `3651000`, San Francisco `0667000` and Seattle `5363000`. These selections preceded inspection of their new coefficients. Names are display labels; Census GEOIDs identify cities. Native tract state codes agree with their cities' state prefixes.
+- The original two-city rows in all six CSV outputs (tract membership, projects, tract-years, scales, coverage and models) remain unchanged to `1e-12` tolerance, including all 72 existing coefficients. Their earlier logbook tables and figures are preserved as dated snapshots.
+- All 2,040 dated projects match their tract-year rows on city, opening year and native tract. Prior source period, geography vintage, homeowner share, Black share, income, housing exposure and analysis eligibility agree exactly. Every panel period is the latest observed Census period ending strictly before opening.
+- There are 2,023 common-sample projects, and adding housing controls loses no projects. Exactly four otherwise eligible NYC tract-years lack mapped area; all have zero projects. The before/after fits retain identical rows and project counts for each city and geographic sample. All 288 focal estimates pool time and retain year effects.
+- Independently profiled out year intercepts and maximized the conditional Poisson likelihood, without `glm`, for every city, separate/joint model and geographic sample with housing controls. All 96 controlled focal coefficients agree within `1.20e-6` log-rate units. Confidence intervals and natural-unit changes are transformed from the saved coefficients using the saved scales.
+- Reviewed the main natural-scale figure, standardized comparisons and rendered logbook pages 26–27. The new entry distinguishes across-city fixed increments from within-city standardization, reports the Atlanta and San Francisco boundary sensitivity, and does not classify cities by local control.
+- A fresh disposable fixture using the affected root rules reproduces all 13 actual outputs and all six SaveData reports byte-for-byte. Deleting `cross_city.png` and `cross_city.tex` and running the fixture root build regenerates both and the HTML exactly. Removing Boston from only the fixture's city list rebuilds tract membership, project selection, the panel, coverage, scales, models and exhibits; all remaining cities' CSV rows and estimates match production unchanged. The production city list remains eight cities.
+- Root and task-local Make builds and `make -C paper` complete under GNU Make 3.81. Unchanged builds do no work. All saved estimates, confidence intervals and natural increments reconcile; saved dataset keys are complete and unique. `git diff --check` passes.
+
+### External regulation source coverage
+
+This was a read-only source investigation outside the Make pipeline. No regulation variable was created, imputed, merged into the panel, or used for city selection or estimation. The downloaded file was inspected in temporary storage; it is not a production data dependency.
+
+- Author landing page: <https://fnce.wharton.upenn.edu/profile/gyourko/>, link “Wharton Land Regulation Data- January 2020.”
+- Public file: <https://www.dropbox.com/scl/fi/ekxan963skmr436rov9j4/WHARTON-LAND-REGULATION-DATA_01_15_2020.dta?dl=1&rlkey=aqdccswzltbp7w0fxzayh33nz&st=y45a71ys>.
+- Downloaded September 15, 2026; SHA-256 `049fdd0f9b142be1bd6a46de62439ed3d3cf545d257f371e89feab1adc043db0`.
+- File has 2,844 rows and 150 fields. `WRLURI18` is the 2018 index; `LPPI18` is the Local Political Pressure Index; `LPAI18` is the Local Project Approval Index. Index fields were only inspected for coverage, not analyzed.
+- Formed seven-digit place codes from `statecode` (two digits) and `fipsplacecode18` (five digits). None match the eight selected Census places. An additional community-name check finds West Chicago and South Chicago Heights, not Chicago; neither was treated as a match.
+- The [published survey paper](https://realestate.wharton.upenn.edu/wp-content/uploads/2022/04/w835.pdf), page 2 footnote 5, describes the overwhelmingly suburban respondents. Its metro averages describe responding communities across a CBSA, not the central-city government. The sample's opening-year gradients also span a much longer period than this 2018 snapshot.
+
+Reproduce the exact code-match check after downloading the file above to temporary storage. `haven` was already available for this one-off inspection; the production analysis's package requirements are unchanged.
+
+```r
+library(data.table)
+x <- as.data.table(haven::read_dta("/tmp/lihtc_wharton_2020.dta"))
+x[, place_geoid := sprintf("%02d%05d", as.integer(statecode), as.integer(fipsplacecode18))]
+cities <- fread("tasks/audits/placement_gradients/code/cities.csv", colClasses = "character")
+x[place_geoid %chin% cities$place_geoid,
+  .(place_geoid, communityname18, state, WRLURI18, LPPI18, LPAI18)]
+# Zero rows for the eight cities selected on September 15, 2026.
+```
 
 ## Vacancy and density update
 

@@ -3,7 +3,8 @@ include ../../../shared/code/shell_functions.make
 all: ../output/city_tracts.csv ../output/project_sample.csv ../output/tract_years.csv \
     ../output/coverage.csv ../output/scales.csv ../output/models.csv \
     ../output/gradients.png ../output/summary.tex ../output/diagnostics.html \
-    ../output/housing_controls.png ../output/housing_controls.tex
+    ../output/housing_controls.png ../output/housing_controls.tex \
+    ../output/cross_city.png ../output/cross_city.tex
 
 include ../../../shared/code/generic.make
 
@@ -48,7 +49,13 @@ include ../../../shared/code/generic.make
 
 ../output/diagnostics.html: write_report.R periods.csv ../output/models.csv ../output/coverage.csv \
     ../output/scales.csv ../output/project_sample.csv ../output/gradients.png \
-    ../output/housing_controls.png Makefile | ../output
+    ../output/housing_controls.png ../output/cross_city.png Makefile | ../output
+	$(R) $<
+
+../output/cross_city.png: plot_cross_city.R periods.csv ../output/models.csv Makefile | ../output
+	$(R) $<
+
+../output/cross_city.tex: summarize_cross_city.R ../output/models.csv Makefile | ../output
 	$(R) $<
 
 ../input/projects_with_tracts.csv: ../../../assign_lihtc_tracts/output/projects_with_tracts.csv | ../input

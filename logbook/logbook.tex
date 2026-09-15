@@ -816,7 +816,7 @@ income ratio is 0.429, its homeowner ratio is 0.467 and its Black-share ratio is
 1.913. Income is somewhat stronger than homeownership in Chicago, while Black
 share is somewhat smaller, ranking the absolute log rate changes.
 
-\input{../tasks/audits/placement_gradients/output/summary.tex}
+\input{placement_gradients_pooled_summary.tex}
 
 Including all three characteristics together leaves New York's homeowner ratio
 at 0.479 (95\% interval 0.390--0.590). Chicago's becomes 0.930
@@ -834,7 +834,7 @@ interior sensitivity. Root \texttt{make} generates the pooled estimates and
 report; the task's README and verification record describe the updated calculation.
 
 \begin{center}
-\includegraphics[width=\textwidth]{../tasks/audits/placement_gradients/output/gradients.png}
+\includegraphics[width=\textwidth]{placement_gradients_pooled.png}
 \end{center}
 \clearpage
 \section*{Add prior neighborhood vacancy and housing density}
@@ -851,7 +851,7 @@ remains negatively associated with placement in both cities; Black-share
 associations are smaller after adjustment. These are point-estimate changes,
 without a formal test of the difference between specifications.
 
-\input{../tasks/audits/placement_gradients/output/housing_controls.tex}
+\input{placement_gradients_housing_controls.tex}
 
 Vacancy is vacant units divided by all housing units; density is units per square
 kilometer of the full mapped native tract, entered in logs. Both housing counts
@@ -870,6 +870,67 @@ $10^{-6}$ log-rate units. Source definitions and verification are recorded in
 \path{tasks/audits/placement_gradients/README.md} and its verification file.
 
 \begin{center}
-\includegraphics[width=\textwidth]{../tasks/audits/placement_gradients/output/housing_controls.png}
+\includegraphics[width=\textwidth]{placement_gradients_housing_controls.png}
 \end{center}
+\clearpage
+\section*{Compare homeowner gradients across eight cities}
+\noindent September 15, 2026. Agent-drafted update; source-code baseline
+\texttt{740e7a8}. Jacob requested more cities to compare homeownership with other
+demographics and explore whether stronger local control might explain the pattern.
+The comparison adds Atlanta, Boston, Houston, Los Angeles, San Francisco and
+Seattle to Chicago and New York, selected before inspecting their new estimates.
+
+New York has the steepest negative homeowner point estimate. Ten percentage
+points higher prior homeowner share is associated with 36.1\% fewer annual
+placements per baseline housing unit (95\% interval: 31.5--40.3\% fewer), holding
+Black share, income, vacancy and housing density fixed. Boston's point estimate
+is 25.2\% fewer; San Francisco's is only 9.6\% fewer and its interval includes
+zero. Thus these estimates do not give a simple coastal-city pattern. They remain
+descriptive associations, and the ordered point estimates do not constitute a
+formal ranking test.
+
+\input{../tasks/audits/placement_gradients/output/cross_city.tex}
+
+Using each characteristic's within-city standard deviation, homeownership is
+strongest in New York and Boston and effectively tied with income in Seattle.
+Income is strongest in Los Angeles, San Francisco, Chicago and Atlanta. Houston's
+Black-share and income gradients are similar and larger than homeownership.
+The fixed natural increments in the table compare cities within columns;
+standardization compares characteristics within a city.
+
+The sample contains 2,023 of 2,040 projects dated 1987--2022. Adding vacancy and
+density loses no projects beyond the original three-variable common sample;
+four zero-project NYC tract-years lack mapped area. All models pool the full
+period separately within each city, retain year fixed effects and housing-unit
+exposure, and use Census observations ending strictly before opening. No master
+project or national Census definition changes. The earlier two-city samples,
+scales and 72 model estimates remain unchanged; their dated exhibits are retained
+as snapshots so expansion does not alter the earlier entries.
+
+The interior-tract sensitivity keeps all homeowner point estimates negative,
+but Atlanta changes from 6.6\% to 17.5\% fewer placements, losing 22 of its
+135 projects; San Francisco changes from 9.6\% to 5.0\% fewer, losing 26 of
+112. Both choices remain visible rather than selecting the stronger association.
+
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth]{../tasks/audits/placement_gradients/output/cross_city.png}
+\end{center}
+
+\paragraph{Local-control interpretation.} A read-only check of the author-posted
+January 2020 Wharton regulation file found no exact state/place-code match for
+any of the eight city governments. The
+\href{https://realestate.wharton.upenn.edu/wp-content/uploads/2022/04/w835.pdf}{Gyourko--Hartley--Krimmel survey paper}
+explains that responses are predominantly suburban. Its metropolitan averages
+do not measure the central city's institutions. No Wharton value or subjective
+NIMBY classification enters this analysis. Testing local control directly still
+requires an independent city-government measure, with dates, of discretionary
+review, neighborhood vetoes or council-member control. These pooled slopes also
+reflect state allocation rules, land availability and other city differences.
+
+\paragraph{Reproduction.} Root \texttt{make} builds the eight-city analysis and
+report from the existing pinned national sources. The task's
+\path{README.md} describes definitions, magnitudes and the boundary sensitivity;
+\path{verification.md} records checks and the Wharton source URL and checksum.
+The source folder is \path{tasks/audits/placement_gradients/code}.
 \end{document}

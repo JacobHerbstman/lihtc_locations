@@ -12,6 +12,13 @@ all NYC tracts, including zero placements. Its [methods and findings](tasks/audi
 distinguish the negative homeowner association in both periods from a change in
 that association over time.
 
+The [eight-city placement comparison](tasks/audits/placement_gradients/output/diagnostics.html)
+pools 1987–2022 separately in Atlanta, Boston, Chicago, Houston, Los Angeles,
+New York City, San Francisco and Seattle. It compares prior homeownership, racial
+composition and income with year effects, vacancy and housing-density controls.
+Its [methods and findings](tasks/audits/placement_gradients/README.md) distinguish
+the descriptive gradients from the still-unmeasured local-control hypothesis.
+
 The main dataset is `tasks/build_lihtc/output/projects.csv`: **28,456 HUD-reported
 new-construction project IDs with HUD coordinates**. It uses TYPE=1 in the 50
 states and DC from the pinned 2024 release. Every ID keeps its own placed-in-service
